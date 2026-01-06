@@ -5,7 +5,7 @@ Clean separation of frontend and backend concerns for maintainability and scalab
 
 ## Directory Structure
 
-```
+\`\`\`
 project/
 ├── frontend/                          # Next.js Frontend Application
 │   ├── app/
@@ -37,7 +37,7 @@ project/
 ├── tsconfig.json                     # TypeScript config
 ├── next.config.mjs                   # Next.js config
 └── PROJECT_STRUCTURE.md             # This file
-```
+\`\`\`
 
 ## Key Directories
 
@@ -64,9 +64,9 @@ project/
 
 ## Environment Variables Required
 
-```
+\`\`\`
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
-```
+\`\`\`
 
 ## Architecture Notes
 
