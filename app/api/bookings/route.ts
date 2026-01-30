@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import connectToDatabase from "@/lib/mongodb"
 import type { Booking } from "@/lib/booking-schema"
+import { sendBookingConfirmationEmail } from "@/lib/email"
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,6 +30,24 @@ export async function POST(request: NextRequest) {
     const result = await db.collection("bookings").insertOne(booking)
 
     console.log("[v0] Booking created:", result.insertedId)
+
+    // Send booking email to the resort's Gmail
+    const emailSent = await sendBookingConfirmationEmail({
+      name: booking.name,
+      email: booking.email,
+      phone: booking.phone,
+      checkIn: booking.checkIn,
+      checkOut: booking.checkOut,
+      guests: booking.guests,
+      roomType: booking.roomType || "Not specified",
+      message: booking.message,
+    })
+
+    if (emailSent) {
+      console.log("[v0] Booking email notification sent successfully")
+    } else {
+      console.log("[v0] Booking email notification failed (continuing with booking confirmation)")
+    }
 
     return NextResponse.json(
       {

@@ -1,13 +1,6 @@
-import nodemailer from "nodemailer"
-
-// Email configuration using Gmail
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_EMAIL,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-})
+// Email sender using Gmail SMTP
+// Requires: npm install nodemailer @types/nodemailer
+// Environment variables: GMAIL_EMAIL, GMAIL_APP_PASSWORD
 
 interface BookingEmailData {
   name: string
@@ -21,6 +14,15 @@ interface BookingEmailData {
 }
 
 export async function sendBookingConfirmationEmail(data: BookingEmailData): Promise<boolean> {
+  // Dynamic import of nodemailer to avoid build errors if not installed
+  let nodemailer: any
+  try {
+    nodemailer = await import("nodemailer")
+  } catch (e) {
+    console.error("[v0] Nodemailer not installed. Please run: npm install nodemailer @types/nodemailer")
+    return false
+  }
+
   const {
     name,
     email,
@@ -31,6 +33,15 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData): Prom
     roomType,
     message,
   } = data
+
+  // Create transporter
+  const transporter = nodemailer.default.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_EMAIL,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  })
 
   const mailOptions = {
     from: process.env.GMAIL_EMAIL,
