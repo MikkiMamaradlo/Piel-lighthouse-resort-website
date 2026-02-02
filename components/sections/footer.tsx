@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-white relative overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-primary via-accent to-primary" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -18,7 +18,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-300 mb-6">Your tropical paradise on the shores of Batangas. Experience luxury, comfort, and natural beauty.</p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.facebook.com/piel.lighthouse" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                 <Facebook size={20} />
               </a>
               <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
@@ -80,24 +80,6 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="text-accent" size={18} />
                 <span>piel.lighthouseresort@gmail.com</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-semibold mb-4 text-lg">Hours</h4>
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-center gap-2">
-                <span className="text-accent">•</span>
-                Check-in: 2:00 PM
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-accent">•</span>
-                Check-out: 12:00 PM
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-accent">•</span>
-                Front Desk: 24/7
               </li>
             </ul>
           </div>

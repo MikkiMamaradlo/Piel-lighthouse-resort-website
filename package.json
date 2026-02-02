@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "setup": "powershell -ExecutionPolicy Bypass -File setup.ps1",
+    "setup:cmd": "call setup.bat",
     "status": "bash scripts/check-services.sh",
     "test": "echo \"No tests specified\" && exit 0"
   },
