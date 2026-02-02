@@ -4,9 +4,9 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, Star, Check, ArrowRight } from "lucide-react"
-import { rooms } from "@/components/room-details-modal"
+import { openRoomModal } from "@/components/room-details-modal"
 
-const accommodationsRooms = [
+const rooms = [
   {
     name: "Beachfront Room",
     capacity: "up to 4 pax",
@@ -22,7 +22,8 @@ const accommodationsRooms = [
       { icon: Wifi, text: "Free WiFi" },
     ],
     popular: true,
-    features: ["Table Cottage", "Extra mattress"]
+    features: ["Table Cottage", "Extra mattress"],
+    description: "Wake up to the sound of waves in our Beachfront Room. This cozy accommodation offers direct beach access and stunning ocean views."
   },
   {
     name: "Barkada Room",
@@ -39,7 +40,8 @@ const accommodationsRooms = [
       { icon: Wifi, text: "Free WiFi" },
     ],
     popular: false,
-    features: ["Table Cottage", "Extra mattresses"]
+    features: ["Table Cottage", "Extra mattresses"],
+    description: "Our spacious Barkada Room is designed for groups and families with ample space for up to 10 guests."
   },
   {
     name: "Family Room",
@@ -56,12 +58,20 @@ const accommodationsRooms = [
       { icon: Wifi, text: "Free WiFi" },
     ],
     popular: false,
-    features: ["Private toilet", "Table Cottage"]
+    features: ["Private toilet", "Table Cottage"],
+    description: "The ultimate family accommodation! This expansive room comfortably hosts up to 15 guests."
   },
 ]
 
 export default function Accommodations() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
     <section id="accommodations" className="py-24 bg-linear-to-b from-slate-50 to-white relative" aria-labelledby="accommodations-heading">
@@ -88,7 +98,7 @@ export default function Accommodations() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {accommodationsRooms.map((room, index) => (
+          {rooms.map((room, index) => (
             <Card
               key={room.name}
               className={`relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 group cursor-pointer border-0 ${
@@ -159,13 +169,7 @@ export default function Accommodations() {
 
                 {/* Button */}
                 <Button 
-                  onClick={() => {
-                    const modal = document.getElementById('room-details-modal')
-                    if (modal) {
-                      // Dispatch event to open modal
-                      window.dispatchEvent(new CustomEvent('open-room-modal', { detail: room }))
-                    }
-                  }}
+                  onClick={() => openRoomModal(room)}
                   className={`w-full transition-all duration-300 group-hover:shadow-lg ${
                     room.popular 
                       ? "bg-amber-500 hover:bg-amber-600 text-white" 
@@ -186,7 +190,11 @@ export default function Accommodations() {
         {/* CTA */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">Not sure which room fits your needs?</p>
-          <Button variant="outline" className="rounded-full px-8">
+          <Button 
+            variant="outline" 
+            onClick={() => scrollToSection("contact")}
+            className="rounded-full px-8"
+          >
             Compare All Rooms
           </Button>
         </div>

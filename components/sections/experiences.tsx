@@ -38,6 +38,13 @@ const experiences = [
 export default function Experiences() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section id="experiences" className="py-24 bg-linear-to-b from-white via-blue-50/50 to-primary/5 relative overflow-hidden" aria-labelledby="experiences-heading">
       {/* Background decorations */}
@@ -113,6 +120,7 @@ export default function Experiences() {
 
                 <Button 
                   variant="ghost" 
+                  onClick={() => scrollToSection("contact")}
                   className="w-full justify-between text-primary hover:text-primary hover:bg-primary/5 transition-all duration-300 group-hover:shadow-sm"
                 >
                   Learn more
@@ -125,7 +133,10 @@ export default function Experiences() {
 
         {/* View all experiences CTA */}
         <div className="text-center mt-12">
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8">
+          <Button 
+            onClick={() => scrollToSection("experiences")}
+            className="bg-primary hover:bg-primary/90 text-white rounded-full px-8"
+          >
             View All Experiences
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>

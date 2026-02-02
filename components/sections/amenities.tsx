@@ -1,6 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { 
   Waves, 
   UtensilsCrossed, 
@@ -32,6 +33,13 @@ const amenities = [
 ]
 
 export default function Amenities() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section id="amenities" className="py-24 bg-linear-to-b from-white to-blue-50/30 relative" aria-labelledby="amenities-heading">
       {/* Background decorations */}
@@ -80,12 +88,16 @@ export default function Amenities() {
 
         {/* View all amenities */}
         <div className="text-center mt-12">
-          <button className="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center justify-center gap-2 mx-auto">
+          <Button 
+            variant="ghost" 
+            onClick={() => scrollToSection("amenities")}
+            className="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center justify-center gap-2 mx-auto"
+          >
             View All Amenities
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-          </button>
+          </Button>
         </div>
       </div>
     </section>

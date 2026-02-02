@@ -1,8 +1,23 @@
+"use client"
+
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Palmtree, Star, Calendar, Users } from "lucide-react"
+import { useState } from "react"
+import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Palmtree, Star, Calendar, Users, Check } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState("")
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email.trim()) {
+      // Simulate subscription success
+      setSubscribed(true)
+      setEmail("")
+      setTimeout(() => setSubscribed(false), 3000)
+    }
+  }
 
   const quickLinks = [
     { href: "#accommodations", label: "Rooms & Pricing" },
@@ -138,16 +153,29 @@ export default function Footer() {
               <h4 className="font-semibold text-lg mb-1">Subscribe to Our Newsletter</h4>
               <p className="text-gray-400 text-sm">Get updates on special offers and packages</p>
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
+            <form onSubmit={handleSubscribe} className="flex gap-2 w-full md:w-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                required
                 className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500 w-full md:w-64"
               />
-              <button className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors whitespace-nowrap">
-                Subscribe
+              <button 
+                type="submit" 
+                className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors whitespace-nowrap flex items-center gap-2"
+              >
+                {subscribed ? (
+                  <>
+                    <Check size={16} />
+                    Subscribed!
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
 

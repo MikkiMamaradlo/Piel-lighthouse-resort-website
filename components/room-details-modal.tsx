@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -73,33 +73,53 @@ const rooms: RoomDetail[] = [
   },
 ]
 
+// Global state for modal visibility
+let globalSelectedRoom: RoomDetail | null = null
+let globalIsOpen = false
+const listeners: Set<(room: RoomDetail | null, isOpen: boolean) => void> = new Set()
+
+function notifyListeners(room: RoomDetail | null, isOpen: boolean) {
+  globalSelectedRoom = room
+  globalIsOpen = isOpen
+  listeners.forEach(listener => listener(room, isOpen))
+}
+
+export function openRoomModal(room: RoomDetail) {
+  notifyListeners(room, true)
+}
+
+export function closeRoomModal() {
+  notifyListeners(null, false)
+}
+
+export { rooms }
+
 export default function RoomDetailsModal() {
   const [selectedRoom, setSelectedRoom] = useState<RoomDetail | null>(null)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const handleOpenModal = (e: CustomEvent<RoomDetail>) => {
-      setSelectedRoom(e.detail)
-      setIsOpen(true)
+    const listener = (room: RoomDetail | null, open: boolean) => {
+      setSelectedRoom(room)
+      setIsOpen(open)
     }
-
-    window.addEventListener('open-room-modal', handleOpenModal as EventListener)
-    return () => window.removeEventListener('open-room-modal', handleOpenModal as EventListener)
+    listeners.add(listener)
+    return () => {
+      listeners.delete(listener)
+    }
   }, [])
 
-  const closeModal = () => {
-    setIsOpen(false)
-    setSelectedRoom(null)
-  }
+  const closeModal = useCallback(() => {
+    closeRoomModal()
+  }, [])
 
-  const handleBookNow = () => {
-    // Scroll to contact section or open booking form
+  const handleBookNow = useCallback(() => {
     const contactSection = document.getElementById("contact")
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" })
     }
     closeModal()
-  }
+  }, [closeModal])
 
   // Handle escape key
   useEffect(() => {
@@ -108,7 +128,7 @@ export default function RoomDetailsModal() {
     }
     window.addEventListener("keydown", handleEscape)
     return () => window.removeEventListener("keydown", handleEscape)
-  }, [])
+  }, [closeModal])
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -149,7 +169,7 @@ export default function RoomDetailsModal() {
             alt={selectedRoom.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
           
           {/* Popular badge */}
           {selectedRoom.popular && (
@@ -226,5 +246,3 @@ export default function RoomDetailsModal() {
     </div>
   )
 }
-
-export { rooms }

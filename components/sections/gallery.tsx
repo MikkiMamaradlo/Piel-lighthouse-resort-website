@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { X, ZoomIn, Grid, LayoutGrid, Filter } from "lucide-react"
 
 const images = [
@@ -22,6 +23,20 @@ const categories = ["All", "Resort", "Beach", "Rooms", "Dining", "Experience", "
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [activeCategory, setActiveCategory] = useState("All")
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true)
+    // Simulate loading more photos
+    setTimeout(() => {
+      setIsLoadingMore(false)
+      // Scroll to gallery section to show new content
+      const gallerySection = document.getElementById("gallery")
+      if (gallerySection) {
+        gallerySection.scrollIntoView({ behavior: "smooth" })
+      }
+    }, 1000)
+  }
 
   const filteredImages = useMemo(() => {
     if (activeCategory === "All") return images
@@ -109,9 +124,13 @@ export default function Gallery() {
 
         {/* View more button */}
         <div className="text-center mt-12">
-          <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg">
-            Load More Photos
-          </button>
+          <Button 
+            onClick={handleLoadMore}
+            disabled={isLoadingMore}
+            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
+          >
+            {isLoadingMore ? "Loading..." : "Load More Photos"}
+          </Button>
         </div>
 
         {/* Lightbox */}
