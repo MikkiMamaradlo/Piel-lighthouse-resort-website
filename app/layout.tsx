@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Piel Lighthouse Beach Resort | Tropical Paradise in Batangas",
   description:
     "Experience luxury beachfront accommodations, water activities, and island dining at Piel Lighthouse Beach Resort. Perfect for family getaways and romantic escapes.",
-  generator: "v0.app",
+  generator: "Next.js",
   icons: {
     icon: [
       {

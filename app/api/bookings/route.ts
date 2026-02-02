@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     }
 
-    console.log("[v0] Processing booking for:", booking.email)
+    console.log("Processing booking for:", booking.email)
 
     // Try to save to MongoDB if available
     let bookingId: string | null = null
@@ -46,10 +46,10 @@ export async function POST(request: NextRequest) {
         status: "pending",
       })
       bookingId = result.insertedId.toString()
-      console.log("[v0] Booking saved to MongoDB:", bookingId)
+      console.log("Booking saved to MongoDB:", bookingId)
     } catch (dbError) {
       // MongoDB not available - continue with email only
-      console.log("[v0] MongoDB not available, proceeding with email-only mode")
+      console.log("MongoDB not available, proceeding with email-only mode")
       bookingId = `demo-${Date.now()}`
     }
 
@@ -66,9 +66,9 @@ export async function POST(request: NextRequest) {
     })
 
     if (emailSent) {
-      console.log("[v0] Booking email sent successfully")
+      console.log("Booking email sent successfully")
     } else {
-      console.log("[v0] Booking email failed (check GMAIL credentials)")
+      console.log("Booking email failed (check GMAIL credentials)")
     }
 
     return NextResponse.json(
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     )
   } catch (error) {
-    console.error("[v0] Booking API error:", error)
+    console.error("Booking API error:", error)
     return NextResponse.json({ error: "Failed to create booking" }, { status: 500 })
   }
 }
@@ -95,12 +95,12 @@ export async function GET(request: NextRequest) {
       const query = status ? { status } : {}
       bookings = await db.collection("bookings").find(query).sort({ createdAt: -1 }).toArray()
     } catch (dbError) {
-      console.log("[v0] MongoDB not available for GET")
+      console.log("MongoDB not available for GET")
     }
 
     return NextResponse.json({ bookings }, { status: 200 })
   } catch (error) {
-    console.error("[v0] Fetch bookings error:", error)
+    console.error("Fetch bookings error:", error)
     return NextResponse.json({ error: "Failed to fetch bookings" }, { status: 500 })
   }
 }

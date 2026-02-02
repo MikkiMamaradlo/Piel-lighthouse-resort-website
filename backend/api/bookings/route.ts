@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     const result = await db.collection("bookings").insertOne(booking)
 
-    console.log("[v0] Booking created:", result.insertedId)
+    console.log("Booking created:", result.insertedId)
 
     return NextResponse.json(
       {
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     )
   } catch (error) {
-    console.error("[v0] Booking API error:", error)
+    console.error("Booking API error:", error)
     return NextResponse.json({ error: "Failed to create booking" }, { status: 500 })
   }
 }
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ bookings }, { status: 200 })
   } catch (error) {
-    console.error("[v0] Fetch bookings error:", error)
+    console.error("Fetch bookings error:", error)
     return NextResponse.json({ error: "Failed to fetch bookings" }, { status: 500 })
   }
 }

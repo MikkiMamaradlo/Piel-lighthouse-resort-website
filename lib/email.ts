@@ -16,14 +16,14 @@ interface BookingEmailData {
 export async function sendBookingConfirmationEmail(data: BookingEmailData): Promise<boolean> {
   // Demo mode - log email instead of sending
   if (process.env.DEMO_MODE === "true") {
-    console.log("[v0] DEMO_MODE: Would send email to " + process.env.GMAIL_EMAIL)
-    console.log("[v0] Booking details:", JSON.stringify(data, null, 2))
+    console.log("DEMO_MODE: Would send email to " + process.env.GMAIL_EMAIL)
+    console.log("Booking details:", JSON.stringify(data, null, 2))
     return true
   }
 
   // Check for required env vars
   if (!process.env.GMAIL_EMAIL || !process.env.GMAIL_APP_PASSWORD) {
-    console.error("[v0] GMAIL_EMAIL or GMAIL_APP_PASSWORD not set in environment variables")
+    console.error("GMAIL_EMAIL or GMAIL_APP_PASSWORD not set in environment variables")
     return false
   }
 
@@ -32,7 +32,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData): Prom
   try {
     nodemailer = await import("nodemailer")
   } catch (e) {
-    console.error("[v0] Nodemailer not installed. Please run: npm install nodemailer @types/nodemailer")
+    console.error("Nodemailer not installed. Please run: npm install nodemailer @types/nodemailer")
     return false
   }
 
@@ -150,10 +150,10 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData): Prom
 
   try {
     await transporter.sendMail(mailOptions)
-    console.log("[v0] Booking email sent successfully to " + process.env.GMAIL_EMAIL)
+    console.log("Booking email sent successfully to " + process.env.GMAIL_EMAIL)
     return true
   } catch (error) {
-    console.error("[v0] Failed to send booking email:", error)
+    console.error("Failed to send booking email:", error)
     return false
   }
 }
