@@ -1,0 +1,17 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "css.validate": false,
+  "tailwindCSS.experimental.classRegex": [
+    ["@theme\\s*{[^}]*}", "([^:;{}]+):\\s*([^;]+)"],
+    ["@apply\\s*([^;]+)", "([^;\\s]+)"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "plain text": "tailwind"
+  },
+  "tailwindCSS.lint.invalidApply": "ignore",
+  "tailwindCSS.lint.invalidScreen": "ignore",
+  "tailwindCSS.lint.invalidVariant": "ignore",
+  "tailwindCSS.lint.invalidConfigPath": "ignore",
+  "tailwindCSS.lint.invalidTailwindContent": "ignore",
+  "tailwindCSS.lint.invalidCustomClassPosition": "ignore"
+}

@@ -3,7 +3,8 @@
 import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Mail, Phone, MapPin, Send, Clock, Calendar } from "lucide-react"
+import { Card } from "@/components/ui/card"
+import { Mail, Phone, MapPin, Send, Clock, Calendar, MessageSquare, CheckCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function Contact() {
@@ -16,6 +17,7 @@ export default function Contact() {
     checkIn: "",
     checkOut: "",
     guests: "",
+    roomType: "",
     message: "",
   })
 
@@ -28,7 +30,6 @@ export default function Contact() {
     e.preventDefault()
     setLoading(true)
 
-    // Basic validation for date logic
     if (formData.checkIn && formData.checkOut) {
       const checkInDate = new Date(formData.checkIn)
       const checkOutDate = new Date(formData.checkOut)
@@ -46,9 +47,7 @@ export default function Contact() {
     try {
       const response = await fetch("/api/bookings", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
@@ -59,12 +58,11 @@ export default function Contact() {
       }
 
       toast({
-        title: "Success!",
-        description: result.message || "Your booking request has been received. We'll contact you within 24 hours.",
+        title: "✓ Booking Submitted!",
+        description: "We'll contact you within 24 hours. Check your email for confirmation.",
         duration: 5000,
       })
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -72,6 +70,7 @@ export default function Contact() {
         checkIn: "",
         checkOut: "",
         guests: "",
+        roomType: "",
         message: "",
       })
     } catch (error) {
@@ -85,178 +84,229 @@ export default function Contact() {
     }
   }
 
+  const contactInfo = [
+    { icon: Phone, title: "Phone", value: "0956-892-9006", subtitle: "Call us for immediate assistance" },
+    { icon: Mail, title: "Email", value: "mikkimamaradlo@gmail.com", subtitle: "We'll respond within 24 hours" },
+    { icon: MapPin, title: "Location", value: "Sitio Aplaya, Balibago Lian, Batangas", subtitle: "Easy to find, paradise awaits!" },
+  ]
+
   return (
-    <section id="contact" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white" aria-labelledby="contact-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white relative" aria-labelledby="contact-heading">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
+          <span className="inline-flex items-center gap-2 px-5 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6">
             📞 Contact Us
           </span>
-          <h2 id="contact-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Ready to Book?</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get in touch with us or make your reservation today
+          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-5">
+            <span className="bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              Ready to Book?
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Get in touch with us or make your reservation today. 
+            We're here to make your dream beach vacation a reality.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Phone className="text-primary" size={32} />
-            </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Phone</h3>
-            <p className="text-muted-foreground">0956-892-9006</p>
-            <p className="text-sm text-muted-foreground/70 mt-1">Call us for immediate assistance</p>
-          </div>
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Mail className="text-primary" size={32} />
-            </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
-            <p className="text-muted-foreground">mikkimamaradlo@gmail.com</p>
-            <p className="text-sm text-muted-foreground/70 mt-1">We'll respond within 24 hours</p>
-          </div>
-          <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <MapPin className="text-primary" size={32} />
-            </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Location</h3>
-            <p className="text-muted-foreground">Sitio Aplaya, Balibago Lian, Batangas</p>
-            <p className="text-sm text-muted-foreground/70 mt-1">Easy to find, paradise awaits!</p>
-          </div>
+        {/* Contact info cards */}
+        <div className="grid sm:grid-cols-3 gap-6 mb-16">
+          {contactInfo.map((info, index) => (
+            <Card
+              key={info.title}
+              className="flex flex-col items-center text-center p-8 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-md"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="w-16 h-16 bg-linear-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+                <info.icon className="text-white" size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">{info.title}</h3>
+              <p className="text-foreground font-semibold mb-1">{info.value}</p>
+              <p className="text-sm text-muted-foreground">{info.subtitle}</p>
+            </Card>
+          ))}
         </div>
 
         {/* Booking Form */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Quick Booking Form</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Full Name *</label>
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    aria-required="true"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    placeholder="John Doe"
-                  />
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <Calendar className="text-primary" size={20} />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email *</label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    aria-required="true"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
+                <h3 className="text-2xl font-bold text-foreground">Quick Booking Form</h3>
               </div>
 
-              <div className="grid sm:grid-cols-3 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-3 gap-6">
+                  <div>
+                    <label htmlFor="checkIn" className="block text-sm font-semibold text-foreground mb-2">
+                      Check-in <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="checkIn"
+                      type="date"
+                      name="checkIn"
+                      value={formData.checkIn}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="checkOut" className="block text-sm font-semibold text-foreground mb-2">
+                      Check-out <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="checkOut"
+                      type="date"
+                      name="checkOut"
+                      value={formData.checkOut}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="guests" className="block text-sm font-semibold text-foreground mb-2">
+                      Guests <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="guests"
+                      name="guests"
+                      value={formData.guests}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    >
+                      <option value="">Select</option>
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                      <option value="5-10">5-10 Guests</option>
+                      <option value="10+">10+ Guests</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
+                      Phone Number <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      placeholder="+63 912 345 6789"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="roomType" className="block text-sm font-semibold text-foreground mb-2">
+                      Room Type
+                    </label>
+                    <select
+                      id="roomType"
+                      name="roomType"
+                      value={formData.roomType}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    >
+                      <option value="">Select room type</option>
+                      <option value="beachfront">Beachfront Room (up to 4 pax)</option>
+                      <option value="barkada">Barkada Room (up to 10 pax)</option>
+                      <option value="family">Family Room (up to 15 pax)</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="checkIn" className="block text-sm font-medium text-foreground mb-2">Check-in *</label>
-                  <input
-                    id="checkIn"
-                    type="date"
-                    name="checkIn"
-                    value={formData.checkIn}
+                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
+                    Special Requests (Optional)
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
-                    required
-                    aria-required="true"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    rows={4}
+                    className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
+                    placeholder="Any special requests or questions?"
                   />
                 </div>
-                <div>
-                  <label htmlFor="checkOut" className="block text-sm font-medium text-foreground mb-2">Check-out *</label>
-                  <input
-                    id="checkOut"
-                    type="date"
-                    name="checkOut"
-                    value={formData.checkOut}
-                    onChange={handleChange}
-                    required
-                    aria-required="true"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="guests" className="block text-sm font-medium text-foreground mb-2">Guests *</label>
-                  <select
-                    id="guests"
-                    name="guests"
-                    value={formData.guests}
-                    onChange={handleChange}
-                    required
-                    aria-required="true"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                  <p className="text-sm text-muted-foreground flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    Required fields are marked with <span className="text-red-500">*</span>
+                  </p>
+                  
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-primary hover:bg-primary/90 text-lg py-4 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 min-w-50"
                   >
-                    <option value="">Select</option>
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5-10">5-10 Guests</option>
-                    <option value="10+">10+ Guests</option>
-                  </select>
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <span className="animate-spin">⏳</span> Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        <Send size={20} />
+                        Submit Booking
+                      </span>
+                    )}
+                  </Button>
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">Phone Number *</label>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  aria-required="true"
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  placeholder="+63 912 345 6789"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Special Requests (Optional)</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
-                  placeholder="Any special requests or questions?"
-                />
-              </div>
-
-              <p className="text-sm text-muted-foreground">* Required fields</p>
-
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary hover:bg-primary/90 text-lg py-6 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
-              >
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <span className="animate-spin">⏳</span> Sending...
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    <Send size={20} />
-                    Submit Booking Request
-                  </span>
-                )}
-              </Button>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

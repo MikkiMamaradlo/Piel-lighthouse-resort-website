@@ -2,20 +2,31 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Palmtree, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      const currentScrollY = window.scrollY
+      setScrolled(currentScrollY > 20)
+      
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      setLastScrollY(currentScrollY)
     }
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -25,61 +36,62 @@ export default function Navigation() {
     setIsOpen(false)
   }
 
+  const navLinks = [
+    { id: "accommodations", label: "Rooms" },
+    { id: "experiences", label: "Experiences" },
+    { id: "amenities", label: "Amenities" },
+    { id: "activities", label: "Activities" },
+    { id: "gallery", label: "Gallery" },
+  ]
+
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/98 backdrop-blur-md shadow-md"
+          ? "bg-white/98 backdrop-blur-lg shadow-lg"
           : "bg-white/95 backdrop-blur-sm"
-      }`}
+      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      {/* Top bar */}
+      <div className={`bg-primary text-white text-sm py-2 transition-all duration-300 ${scrolled ? "h-0 overflow-hidden opacity-0" : "opacity-100"}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center gap-2">
+          <Phone className="w-4 h-4" />
+          <span>📞 0956-892-9006 | 📍 Sitio Aplaya, Balibago Lian, Batangas</span>
+        </div>
+      </div>
+
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-lg">
-              <span className="text-white font-bold text-lg">P</span>
+            <div className="relative w-12 h-12 bg-linear-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+              <Palmtree className="w-6 h-6 text-white" />
+              <div className="absolute inset-0 rounded-full bg-primary/30 animate-pulse" />
             </div>
-            <span className="hidden sm:inline font-bold text-primary text-lg group-hover:text-primary/80 transition-colors">
-              Piel Lighthouse
-            </span>
+            <div className="hidden sm:block">
+              <span className="font-bold text-foreground text-lg group-hover:text-primary transition-colors">
+                Piel Lighthouse
+              </span>
+              <span className="block text-xs text-muted-foreground -mt-1">Beach Resort</span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("accommodations")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
-            >
-              Rooms
-            </button>
-            <button
-              onClick={() => scrollToSection("experiences")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
-            >
-              Experiences
-            </button>
-            <button
-              onClick={() => scrollToSection("amenities")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
-            >
-              Amenities
-            </button>
-            <button
-              onClick={() => scrollToSection("activities")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
-            >
-              Activities
-            </button>
-            <button
-              onClick={() => scrollToSection("gallery")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
-            >
-              Gallery
-            </button>
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="relative px-4 py-2 text-foreground hover:text-primary font-medium transition-colors rounded-lg hover:bg-muted/50"
+              >
+                {link.label}
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+              </button>
+            ))}
             <Button
               size="sm"
               onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all"
+              className="ml-4 bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full px-6"
             >
               Reserve Now
             </Button>
@@ -87,55 +99,51 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors relative"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-6 h-6">
+              <Menu
+                className={`absolute inset-0 transition-all duration-300 ${isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"}`}
+                size={24}
+              />
+              <X
+                className={`absolute inset-0 transition-all duration-300 ${isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"}`}
+                size={24}
+              />
+            </div>
           </button>
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden pb-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
-            <button
-              onClick={() => scrollToSection("accommodations")}
-              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
-            >
-              Rooms
-            </button>
-            <button
-              onClick={() => scrollToSection("experiences")}
-              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
-            >
-              Experiences
-            </button>
-            <button
-              onClick={() => scrollToSection("amenities")}
-              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
-            >
-              Amenities
-            </button>
-            <button
-              onClick={() => scrollToSection("activities")}
-              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
-            >
-              Activities
-            </button>
-            <button
-              onClick={() => scrollToSection("gallery")}
-              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
-            >
-              Gallery
-            </button>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="w-full bg-primary hover:bg-primary/90 mt-2"
-            >
-              Reserve Now
-            </Button>
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="pb-6 space-y-2">
+            {navLinks.map((link, index) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="block w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-all duration-200 font-medium text-foreground"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                {link.label}
+              </button>
+            ))}
+            <div className="pt-4">
+              <Button
+                onClick={() => scrollToSection("contact")}
+                className="w-full bg-primary hover:bg-primary/90 text-white"
+              >
+                Reserve Now
+              </Button>
+            </div>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </header>
   )
 }

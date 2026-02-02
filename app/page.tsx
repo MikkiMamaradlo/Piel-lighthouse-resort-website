@@ -8,6 +8,8 @@ import Gallery from "@/components/sections/gallery"
 import Contact from "@/components/sections/contact"
 import Footer from "@/components/sections/footer"
 import BackToTop from "@/components/sections/back-to-top"
+import Testimonials from "@/components/sections/testimonials"
+import CTASection from "@/components/sections/cta"
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
       <Amenities />
       <Activities />
       <Gallery />
+      <Testimonials />
+      <CTASection />
       <Contact />
       <Footer />
       <BackToTop />
