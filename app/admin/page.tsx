@@ -9,7 +9,11 @@ import {
   TrendingUp,
   Clock,
   CheckCircle,
-  XCircle
+  XCircle,
+  Users,
+  DollarSign,
+  ArrowUpRight,
+  ArrowDownRight
 } from "lucide-react"
 import {
   AreaChart,
@@ -21,7 +25,9 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  BarChart,
+  Bar
 } from "recharts"
 
 const bookingStats = [
@@ -146,33 +152,50 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500 mt-1">Welcome back! Here's what's happening at your resort.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+          <p className="text-slate-500 mt-1">Welcome back! Here's what's happening at your resort.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium flex items-center gap-1">
+            <CheckCircle className="w-4 h-4" />
+            All systems operational
+          </span>
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {statCards.map((stat, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow"
+            className="group bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
           >
-            <div className="flex items-center justify-between">
-              <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
+            <div className="flex items-center justify-between mb-4">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${stat.color}`}>
                 <stat.icon className="w-6 h-6 text-white" />
               </div>
+              <div className={`flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${
+                stat.change.startsWith('+') ? 'bg-green-100 text-green-700' : 
+                stat.change.startsWith('-') ? 'bg-red-100 text-red-700' :
+                'bg-blue-100 text-blue-700'
+              }`}>
+                {stat.change.startsWith('+') ? (
+                  <ArrowUpRight className="w-3 h-3" />
+                ) : stat.change.startsWith('-') ? (
+                  <ArrowDownRight className="w-3 h-3" />
+                ) : null}
+                {stat.change}
+              </div>
             </div>
-            <div className="mt-4">
-              <p className="text-sm text-gray-500">{stat.title}</p>
+            <div>
+              <p className="text-sm text-slate-500 font-medium">{stat.title}</p>
               {loading ? (
-                <div className="h-8 w-16 bg-gray-200 animate-pulse rounded mt-1" />
+                <div className="h-8 w-16 bg-slate-100 animate-pulse rounded mt-1" />
               ) : (
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
               )}
-              <p className="text-xs text-gray-400 mt-1">{stat.change}</p>
             </div>
           </div>
         ))}
@@ -181,31 +204,41 @@ export default function AdminDashboard() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Booking Trends Chart */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Trends</h3>
-          <ResponsiveContainer width="100%" height={250}>
+        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">Booking Trends</h3>
+              <p className="text-sm text-slate-500">Weekly booking overview</p>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+              <TrendingUp className="w-4 h-4" />
+              +12%
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={280}>
             <AreaChart data={bookingStats}>
               <defs>
                 <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.15} />
                   <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} />
-              <YAxis stroke="#9ca3af" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} axisLine={false} tickLine={false} />
+              <YAxis stroke="#94a3b8" fontSize={12} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "8px",
+                  backgroundColor: '#fff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                 }}
               />
               <Area
                 type="monotone"
                 dataKey="bookings"
                 stroke="#3b82f6"
-                strokeWidth={2}
+                strokeWidth={3}
                 fillOpacity={1}
                 fill="url(#colorBookings)"
               />
@@ -214,69 +247,84 @@ export default function AdminDashboard() {
         </div>
 
         {/* Booking Status Chart */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Status</h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={statusData}
-                cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={100}
-                paddingAngle={5}
-                dataKey="value"
-              >
-                {statusData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "8px",
-                }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="flex justify-center gap-6 mt-4">
-            {statusData.map((item) => (
-              <div key={item.name} className="flex items-center gap-2">
-                <div
-                  className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: item.color }}
+        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">Booking Status</h3>
+              <p className="text-sm text-slate-500">Current distribution</p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <ResponsiveContainer width="60%" height={200}>
+              <PieChart>
+                <Pie
+                  data={statusData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={80}
+                  paddingAngle={8}
+                  dataKey="value"
+                >
+                  {statusData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  }}
                 />
-                <span className="text-sm text-gray-600">
-                  {item.name}: {item.value}
-                </span>
-              </div>
-            ))}
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="space-y-3">
+              {statusData.map((item) => (
+                <div key={item.name} className="flex items-center gap-3">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <span className="text-sm text-slate-600">{item.name}</span>
+                  <span className="text-sm font-bold text-slate-900">{item.value}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
-        <div className="space-y-4">
+      <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-lg font-bold text-slate-900">Recent Activity</h3>
+            <p className="text-sm text-slate-500">Latest actions on your resort</p>
+          </div>
+          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            View All →
+          </button>
+        </div>
+        <div className="space-y-3">
           {recentActivity.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
             >
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                {activity.type === "booking" && <CalendarCheck className="w-5 h-5 text-blue-500" />}
-                {activity.type === "confirm" && <CheckCircle className="w-5 h-5 text-green-500" />}
-                {activity.type === "testimonial" && <MessageSquareQuote className="w-5 h-5 text-amber-500" />}
-                {activity.type === "gallery" && <Image className="w-5 h-5 text-pink-500" />}
-                {activity.type === "room" && <BedDouble className="w-5 h-5 text-purple-500" />}
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                {activity.type === "booking" && <CalendarCheck className="w-6 h-6 text-blue-600" />}
+                {activity.type === "confirm" && <CheckCircle className="w-6 h-6 text-green-600" />}
+                {activity.type === "testimonial" && <MessageSquareQuote className="w-6 h-6 text-amber-500" />}
+                {activity.type === "gallery" && <Image className="w-6 h-6 text-pink-500" />}
+                {activity.type === "room" && <BedDouble className="w-6 h-6 text-purple-500" />}
               </div>
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{activity.action}</p>
-                <p className="text-sm text-gray-500">{activity.guest}</p>
+                <p className="font-semibold text-slate-900">{activity.action}</p>
+                <p className="text-sm text-slate-500">{activity.guest}</p>
               </div>
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-slate-400">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm">{activity.time}</span>
               </div>
@@ -286,34 +334,54 @@ export default function AdminDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <a
           href="/admin/bookings"
-          className="flex items-center gap-3 p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg shadow-blue-500/25"
         >
-          <CalendarCheck className="w-6 h-6 text-blue-600" />
-          <span className="font-medium text-blue-900">Manage Bookings</span>
+          <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+            <CalendarCheck className="w-6 h-6" />
+          </div>
+          <div>
+            <span className="font-semibold">Manage Bookings</span>
+            <p className="text-sm text-blue-100">View & confirm</p>
+          </div>
         </a>
         <a
           href="/admin/accommodations"
-          className="flex items-center gap-3 p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl text-white hover:from-purple-600 hover:to-purple-700 transition-all shadow-lg shadow-purple-500/25"
         >
-          <BedDouble className="w-6 h-6 text-purple-600" />
-          <span className="font-medium text-purple-900">Edit Rooms</span>
+          <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+            <BedDouble className="w-6 h-6" />
+          </div>
+          <div>
+            <span className="font-semibold">Edit Rooms</span>
+            <p className="text-sm text-purple-100">Update listings</p>
+          </div>
         </a>
         <a
           href="/admin/gallery"
-          className="flex items-center gap-3 p-4 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl text-white hover:from-pink-600 hover:to-pink-700 transition-all shadow-lg shadow-pink-500/25"
         >
-          <Image className="w-6 h-6 text-pink-600" />
-          <span className="font-medium text-pink-900">Update Gallery</span>
+          <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+            <Image className="w-6 h-6" />
+          </div>
+          <div>
+            <span className="font-semibold">Update Gallery</span>
+            <p className="text-sm text-pink-100">Add photos</p>
+          </div>
         </a>
         <a
           href="/admin/settings"
-          className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-600 to-slate-700 rounded-2xl text-white hover:from-slate-700 hover:to-slate-800 transition-all shadow-lg shadow-slate-500/25"
         >
-          <TrendingUp className="w-6 h-6 text-gray-600" />
-          <span className="font-medium text-gray-900">Site Settings</span>
+          <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+            <TrendingUp className="w-6 h-6" />
+          </div>
+          <div>
+            <span className="font-semibold">Site Settings</span>
+            <p className="text-sm text-slate-200">Configure</p>
+          </div>
         </a>
       </div>
     </div>

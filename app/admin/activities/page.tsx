@@ -129,12 +129,12 @@ export default function ActivitiesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Activities</h1>
-          <p className="text-gray-500 mt-1">Manage resort activities and experiences</p>
+          <h1 className="text-2xl font-bold text-slate-900">Activities</h1>
+          <p className="text-slate-500 mt-1">Manage resort activities and experiences</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all shadow-lg shadow-emerald-500/25"
         >
           <Plus className="w-5 h-5" />
           Add Activity
@@ -143,17 +143,22 @@ export default function ActivitiesPage() {
 
       {/* Activities Grid */}
       {loading ? (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-500">Loading activities...</p>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
+          <div className="relative w-16 h-16 mx-auto mb-4">
+            <div className="absolute inset-0 border-4 border-emerald-200 rounded-full" />
+            <div className="absolute inset-0 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin" />
+          </div>
+          <p className="text-slate-500">Loading activities...</p>
         </div>
       ) : activities.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
-          <MapPin className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500">No activities added yet</p>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
+          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MapPin className="w-10 h-10 text-slate-400" />
+          </div>
+          <p className="text-slate-500 text-lg font-medium">No activities added yet</p>
           <button
             onClick={() => setShowModal(true)}
-            className="mt-4 text-blue-600 hover:text-blue-700"
+            className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium"
           >
             Add your first activity
           </button>
@@ -163,41 +168,46 @@ export default function ActivitiesPage() {
           {activities.map((activity) => (
             <div
               key={activity._id}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+              className="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300"
             >
-              <div className="relative h-48 bg-gray-100">
+              <div className="relative h-52 bg-slate-100 overflow-hidden">
                 <img
                   src={activity.image || "/placeholder.jpg"}
                   alt={activity.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{activity.name}</h3>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{activity.description}</p>
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{activity.name}</h3>
+                <p className="text-sm text-slate-600 mb-4 line-clamp-2">{activity.description}</p>
                 
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1 text-sm text-gray-500">
-                    <DollarSign className="w-4 h-4" />
-                    <span>{activity.price}</span>
+                  <div className="flex items-center gap-1.5 text-sm">
+                    <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                      <DollarSign className="w-4 h-4 text-emerald-600" />
+                    </div>
+                    <span className="font-semibold text-slate-900">{activity.price}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-gray-500">
-                    <Clock className="w-4 h-4" />
-                    <span>{activity.duration}</span>
+                  <div className="flex items-center gap-1.5 text-sm">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <span className="text-slate-600">{activity.duration}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
                   <button
                     onClick={() => openEditModal(activity)}
-                    className="flex-1 flex items-center justify-center gap-2 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-blue-600 rounded-xl font-medium hover:bg-blue-100 transition-colors"
                   >
                     <Edit className="w-4 h-4" />
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(activity._id)}
-                    className="flex-1 flex items-center justify-center gap-2 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl font-medium hover:bg-red-100 transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />
                     Delete
