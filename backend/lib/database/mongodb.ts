@@ -5,6 +5,7 @@ let cachedDb: Db | null = null
 
 async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
   if (cachedClient && cachedDb) {
+    console.log("[Database] Using cached MongoDB connection")
     return { client: cachedClient, db: cachedDb }
   }
 
@@ -14,6 +15,7 @@ async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
     throw new Error("Please define MONGODB_URI in environment variables")
   }
 
+  console.log("[Database] Connecting to MongoDB...")
   const client = new MongoClient(mongoUrl)
 
   try {
@@ -23,9 +25,12 @@ async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
     cachedClient = client
     cachedDb = db
 
+    console.log("[Database] ✓ MongoDB connected successfully")
+    console.log("[Database] Database:piel_lighthouse_resort")
+
     return { client, db }
   } catch (error) {
-    console.error("[v0] MongoDB connection failed:", error)
+    console.error("[Database] ✗ MongoDB connection failed:", error)
     throw error
   }
 }

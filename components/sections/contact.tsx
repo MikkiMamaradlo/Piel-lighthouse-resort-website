@@ -112,7 +112,7 @@ export default function Contact() {
               <Mail className="text-primary" size={32} />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
-            <p className="text-muted-foreground">piel.lighthouseresort@gmail.com</p>
+            <p className="text-muted-foreground">mikkimamaradlo@gmail.com</p>
             <p className="text-sm text-muted-foreground/70 mt-1">We'll respond within 24 hours</p>
           </div>
           <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
