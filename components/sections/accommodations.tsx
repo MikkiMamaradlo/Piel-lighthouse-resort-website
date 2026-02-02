@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, Star, Check, ArrowRight } from "lucide-react"
-import { openRoomModal } from "@/components/room-details-modal"
+import { Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, Star } from "lucide-react"
+import { openImageModal } from "@/components/room-details-modal"
 
 const rooms = [
   {
@@ -117,8 +117,11 @@ export default function Accommodations() {
                 </div>
               )}
 
-              {/* Image container */}
-              <div className="relative h-64 overflow-hidden">
+              {/* Image container - clickable to view full image */}
+              <div 
+                className="relative h-64 overflow-hidden cursor-pointer"
+                onClick={() => openImageModal(room.image)}
+              >
                 <img
                   src={room.image || "/placeholder.svg"}
                   alt={room.name}
@@ -166,19 +169,6 @@ export default function Accommodations() {
                     </span>
                   ))}
                 </div>
-
-                {/* Button */}
-                <Button 
-                  onClick={() => openRoomModal(room)}
-                  className={`w-full transition-all duration-300 group-hover:shadow-lg ${
-                    room.popular 
-                      ? "bg-amber-500 hover:bg-amber-600 text-white" 
-                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                  }`}
-                >
-                  View Details
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
               </div>
 
               {/* Hover effect border */}

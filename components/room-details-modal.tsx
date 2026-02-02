@@ -92,6 +92,25 @@ export function closeRoomModal() {
   notifyListeners(null, false)
 }
 
+// Image Preview Modal State and Functions
+let globalSelectedImage: string | null = null
+let globalImageIsOpen = false
+const imageListeners: Set<(image: string | null, isOpen: boolean) => void> = new Set()
+
+function notifyImageListeners(image: string | null, isOpen: boolean) {
+  globalSelectedImage = image
+  globalImageIsOpen = isOpen
+  imageListeners.forEach(listener => listener(image, isOpen))
+}
+
+export function openImageModal(image: string) {
+  notifyImageListeners(image, true)
+}
+
+export function closeImageModal() {
+  notifyImageListeners(null, false)
+}
+
 export { rooms }
 
 export default function RoomDetailsModal() {
@@ -142,107 +161,173 @@ export default function RoomDetailsModal() {
     }
   }, [isOpen])
 
-  if (!isOpen || !selectedRoom) return null
+  return (
+    <>
+      <ImagePreviewModal />
+      {isOpen && selectedRoom && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" id="room-details-modal">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={closeModal}
+          />
+          
+          {/* Modal */}
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Image */}
+            <div className="relative h-64 sm:h-80">
+              <img
+                src={selectedRoom.image}
+                alt={selectedRoom.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+              
+              {/* Popular badge */}
+              {selectedRoom.popular && (
+                <div className="absolute top-4 left-4">
+                  <span className="bg-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+                    ⭐ Most Popular
+                  </span>
+                </div>
+              )}
+
+              {/* Price tag */}
+              <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg">
+                <span className="text-3xl font-bold text-foreground">{selectedRoom.price}</span>
+                <span className="text-lg text-muted-foreground">{selectedRoom.period}</span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 sm:p-8">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">
+                    {selectedRoom.capacity}
+                  </span>
+                </div>
+                <h2 className="text-3xl font-bold text-foreground mb-3">{selectedRoom.name}</h2>
+                <p className="text-muted-foreground leading-relaxed">{selectedRoom.description}</p>
+              </div>
+
+              {/* Inclusions */}
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Room Amenities</h3>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {selectedRoom.inclusions.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 text-muted-foreground">
+                      <div className="w-2 h-2 bg-primary rounded-full" />
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Additional Features</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedRoom.features.map((feature, i) => (
+                    <span key={i} className="bg-muted text-muted-foreground px-4 py-2 rounded-full text-sm">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={handleBookNow}
+                  className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-semibold rounded-xl"
+                >
+                  Book Now
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={closeModal}
+                  className="flex-1 py-6 text-lg rounded-xl"
+                >
+                  Close
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+// Image Preview Modal Component (rendered inside RoomDetailsModal)
+function ImagePreviewModal() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const listener = (image: string | null, open: boolean) => {
+      setSelectedImage(image)
+      setIsOpen(open)
+    }
+    imageListeners.add(listener)
+    return () => {
+      imageListeners.delete(listener)
+    }
+  }, [])
+
+  const closeModal = useCallback(() => {
+    closeImageModal()
+  }, [])
+
+  // Handle escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal()
+    }
+    window.addEventListener("keydown", handleEscape)
+    return () => window.removeEventListener("keydown", handleEscape)
+  }, [closeModal])
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isOpen])
+
+  if (!isOpen || !selectedImage) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" id="room-details-modal">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" id="image-preview-modal">
+      {/* Close button */}
+      <button
         onClick={closeModal}
+        className="absolute top-4 right-4 z-10 p-2 bg-white/10 backdrop-blur-sm rounded-full shadow-lg hover:bg-white/20 transition-colors"
+      >
+        <X className="w-6 h-6 text-white" />
+      </button>
+
+      {/* Image */}
+      <img
+        src={selectedImage}
+        alt="Room preview"
+        className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
       />
-      
-      {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Close button */}
-        <button
-          onClick={closeModal}
-          className="absolute top-4 right-4 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-gray-100 transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        {/* Image */}
-        <div className="relative h-64 sm:h-80">
-          <img
-            src={selectedRoom.image}
-            alt={selectedRoom.name}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-          
-          {/* Popular badge */}
-          {selectedRoom.popular && (
-            <div className="absolute top-4 left-4">
-              <span className="bg-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                ⭐ Most Popular
-              </span>
-            </div>
-          )}
-
-          {/* Price tag */}
-          <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg">
-            <span className="text-3xl font-bold text-foreground">{selectedRoom.price}</span>
-            <span className="text-lg text-muted-foreground">{selectedRoom.period}</span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 sm:p-8">
-          {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 text-muted-foreground mb-2">
-              <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">
-                {selectedRoom.capacity}
-              </span>
-            </div>
-            <h2 className="text-3xl font-bold text-foreground mb-3">{selectedRoom.name}</h2>
-            <p className="text-muted-foreground leading-relaxed">{selectedRoom.description}</p>
-          </div>
-
-          {/* Inclusions */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Room Amenities</h3>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {selectedRoom.inclusions.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-muted-foreground">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span>{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Features */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Additional Features</h3>
-            <div className="flex flex-wrap gap-2">
-              {selectedRoom.features.map((feature, i) => (
-                <span key={i} className="bg-muted text-muted-foreground px-4 py-2 rounded-full text-sm">
-                  {feature}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              onClick={handleBookNow}
-              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-semibold rounded-xl"
-            >
-              Book Now
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={closeModal}
-              className="flex-1 py-6 text-lg rounded-xl"
-            >
-              Close
-            </Button>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
