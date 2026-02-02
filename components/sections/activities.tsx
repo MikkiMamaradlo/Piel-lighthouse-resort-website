@@ -51,13 +51,13 @@ const activities = [
 
 export default function Activities() {
   return (
-    <section id="activities" className="py-24 bg-gradient-to-b from-muted via-white to-muted">
+    <section id="activities" className="py-24 bg-linear-to-b from-muted via-white to-muted" aria-labelledby="activities-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-secondary/10 text-secondary text-sm font-medium rounded-full mb-4">
             🎯 Activities
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Activities & Experiences</h2>
+          <h2 id="activities-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Activities & Experiences</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Create unforgettable memories with exciting activities and unforgettable experiences
           </p>
@@ -71,9 +71,9 @@ export default function Activities() {
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               {/* Background gradient decoration */}
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${activity.color} opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500`} />
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${activity.color} opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500`} />
               
-              <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${activity.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+              <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-linear-to-br ${activity.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                 <activity.icon className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{activity.title}</h3>

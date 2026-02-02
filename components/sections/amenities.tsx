@@ -70,13 +70,13 @@ const amenities = [
 
 export default function Amenities() {
   return (
-    <section id="amenities" className="py-24 bg-white">
+    <section id="amenities" className="py-24 bg-white" aria-labelledby="amenities-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             🛠️ Amenities
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">World-Class Amenities</h2>
+          <h2 id="amenities-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">World-Class Amenities</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Enjoy a wide range of facilities and activities for the perfect beach getaway
           </p>

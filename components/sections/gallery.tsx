@@ -61,13 +61,13 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   return (
-    <section id="gallery" className="py-24 bg-white">
+    <section id="gallery" className="py-24 bg-white" aria-labelledby="gallery-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             📸 Gallery
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Photo Gallery</h2>
+          <h2 id="gallery-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Photo Gallery</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Experience the beauty of Piel Lighthouse Beach Resort through our gallery
           </p>
@@ -85,6 +85,7 @@ export default function Gallery() {
                 <img
                   src={image.url || "/placeholder.svg"}
                   alt={image.title}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
@@ -108,7 +109,12 @@ export default function Gallery() {
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fade-in"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="relative max-w-4xl w-full max-h-[80vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+              <img 
+                src={selectedImage || "/placeholder.svg"} 
+                alt="Full view" 
+                className="max-h-[75vh] w-auto rounded-lg shadow-2xl object-contain"
+              />
               <button
                 onClick={() => setSelectedImage(null)}
                 className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors flex items-center gap-2"
@@ -116,11 +122,6 @@ export default function Gallery() {
                 <span className="text-sm">Close</span>
                 <X size={32} />
               </button>
-              <img 
-                src={selectedImage || "/placeholder.svg"} 
-                alt="Full view" 
-                className="w-full rounded-lg shadow-2xl"
-              />
             </div>
           </div>
         )}

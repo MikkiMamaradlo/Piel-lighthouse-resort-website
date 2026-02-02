@@ -53,13 +53,13 @@ const rooms = [
 
 export default function Accommodations() {
   return (
-    <section id="accommodations" className="py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <section id="accommodations" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white" aria-labelledby="accommodations-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             🏠 Accommodations
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Comfortable Accommodations</h2>
+          <h2 id="accommodations-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Comfortable Accommodations</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Choose from our range of spacious rooms designed for your comfort and relaxation
           </p>
@@ -67,9 +67,9 @@ export default function Accommodations() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {rooms.map((room, index) => (
-            <Card 
-              key={room.name} 
-              className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
+            <Card
+              key={room.name}
+              className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative h-56 bg-muted overflow-hidden">
@@ -81,9 +81,10 @@ export default function Accommodations() {
                 <img
                   src={room.image || "/placeholder.svg"}
                   alt={room.name}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{room.name}</h3>

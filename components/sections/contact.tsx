@@ -28,6 +28,21 @@ export default function Contact() {
     e.preventDefault()
     setLoading(true)
 
+    // Basic validation for date logic
+    if (formData.checkIn && formData.checkOut) {
+      const checkInDate = new Date(formData.checkIn)
+      const checkOutDate = new Date(formData.checkOut)
+      if (checkOutDate <= checkInDate) {
+        toast({
+          title: "Validation Error",
+          description: "Check-out date must be after check-in date",
+          variant: "destructive",
+        })
+        setLoading(false)
+        return
+      }
+    }
+
     try {
       const response = await fetch("/api/bookings", {
         method: "POST",
@@ -45,7 +60,8 @@ export default function Contact() {
 
       toast({
         title: "Success!",
-        description: result.message || "Your booking request has been received.",
+        description: result.message || "Your booking request has been received. We'll contact you within 24 hours.",
+        duration: 5000,
       })
 
       // Reset form
@@ -61,7 +77,7 @@ export default function Contact() {
     } catch (error) {
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to submit booking",
+        description: error instanceof Error ? error.message : "Failed to submit booking. Please try again.",
         variant: "destructive",
       })
     } finally {
@@ -70,13 +86,13 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <section id="contact" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white" aria-labelledby="contact-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             📞 Contact Us
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Ready to Book?</h2>
+          <h2 id="contact-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Ready to Book?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Get in touch with us or make your reservation today
           </p>
@@ -116,25 +132,29 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Full Name *</label>
                   <input
+                    id="name"
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email *</label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                     placeholder="john@example.com"
                   />
@@ -143,34 +163,40 @@ export default function Contact() {
 
               <div className="grid sm:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Check-in</label>
+                  <label htmlFor="checkIn" className="block text-sm font-medium text-foreground mb-2">Check-in *</label>
                   <input
+                    id="checkIn"
                     type="date"
                     name="checkIn"
                     value={formData.checkIn}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Check-out</label>
+                  <label htmlFor="checkOut" className="block text-sm font-medium text-foreground mb-2">Check-out *</label>
                   <input
+                    id="checkOut"
                     type="date"
                     name="checkOut"
                     value={formData.checkOut}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Guests</label>
+                  <label htmlFor="guests" className="block text-sm font-medium text-foreground mb-2">Guests *</label>
                   <select
+                    id="guests"
                     name="guests"
                     value={formData.guests}
                     onChange={handleChange}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
                     <option value="">Select</option>
@@ -185,21 +211,24 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">Phone Number *</label>
                 <input
+                  id="phone"
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   required
+                  aria-required="true"
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   placeholder="+63 912 345 6789"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Special Requests (Optional)</label>
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Special Requests (Optional)</label>
                 <textarea
+                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -208,6 +237,8 @@ export default function Contact() {
                   placeholder="Any special requests or questions?"
                 />
               </div>
+
+              <p className="text-sm text-muted-foreground">* Required fields</p>
 
               <Button
                 type="submit"

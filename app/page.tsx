@@ -7,6 +7,7 @@ import Experiences from "@/components/sections/experiences"
 import Gallery from "@/components/sections/gallery"
 import Contact from "@/components/sections/contact"
 import Footer from "@/components/sections/footer"
+import BackToTop from "@/components/sections/back-to-top"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Gallery />
       <Contact />
       <Footer />
+      <BackToTop />
     </main>
   )
 }

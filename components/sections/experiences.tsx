@@ -23,13 +23,13 @@ const experiences = [
 
 export default function Experiences() {
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-blue-50/50 to-primary/5">
+    <section id="experiences" className="py-24 bg-linear-to-b from-white via-blue-50/50 to-primary/5" aria-labelledby="experiences-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent text-sm font-medium rounded-full mb-4">
             ✨ Experiences
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Unforgettable Experiences</h2>
+          <h2 id="experiences-heading" className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Unforgettable Experiences</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Create lasting memories with our exclusive beachfront experiences
           </p>
@@ -46,9 +46,10 @@ export default function Experiences() {
                 <img
                   src={experience.image || "/placeholder.svg"}
                   alt={experience.title}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
                 <span className="absolute top-4 left-4 text-3xl bg-white/90 backdrop-blur-sm w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
                   {experience.icon}
                 </span>

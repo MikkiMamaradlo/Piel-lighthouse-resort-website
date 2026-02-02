@@ -48,25 +48,31 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("accommodations")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
             >
               Rooms
             </button>
             <button
+              onClick={() => scrollToSection("experiences")}
+              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
+            >
+              Experiences
+            </button>
+            <button
               onClick={() => scrollToSection("amenities")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
             >
               Amenities
             </button>
             <button
               onClick={() => scrollToSection("activities")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
             >
               Activities
             </button>
             <button
               onClick={() => scrollToSection("gallery")}
-              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="text-foreground hover:text-primary transition-colors font-medium relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
             >
               Gallery
             </button>
@@ -96,6 +102,12 @@ export default function Navigation() {
               className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
             >
               Rooms
+            </button>
+            <button
+              onClick={() => scrollToSection("experiences")}
+              className="block w-full text-left px-3 py-2 hover:bg-muted rounded-lg transition-colors font-medium"
+            >
+              Experiences
             </button>
             <button
               onClick={() => scrollToSection("amenities")}

@@ -11,7 +11,10 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative w-full h-screen pt-16 overflow-hidden">
+    <section
+      className="relative w-full min-h-screen pt-16 overflow-hidden"
+      aria-label="Hero section"
+    >
       {/* Background Image with Parallax */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed animate-fade-in"
@@ -20,9 +23,9 @@ export default function Hero() {
         }}
       >
         {/* Animated overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black/40" />
         {/* Decorative waves */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-primary/20 to-transparent" />
       </div>
 
       {/* Content */}
@@ -31,7 +34,7 @@ export default function Hero() {
           🌴 Now Open for Bookings
         </span>
 
-        <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-4 text-balance drop-shadow-lg animate-slide-up">
+        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 text-balance drop-shadow-lg animate-slide-up">
           Piel Lighthouse
         </h1>
 
