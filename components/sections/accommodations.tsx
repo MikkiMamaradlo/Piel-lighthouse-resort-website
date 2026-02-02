@@ -4,8 +4,9 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, Star, Check, ArrowRight } from "lucide-react"
+import { rooms } from "@/components/room-details-modal"
 
-const rooms = [
+const accommodationsRooms = [
   {
     name: "Beachfront Room",
     capacity: "up to 4 pax",
@@ -87,7 +88,7 @@ export default function Accommodations() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {rooms.map((room, index) => (
+          {accommodationsRooms.map((room, index) => (
             <Card
               key={room.name}
               className={`relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 group cursor-pointer border-0 ${
@@ -158,6 +159,13 @@ export default function Accommodations() {
 
                 {/* Button */}
                 <Button 
+                  onClick={() => {
+                    const modal = document.getElementById('room-details-modal')
+                    if (modal) {
+                      // Dispatch event to open modal
+                      window.dispatchEvent(new CustomEvent('open-room-modal', { detail: room }))
+                    }
+                  }}
                   className={`w-full transition-all duration-300 group-hover:shadow-lg ${
                     room.popular 
                       ? "bg-amber-500 hover:bg-amber-600 text-white" 

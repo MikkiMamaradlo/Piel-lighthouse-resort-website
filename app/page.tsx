@@ -10,6 +10,7 @@ import Footer from "@/components/sections/footer"
 import BackToTop from "@/components/sections/back-to-top"
 import Testimonials from "@/components/sections/testimonials"
 import CTASection from "@/components/sections/cta"
+import RoomDetailsModal from "@/components/room-details-modal"
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <BackToTop />
+      <RoomDetailsModal />
     </main>
   )
 }
