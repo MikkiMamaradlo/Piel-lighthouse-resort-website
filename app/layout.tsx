@@ -12,19 +12,24 @@ export const metadata: Metadata = {
   description:
     "Experience luxury beachfront accommodations, water activities, and island dining at Piel Lighthouse Beach Resort. Perfect for family getaways and romantic escapes.",
   generator: "Next.js",
+  manifest: "/manifest.json",
   icons: {
     icon: [
       {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+      {
         url: "/icon-light-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
         media: "(prefers-color-scheme: light)",
       },
       {
         url: "/icon-dark-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
         media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
       },
     ],
     apple: "/apple-icon.png",
