@@ -16,17 +16,31 @@ async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
   }
 
   console.log("[Database] Connecting to MongoDB...")
-  const client = new MongoClient(mongoUrl)
+  
+  // Enhanced connection options for better reliability
+  const client = new MongoClient(mongoUrl, {
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    maxIdleTimeMS: 30000,
+    connectTimeoutMS: 10000,
+    socketTimeoutMS: 45000,
+    serverSelectionTimeoutMS: 10000,
+    retryWrites: true,
+    retryReads: true,
+  })
 
   try {
     await client.connect()
     const db = client.db("piel_lighthouse_resort")
 
+    // Verify the connection
+    await db.command({ ping: 1 })
+
     cachedClient = client
     cachedDb = db
 
     console.log("[Database] ✓ MongoDB connected successfully")
-    console.log("[Database] Database:piel_lighthouse_resort")
+    console.log("[Database] Database: piel_lighthouse_resort")
 
     return { client, db }
   } catch (error) {
