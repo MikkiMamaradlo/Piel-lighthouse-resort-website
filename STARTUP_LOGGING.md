@@ -4,118 +4,139 @@ This document describes the startup logging system for the Piel Lighthouse Resor
 
 ## Overview
 
-The application logs the status of three main services:
+The application logs the status of services during startup and runtime:
+
 1. **Frontend** - Next.js web application
-2. **Backend** - API routes
-3. **Database** - MongoDB connection
+2. **Backend** - API routes and MongoDB connection
+3. **Database** - MongoDB connection status
 
-## How It Works
+## Logging Components
 
-### 1. Database Connection Logging
+### Database Connection Logging
 
-The database connection module ([`lib/mongodb.ts`](lib/mongodb.ts) and [`backend/lib/database/mongodb.ts`](backend/lib/database/mongodb.ts)) logs:
-- When it starts connecting to MongoDB
-- When the connection is successful
-- When the database name is established
-- When connection fails (with error details)
+The MongoDB connection modules log connection status:
 
-### 2. Health Check Endpoints
+- **[`lib/mongodb.ts`](lib/mongodb.ts)** - Shared MongoDB connection
+- **[`backend/lib/database/mongodb.ts`](backend/lib/database/mongodb.ts)** - Backend MongoDB connection
+
+Both files log:
+- Connection initialization
+- Connection success/failure
+- Database name establishment
+- Cached connection usage
+
+### Health Check Endpoints
 
 Two health check endpoints are available:
 
-#### Frontend Health Check
+#### Main Health Check
 - **URL**: `http://localhost:3000/api/health`
+- **Method**: GET
 - **Response**:
-  ```json
-  {
-    "status": "ok",
-    "services": {
-      "frontend": "running",
-      "database": "connected"
-    }
+```json
+{
+  "status": "ok",
+  "services": {
+    "frontend": "running",
+    "database": "connected"
   }
-  ```
+}
+```
 
 #### Backend Health Check
-- **URL**: `http://localhost:3000/api/health` (within app directory)
-- **Response**:
-  ```json
-  {
-    "status": "ok",
-    "services": {
-      "backend": "running",
-      "database": "connected"
-    }
-  }
-  ```
+- **URL**: `http://localhost:3000/backend/api/health`
+- **Method**: GET
 
-## Available Scripts
+## Available Commands
 
 ### Start the Application
 ```bash
-npm run dev
+pnpm run dev
 ```
 This starts the Next.js development server with all logging enabled.
 
 ### Check Service Status
 ```bash
-npm run status
+pnpm run status
 ```
-This runs the service status checker script ([`scripts/check-services.sh`](scripts/check-services.sh)) which:
-- Checks if the frontend is running
-- Checks if the backend API is accessible
-- Checks if the database is connected
-- Displays a summary of all services
+This runs the service status checker script which checks all services.
 
 ## Expected Output
 
-When you run `npm run dev`, you should see:
-
+### Development Server Startup
+When you run `pnpm run dev`, you should see:
 ```
-╔══════════════════════════════════════════════════════════════╗
-║          PIEL LIGHTHOUSE RESORT - APPLICATION STARTED         ║
-╚══════════════════════════════════════════════════════════════╝
-
-🌐 Frontend:  Starting... (Next.js Application)
-🔌 Backend:   Starting... (API Routes)
-🗄️  Database:  Checking connection...
+○ Compiling / ...
+✓ Compiled / in Xs
+GET / 200 in Xms
 ```
 
-When the database connects:
+### Database Connection
 ```
-[Database] Connecting to MongoDB...
-[Database] ✓ MongoDB connected successfully
-[Database] Database: piel_lighthouse_resort
+[Database] Using cached MongoDB connection
 ```
 
-When a health check is accessed:
+### API Requests
+Successful API calls are logged:
 ```
-[Frontend Health] Checking health...
-[Frontend Health] ✓ Frontend and Database are healthy
+GET /api/admin/auth/check 200 in XXms
+POST /api/admin/auth 200 in XXms
 ```
 
-## Manually Checking Services
+## Log Format
 
-You can manually check the health of all services by visiting:
+### Database Logs
+```
+[Database] <message>
+```
 
-1. **Frontend Health**: http://localhost:3000/api/health
-2. **Backend Health**: http://localhost:3000/api/health (in app directory)
+Examples:
+- `[Database] Using cached MongoDB connection`
+- `[Database] MongoDB connected successfully`
 
-## Files Created/Modified
+### API Logs
+```
+<Method> /api/<route> <status> in <time>
+```
 
-- [`lib/mongodb.ts`](lib/mongodb.ts) - Updated with database connection logging
-- [`backend/lib/database/mongodb.ts`](backend/lib/database/mongodb.ts) - Updated with database connection logging
-- [`app/api/health/route.ts`](app/api/health/route.ts) - Updated with health check logging
-- [`backend/api/health/route.ts`](backend/api/health/route.ts) - Updated with health check logging
-- [`lib/startup-logger.ts`](lib/startup-logger.ts) - Utility functions for logging
-- [`lib/startup-banner.ts`](lib/startup-banner.ts) - Startup banner display
-- [`scripts/check-services.sh`](scripts/check-services.sh) - Service status checker script
-- [`package.json`](package.json) - Added `status` script
+Examples:
+- `GET /api/health 200 in 15ms`
+- `POST /api/bookings 200 in 245ms`
+
+## Files Involved
+
+- [`lib/mongodb.ts`](lib/mongodb.ts) - MongoDB connection with logging
+- [`backend/lib/database/mongodb.ts`](backend/lib/database/mongodb.ts) - Backend database connection
+- [`app/api/health/route.ts`](app/api/health/route.ts) - Health check endpoint
+- [`backend/api/health/route.ts`](backend/api/health/route.ts) - Backend health check
+- [`lib/startup-logger.ts`](lib/startup-logger.ts) - Logging utilities
+- [`lib/startup-banner.ts`](lib/startup-banner.ts) - Startup banner
+- [`scripts/check-services.sh`](scripts/check-services.sh) - Service checker script
+- [`package.json`](package.json) - Scripts configuration
 
 ## Troubleshooting
 
-If services are not running:
+### Services Not Running
+
 1. Ensure MongoDB is installed and running
 2. Check that `.env.local` contains the correct `MONGODB_URI`
-3. Run `npm run status` to see which services are failing
-4. Check the terminal logs for error messages
+3. Run `pnpm run status` to see which services are failing
+4. Check terminal logs for error messages
+
+### Database Connection Issues
+
+- Verify MongoDB is running: `mongod` or check MongoDB service
+- Check MongoDB URI format: `mongodb+srv://username:password@host/dbname`
+- Ensure network connectivity to MongoDB Atlas (if using cloud)
+
+### API Returns 404
+
+- Ensure development server is running
+- Check API route file exists at correct path
+- Verify route handler exports correct method (GET, POST, etc.)
+
+### API Returns 500
+
+- Check server logs for error details
+- Verify environment variables are set
+- Ensure database connection is successful
