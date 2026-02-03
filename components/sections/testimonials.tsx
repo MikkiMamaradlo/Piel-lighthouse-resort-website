@@ -93,7 +93,7 @@ export default function Testimonials() {
 
         {/* Featured testimonial card */}
         <div className="relative">
-          <Card className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-0 relative overflow-hidden">
+          <Card className="bg-white rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 p-8 md:p-12 border-0 relative overflow-hidden hover:-translate-y-1">
             {/* Decorative quotes */}
             <Quote className="absolute top-6 left-8 w-16 h-16 text-primary/10" />
             <Quote className="absolute bottom-6 right-8 w-16 h-16 text-primary/10 transform rotate-180" />
@@ -101,7 +101,7 @@ export default function Testimonials() {
             <div className="grid md:grid-cols-3 gap-8 items-center relative z-10">
               {/* Avatar */}
               <div className="md:col-span-1 flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/20 mb-4">
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/20 mb-4 group-hover:border-amber-500/40 transition-all duration-300">
                   <img
                     src={current.avatar || "/placeholder-user.jpg"}
                     alt={current.name}
@@ -136,7 +136,7 @@ export default function Testimonials() {
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={prevTestimonial}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:shadow-xl hover:scale-110 transition-all duration-300"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={24} />
@@ -157,7 +157,7 @@ export default function Testimonials() {
             </div>
             <button
               onClick={nextTestimonial}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:shadow-xl hover:scale-110 transition-all duration-300"
               aria-label="Next testimonial"
             >
               <ChevronRight size={24} />
@@ -175,10 +175,10 @@ export default function Testimonials() {
           ].map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
               <div className="text-muted-foreground">{stat.label}</div>
             </div>
           ))}

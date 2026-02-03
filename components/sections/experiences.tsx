@@ -73,7 +73,7 @@ export default function Experiences() {
           {experiences.map((experience, index) => (
             <Card 
               key={experience.title} 
-              className="relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 group cursor-pointer border-0"
+              className="relative overflow-hidden bg-white hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group cursor-pointer border-0 hover:-translate-y-2"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -84,7 +84,7 @@ export default function Experiences() {
                   src={experience.image || "/placeholder.svg"}
                   alt={experience.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                 />
                 
                 {/* Gradient overlay */}
@@ -98,15 +98,15 @@ export default function Experiences() {
                 </div>
 
                 {/* Rating badge */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 transition-all duration-300 group-hover:scale-105">
                   <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                   <span className="text-sm font-semibold">{experience.rating}</span>
                 </div>
 
                 {/* Title on image */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-all duration-300">
-                  <h3 className="text-2xl font-bold mb-1">{experience.title}</h3>
-                  <p className="text-white/80 text-sm">{experience.reviews} reviews</p>
+                  <h3 className="text-2xl font-bold mb-1 group-hover:translate-y-0 transition-transform">{experience.title}</h3>
+                  <p className="text-white/80 text-sm group-hover:opacity-100 transition-opacity">{experience.reviews} reviews</p>
                 </div>
               </div>
 
@@ -114,19 +114,22 @@ export default function Experiences() {
               <div className="p-6 bg-white relative">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-primary/20 to-transparent transform -translate-y-1/2" />
                 
-                <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-foreground transition-colors">
+                <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-foreground transition-colors duration-300">
                   {experience.description}
                 </p>
 
                 <Button 
                   variant="ghost" 
                   onClick={() => scrollToSection("contact")}
-                  className="w-full justify-between text-primary hover:text-primary hover:bg-primary/5 transition-all duration-300 group-hover:shadow-sm"
+                  className="w-full justify-between text-primary hover:text-primary hover:bg-primary/5 transition-all duration-300 group-hover:shadow-sm rounded-lg"
                 >
                   Learn more
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </div>
+
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </Card>
           ))}
         </div>
@@ -135,7 +138,7 @@ export default function Experiences() {
         <div className="text-center mt-12">
           <Button 
             onClick={() => scrollToSection("experiences")}
-            className="bg-primary hover:bg-primary/90 text-white rounded-full px-8"
+            className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
           >
             View All Experiences
             <ArrowRight className="w-4 h-4 ml-2" />

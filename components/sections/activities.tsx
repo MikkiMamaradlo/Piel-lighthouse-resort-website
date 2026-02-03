@@ -52,22 +52,22 @@ export default function Activities() {
           {activities.map((activity, index) => (
             <Card 
               key={activity.title} 
-              className="p-6 text-center bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group overflow-hidden relative border-0"
+              className="p-6 text-center bg-white hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 group overflow-hidden relative border-0"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               {/* Background gradient decoration */}
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${activity.color} opacity-5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500`} />
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${activity.color} opacity-5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-200 group-hover:opacity-10 transition-all duration-500`} />
               
               {/* Icon */}
-              <div className={`relative w-20 h-20 mx-auto mb-5 rounded-2xl bg-linear-to-br ${activity.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                <activity.icon className="w-10 h-10 text-white" />
+              <div className={`relative w-20 h-20 mx-auto mb-5 rounded-2xl bg-linear-to-br ${activity.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl transition-all duration-300`}>
+                <activity.icon className="w-10 h-10 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {activity.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground transition-colors duration-300">
                 {activity.description}
               </p>
 

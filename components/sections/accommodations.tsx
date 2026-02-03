@@ -101,9 +101,7 @@ export default function Accommodations() {
           {rooms.map((room, index) => (
             <Card
               key={room.name}
-              className={`relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 group cursor-pointer border-0 ${
-                room.popular ? "ring-2 ring-amber-500" : ""
-              }`}
+              className={`relative overflow-hidden bg-white rounded-2xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group cursor-pointer border-0 hover:-translate-y-3 ${room.popular ? "ring-2 ring-amber-500" : ""}`}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -111,60 +109,64 @@ export default function Accommodations() {
               {/* Popular badge */}
               {room.popular && (
                 <div className="absolute top-4 left-4 z-20">
-                  <span className="bg-linear-to-r from-amber-500 to-amber-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                    ⭐ Most Popular
+                  <span className="bg-linear-to-r from-amber-500 to-amber-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    Most Popular
                   </span>
                 </div>
               )}
 
               {/* Image container - clickable to view full image */}
               <div 
-                className="relative h-64 overflow-hidden cursor-pointer"
+                className="relative h-72 overflow-hidden cursor-pointer"
                 onClick={() => openImageModal(room.image)}
               >
                 <img
                   src={room.image || "/placeholder.svg"}
                   alt={room.name}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                 
-                {/* Price tag */}
-                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg">
-                  <span className="text-2xl font-bold text-foreground">{room.price}</span>
-                  <span className="text-sm text-muted-foreground">{room.period}</span>
+                {/* Capacity badge */}
+                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground shadow-lg flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  <span>{room.capacity}</span>
                 </div>
 
-                {/* Quick info overlay */}
-                <div className={`absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 text-sm font-medium text-foreground transition-all duration-300 ${
-                  hoveredCard === index ? "opacity-0 translate-x-4" : "opacity-100"
-                }`}>
-                  <Users className="w-4 h-4 inline mr-1" />
-                  {room.capacity}
+                {/* Price tag */}
+                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-5 py-2.5 shadow-xl">
+                  <span className="text-2xl font-bold text-foreground">{room.price}</span>
+                  <span className="text-sm text-muted-foreground ml-1">{room.period}</span>
                 </div>
               </div>
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                   {room.name}
                 </h3>
+                <p className="text-muted-foreground text-sm mb-5 line-clamp-2 group-hover:text-foreground/80 transition-colors">
+                  {room.description}
+                </p>
 
                 {/* Inclusions */}
-                <div className="grid grid-cols-2 gap-2 mb-6">
+                <div className="grid grid-cols-2 gap-3 mb-5">
                   {room.inclusions.slice(0, 6).map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <item.icon className="w-4 h-4 text-primary" />
-                      <span>{item.text}</span>
+                    <div key={i} className="flex items-center gap-2.5 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                        <item.icon className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                      <span className="truncate">{item.text}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Features */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {room.features.map((feature, i) => (
-                    <span key={i} className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
+                    <span key={i} className="text-xs bg-muted text-muted-foreground px-3 py-1.5 rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 font-medium">
                       {feature}
                     </span>
                   ))}
@@ -172,7 +174,10 @@ export default function Accommodations() {
               </div>
 
               {/* Hover effect border */}
-              <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/20 rounded-xl transition-all duration-500" />
+              <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/30 rounded-2xl transition-all duration-500 pointer-events-none" />
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/0 group-hover:bg-primary/100 transition-all duration-500 rounded-b-2xl" />
             </Card>
           ))}
         </div>

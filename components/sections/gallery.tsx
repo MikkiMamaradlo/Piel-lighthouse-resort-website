@@ -74,8 +74,8 @@ export default function Gallery() {
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white text-muted-foreground hover:bg-muted"
+                  ? "bg-primary text-white shadow-lg shadow-primary/30"
+                  : "bg-white text-muted-foreground hover:bg-muted hover:shadow-md"
               }`}
             >
               {category}
@@ -84,39 +84,42 @@ export default function Gallery() {
         </div>
 
         {/* Masonry-style gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {filteredImages.map((image, index) => (
             <Card
               key={image.title}
-              className={`overflow-hidden cursor-pointer group relative ${image.colSpan}`}
+              className={`overflow-hidden cursor-pointer group relative ${image.colSpan} rounded-2xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0`}
               onClick={() => setSelectedImage(image.url)}
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className={`relative ${image.colSpan.includes('col-span-2') ? 'h-64' : 'h-64'} overflow-hidden`}>
+              <div className={`relative ${image.colSpan.includes('col-span-2') ? 'h-80' : 'h-72'} overflow-hidden`}>
                 <img
                   src={image.url || "/placeholder.svg"}
                   alt={image.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                 
-                {/* Hover overlay */}
+                {/* Category badge - always visible */}
+                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-4 py-2 rounded-full shadow-md flex items-center gap-1.5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full group-hover:bg-white transition-colors duration-300"></span>
+                  {image.category}
+                </span>
+
+                {/* Zoom overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-xl border border-white/30">
                     <ZoomIn className="w-8 h-8 text-white drop-shadow-lg" />
                   </div>
                 </div>
-
-                {/* Category badge */}
-                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0">
-                  {image.category}
-                </span>
               </div>
 
               {/* Title bar */}
-              <div className="p-4 bg-white group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                <p className="font-semibold">{image.title}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="font-semibold text-white text-lg group-hover:text-white transition-colors duration-300">
+                  {image.title}
+                </p>
               </div>
             </Card>
           ))}
@@ -127,7 +130,7 @@ export default function Gallery() {
           <Button 
             onClick={handleLoadMore}
             disabled={isLoadingMore}
-            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
+            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
           >
             {isLoadingMore ? "Loading..." : "Load More Photos"}
           </Button>
