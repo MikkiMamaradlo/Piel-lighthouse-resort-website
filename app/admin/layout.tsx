@@ -45,6 +45,13 @@ export default function AdminLayout({
     // Check authentication
     const checkAuth = async () => {
       try {
+        // First check if staff is logged in (block staff from admin)
+        const staffAuth = document.cookie.split('; ').find(row => row.startsWith('staff_auth='))
+        if (staffAuth) {
+          router.push("/staff")
+          return
+        }
+
         const response = await fetch("/api/admin/auth/check")
         const data = await response.json()
         
@@ -53,7 +60,7 @@ export default function AdminLayout({
         } else {
           setIsAuthenticated(true)
         }
-      } catch (error) {
+      } catch {
         router.push("/admin/login")
       } finally {
         setLoading(false)
