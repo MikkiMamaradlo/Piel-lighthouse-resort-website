@@ -194,7 +194,7 @@ export default function StaffLayout({
     }
 
     checkAuth()
-  }, [router, isPublicPage])
+  }, [isPublicPage])
 
   // Update current time every minute
   useEffect(() => {

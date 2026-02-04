@@ -17,11 +17,13 @@ import {
   ChevronLeft,
   Ship,
   Sparkles,
-  Clock
+  Clock,
+  Users
 } from "lucide-react"
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/staff", label: "Staff", icon: Users },
   { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { href: "/admin/attendance", label: "Attendance", icon: Clock },
   { href: "/admin/accommodations", label: "Rooms", icon: BedDouble },
@@ -75,7 +77,7 @@ export default function AdminLayout({
     } else {
       setLoading(false)
     }
-  }, [pathname, router])
+  }, [pathname])
 
   const handleLogout = async () => {
     await fetch("/api/admin/auth", { method: "DELETE" })
