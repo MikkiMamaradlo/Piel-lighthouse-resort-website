@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
           checkIn: "2026-02-15",
           checkOut: "2026-02-18",
           guests: 4,
-          roomType: "Beachfront Room",
+          roomType: "Beachfront Room (up to 4 pax)",
+          roomId: "room1",
           message: "We want early check-in if possible",
           createdAt: new Date().toISOString(),
           status: "pending"
@@ -41,7 +42,8 @@ export async function GET(request: NextRequest) {
           checkIn: "2026-02-20",
           checkOut: "2026-02-22",
           guests: 2,
-          roomType: "Barkada Room",
+          roomType: "Barkada Room (up to 10 pax)",
+          roomId: "room2",
           message: "Honeymoon package please",
           createdAt: new Date().toISOString(),
           status: "confirmed"
@@ -54,7 +56,8 @@ export async function GET(request: NextRequest) {
           checkIn: "2026-03-01",
           checkOut: "2026-03-05",
           guests: 15,
-          roomType: "Family Room",
+          roomType: "Family Room (up to 15 pax)",
+          roomId: "room3",
           message: "Team building event",
           createdAt: new Date().toISOString(),
           status: "pending"
@@ -71,7 +74,7 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
-    const { id, status } = await request.json()
+    const { id, status, roomId, roomType, checkIn, checkOut, guestName } = await request.json()
     
     if (!id || !status) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
@@ -81,10 +84,45 @@ export async function PATCH(request: NextRequest) {
       const connectToDatabase = (await import("@/lib/mongodb")).default
       const { db } = await connectToDatabase()
       
+      // Update booking status
       await db.collection("bookings").updateOne(
         { _id: new (await import("mongodb")).ObjectId(id) },
         { $set: { status, updatedAt: new Date().toISOString() } }
       )
+      
+      // If booking is confirmed and has a roomId, update the room status
+      if (status === "confirmed" && roomId) {
+        await db.collection("rooms").updateOne(
+          { _id: roomId },
+          { 
+            $set: { 
+              status: "booked",
+              currentBookingId: id,
+              currentGuestName: guestName || "",
+              currentCheckIn: checkIn || "",
+              currentCheckOut: checkOut || "",
+              updatedAt: new Date().toISOString()
+            } 
+          }
+        )
+      }
+      
+      // If booking is cancelled, clear the room status
+      if (status === "cancelled" && roomId) {
+        await db.collection("rooms").updateOne(
+          { _id: roomId },
+          { 
+            $set: { 
+              status: "available",
+              currentBookingId: null,
+              currentGuestName: "",
+              currentCheckIn: "",
+              currentCheckOut: "",
+              updatedAt: new Date().toISOString()
+            } 
+          }
+        )
+      }
     } catch (dbError) {
       console.log("MongoDB not available, update skipped")
     }

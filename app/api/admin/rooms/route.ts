@@ -20,7 +20,8 @@ const demoRooms = [
     popular: true,
     features: ["Table Cottage", "Extra mattress"],
     description: "Wake up to the sound of waves in our Beachfront Room. This cozy accommodation offers direct beach access and stunning ocean views.",
-    order: 1
+    order: 1,
+    status: "available"
   },
   {
     _id: "room2",
@@ -40,7 +41,12 @@ const demoRooms = [
     popular: false,
     features: ["Table Cottage", "Extra mattresses"],
     description: "Our spacious Barkada Room is designed for groups and families with ample space for up to 10 guests.",
-    order: 2
+    order: 2,
+    status: "booked",
+    currentBookingId: "demo2",
+    currentGuestName: "John Chen",
+    currentCheckIn: "2026-02-20",
+    currentCheckOut: "2026-02-22"
   },
   {
     _id: "room3",
@@ -60,7 +66,8 @@ const demoRooms = [
     popular: false,
     features: ["Private toilet", "Table Cottage"],
     description: "The ultimate family accommodation! This expansive room comfortably hosts up to 15 guests.",
-    order: 3
+    order: 3,
+    status: "available"
   }
 ]
 

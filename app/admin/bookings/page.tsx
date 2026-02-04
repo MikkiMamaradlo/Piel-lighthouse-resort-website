@@ -25,6 +25,7 @@ interface Booking {
   checkOut: string
   guests: number
   roomType: string
+  roomId?: string
   message: string
   createdAt: string
   status: "pending" | "confirmed" | "cancelled"
@@ -56,12 +57,20 @@ export default function BookingsPage() {
     }
   }
 
-  const updateStatus = async (id: string, status: "confirmed" | "cancelled") => {
+  const updateStatus = async (id: string, status: "confirmed" | "cancelled", booking?: Booking) => {
     try {
       await fetch("/api/admin/bookings", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status }),
+        body: JSON.stringify({ 
+          id, 
+          status,
+          roomId: booking?.roomId || "",
+          roomType: booking?.roomType || "",
+          checkIn: booking?.checkIn || "",
+          checkOut: booking?.checkOut || "",
+          guestName: booking?.name || ""
+        }),
       })
       fetchBookings()
     } catch (error) {
@@ -219,14 +228,14 @@ export default function BookingsPage() {
                         {booking.status === "pending" && (
                           <>
                             <button
-                              onClick={() => updateStatus(booking._id, "confirmed")}
+                              onClick={() => updateStatus(booking._id, "confirmed", booking)}
                               className="p-2.5 bg-green-100 text-green-700 hover:bg-green-200 rounded-xl transition-colors"
                               title="Confirm"
                             >
                               <CheckCircle className="w-5 h-5" />
                             </button>
                             <button
-                              onClick={() => updateStatus(booking._id, "cancelled")}
+                              onClick={() => updateStatus(booking._id, "cancelled", booking)}
                               className="p-2.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-xl transition-colors"
                               title="Cancel"
                             >
@@ -236,7 +245,7 @@ export default function BookingsPage() {
                         )}
                         {booking.status === "confirmed" && (
                           <button
-                            onClick={() => updateStatus(booking._id, "cancelled")}
+                            onClick={() => updateStatus(booking._id, "cancelled", booking)}
                             className="p-2.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-xl transition-colors"
                             title="Cancel"
                           >
@@ -349,7 +358,7 @@ export default function BookingsPage() {
                 <>
                   <button
                     onClick={() => {
-                      updateStatus(selectedBooking._id, "confirmed")
+                      updateStatus(selectedBooking._id, "confirmed", selectedBooking)
                       setSelectedBooking(null)
                     }}
                     className="flex-1 py-3.5 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg shadow-green-500/25"
@@ -358,7 +367,7 @@ export default function BookingsPage() {
                   </button>
                   <button
                     onClick={() => {
-                      updateStatus(selectedBooking._id, "cancelled")
+                      updateStatus(selectedBooking._id, "cancelled", selectedBooking)
                       setSelectedBooking(null)
                     }}
                     className="flex-1 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl font-semibold hover:from-red-700 hover:to-red-800 transition-all shadow-lg shadow-red-500/25"
@@ -370,7 +379,7 @@ export default function BookingsPage() {
               {selectedBooking.status === "confirmed" && (
                 <button
                   onClick={() => {
-                    updateStatus(selectedBooking._id, "cancelled")
+                    updateStatus(selectedBooking._id, "cancelled", selectedBooking)
                     setSelectedBooking(null)
                   }}
                   className="flex-1 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl font-semibold hover:from-red-700 hover:to-red-800 transition-all shadow-lg shadow-red-500/25"

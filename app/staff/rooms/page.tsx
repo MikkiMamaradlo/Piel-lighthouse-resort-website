@@ -13,6 +13,11 @@ interface Room {
   features: string[]
   description: string
   order: number
+  status?: string
+  currentBookingId?: string
+  currentGuestName?: string
+  currentCheckIn?: string
+  currentCheckOut?: string
 }
 
 // Icons
@@ -46,9 +51,28 @@ const FeatureIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const CheckIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+)
+
+const UserIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+  </svg>
+)
+
+const CalendarIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+)
+
 export default function StaffRoomsPage() {
   const [rooms, setRooms] = useState<Room[]>([])
   const [loading, setLoading] = useState(true)
+  const [statusFilter, setStatusFilter] = useState("all")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,6 +94,36 @@ export default function StaffRoomsPage() {
 
     fetchData()
   }, [])
+
+  const getStatusBadge = (status: string | undefined) => {
+    if (!status || status === "available") {
+      return (
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
+          <CheckIcon className="w-3.5 h-3.5" />
+          Available
+        </span>
+      )
+    }
+    if (status === "booked") {
+      return (
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
+          <CheckIcon className="w-3.5 h-3.5" />
+          Booked
+        </span>
+      )
+    }
+    return null
+  }
+
+  const filteredRooms = rooms.filter(room => {
+    if (statusFilter === "all") return true
+    if (statusFilter === "available") return !room.status || room.status === "available"
+    if (statusFilter === "booked") return room.status === "booked"
+    return true
+  })
+
+  const availableCount = rooms.filter(r => !r.status || r.status === "available").length
+  const bookedCount = rooms.filter(r => r.status === "booked").length
 
   if (loading) {
     return (
@@ -107,7 +161,20 @@ export default function StaffRoomsPage() {
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <RoomIcon className="w-4 h-4" />
-          <span>{rooms.length} rooms available</span>
+          <span>{filteredRooms.length} rooms</span>
+          <span className="text-green-600">{availableCount} available</span>
+          <span className="text-amber-600">{bookedCount} booked</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="px-4 py-2 bg-slate-50 border-2 border-slate-200 rounded-xl text-sm focus:ring-0 focus:border-blue-500 transition-all"
+          >
+            <option value="all">All Rooms</option>
+            <option value="available">Available</option>
+            <option value="booked">Booked</option>
+          </select>
         </div>
       </div>
 
@@ -154,7 +221,22 @@ export default function StaffRoomsPage() {
                 <h3 className="text-xl font-bold text-slate-800 group-hover:text-amber-600 transition-colors">
                   {room.name}
                 </h3>
+                {getStatusBadge(room.status)}
               </div>
+
+              {/* Booking Info (if booked) */}
+              {room.status === "booked" && (
+                <div className="mb-4 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <UserIcon className="w-4 h-4 text-amber-600" />
+                    <span className="text-sm font-semibold text-amber-800">{room.currentGuestName || "Guest"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-amber-700">
+                    <CalendarIcon className="w-3.5 h-3.5" />
+                    <span>{room.currentCheckIn || ""} → {room.currentCheckOut || ""}</span>
+                  </div>
+                </div>
+              )}
 
               {/* Capacity */}
               <div className="flex items-center gap-2 text-sm text-slate-500 mb-3">

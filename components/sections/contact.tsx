@@ -1,13 +1,17 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send, Clock, Calendar, MessageSquare, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Clock, Calendar, MessageSquare, CheckCircle, User, LogIn } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function Contact() {
+  const router = useRouter()
+  const [isGuestLoggedIn, setIsGuestLoggedIn] = useState(false)
+  const [user, setUser] = useState<{ fullName: string; email: string; phone: string } | null>(null)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
   const [formData, setFormData] = useState({
@@ -21,13 +25,55 @@ export default function Contact() {
     message: "",
   })
 
+  // Check if guest is logged in
+  useEffect(() => {
+    const checkGuestAuth = async () => {
+      try {
+        const response = await fetch("/api/guest/auth/check")
+        const data = await response.json()
+        setIsGuestLoggedIn(data.authenticated)
+        if (data.user) {
+          setUser(data.user)
+          // Pre-fill form if logged in
+          setFormData(prev => ({
+            ...prev,
+            name: data.user.fullName || "",
+            email: data.user.email || "",
+            phone: data.user.phone || "",
+          }))
+        }
+      } catch (error) {
+        setIsGuestLoggedIn(false)
+      }
+    }
+    checkGuestAuth()
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const roomOptions = [
+    { id: "room1", value: "beachfront", label: "Beachfront Room (up to 4 pax)" },
+    { id: "room2", value: "barkada", label: "Barkada Room (up to 10 pax)" },
+    { id: "room3", value: "family", label: "Family Room (up to 15 pax)" },
+  ]
+
+  const getRoomDisplayName = (value: string) => {
+    const room = roomOptions.find(r => r.value === value)
+    return room ? room.label : "Not specified"
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Check if guest is logged in
+    if (!isGuestLoggedIn) {
+      router.push("/guest/login")
+      return
+    }
+    
     setLoading(true)
 
     if (formData.checkIn && formData.checkOut) {
@@ -44,11 +90,18 @@ export default function Contact() {
       }
     }
 
+    // Get room display name and ID
+    const roomOption = roomOptions.find(r => r.value === formData.roomType)
+    
     try {
       const response = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          roomId: roomOption?.id || "",
+          roomType: getRoomDisplayName(formData.roomType),
+        }),
       })
 
       const result = await response.json()
@@ -132,7 +185,37 @@ export default function Contact() {
         </div>
 
         {/* Booking Form */}
-        <div className="max-w-4xl mx-auto">
+        {!isGuestLoggedIn ? (
+          /* Guest Login Prompt */
+          <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 md:p-12 text-center">
+            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <User className="w-10 h-10 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Login to Book Your Stay</h3>
+            <p className="text-muted-foreground max-w-md mx-auto mb-8">
+              Please log in or create an account to make a reservation at Piel Lighthouse Resort.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                onClick={() => router.push("/guest/login")}
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl shadow-lg"
+              >
+                <LogIn className="w-5 h-5 mr-2" />
+                Login
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => router.push("/guest/register")}
+                className="px-8 py-4 rounded-xl"
+              >
+                Create Account
+              </Button>
+            </div>
+          </div>
+        ) : (
+          /* Booking Form for Logged In Users */
           <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
@@ -143,7 +226,10 @@ export default function Contact() {
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                   <Calendar className="text-primary" size={20} />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Quick Booking Form</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">Quick Booking Form</h3>
+                  <p className="text-sm text-muted-foreground">Welcome back, {user?.fullName}!</p>
+                </div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -250,7 +336,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label htmlFor="roomType" className="block text-sm font-semibold text-foreground mb-2">
-                      Room Type
+                      Available Room
                     </label>
                     <select
                       id="roomType"
@@ -259,10 +345,10 @@ export default function Contact() {
                       onChange={handleChange}
                       className="w-full px-5 py-4 rounded-xl border border-muted bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                     >
-                      <option value="">Select room type</option>
-                      <option value="beachfront">Beachfront Room (up to 4 pax)</option>
-                      <option value="barkada">Barkada Room (up to 10 pax)</option>
-                      <option value="family">Family Room (up to 15 pax)</option>
+                      <option value="">Select an available room</option>
+                      {roomOptions.map((room) => (
+                        <option key={room.id} value={room.value}>{room.label}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -308,7 +394,7 @@ export default function Contact() {
               </form>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   )

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Palmtree, Phone, MapPin } from "lucide-react"
+import { Menu, X, Palmtree, Phone, MapPin, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navigation() {
@@ -11,8 +11,21 @@ export default function Navigation() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState("")
+  const [isGuestLoggedIn, setIsGuestLoggedIn] = useState(false)
 
   useEffect(() => {
+    // Check if guest is logged in
+    const checkGuestAuth = async () => {
+      try {
+        const response = await fetch("/api/guest/auth/check")
+        const data = await response.json()
+        setIsGuestLoggedIn(data.authenticated)
+      } catch (error) {
+        setIsGuestLoggedIn(false)
+      }
+    }
+    checkGuestAuth()
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       setScrolled(currentScrollY > 20)
@@ -117,13 +130,24 @@ export default function Navigation() {
               </button>
             ))}
             <div className="h-6 w-px bg-gray-200 mx-2" />
-            <Button
-              size="sm"
-              onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full px-6 py-2.5 font-medium"
-            >
-              Reserve Now
-            </Button>
+            {/* Reserve Now Button - Main CTA for booking */}
+            {isGuestLoggedIn ? (
+              <Link
+                href="/guest/dashboard"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 rounded-lg transition-all duration-300"
+              >
+                <User className="w-4 h-4" />
+                My Dashboard
+              </Link>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => window.location.href = "/guest/login"}
+                className="bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full px-6 py-2.5 font-medium"
+              >
+                Reserve Now
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -191,12 +215,23 @@ export default function Navigation() {
                   <span>Sitio Aplaya, Balibago Lian, Batangas</span>
                 </span>
               </div>
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-medium shadow-lg shadow-primary/20"
-              >
-                Reserve Now
-              </Button>
+              {/* Reserve Now Button for Mobile */}
+              {isGuestLoggedIn ? (
+                <Link
+                  href="/guest/dashboard"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mb-2 bg-primary text-white rounded-xl font-medium shadow-lg shadow-primary/20"
+                >
+                  <User className="w-4 h-4" />
+                  My Dashboard
+                </Link>
+              ) : (
+                <Button
+                  onClick={() => window.location.href = "/guest/login"}
+                  className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-medium shadow-lg shadow-primary/20"
+                >
+                  Reserve Now
+                </Button>
+              )}
             </div>
           </div>
         </div>

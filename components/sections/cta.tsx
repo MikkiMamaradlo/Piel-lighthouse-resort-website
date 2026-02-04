@@ -68,7 +68,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => scrollToSection("accommodations")}
+              onClick={() => window.location.href = "/guest/login"}
               className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-10 py-7 rounded-full shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 hover:scale-105"
             >
               Book Your Stay
