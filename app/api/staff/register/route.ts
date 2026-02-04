@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { createHmac, randomBytes } from "crypto"
 import connectToDatabase from "@/lib/mongodb"
+import { type Department, type RoleByDepartment, DEPARTMENT_ROLES } from "@/backend/lib/schemas/staff"
 
 // Password hashing using HMAC
 function hashPassword(password: string): string {
@@ -13,10 +14,13 @@ function generateToken(): string {
   return randomBytes(32).toString("hex")
 }
 
+// Valid departments
+const VALID_DEPARTMENTS = [...Object.keys(DEPARTMENT_ROLES), "General"] as const
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { username, email, password, fullName, department, phone } = body
+    const { username, email, password, fullName, department, role, phone } = body
 
     // Validate required fields
     if (!username || !email || !password || !fullName) {
@@ -30,6 +34,36 @@ export async function POST(request: NextRequest) {
     if (password.length < 6) {
       return NextResponse.json(
         { error: "Password must be at least 6 characters" },
+        { status: 400 }
+      )
+    }
+
+    // Validate department
+    const deptParam = department || "General"
+    const isValidDepartment = VALID_DEPARTMENTS.includes(deptParam as typeof VALID_DEPARTMENTS[number])
+    if (!isValidDepartment) {
+      return NextResponse.json(
+        { error: "Invalid department selected" },
+        { status: 400 }
+      )
+    }
+
+    const selectedDepartment = deptParam as Department | "General"
+
+    // Validate role for department
+    let validRoles: string[]
+    if (selectedDepartment === "General") {
+      validRoles = ["staff", "manager", "admin"]
+    } else {
+      validRoles = DEPARTMENT_ROLES[selectedDepartment as Department]
+    }
+    
+    const roleParam = role || (selectedDepartment === "General" ? "staff" : DEPARTMENT_ROLES[selectedDepartment as Department][0])
+    const selectedRole = roleParam as RoleByDepartment | "staff" | "manager" | "admin"
+    
+    if (!validRoles.includes(selectedRole as string)) {
+      return NextResponse.json(
+        { error: "Invalid role selected for the department" },
         { status: 400 }
       )
     }
@@ -70,9 +104,9 @@ export async function POST(request: NextRequest) {
       email,
       password: hashedPassword,
       fullName,
-      department: department || "General",
+      department: selectedDepartment,
+      role: selectedRole,
       phone: phone || "",
-      role: "staff",
       isActive: true,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -98,7 +132,8 @@ export async function POST(request: NextRequest) {
         username,
         email,
         fullName,
-        role: "staff",
+        role: selectedRole,
+        department: selectedDepartment,
       },
     })
 

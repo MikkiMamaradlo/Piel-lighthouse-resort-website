@@ -56,13 +56,90 @@ const LogoIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const navItems = [
-  { href: "/staff", label: "Dashboard", icon: DashboardIcon },
-  { href: "/staff/bookings", label: "Bookings", icon: BookingsIcon },
-  { href: "/staff/rooms", label: "Rooms", icon: RoomsIcon },
-  { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
-  { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
-]
+interface NavItem {
+  href: string
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+  department?: string[]
+}
+
+// Navigation items for each department
+const departmentNavItems: Record<string, NavItem[]> = {
+  "Front Desk": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/bookings", label: "Bookings", icon: BookingsIcon },
+    { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
+    { href: "/staff/rooms", label: "Rooms", icon: RoomsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "Housekeeping": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/rooms", label: "Room Status", icon: RoomsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "Food & Beverage": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "Maintenance": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/rooms", label: "Room Status", icon: RoomsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "Activities": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/bookings", label: "Bookings", icon: BookingsIcon },
+    { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "Management": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/bookings", label: "Bookings", icon: BookingsIcon },
+    { href: "/staff/rooms", label: "Rooms", icon: RoomsIcon },
+    { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+  "General": [
+    { href: "/staff", label: "Dashboard", icon: DashboardIcon },
+    { href: "/staff/bookings", label: "Bookings", icon: BookingsIcon },
+    { href: "/staff/rooms", label: "Rooms", icon: RoomsIcon },
+    { href: "/staff/guests", label: "Guest Info", icon: GuestsIcon },
+    { href: "/staff/attendance", label: "Attendance", icon: AttendanceIcon },
+  ],
+}
+
+// Role display names
+const roleDisplayNames: Record<string, string> = {
+  // Front Desk
+  "front_desk_agent": "Front Desk Agent",
+  "front_desk_supervisor": "Front Desk Supervisor",
+  "front_desk_manager": "Front Desk Manager",
+  // Housekeeping
+  "housekeeper": "Housekeeper",
+  "housekeeping_supervisor": "Housekeeping Supervisor",
+  "housekeeping_manager": "Housekeeping Manager",
+  // Food & Beverage
+  "server": "Server",
+  "bartender": "Bartender",
+  "fnb_supervisor": "F&B Supervisor",
+  "fnb_manager": "F&B Manager",
+  // Maintenance
+  "maintenance_technician": "Maintenance Technician",
+  "maintenance_supervisor": "Maintenance Supervisor",
+  "maintenance_manager": "Maintenance Manager",
+  // Activities
+  "activity_guide": "Activity Guide",
+  "activities_supervisor": "Activities Supervisor",
+  "activities_manager": "Activities Manager",
+  // Management
+  "general_manager": "General Manager",
+  "assistant_manager": "Assistant Manager",
+  // Legacy
+  "staff": "Staff",
+  "manager": "Manager",
+  "admin": "Admin",
+}
 
 export default function StaffLayout({
   children,
@@ -79,6 +156,12 @@ export default function StaffLayout({
   const isLoginPage = pathname === "/staff/login"
   const isRegisterPage = pathname === "/staff/register"
   const isPublicPage = isLoginPage || isRegisterPage
+
+  // Get navigation items based on user's department
+  const getNavItems = () => {
+    if (!user) return []
+    return departmentNavItems[user.department] || departmentNavItems["General"]
+  }
 
   useEffect(() => {
     if (isPublicPage) {
@@ -122,7 +205,7 @@ export default function StaffLayout({
     }, 60000)
     
     return () => clearInterval(timer)
-  }, [isLoginPage])
+  }, [isPublicPage])
 
   const handleLogout = async () => {
     await fetch("/api/staff/auth", { method: "DELETE" })
@@ -161,129 +244,134 @@ export default function StaffLayout({
     return date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })
   }
 
+  const navItems = getNavItems()
+  const roleDisplayName = roleDisplayNames[user.role] || user.role
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200">
-      {/* Top Navigation */}
-      <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg z-50">
-        <div className="flex items-center justify-between h-full px-6">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-              className="lg:hidden p-2 hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
-                <LogoIcon className="w-6 h-6 text-white" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-lg font-bold text-white">Piel Lighthouse Resort</div>
-                <div className="text-xs text-amber-400 font-medium">Staff Portal</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <div className="hidden md:block text-right">
-              <div className="text-sm text-slate-300">{formatDate(currentTime)}</div>
-              <div className="text-lg font-semibold text-white">{formatTime(currentTime)}</div>
-            </div>
-            
-            <div className="flex items-center gap-3 pl-6 border-l border-slate-700">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-sm">
-                  {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
-                </span>
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-sm font-medium text-white">{user.fullName || user.username}</div>
-                <div className="text-xs text-slate-400 capitalize">{user.role} - {user.department}</div>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="p-2 hover:bg-slate-700 rounded-lg transition-colors group"
-                title="Logout"
-              >
-                <LogoutIcon className="w-5 h-5 text-slate-400 group-hover:text-amber-400 transition-colors" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div className="flex pt-16">
-        {/* Sidebar */}
-        <aside
-          className={`fixed left-0 top-16 bottom-0 bg-white shadow-xl transition-all duration-300 z-40 ${
-            isSidebarCollapsed ? "w-20" : "w-64"
-          } ${isSidebarCollapsed ? "lg:w-20" : "lg:w-64"}`}
-        >
-          <div className="flex flex-col h-full py-6">
-            <nav className="flex-1 px-3 space-y-1">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href
-                const Icon = item.icon
-                
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                      isActive
-                        ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30"
-                        : "text-slate-600 hover:bg-gradient-to-r hover:from-slate-100 hover:to-slate-50 hover:text-slate-800"
-                    }`}
-                    title={isSidebarCollapsed ? item.label : undefined}
-                  >
-                    <Icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-white" : "text-slate-400 group-hover:text-amber-500 transition-colors"}`} />
-                    <span className={`font-medium transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
-                      {item.label}
-                    </span>
-                    {isActive && !isSidebarCollapsed && (
-                      <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                    )}
-                  </Link>
-                )
-              })}
-            </nav>
-
-            {/* Collapse Toggle */}
-            <div className="px-3 mt-auto">
+    <div className="min-h-screen bg-[url('/images/piel2.jpg')] bg-cover bg-center bg-fixed">
+      <div className="min-h-screen bg-white/90 backdrop-blur-sm">
+        {/* Top Navigation */}
+        <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg z-50">
+          <div className="flex items-center justify-between h-full px-6">
+            <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl transition-colors"
+                className="lg:hidden p-2 hover:bg-slate-700 rounded-lg transition-colors"
               >
-                <svg
-                  className={`w-5 h-5 transition-transform duration-300 ${isSidebarCollapsed ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <span className={`text-sm font-medium ${isSidebarCollapsed ? "lg:hidden" : ""}`}>
-                  {isSidebarCollapsed ? "" : "Collapse"}
-                </span>
               </button>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <LogoIcon className="w-6 h-6 text-white" />
+                </div>
+                <div className="hidden sm:block">
+                  <div className="text-lg font-bold text-white">Piel Lighthouse Resort</div>
+                  <div className="text-xs text-amber-400 font-medium">Staff Portal</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-6">
+              <div className="hidden md:block text-right">
+                <div className="text-sm text-slate-300">{formatDate(currentTime)}</div>
+                <div className="text-lg font-semibold text-white">{formatTime(currentTime)}</div>
+              </div>
+              
+              <div className="flex items-center gap-3 pl-6 border-l border-slate-700">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">
+                    {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div className="hidden sm:block">
+                  <div className="text-sm font-medium text-white">{user.fullName || user.username}</div>
+                  <div className="text-xs text-slate-400">{roleDisplayName} - {user.department}</div>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="p-2 hover:bg-slate-700 rounded-lg transition-colors group"
+                  title="Logout"
+                >
+                  <LogoutIcon className="w-5 h-5 text-slate-400 group-hover:text-amber-400 transition-colors" />
+                </button>
+              </div>
             </div>
           </div>
-        </aside>
+        </nav>
 
-        {/* Main Content */}
-        <main
-          className={`flex-1 transition-all duration-300 ${
-            isSidebarCollapsed ? "lg:ml-20" : "lg:ml-64"
-          }`}
-        >
-          <div className="p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto">
-              {children}
+        <div className="flex pt-16">
+          {/* Sidebar */}
+          <aside
+            className={`fixed left-0 top-16 bottom-0 bg-white shadow-xl transition-all duration-300 z-40 ${
+              isSidebarCollapsed ? "w-20" : "w-64"
+            } ${isSidebarCollapsed ? "lg:w-20" : "lg:w-64"}`}
+          >
+            <div className="flex flex-col h-full py-6">
+              <nav className="flex-1 px-3 space-y-1">
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href
+                  const Icon = item.icon
+                  
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+                        isActive
+                          ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30"
+                          : "text-slate-600 hover:bg-gradient-to-r hover:from-slate-100 hover:to-slate-50 hover:text-slate-800"
+                      }`}
+                      title={isSidebarCollapsed ? item.label : undefined}
+                    >
+                      <Icon className={`w-5 h-5 flex-shrink-0 ${isActive ? "text-white" : "text-slate-400 group-hover:text-amber-500 transition-colors"}`} />
+                      <span className={`font-medium transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
+                        {item.label}
+                      </span>
+                      {isActive && !isSidebarCollapsed && (
+                        <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                      )}
+                    </Link>
+                  )
+                })}
+              </nav>
+
+              {/* Collapse Toggle */}
+              <div className="px-3 mt-auto">
+                <button
+                  onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl transition-colors"
+                >
+                  <svg
+                    className={`w-5 h-5 transition-transform duration-300 ${isSidebarCollapsed ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                  </svg>
+                  <span className={`text-sm font-medium ${isSidebarCollapsed ? "lg:hidden" : ""}`}>
+                    {isSidebarCollapsed ? "" : "Collapse"}
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
-        </main>
+          </aside>
+
+          {/* Main Content */}
+          <main
+            className={`flex-1 transition-all duration-300 ${
+              isSidebarCollapsed ? "lg:ml-20" : "lg:ml-64"
+            }`}
+          >
+            <div className="p-6 lg:p-8">
+              <div className="max-w-7xl mx-auto">
+                {children}
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   )

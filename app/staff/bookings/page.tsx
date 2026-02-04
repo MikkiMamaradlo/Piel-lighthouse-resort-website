@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { hasPermission, isManagerOrAbove } from "@/lib/permissions"
 
 interface Booking {
   _id: string
@@ -14,6 +15,15 @@ interface Booking {
   status: string
   specialRequests: string
   createdAt: string
+}
+
+interface User {
+  id: string
+  username: string
+  email: string
+  fullName: string
+  role: string
+  department: string
 }
 
 // Icons
@@ -47,11 +57,33 @@ const UsersIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const LockIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+  </svg>
+)
+
 export default function StaffBookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState("all")
   const [search, setSearch] = useState("")
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/staff/auth/check")
+        const data = await response.json()
+        if (data.authenticated && data.user) {
+          setUser(data.user)
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error)
+      }
+    }
+    checkAuth()
+  }, [])
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -146,6 +178,10 @@ export default function StaffBookingsPage() {
     cancelled: bookings.filter((b) => b.status === "cancelled").length,
   }
 
+  // Check if user has permission to view bookings
+  const canViewBookings = user ? hasPermission(user.role, "canManageBookings") : false
+  const canModifyBookings = user ? isManagerOrAbove(user.role) : false
+
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse">
@@ -169,13 +205,36 @@ export default function StaffBookingsPage() {
     )
   }
 
+  // Show access denied if user doesn't have permission
+  if (!canViewBookings) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
+        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+          <LockIcon className="w-8 h-8 text-red-500" />
+        </div>
+        <h2 className="text-xl font-semibold text-slate-800 mb-2">Access Restricted</h2>
+        <p className="text-slate-500 max-w-md">
+          You don't have permission to view bookings. Please contact your supervisor if you believe this is an error.
+        </p>
+        {user && (
+          <div className="mt-4 text-sm text-slate-400">
+            Your role: {user.role} | Department: {user.department}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Bookings Management</h1>
-          <p className="text-slate-500 mt-1">Manage and track all guest reservations</p>
+          <p className="text-slate-500 mt-1">
+            Manage and track all guest reservations
+            {!canModifyBookings && <span className="text-amber-600 ml-2">(View Only)</span>}
+          </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4">
           {/* Search */}

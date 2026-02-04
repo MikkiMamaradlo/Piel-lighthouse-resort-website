@@ -3,13 +3,69 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Palmtree, Waves, Sun, User, Mail, Lock, Eye, EyeOff, Check } from "lucide-react"
+import { Palmtree, Waves, Sun, User, Mail, Lock, Eye, EyeOff, Check, Briefcase } from "lucide-react"
+
+// Department and role data
+const DEPARTMENTS = [
+  { value: "", label: "Select Department" },
+  { value: "Front Desk", label: "Front Desk" },
+  { value: "Housekeeping", label: "Housekeeping" },
+  { value: "Food & Beverage", label: "Food & Beverage" },
+  { value: "Maintenance", label: "Maintenance" },
+  { value: "Activities", label: "Activities" },
+  { value: "Management", label: "Management" },
+  { value: "General", label: "General" },
+]
+
+const ROLES = {
+  "Front Desk": ["front_desk_agent", "front_desk_supervisor", "front_desk_manager"],
+  "Housekeeping": ["housekeeper", "housekeeping_supervisor", "housekeeping_manager"],
+  "Food & Beverage": ["server", "bartender", "fnb_supervisor", "fnb_manager"],
+  "Maintenance": ["maintenance_technician", "maintenance_supervisor", "maintenance_manager"],
+  "Activities": ["activity_guide", "activities_supervisor", "activities_manager"],
+  "Management": ["general_manager", "assistant_manager"],
+  "General": ["staff", "manager", "admin"],
+}
+
+const ROLE_LABELS: Record<string, string> = {
+  // Front Desk
+  "front_desk_agent": "Front Desk Agent",
+  "front_desk_supervisor": "Front Desk Supervisor",
+  "front_desk_manager": "Front Desk Manager",
+  // Housekeeping
+  "housekeeper": "Housekeeper",
+  "housekeeping_supervisor": "Housekeeping Supervisor",
+  "housekeeping_manager": "Housekeeping Manager",
+  // Food & Beverage
+  "server": "Server",
+  "bartender": "Bartender",
+  "fnb_supervisor": "F&B Supervisor",
+  "fnb_manager": "F&B Manager",
+  // Maintenance
+  "maintenance_technician": "Maintenance Technician",
+  "maintenance_supervisor": "Maintenance Supervisor",
+  "maintenance_manager": "Maintenance Manager",
+  // Activities
+  "activity_guide": "Activity Guide",
+  "activities_supervisor": "Activities Supervisor",
+  "activities_manager": "Activities Manager",
+  // Management
+  "general_manager": "General Manager",
+  "assistant_manager": "Assistant Manager",
+  // General
+  "staff": "Staff",
+  "manager": "Manager",
+  "admin": "Admin",
+}
 
 export default function StaffRegisterPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    fullName: "",
+    department: "",
+    role: "",
     password: "",
     confirmPassword: "",
   })
@@ -18,7 +74,7 @@ export default function StaffRegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -45,6 +101,9 @@ export default function StaffRegisterPage() {
         body: JSON.stringify({
           username: formData.username,
           email: formData.email,
+          fullName: formData.fullName,
+          department: formData.department,
+          role: formData.role,
           password: formData.password,
         }),
       })
@@ -143,6 +202,34 @@ export default function StaffRegisterPage() {
                 </div>
               )}
 
+              {/* Full Name Field */}
+              <div className="space-y-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-slate-700 ml-1">
+                  Full Name
+                </label>
+                <div className={`relative transition-all duration-300 ${
+                  focusedField === "fullName" ? "transform scale-[1.02]" : ""
+                }`}>
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
+                    focusedField === "fullName" ? "text-amber-500" : "text-slate-400"
+                  }`}>
+                    <User className="w-5 h-5" />
+                  </div>
+                  <input
+                    id="fullName"
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField("fullName")}
+                    onBlur={() => setFocusedField(null)}
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:ring-0 focus:border-amber-400 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 placeholder-slate-400"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+              </div>
+
               {/* Username Field */}
               <div className="space-y-2">
                 <label htmlFor="username" className="block text-sm font-semibold text-slate-700 ml-1">
@@ -168,6 +255,70 @@ export default function StaffRegisterPage() {
                     placeholder="Choose a username"
                     required
                   />
+                </div>
+              </div>
+
+              {/* Department Field */}
+              <div className="space-y-2">
+                <label htmlFor="department" className="block text-sm font-semibold text-slate-700 ml-1">
+                  Department
+                </label>
+                <div className="relative">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
+                    focusedField === "department" ? "text-amber-500" : "text-slate-400"
+                  }`}>
+                    <Briefcase className="w-5 h-5" />
+                  </div>
+                  <select
+                    id="department"
+                    name="department"
+                    value={formData.department}
+                    onChange={(e) => {
+                      setFormData({ ...formData, department: e.target.value, role: "" })
+                    }}
+                    onFocus={() => setFocusedField("department")}
+                    onBlur={() => setFocusedField(null)}
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:ring-0 focus:border-amber-400 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 appearance-none"
+                    required
+                  >
+                    {DEPARTMENTS.map((dept) => (
+                      <option key={dept.value} value={dept.value}>
+                        {dept.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Role Field */}
+              <div className="space-y-2">
+                <label htmlFor="role" className="block text-sm font-semibold text-slate-700 ml-1">
+                  Position / Role
+                </label>
+                <div className="relative">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
+                    focusedField === "role" ? "text-amber-500" : "text-slate-400"
+                  }`}>
+                    <Briefcase className="w-5 h-5" />
+                  </div>
+                  <select
+                    id="role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField("role")}
+                    onBlur={() => setFocusedField(null)}
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:ring-0 focus:border-amber-400 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 appearance-none"
+                    required
+                    disabled={!formData.department}
+                  >
+                    <option value="">Select Role</option>
+                    {formData.department && ROLES[formData.department as keyof typeof ROLES]?.map((role) => (
+                      <option key={role} value={role}>
+                        {ROLE_LABELS[role] || role}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 

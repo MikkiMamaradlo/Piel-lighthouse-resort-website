@@ -102,7 +102,8 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-[url('/images/piel1.jpg')] bg-cover bg-center bg-fixed">
+      <div className="min-h-screen bg-white/90 backdrop-blur-sm">
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div 
@@ -232,5 +233,5 @@ export default function AdminLayout({
         <main className="p-6">{children}</main>
       </div>
     </div>
-  )
-}
+  </div>
+)}
