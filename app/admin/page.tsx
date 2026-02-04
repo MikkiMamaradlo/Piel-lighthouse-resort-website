@@ -29,6 +29,7 @@ import {
   BarChart,
   Bar
 } from "recharts"
+import DashboardCalendar from "./DashboardCalendar"
 
 const bookingStats = [
   { name: "Mon", bookings: 4 },
@@ -163,6 +164,11 @@ export default function AdminDashboard() {
             All systems operational
           </span>
         </div>
+      </div>
+
+      {/* Booking Calendar */}
+      <div className="flex justify-center">
+        <DashboardCalendar />
       </div>
 
       {/* Stats Grid */}
