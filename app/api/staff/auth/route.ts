@@ -2,9 +2,6 @@ import { type NextRequest, NextResponse } from "next/server"
 import { createHmac, randomBytes } from "crypto"
 import connectToDatabase from "@/lib/mongodb"
 
-// Import demo users from register route (shared in-memory storage)
-// In production, this would be replaced by a proper database
-
 // Password hashing using HMAC
 function hashPassword(password: string): string {
   const secret = process.env.STAFF_SECRET || "piel-lighthouse-staff-secret"
@@ -13,31 +10,6 @@ function hashPassword(password: string): string {
 
 function generateToken(): string {
   return randomBytes(32).toString("hex")
-}
-
-// Demo mode: Check credentials against demo users
-// Note: We need to share the demoUsers map between files
-// For now, we'll create a simple demo user if in demo mode
-function getDemoUser(username: string, password: string): object | null {
-  if (process.env.DEMO_MODE !== "true") return null
-
-  const demoUsername = process.env.DEMO_STAFF_USERNAME || "demo"
-  const demoPassword = process.env.DEMO_STAFF_PASSWORD || "demo123"
-
-  if (username === demoUsername && password === demoPassword) {
-    return {
-      _id: "demo-user-id",
-      username: demoUsername,
-      email: "demo@piel-lighthouse.com",
-      fullName: "Demo Staff",
-      role: "staff",
-      department: "General",
-      isActive: true,
-      authToken: generateToken(),
-    }
-  }
-
-  return null
 }
 
 export async function POST(request: NextRequest) {
@@ -51,51 +23,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const isDemoMode = process.env.DEMO_MODE === "true"
-
-    // Demo mode: use demo credentials
-    if (isDemoMode) {
-      console.log("[Staff Auth] DEMO_MODE: Authenticating demo user")
-      const demoUser = getDemoUser(username, password)
-
-      if (demoUser) {
-        const user = demoUser as {
-          _id: string
-          username: string
-          email: string
-          fullName: string
-          role: string
-          department: string
-          authToken: string
-        }
-
-        const response = NextResponse.json({
-          success: true,
-          message: "Login successful (Demo Mode)",
-          user: {
-            id: user._id,
-            username: user.username,
-            email: user.email,
-            fullName: user.fullName,
-            role: user.role,
-            department: user.department,
-          },
-          demoMode: true,
-        })
-
-        response.cookies.set("staff_auth", user.authToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "lax",
-          maxAge: 60 * 60 * 8,
-          path: "/",
-        })
-
-        return response
-      }
-    }
-
-    // Real database mode
+    // Database mode
     let db
     try {
       const dbConnection = await connectToDatabase()
