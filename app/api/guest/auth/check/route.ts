@@ -34,11 +34,12 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       authenticated: true,
-      user: {
-        id: guest._id.toString(),
+      guest: {
+        _id: guest._id.toString(),
         email: guest.email,
         fullName: guest.fullName,
         phone: guest.phone,
+        username: guest.username,
       },
     })
   } catch (error) {

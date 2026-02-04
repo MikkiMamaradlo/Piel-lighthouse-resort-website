@@ -23,13 +23,11 @@ export default function GuestDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("dashboard")
 
-  useEffect(() => {
-    checkAuth()
-  }, [])
-
   const checkAuth = async () => {
     try {
-      const response = await fetch("/api/guest/auth/check")
+      const response = await fetch("/api/guest/auth/check", {
+        credentials: "include",
+      })
       const data = await response.json()
 
       if (!response.ok || !data.authenticated) {
@@ -45,6 +43,10 @@ export default function GuestDashboard() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    checkAuth()
+  }, [])
 
   const fetchBookings = async (guestId: string) => {
     try {

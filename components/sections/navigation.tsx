@@ -132,13 +132,26 @@ export default function Navigation() {
             <div className="h-6 w-px bg-gray-200 mx-2" />
             {/* Reserve Now Button - Main CTA for booking */}
             {isGuestLoggedIn ? (
-              <Link
-                href="/guest/dashboard"
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 rounded-lg transition-all duration-300"
+              <button
+                onClick={async () => {
+                  try {
+                    const response = await fetch("/api/guest/auth/check")
+                    const data = await response.json()
+                    if (data.authenticated) {
+                      window.location.href = "/guest/dashboard"
+                    } else {
+                      setIsGuestLoggedIn(false)
+                      window.location.href = "/guest/login"
+                    }
+                  } catch {
+                    window.location.href = "/guest/login"
+                  }
+                }}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 rounded-lg transition-all duration-300 cursor-pointer"
               >
                 <User className="w-4 h-4" />
                 My Dashboard
-              </Link>
+              </button>
             ) : (
               <Button
                 size="sm"
@@ -217,13 +230,27 @@ export default function Navigation() {
               </div>
               {/* Reserve Now Button for Mobile */}
               {isGuestLoggedIn ? (
-                <Link
-                  href="/guest/dashboard"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mb-2 bg-primary text-white rounded-xl font-medium shadow-lg shadow-primary/20"
+                <button
+                  onClick={async () => {
+                    try {
+                      const response = await fetch("/api/guest/auth/check")
+                      const data = await response.json()
+                      if (data.authenticated) {
+                        window.location.href = "/guest/dashboard"
+                      } else {
+                        setIsGuestLoggedIn(false)
+                        setIsOpen(false)
+                        window.location.href = "/guest/login"
+                      }
+                    } catch {
+                      window.location.href = "/guest/login"
+                    }
+                  }}
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mb-2 bg-primary text-white rounded-xl font-medium shadow-lg shadow-primary/20 cursor-pointer"
                 >
                   <User className="w-4 h-4" />
                   My Dashboard
-                </Link>
+                </button>
               ) : (
                 <Button
                   onClick={() => window.location.href = "/guest/login"}
