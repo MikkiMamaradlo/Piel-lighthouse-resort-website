@@ -1,22 +1,54 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Palmtree, Waves, Sun, Anchor } from "lucide-react"
+import { Palmtree, Waves, Sun } from "lucide-react"
 
 export default function GuestLoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [checkingAuth, setCheckingAuth] = useState(true)
+
+  // Check if already authenticated (only once)
+  useEffect(() => {
+    let mounted = true
+    
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/guest/auth/check")
+        const data = await response.json()
+        
+        if (mounted && response.ok && data.authenticated) {
+          setIsAuthenticated(true)
+        }
+      } catch {
+        // Not authenticated, stay on login page
+      } finally {
+        if (mounted) {
+          setCheckingAuth(false)
+        }
+      }
+    }
+    
+    checkAuth()
+    
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
+    setSuccess("")
     setLoading(true)
 
     try {
@@ -29,7 +61,10 @@ export default function GuestLoginPage() {
       const data = await response.json()
 
       if (response.ok && data.success) {
+        setSuccess("Login successful! Redirecting...")
+        await new Promise(resolve => setTimeout(resolve, 500))
         router.push("/guest/dashboard")
+        router.refresh()
       } else {
         setError(data.error || "Login failed")
       }
@@ -38,6 +73,92 @@ export default function GuestLoginPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // Show loading state
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ocean-900 via-ocean-800 to-ocean-900">
+        <div className="text-center">
+          <div className="relative inline-block mb-6">
+            <div className="absolute inset-0 bg-amber-400/30 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40">
+              <Palmtree className="w-10 h-10 text-white animate-bounce" />
+            </div>
+          </div>
+          <p className="text-white text-lg">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show authenticated state with option to go to dashboard
+  if (isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-900 via-ocean-800 to-ocean-900">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-20 right-1/3 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        </div>
+
+        <div className="relative w-full max-w-md p-6">
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <div className="relative inline-block mb-6">
+              <div className="absolute inset-0 bg-amber-400/30 rounded-2xl blur-xl animate-pulse"></div>
+              <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40 transform hover:scale-110 transition-transform duration-300">
+                <Palmtree className="w-10 h-10 text-white drop-shadow-lg" />
+              </div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center shadow-lg">
+                <Waves className="w-4 h-4 text-white" />
+              </div>
+            </div>
+            
+            <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
+              Piel Lighthouse
+            </h1>
+            <div className="flex items-center justify-center gap-2 text-ocean-200">
+              <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span className="text-sm font-medium tracking-wide">Guest Portal</span>
+              <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
+            </div>
+          </div>
+
+          {/* Already Logged In Card */}
+          <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
+            <div className="h-2 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"></div>
+            
+            <div className="p-8 text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              
+              <h2 className="text-2xl font-bold text-slate-800 mb-2">You're Already Logged In!</h2>
+              <p className="text-slate-500 mb-6">Welcome back! Your session is active.</p>
+              
+              <Link
+                href="/guest/dashboard"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-amber-500/30 transition-all"
+              >
+                Go to Dashboard
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              
+              <div className="mt-6 pt-6 border-t border-slate-100">
+                <Link href="/" className="text-sm text-slate-500 hover:text-amber-600 transition-colors">
+                  ← Back to Home
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -120,6 +241,17 @@ export default function GuestLoginPage() {
                 </div>
               )}
 
+              {success && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-600 text-sm flex items-center gap-3 animate-fade-in">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  {success}
+                </div>
+              )}
+
               {/* Email Field */}
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-semibold text-slate-700 ml-1">
@@ -194,13 +326,6 @@ export default function GuestLoginPage() {
                 </div>
               </div>
 
-              {/* Forgot Password Link */}
-              <div className="flex justify-end">
-                <Link href="#" className="text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors">
-                  Forgot Password?
-                </Link>
-              </div>
-
               {/* Submit Button */}
               <button
                 type="submit"
@@ -233,7 +358,7 @@ export default function GuestLoginPage() {
               </div>
             </div>
 
-            {/* Create Account Link */}
+            {/* Register Link */}
             <Link
               href="/guest/register"
               className="flex items-center justify-center gap-2 w-full py-3.5 border-2 border-slate-200 hover:border-amber-400 text-slate-700 hover:text-amber-600 font-semibold rounded-xl transition-all duration-300 hover:bg-amber-50/50"
@@ -241,7 +366,7 @@ export default function GuestLoginPage() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
-              Create New Account
+              Create an Account
             </Link>
           </div>
         </div>
@@ -258,7 +383,7 @@ export default function GuestLoginPage() {
 
         {/* Footer */}
         <div className="mt-6 text-center">
-          <p className="text-xs text-ocean-300/60">© 2024 Piel Lighthouse Resort • Your Beach Paradise Awaits</p>
+          <p className="text-xs text-ocean-300/60">© 2024 Piel Lighthouse Resort • Guest Portal</p>
         </div>
       </div>
     </div>
