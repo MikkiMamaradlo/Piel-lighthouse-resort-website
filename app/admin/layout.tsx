@@ -16,12 +16,14 @@ import {
   X,
   ChevronLeft,
   Ship,
-  Sparkles
+  Sparkles,
+  Clock
 } from "lucide-react"
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
+  { href: "/admin/attendance", label: "Attendance", icon: Clock },
   { href: "/admin/accommodations", label: "Rooms", icon: BedDouble },
   { href: "/admin/activities", label: "Activities", icon: MapPin },
   { href: "/admin/gallery", label: "Gallery", icon: Image },
