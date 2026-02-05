@@ -119,7 +119,7 @@ export default function GuestRoomsPage() {
   return (
     <div className="min-h-screen flex relative overflow-hidden">
       {/* Blurred Background Image Layer */}
-      <div className="fixed inset-0 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center blur-md opacity-40"></div>
+      <div className="fixed inset-0 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center blur-md opacity-40 pointer-events-none"></div>
       {/* Dark overlay */}
       <div className="fixed inset-0 bg-ocean-900/50 pointer-events-none z-0"></div>
       {sidebarOpen && (
