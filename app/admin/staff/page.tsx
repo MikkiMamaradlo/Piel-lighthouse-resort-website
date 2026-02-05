@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { 
   Users, 
-  UserPlus, 
   Search, 
   Edit,
   Trash2,
@@ -124,13 +123,6 @@ export default function AdminStaffPage() {
           <h1 className="text-3xl font-bold text-slate-800">Staff Management</h1>
           <p className="text-slate-500 mt-1">View and manage all registered staff members</p>
         </div>
-        <button 
-          onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/30"
-        >
-          <UserPlus className="w-5 h-5" />
-          Add Staff
-        </button>
       </div>
 
       {/* Stats */}
