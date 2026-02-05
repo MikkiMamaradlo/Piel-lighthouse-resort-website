@@ -20,8 +20,10 @@ import {
 interface Room {
   _id: string
   name: string
+  type: "room" | "cottage"
   capacity: string
   image: string
+  images?: string[]
   price: string
   period: string
   inclusions: Array<{ icon: string; text: string }>
@@ -29,6 +31,7 @@ interface Room {
   features: string[]
   description: string
   order: number
+  status: "available" | "unavailable"
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -47,13 +50,16 @@ export default function AccommodationsPage() {
   const [editingRoom, setEditingRoom] = useState<Room | null>(null)
   const [formData, setFormData] = useState({
     name: "",
+    type: "room",
     capacity: "",
     image: "",
+    images: "",
     price: "",
     period: "/night",
     description: "",
     popular: false,
     features: "",
+    status: "available",
     inclusions: [
       { icon: "Users", text: "" },
       { icon: "Wind", text: "" },
@@ -85,8 +91,11 @@ export default function AccommodationsPage() {
     
     const roomData = {
       ...formData,
+      type: formData.type,
+      status: formData.status,
       features: formData.features.split(",").map((f) => f.trim()).filter(Boolean),
       inclusions: formData.inclusions.filter((i) => i.text.trim()),
+      images: formData.images ? formData.images.split(",").map((url) => url.trim()).filter(Boolean) : [],
     }
 
     try {
@@ -125,13 +134,16 @@ export default function AccommodationsPage() {
     setEditingRoom(room)
     setFormData({
       name: room.name,
+      type: room.type || "room",
       capacity: room.capacity,
       image: room.image,
+      images: room.images?.join(", ") || "",
       price: room.price,
       period: room.period,
       description: room.description,
       popular: room.popular,
       features: room.features.join(", "),
+      status: room.status || "available",
       inclusions: room.inclusions.length > 0 ? room.inclusions : [
         { icon: "Users", text: "" },
         { icon: "Wind", text: "" },
@@ -149,13 +161,16 @@ export default function AccommodationsPage() {
     setEditingRoom(null)
     setFormData({
       name: "",
+      type: "room",
       capacity: "",
       image: "",
+      images: "",
       price: "",
       period: "/night",
       description: "",
       popular: false,
       features: "",
+      status: "available",
       inclusions: [
         { icon: "Users", text: "" },
         { icon: "Wind", text: "" },
@@ -229,14 +244,30 @@ export default function AccommodationsPage() {
               </div>
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900">{room.name}</h3>
-                    <p className="text-sm text-slate-500">{room.capacity}</p>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                      room.type === "cottage" 
+                        ? "bg-amber-100 text-amber-700" 
+                        : "bg-blue-100 text-blue-700"
+                    }`}>
+                      {room.type === "cottage" ? "🏠 Cottage" : "🛏️ Room"}
+                    </span>
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                      room.status === "available" 
+                        ? "bg-green-100 text-green-700" 
+                        : "bg-red-100 text-red-700"
+                    }`}>
+                      {room.status === "available" ? "✓ Available" : "✗ Unavailable"}
+                    </span>
                   </div>
                   <div className="text-right">
                     <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{room.price}</p>
                     <p className="text-xs text-slate-400">{room.period}</p>
                   </div>
+                </div>
+                <div className="mb-3">
+                  <h3 className="text-lg font-bold text-slate-900">{room.name}</h3>
+                  <p className="text-sm text-slate-500">{room.capacity}</p>
                 </div>
                 <p className="text-sm text-slate-600 mb-4 line-clamp-2">{room.description}</p>
                 
@@ -305,7 +336,7 @@ export default function AccommodationsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Room Name
+                    Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -318,7 +349,35 @@ export default function AccommodationsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Capacity
+                    Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={formData.type}
+                    onChange={(e) => setFormData({ ...formData, type: e.target.value as "room" | "cottage" })}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="room">Room</option>
+                    <option value="cottage">Cottage</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Status <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={formData.status}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as "available" | "unavailable" })}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Capacity <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -331,7 +390,7 @@ export default function AccommodationsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Price
+                    Price <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -344,7 +403,7 @@ export default function AccommodationsPage() {
                 </div>
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Image URL
+                    Main Image URL <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="url"
@@ -357,14 +416,26 @@ export default function AccommodationsPage() {
                 </div>
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Description
+                    Additional Images (comma-separated URLs)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.images}
+                    onChange={(e) => setFormData({ ...formData, images: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="e.g., /images/piel2.jpg, /images/piel3.jpg"
+                  />
+                </div>
+                <div className="col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Description <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Describe the room..."
+                    placeholder="Describe the room/cottage..."
                     required
                   />
                 </div>
@@ -413,18 +484,20 @@ export default function AccommodationsPage() {
                 </div>
               </div>
 
-              {/* Popular Toggle */}
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="popular"
-                  checked={formData.popular}
-                  onChange={(e) => setFormData({ ...formData, popular: e.target.checked })}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
-                />
-                <label htmlFor="popular" className="text-sm font-medium text-gray-700">
-                  Mark as Popular
-                </label>
+              {/* Type & Status Toggle */}
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="popular"
+                    checked={formData.popular}
+                    onChange={(e) => setFormData({ ...formData, popular: e.target.checked })}
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="popular" className="text-sm font-medium text-gray-700">
+                    Mark as Popular
+                  </label>
+                </div>
               </div>
 
               {/* Actions */}

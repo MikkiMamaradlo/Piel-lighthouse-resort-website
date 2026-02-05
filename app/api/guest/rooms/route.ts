@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-// Demo rooms data
+// Demo rooms data (only available ones)
 const demoRooms = [
   {
     _id: "room1",
@@ -73,7 +73,7 @@ const demoRooms = [
   }
 ]
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     let rooms: any[] = []
     let connected = false
@@ -81,102 +81,23 @@ export async function GET() {
     try {
       const connectToDatabase = (await import("@/lib/mongodb")).default
       const { db } = await connectToDatabase()
-      rooms = await db.collection("rooms").find().sort({ order: 1 }).toArray()
+      
+      // Only fetch rooms that are marked as available
+      rooms = await db.collection("rooms")
+        .find({ status: "available" })
+        .sort({ order: 1 })
+        .toArray()
+      
       connected = true
     } catch (dbError) {
       console.log("MongoDB not available, using demo data")
-      rooms = demoRooms
+      // Filter only available rooms from demo data
+      rooms = demoRooms.filter(room => room.status === "available")
     }
 
     return NextResponse.json({ rooms, connected }, { status: 200 })
   } catch (error) {
-    console.error("Fetch rooms error:", error)
+    console.error("Fetch available rooms error:", error)
     return NextResponse.json({ error: "Failed to fetch rooms" }, { status: 500 })
-  }
-}
-
-export async function POST(request: NextRequest) {
-  try {
-    const data = await request.json()
-    
-    try {
-      const connectToDatabase = (await import("@/lib/mongodb")).default
-      const { db } = await connectToDatabase()
-      
-      const result = await db.collection("rooms").insertOne({
-        ...data,
-        createdAt: new Date().toISOString()
-      })
-      
-      return NextResponse.json({ 
-        success: true, 
-        message: "Room created",
-        id: result.insertedId.toString()
-      }, { status: 201 })
-    } catch (dbError) {
-      console.log("MongoDB not available, room not saved")
-      return NextResponse.json({ 
-        success: true, 
-        message: "Room created (demo mode)",
-        id: `demo-${Date.now()}`
-      }, { status: 201 })
-    }
-  } catch (error) {
-    console.error("Create room error:", error)
-    return NextResponse.json({ error: "Failed to create room" }, { status: 500 })
-  }
-}
-
-export async function PUT(request: NextRequest) {
-  try {
-    const { id, ...data } = await request.json()
-    
-    if (!id) {
-      return NextResponse.json({ error: "Missing room ID" }, { status: 400 })
-    }
-
-    try {
-      const connectToDatabase = (await import("@/lib/mongodb")).default
-      const { db } = await connectToDatabase()
-      
-      await db.collection("rooms").updateOne(
-        { _id: new (await import("mongodb")).ObjectId(id) },
-        { $set: { ...data, updatedAt: new Date().toISOString() } }
-      )
-    } catch (dbError) {
-      console.log("MongoDB not available, update skipped")
-    }
-
-    return NextResponse.json({ success: true, message: "Room updated" }, { status: 200 })
-  } catch (error) {
-    console.error("Update room error:", error)
-    return NextResponse.json({ error: "Failed to update room" }, { status: 500 })
-  }
-}
-
-export async function DELETE(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get("id")
-
-    if (!id) {
-      return NextResponse.json({ error: "Missing room ID" }, { status: 400 })
-    }
-
-    try {
-      const connectToDatabase = (await import("@/lib/mongodb")).default
-      const { db } = await connectToDatabase()
-      
-      await db.collection("rooms").deleteOne({
-        _id: new (await import("mongodb")).ObjectId(id)
-      })
-    } catch (dbError) {
-      console.log("MongoDB not available, delete skipped")
-    }
-
-    return NextResponse.json({ success: true, message: "Room deleted" }, { status: 200 })
-  } catch (error) {
-    console.error("Delete room error:", error)
-    return NextResponse.json({ error: "Failed to delete room" }, { status: 500 })
   }
 }

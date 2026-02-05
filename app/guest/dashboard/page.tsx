@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Palmtree, Calendar, User, Mail, Phone, LogOut, ChevronLeft, ChevronRight, Send, CheckCircle } from "lucide-react"
+import { Palmtree, Calendar, User, Mail, Phone, LogOut, ChevronLeft, ChevronRight, Send, CheckCircle, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 
@@ -79,6 +79,26 @@ export default function GuestDashboard() {
 
   useEffect(() => {
     checkAuth()
+    // Check for selected room from sessionStorage
+    const selectedRoomData = sessionStorage.getItem("selectedRoom")
+    if (selectedRoomData) {
+      try {
+        const selectedRoom = JSON.parse(selectedRoomData)
+        setFormData(prev => ({
+          ...prev,
+          roomType: selectedRoom._id,
+        }))
+        // Clear the sessionStorage after using
+        sessionStorage.removeItem("selectedRoom")
+        // Show toast notification
+        toast({
+          title: "Room Selected",
+          description: `You have selected ${selectedRoom.name}. Please complete your booking.`,
+        })
+      } catch (e) {
+        console.error("Failed to parse selected room", e)
+      }
+    }
   }, [])
 
   const fetchBookings = async (guestId: string) => {
@@ -315,6 +335,15 @@ export default function GuestDashboard() {
                 <Calendar className="w-5 h-5" />
                 <span className="font-medium">Book Your Stay</span>
               </button>
+            </li>
+            <li>
+              <Link
+                href="/guest/rooms"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-slate-600 hover:bg-slate-100"
+              >
+                <Users className="w-5 h-5" />
+                <span className="font-medium">Available Rooms</span>
+              </Link>
             </li>
           </ul>
         </nav>
