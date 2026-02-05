@@ -283,6 +283,19 @@ export default function GuestDashboard() {
     )
   }
 
+  const getDateStatus = (day: number) => {
+    const bookingsForDay = getBookingsForDate(day)
+    if (bookingsForDay.length === 0) return "available"
+
+    // Check if all bookings are confirmed
+    const allConfirmed = bookingsForDay.every(b => b.status === "confirmed")
+    const allPending = bookingsForDay.every(b => b.status === "pending")
+
+    if (allConfirmed) return "booked"
+    if (allPending) return "reserved"
+    return "mixed"
+  }
+
   const isDateBooked = (day: number) => {
     const bookingsForDay = getBookingsForDate(day)
     return bookingsForDay.length > 0
@@ -479,26 +492,37 @@ export default function GuestDashboard() {
                   {/* Days of the month */}
                   {Array.from({ length: daysInCurrentMonth }).map((_, index) => {
                     const day = index + 1
-                    const booked = isDateBooked(day)
+                    const dateStatus = getDateStatus(day)
+                    const booked = dateStatus === "booked" || dateStatus === "reserved" || dateStatus === "mixed"
                     const selected = selectedDate === `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
-                    
+
                     return (
                       <button
                         key={day}
                         onClick={() => handleDateClick(day)}
                         disabled={booked}
                         className={`
-                          aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all
+                          aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all relative
                           ${isToday(day) ? "ring-2 ring-amber-500" : ""}
-                          ${selected 
-                            ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30" 
-                            : booked 
+                          ${selected
+                            ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30"
+                            : dateStatus === "booked"
                               ? "bg-red-100 text-red-400 cursor-not-allowed"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                              : dateStatus === "reserved"
+                                ? "bg-amber-100 text-amber-600 cursor-not-allowed"
+                                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                           }
                         `}
                       >
                         {day}
+                        {/* Status dot */}
+                        {booked && !selected && (
+                          <div className={`absolute bottom-1 w-1.5 h-1.5 rounded-full ${
+                            dateStatus === "booked" ? "bg-red-400" :
+                            dateStatus === "reserved" ? "bg-amber-400" :
+                            "bg-gradient-to-r from-amber-400 to-red-400"
+                          }`} />
+                        )}
                       </button>
                     )
                   })}
@@ -511,11 +535,15 @@ export default function GuestDashboard() {
                     <span>Selected</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-slate-200 rounded-lg"></div>
+                    <div className="w-4 h-4 bg-green-400 rounded-lg"></div>
                     <span>Available</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-red-200 rounded-lg"></div>
+                    <div className="w-4 h-4 bg-amber-400 rounded-lg"></div>
+                    <span>Reserved</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 bg-red-400 rounded-lg"></div>
                     <span>Booked</span>
                   </div>
                 </div>

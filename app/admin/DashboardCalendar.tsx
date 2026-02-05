@@ -53,6 +53,19 @@ export default function DashboardCalendar() {
     })
   }
 
+  const getDateStatus = (day: number) => {
+    const dayBookings = getBookingsForDate(day)
+    if (dayBookings.length === 0) return "available"
+    
+    // Check if all bookings are confirmed
+    const allConfirmed = dayBookings.every(b => b.status === "confirmed")
+    const allPending = dayBookings.every(b => b.status === "pending")
+    
+    if (allConfirmed) return "booked"
+    if (allPending) return "reserved"
+    return "mixed"
+  }
+
   const prevMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))
   }
@@ -74,6 +87,21 @@ export default function DashboardCalendar() {
       currentDate.getMonth() === today.getMonth() &&
       currentDate.getFullYear() === today.getFullYear()
     )
+  }
+
+  const getStatusDotColor = (status: string) => {
+    switch (status) {
+      case "available":
+        return "bg-green-400"
+      case "reserved":
+        return "bg-amber-400"
+      case "booked":
+        return "bg-red-400"
+      case "mixed":
+        return "bg-gradient-to-r from-amber-400 to-red-400"
+      default:
+        return "bg-slate-300"
+    }
   }
 
   return (
@@ -116,26 +144,32 @@ export default function DashboardCalendar() {
         ))}
         {Array.from({ length: daysInMonth }).map((_, index) => {
           const day = index + 1
+          const dayStatus = getDateStatus(day)
           const dayBookings = getBookingsForDate(day)
           return (
             <div
               key={day}
-              className={`aspect-square flex items-center justify-center text-sm ${
+              className={`aspect-square flex items-center justify-center text-sm relative ${
                 isToday(day) ? "bg-blue-500 text-white rounded-lg font-semibold" : "text-slate-700 hover:bg-slate-50 rounded-lg"
-              } transition-colors cursor-pointer relative`}
+              } transition-colors cursor-pointer`}
             >
               {day}
-              {dayBookings.length > 0 && (
-                <div className="absolute bottom-1 flex gap-0.5">
-                  <div className={`w-1.5 h-1.5 rounded-full ${isToday(day) ? "bg-white" : "bg-blue-500"}`} />
-                  {dayBookings.length > 1 && (
-                    <div className={`w-1.5 h-1.5 rounded-full ${isToday(day) ? "bg-white" : "bg-blue-500"}`} />
-                  )}
-                  {dayBookings.length > 2 && (
-                    <div className={`w-1.5 h-1.5 rounded-full ${isToday(day) ? "bg-white" : "bg-blue-500"}`} />
-                  )}
-                </div>
-              )}
+              {/* Status indicator dots */}
+              <div className={`absolute bottom-1 flex gap-0.5 ${isToday(day) ? "opacity-80" : ""}`}>
+                {dayBookings.length > 0 ? (
+                  <>
+                    <div className={`w-2 h-2 rounded-full ${getStatusDotColor(dayStatus)}`} />
+                    {dayBookings.length > 1 && (
+                      <div className={`w-2 h-2 rounded-full ${getStatusDotColor(dayStatus)}`} />
+                    )}
+                    {dayBookings.length > 2 && (
+                      <div className={`w-2 h-2 rounded-full ${getStatusDotColor(dayStatus)}`} />
+                    )}
+                  </>
+                ) : (
+                  <div className={`w-2 h-2 rounded-full ${getStatusDotColor("available")}`} />
+                )}
+              </div>
             </div>
           )
         })}
@@ -146,6 +180,24 @@ export default function DashboardCalendar() {
           <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
+
+      {/* Legend */}
+      <div className="mt-4 pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-center gap-6 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <span className="text-slate-600">Available</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+            <span className="text-slate-600">Reserved</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-red-400"></div>
+            <span className="text-slate-600">Booked</span>
+          </div>
+        </div>
+      </div>
 
       <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
         <span className="text-sm text-slate-500">{bookings.length} total bookings</span>
