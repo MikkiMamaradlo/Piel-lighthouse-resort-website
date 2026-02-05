@@ -94,7 +94,8 @@ export default function GuestRoomsPage() {
   const handleReserve = (room: Room) => {
     // Store selected room in sessionStorage for the dashboard to pick up
     sessionStorage.setItem("selectedRoom", JSON.stringify(room))
-    router.push("/guest/dashboard")
+    // Direct navigation with hash to ensure scrolling to booking form
+    window.location.href = "/guest/dashboard#quick-booking"
   }
 
   if (loading) {

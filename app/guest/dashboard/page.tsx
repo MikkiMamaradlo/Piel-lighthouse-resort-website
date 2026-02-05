@@ -101,6 +101,26 @@ export default function GuestDashboard() {
     }
   }, [])
 
+  // Scroll to quick-booking anchor when hash is present
+  useEffect(() => {
+    const scrollToBooking = () => {
+      if (window.location.hash === "#quick-booking") {
+        const element = document.getElementById("quick-booking")
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    }
+    
+    // Try immediately
+    scrollToBooking()
+    
+    // Also try after a short delay to ensure DOM is ready
+    const timeout = setTimeout(scrollToBooking, 100)
+    
+    return () => clearTimeout(timeout)
+  }, [])
+
   const fetchBookings = async (guestId: string) => {
     try {
       const response = await fetch(`/api/guest/bookings?guestId=${guestId}`)
@@ -490,7 +510,7 @@ export default function GuestDashboard() {
             </div>
 
             {/* Quick Booking Form */}
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
+            <div id="quick-booking" className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
               <div className="p-6 border-b border-slate-100">
                 <h3 className="text-lg font-bold text-slate-800">Quick Booking Form</h3>
                 <p className="text-sm text-slate-600">Fill in your details to reserve your stay</p>
