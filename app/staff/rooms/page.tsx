@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { hasPermission } from "@/lib/permissions"
 
 interface Room {
   _id: string
@@ -19,15 +18,6 @@ interface Room {
   currentGuestName?: string
   currentCheckIn?: string
   currentCheckOut?: string
-}
-
-interface User {
-  id: string
-  username: string
-  email: string
-  fullName: string
-  role: string
-  department: string
 }
 
 // Icons
@@ -79,32 +69,10 @@ const CalendarIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const LockIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-  </svg>
-)
-
 export default function StaffRoomsPage() {
   const [rooms, setRooms] = useState<Room[]>([])
   const [loading, setLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState("all")
-  const [user, setUser] = useState<User | null>(null)
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch("/api/staff/auth/check")
-        const data = await response.json()
-        if (data.authenticated && data.user) {
-          setUser(data.user)
-        }
-      } catch (error) {
-        console.error("Auth check failed:", error)
-      }
-    }
-    checkAuth()
-  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -157,9 +125,6 @@ export default function StaffRoomsPage() {
   const availableCount = rooms.filter(r => !r.status || r.status === "available").length
   const bookedCount = rooms.filter(r => r.status === "booked").length
 
-  // Check if user has permission to view rooms
-  const canViewRooms = user ? hasPermission(user.role, "canManageRooms") : false
-
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse">
@@ -182,26 +147,6 @@ export default function StaffRoomsPage() {
             </div>
           ))}
         </div>
-      </div>
-    )
-  }
-
-  // Show access denied if user doesn't have permission
-  if (!canViewRooms) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
-        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-          <LockIcon className="w-8 h-8 text-red-500" />
-        </div>
-        <h2 className="text-xl font-semibold text-slate-800 mb-2">Access Restricted</h2>
-        <p className="text-slate-500 max-w-md">
-          You don't have permission to view room information. Please contact your supervisor if you believe this is an error.
-        </p>
-        {user && (
-          <div className="mt-4 text-sm text-slate-400">
-            Your role: {user.role} | Department: {user.department}
-          </div>
-        )}
       </div>
     )
   }
