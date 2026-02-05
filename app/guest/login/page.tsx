@@ -13,7 +13,6 @@ export default function GuestLoginPage() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [focusedField, setFocusedField] = useState<string | null>(null)
 
   // Check if already authenticated on mount only
   useEffect(() => {
@@ -122,28 +121,10 @@ export default function GuestLoginPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  onFocus={() => setFocusedField("email")}
-                  onBlur={() => setFocusedField(null)}
-                  className="peer w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-transparent focus:outline-none focus:border-amber-400 transition-colors"
+                  className="w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors"
                   placeholder="Email"
                   required
                 />
-                <label
-                  htmlFor="email"
-                  className={`absolute left-4 top-3 text-slate-400 transition-all duration-200 pointer-events-none ${
-                    focusedField === "email" || email
-                      ? "-top-2.5 text-xs bg-white px-1 rounded text-amber-500 font-medium"
-                      : "peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400"
-                  }`}
-                >
-                  Email
-                </label>
-                <div className={`absolute right-4 top-3.5 transition-colors ${focusedField === "email" ? "text-amber-500" : "text-slate-400"}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect width="20" height="16" x="2" y="4" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                </div>
               </div>
 
               {/* Password Field */}
@@ -153,26 +134,14 @@ export default function GuestLoginPage() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  onFocus={() => setFocusedField("password")}
-                  onBlur={() => setFocusedField(null)}
-                  className="peer w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-transparent focus:outline-none focus:border-amber-400 transition-colors pr-12"
+                  className="w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors pr-12"
                   placeholder="Password"
                   required
                 />
-                <label
-                  htmlFor="password"
-                  className={`absolute left-4 top-3 text-slate-400 transition-all duration-200 pointer-events-none ${
-                    focusedField === "password" || password
-                      ? "-top-2.5 text-xs bg-white px-1 rounded text-amber-500 font-medium"
-                      : "peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400"
-                  }`}
-                >
-                  Password
-                </label>
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-3.5 text-slate-400 hover:text-amber-500 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-500 transition-colors"
                 >
                   {showPassword ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
