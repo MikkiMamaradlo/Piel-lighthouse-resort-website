@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Palmtree, Star, Calendar, Users, Check } from "lucide-react"
+import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Star, Calendar, Users, Check } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -46,8 +47,14 @@ export default function Footer() {
           {/* Brand section */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
-                <Palmtree className="text-white" size={24} />
+              <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                <Image 
+                  src="/images/PielLogo.jpg" 
+                  alt="Piel Lighthouse Logo" 
+                  width={48} 
+                  height={48}
+                  className="object-cover"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-bold">Piel Lighthouse</h3>

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Palmtree, Phone, MapPin, User } from "lucide-react"
+import Image from "next/image"
+import { Menu, X, Phone, MapPin, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navigation() {
@@ -97,11 +98,14 @@ export default function Navigation() {
           <Link href="/" className="flex items-center gap-3 group" aria-label="Go to homepage">
             <div className="relative">
               <div className="relative w-11 h-11 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
-                <Palmtree className="w-6 h-6 text-white relative z-10" />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Image 
+                  src="/images/PielLogo.jpg" 
+                  alt="Piel Lighthouse Logo" 
+                  width={44} 
+                  height={44}
+                  className="object-cover rounded-lg"
+                />
               </div>
-              {/* Decorative element */}
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100" />
             </div>
             <div className="hidden sm:block">
               <span className="font-bold text-foreground text-xl group-hover:text-primary transition-all duration-300 tracking-tight">
@@ -129,139 +133,69 @@ export default function Navigation() {
                 }`} />
               </button>
             ))}
-            <div className="h-6 w-px bg-gray-200 mx-2" />
-            {/* Reserve Now Button - Main CTA for booking */}
-            {isGuestLoggedIn ? (
-              <button
-                onClick={async () => {
-                  try {
-                    const response = await fetch("/api/guest/auth/check")
-                    const data = await response.json()
-                    if (data.authenticated) {
-                      window.location.href = "/guest/dashboard"
-                    } else {
-                      setIsGuestLoggedIn(false)
-                      window.location.href = "/guest/login"
-                    }
-                  } catch {
-                    window.location.href = "/guest/login"
-                  }
-                }}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-white hover:bg-primary/90 rounded-lg transition-all duration-300 cursor-pointer"
-              >
-                <User className="w-4 h-4" />
-                My Dashboard
-              </button>
-            ) : (
-              <Button
-                size="sm"
-                onClick={() => window.location.href = "/guest/login"}
-                className="bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 rounded-full px-6 py-2.5 font-medium"
-              >
-                Reserve Now
-              </Button>
-            )}
+          </div>
+
+          {/* Desktop Right Section */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50">
+              <User className="w-4 h-4" />
+              <span>Login</span>
+            </Link>
+            <Button 
+              onClick={() => scrollToSection("contact")}
+              size="sm"
+              className="shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              Book Now
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-all duration-200 relative group"
             onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
             aria-label="Toggle menu"
           >
-            <div className="relative w-6 h-6">
-              <Menu
-                className={`absolute inset-0 transition-all duration-300 ease-out ${
-                  isOpen ? "rotate-90 opacity-0 scale-90" : "rotate-0 opacity-100 scale-100"
-                }`}
-                size={24}
-              />
-              <X
-                className={`absolute inset-0 transition-all duration-300 ease-out ${
-                  isOpen ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-90"
-                }`}
-                size={24}
-              />
-            </div>
-            {/* Background pulse on mobile */}
-            <div className={`absolute inset-0 rounded-xl bg-primary/10 scale-0 transition-all duration-300 ${
-              isOpen ? "scale-100" : ""
-            }`} />
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
-            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="pb-6 space-y-1">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`block w-full text-left px-4 py-3.5 rounded-xl transition-all duration-200 font-medium ${
-                  activeSection === link.id
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground/80 hover:bg-gray-50 hover:text-primary"
-                }`}
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <span className="flex items-center gap-3">
-                  <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                    activeSection === link.id ? "bg-primary" : "bg-gray-300"
-                  }`} />
-                  {link.label}
-                </span>
-              </button>
-            ))}
-            {/* Contact info in mobile menu */}
-            <div className="pt-4 mt-4 border-t border-gray-100 px-4">
-              <div className="flex flex-col gap-2 text-sm text-muted-foreground mb-4">
-                <a href="tel:09568929006" className="flex items-center gap-2 hover:text-primary transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span>0956-892-9006</span>
-                </a>
-                <span className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Sitio Aplaya, Balibago Lian, Batangas</span>
-                </span>
-              </div>
-              {/* Reserve Now Button for Mobile */}
-              {isGuestLoggedIn ? (
+        {isOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-100 animate-in slide-in-from-top-2 duration-300">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
                 <button
-                  onClick={async () => {
-                    try {
-                      const response = await fetch("/api/guest/auth/check")
-                      const data = await response.json()
-                      if (data.authenticated) {
-                        window.location.href = "/guest/dashboard"
-                      } else {
-                        setIsGuestLoggedIn(false)
-                        setIsOpen(false)
-                        window.location.href = "/guest/login"
-                      }
-                    } catch {
-                      window.location.href = "/guest/login"
-                    }
-                  }}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 mb-2 bg-primary text-white rounded-xl font-medium shadow-lg shadow-primary/20 cursor-pointer"
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeSection === link.id 
+                      ? "text-primary bg-primary/5" 
+                      : "text-foreground/80 hover:bg-muted/50 hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+              <div className="flex items-center gap-2 px-4 pt-2">
+                <Link 
+                  href="/guest/login" 
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 rounded-lg transition-all duration-300"
                 >
                   <User className="w-4 h-4" />
-                  My Dashboard
-                </button>
-              ) : (
-                <Button
-                  onClick={() => window.location.href = "/guest/login"}
-                  className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-medium shadow-lg shadow-primary/20"
+                  Login
+                </Link>
+                <Button 
+                  onClick={() => scrollToSection("contact")}
+                  size="sm"
+                  className="flex-1 shadow-md"
                 >
-                  Reserve Now
+                  Book Now
                 </Button>
-              )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   )

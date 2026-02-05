@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Palmtree, Calendar, User, Mail, Phone, LogOut, ChevronLeft, ChevronRight, Send, CheckCircle, Users } from "lucide-react"
+import Image from "next/image"
+import { Calendar, User, Mail, Phone, LogOut, ChevronLeft, ChevronRight, Send, CheckCircle, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 
@@ -301,8 +302,14 @@ export default function GuestDashboard() {
         <div className="text-center">
           <div className="relative inline-block mb-6">
             <div className="absolute inset-0 bg-amber-400/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40">
-              <Palmtree className="w-10 h-10 text-white animate-bounce" />
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40 overflow-hidden">
+              <Image 
+                src="/images/PielLogo.jpg" 
+                alt="Piel Lighthouse Logo" 
+                width={80} 
+                height={80}
+                className="object-cover"
+              />
             </div>
           </div>
           <p className="text-white text-lg">Loading your paradise...</p>
@@ -334,8 +341,14 @@ export default function GuestDashboard() {
         {/* Logo */}
         <div className="p-6 border-b border-slate-100">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
-              <Palmtree className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 overflow-hidden">
+              <Image 
+                src="/images/PielLogo.jpg" 
+                alt="Piel Lighthouse Logo" 
+                width={40} 
+                height={40}
+                className="object-cover"
+              />
             </div>
             <div>
               <p className="font-bold text-slate-800">Piel Lighthouse</p>

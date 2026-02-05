@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Palmtree, Waves, Sun } from "lucide-react"
+import Image from "next/image"
+import { Waves, Sun } from "lucide-react"
 
 export default function GuestLoginPage() {
   const router = useRouter()
@@ -84,8 +85,14 @@ export default function GuestLoginPage() {
         <div className="text-center mb-8">
           <div className="relative inline-block mb-6">
             <div className="absolute inset-0 bg-amber-400/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40 transform hover:scale-110 transition-transform duration-300">
-              <Palmtree className="w-10 h-10 text-white drop-shadow-lg" />
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40 transform hover:scale-110 transition-transform duration-300 overflow-hidden">
+              <Image 
+                src="/images/PielLogo.jpg" 
+                alt="Piel Lighthouse Logo" 
+                width={80} 
+                height={80}
+                className="object-cover"
+              />
             </div>
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center shadow-lg">
               <Waves className="w-4 h-4 text-white" />

@@ -5,7 +5,6 @@ import Accommodations from "@/components/sections/accommodations"
 import Activities from "@/components/sections/activities"
 import Experiences from "@/components/sections/experiences"
 import Gallery from "@/components/sections/gallery"
-import Contact from "@/components/sections/contact"
 import Footer from "@/components/sections/footer"
 import BackToTop from "@/components/sections/back-to-top"
 import Testimonials from "@/components/sections/testimonials"
@@ -24,7 +23,6 @@ export default function Home() {
       <Gallery />
       <Testimonials />
       <CTASection />
-      <Contact />
       <Footer />
       <BackToTop />
       <RoomDetailsModal />
