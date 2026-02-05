@@ -223,26 +223,7 @@ export default function StaffLoginPage() {
               </button>
             </form>
 
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-slate-500">or</span>
-              </div>
-            </div>
 
-            {/* Register Link */}
-            <Link
-              href="/staff/register"
-              className="flex items-center justify-center gap-2 w-full py-3.5 border-2 border-slate-200 hover:border-amber-400 text-slate-700 hover:text-amber-600 font-semibold rounded-xl transition-all duration-300 hover:bg-amber-50/50"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-              </svg>
-              Register as Staff
-            </Link>
           </div>
         </div>
 

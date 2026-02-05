@@ -5,12 +5,17 @@ import {
   Users, 
   Search, 
   Edit,
-  Trash2,
   Shield,
   Phone,
   Mail,
   Building,
-  Calendar
+  Calendar,
+  Plus,
+  X,
+  Copy,
+  Check,
+  Eye,
+  EyeOff
 } from "lucide-react"
 
 interface StaffMember {
@@ -27,35 +32,39 @@ interface StaffMember {
 
 // Role display names
 const roleDisplayNames: Record<string, string> = {
-  // Front Desk
   "front_desk_agent": "Front Desk Agent",
   "front_desk_supervisor": "Front Desk Supervisor",
   "front_desk_manager": "Front Desk Manager",
-  // Housekeeping
   "housekeeper": "Housekeeper",
   "housekeeping_supervisor": "Housekeeping Supervisor",
   "housekeeping_manager": "Housekeeping Manager",
-  // Food & Beverage
   "server": "Server",
   "bartender": "Bartender",
   "fnb_supervisor": "F&B Supervisor",
   "fnb_manager": "F&B Manager",
-  // Maintenance
   "maintenance_technician": "Maintenance Technician",
   "maintenance_supervisor": "Maintenance Supervisor",
   "maintenance_manager": "Maintenance Manager",
-  // Activities
   "activity_guide": "Activity Guide",
   "activities_supervisor": "Activities Supervisor",
   "activities_manager": "Activities Manager",
-  // Management
   "general_manager": "General Manager",
   "assistant_manager": "Assistant Manager",
-  // Legacy
   "staff": "Staff",
   "manager": "Manager",
   "admin": "Admin",
 }
+
+// Department options
+const DEPARTMENTS = [
+  { value: "Front Desk", label: "Front Desk" },
+  { value: "Housekeeping", label: "Housekeeping" },
+  { value: "Food & Beverage", label: "Food & Beverage" },
+  { value: "Maintenance", label: "Maintenance" },
+  { value: "Activities", label: "Activities" },
+  { value: "Management", label: "Management" },
+  { value: "General", label: "General" },
+]
 
 export default function AdminStaffPage() {
   const [staff, setStaff] = useState<StaffMember[]>([])
@@ -63,7 +72,22 @@ export default function AdminStaffPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [filter, setFilter] = useState("all")
   const [showModal, setShowModal] = useState(false)
-  const [editingStaff, setEditingStaff] = useState<StaffMember | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
+  const [copied, setCopied] = useState(false)
+  const [formLoading, setFormLoading] = useState(false)
+  const [formError, setFormError] = useState("")
+  const [formSuccess, setFormSuccess] = useState("")
+  
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    fullName: "",
+    department: "General",
+    role: "staff",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  })
 
   useEffect(() => {
     fetchStaff()
@@ -115,14 +139,104 @@ export default function AdminStaffPage() {
   const activeCount = staff.filter(s => s.isActive).length
   const inactiveCount = staff.filter(s => !s.isActive).length
 
+  const getRolesForDepartment = (department: string) => {
+    const roleOptions: Record<string, string[]> = {
+      "Front Desk": ["front_desk_agent", "front_desk_supervisor", "front_desk_manager"],
+      "Housekeeping": ["housekeeper", "housekeeping_supervisor", "housekeeping_manager"],
+      "Food & Beverage": ["server", "bartender", "fnb_supervisor", "fnb_manager"],
+      "Maintenance": ["maintenance_technician", "maintenance_supervisor", "maintenance_manager"],
+      "Activities": ["activity_guide", "activities_supervisor", "activities_manager"],
+      "Management": ["assistant_manager", "general_manager"],
+      "General": ["staff", "manager", "admin"],
+    }
+    return roleOptions[department] || ["staff"]
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setFormLoading(true)
+    setFormError("")
+    setFormSuccess("")
+
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setFormError("Passwords do not match")
+      setFormLoading(false)
+      return
+    }
+
+    // Validate password length
+    if (formData.password.length < 6) {
+      setFormError("Password must be at least 6 characters")
+      setFormLoading(false)
+      return
+    }
+
+    try {
+      const response = await fetch("/api/admin/staff", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          fullName: formData.fullName,
+          department: formData.department,
+          role: formData.role,
+          phone: formData.phone,
+          password: formData.password,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setFormSuccess("Staff account created successfully!")
+        fetchStaff()
+        setTimeout(() => {
+          setShowModal(false)
+          setFormSuccess("")
+          setFormData({
+            username: "",
+            email: "",
+            fullName: "",
+            department: "General",
+            role: "staff",
+            phone: "",
+            password: "",
+            confirmPassword: "",
+          })
+        }, 2000)
+      } else {
+        setFormError(data.error || "Failed to create staff")
+      }
+    } catch {
+      setFormError("An error occurred. Please try again.")
+    } finally {
+      setFormLoading(false)
+    }
+  }
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
     <div className="space-y-8">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Staff Management</h1>
-          <p className="text-slate-500 mt-1">View and manage all registered staff members</p>
+          <p className="text-slate-500 mt-1">View and manage all staff members</p>
         </div>
+        <button
+          onClick={() => setShowModal(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all font-medium shadow-lg shadow-amber-500/30"
+        >
+          <Plus className="w-5 h-5" />
+          Add New Staff
+        </button>
       </div>
 
       {/* Stats */}
@@ -282,12 +396,8 @@ export default function AdminStaffPage() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-1">
                         <button 
-                          onClick={() => {
-                            setEditingStaff(member)
-                            setShowModal(true)
-                          }}
                           className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="Edit staff"
+                          title="View staff details"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
@@ -299,11 +409,7 @@ export default function AdminStaffPage() {
                           }`}
                           title={member.isActive ? "Deactivate" : "Activate"}
                         >
-                          {member.isActive ? (
-                            <Shield className="w-4 h-4" />
-                          ) : (
-                            <Shield className="w-4 h-4" />
-                          )}
+                          <Shield className="w-4 h-4" />
                         </button>
                       </div>
                     </td>
@@ -315,101 +421,168 @@ export default function AdminStaffPage() {
         )}
       </div>
 
-      {/* Modal */}
+      {/* Add New Staff Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
-            <h2 className="text-xl font-bold text-slate-800 mb-6">
-              {editingStaff ? "Edit Staff Member" : "Add New Staff Member"}
-            </h2>
-            <form className="space-y-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-slate-800">Add New Staff Member</h2>
+              <button
+                onClick={() => {
+                  setShowModal(false)
+                  setFormSuccess("")
+                  setFormError("")
+                }}
+                className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {formSuccess && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                <div className="flex items-center gap-2 text-green-700 font-medium">
+                  <Check className="w-5 h-5" />
+                  {formSuccess}
+                </div>
+              </div>
+            )}
+
+            {formError && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-red-600 text-sm flex items-center gap-2">
+                  <span className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-xs font-bold">!</span>
+                  {formError}
+                </p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
                 <input
                   type="text"
-                  defaultValue={editingStaff?.fullName || ""}
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   placeholder="Enter full name"
+                  required
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Email *</label>
                 <input
                   type="email"
-                  defaultValue={editingStaff?.email || ""}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   placeholder="Enter email address"
+                  required
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Username *</label>
+                <input
+                  type="text"
+                  value={formData.username}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                  placeholder="Enter username"
+                  required
+                />
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Department</label>
                   <select
-                    defaultValue={editingStaff?.department || "General"}
+                    value={formData.department}
+                    onChange={(e) => {
+                      setFormData({ 
+                        ...formData, 
+                        department: e.target.value,
+                        role: getRolesForDepartment(e.target.value)[0]
+                      })
+                    }}
                     className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   >
-                    <option value="Front Desk">Front Desk</option>
-                    <option value="Housekeeping">Housekeeping</option>
-                    <option value="Food & Beverage">Food & Beverage</option>
-                    <option value="Maintenance">Maintenance</option>
-                    <option value="Activities">Activities</option>
-                    <option value="Management">Management</option>
-                    <option value="General">General</option>
+                    {DEPARTMENTS.map((dept) => (
+                      <option key={dept.value} value={dept.value}>
+                        {dept.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Role</label>
                   <select
-                    defaultValue={editingStaff?.role || "staff"}
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                     className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   >
-                    <option value="front_desk_agent">Front Desk Agent</option>
-                    <option value="front_desk_supervisor">Front Desk Supervisor</option>
-                    <option value="front_desk_manager">Front Desk Manager</option>
-                    <option value="housekeeper">Housekeeper</option>
-                    <option value="housekeeping_supervisor">Housekeeping Supervisor</option>
-                    <option value="housekeeping_manager">Housekeeping Manager</option>
-                    <option value="server">Server</option>
-                    <option value="bartender">Bartender</option>
-                    <option value="fnb_supervisor">F&B Supervisor</option>
-                    <option value="fnb_manager">F&B Manager</option>
-                    <option value="maintenance_technician">Maintenance Technician</option>
-                    <option value="maintenance_supervisor">Maintenance Supervisor</option>
-                    <option value="maintenance_manager">Maintenance Manager</option>
-                    <option value="activity_guide">Activity Guide</option>
-                    <option value="activities_supervisor">Activities Supervisor</option>
-                    <option value="activities_manager">Activities Manager</option>
-                    <option value="assistant_manager">Assistant Manager</option>
-                    <option value="general_manager">General Manager</option>
-                    <option value="admin">Admin</option>
+                    {getRolesForDepartment(formData.department).map((role) => (
+                      <option key={role} value={role}>
+                        {roleDisplayNames[role] || role}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
                 <input
                   type="tel"
-                  defaultValue={editingStaff?.phone || ""}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   placeholder="Enter phone number"
                 />
               </div>
-              {!editingStaff && (
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Username</label>
+
+              {/* Password Fields */}
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Password *</label>
+                <div className="relative">
                   <input
-                    type="text"
-                    className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-                    placeholder="Enter username"
+                    type={showPassword ? "text" : "password"}
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    className="w-full px-4 py-2.5 pr-10 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    placeholder="Create password for staff"
+                    required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
-              )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Confirm Password *</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                  placeholder="Confirm password"
+                  required
+                />
+              </div>
+
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
                   onClick={() => {
                     setShowModal(false)
-                    setEditingStaff(null)
+                    setFormSuccess("")
+                    setFormError("")
                   }}
                   className="flex-1 px-4 py-2.5 border border-slate-200 text-slate-700 rounded-xl hover:bg-slate-50 transition-colors font-medium"
                 >
@@ -417,9 +590,17 @@ export default function AdminStaffPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all font-medium"
+                  disabled={formLoading}
+                  className="flex-1 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all font-medium disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {editingStaff ? "Save Changes" : "Add Staff"}
+                  {formLoading ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Creating...</span>
+                    </div>
+                  ) : (
+                    "Create Staff"
+                  )}
                 </button>
               </div>
             </form>
