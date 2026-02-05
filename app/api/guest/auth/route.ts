@@ -102,8 +102,33 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE() {
-  const response = NextResponse.json({ success: true, message: "Logged out" })
-  response.cookies.delete("guest_auth")
-  return response
+export async function DELETE(request: NextRequest) {
+  try {
+    const token = request.cookies.get("guest_auth")?.value
+    
+    // Clear token from database if token exists
+    if (token) {
+      try {
+        const dbConnection = await connectToDatabase()
+        const db = dbConnection.db
+        const guestCollection = db.collection("guests")
+        await guestCollection.updateOne(
+          { authToken: token },
+          { $unset: { authToken: "" } }
+        )
+      } catch (dbError) {
+        console.error("Database error during logout:", dbError)
+        // Continue with cookie deletion even if DB update fails
+      }
+    }
+    
+    const response = NextResponse.json({ success: true, message: "Logged out" })
+    response.cookies.delete("guest_auth")
+    return response
+  } catch (error) {
+    console.error("Logout error:", error)
+    const response = NextResponse.json({ success: false, error: "Logout failed" }, { status: 500 })
+    response.cookies.delete("guest_auth")
+    return response
+  }
 }

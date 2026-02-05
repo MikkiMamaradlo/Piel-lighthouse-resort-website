@@ -53,6 +53,19 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [lastScrollY])
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/guest/auth", { 
+        method: "DELETE",
+        credentials: "include" 
+      })
+      setIsGuestLoggedIn(false)
+      window.location.href = "/"
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
+  }
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -137,17 +150,37 @@ export default function Navigation() {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50">
-              <User className="w-4 h-4" />
-              <span>Login</span>
-            </Link>
-            <Button 
-              onClick={() => scrollToSection("contact")}
-              size="sm"
-              className="shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              Book Now
-            </Button>
+            {isGuestLoggedIn ? (
+              <>
+                <Link 
+                  href="/guest/dashboard" 
+                  className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-primary transition-colors rounded-lg hover:bg-primary/5"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Dashboard</span>
+                </Link>
+                <button 
+                  onClick={handleLogout}
+                  className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-red-600 transition-colors rounded-lg hover:bg-muted/50"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50">
+                  <User className="w-4 h-4" />
+                  <span>Login</span>
+                </Link>
+                <Button 
+                  onClick={() => scrollToSection("contact")}
+                  size="sm"
+                  className="shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  Book Now
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,20 +211,40 @@ export default function Navigation() {
                 </button>
               ))}
               <div className="flex items-center gap-2 px-4 pt-2">
-                <Link 
-                  href="/guest/login" 
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 rounded-lg transition-all duration-300"
-                >
-                  <User className="w-4 h-4" />
-                  Login
-                </Link>
-                <Button 
-                  onClick={() => scrollToSection("contact")}
-                  size="sm"
-                  className="flex-1 shadow-md"
-                >
-                  Book Now
-                </Button>
+                {isGuestLoggedIn ? (
+                  <>
+                    <Link 
+                      href="/guest/dashboard" 
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-primary bg-primary/5 rounded-lg transition-all duration-300"
+                    >
+                      <User className="w-4 h-4" />
+                      Dashboard
+                    </Link>
+                    <button 
+                      onClick={handleLogout}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-all duration-300"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link 
+                      href="/guest/login" 
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 rounded-lg transition-all duration-300"
+                    >
+                      <User className="w-4 h-4" />
+                      Login
+                    </Link>
+                    <Button 
+                      onClick={() => scrollToSection("contact")}
+                      size="sm"
+                      className="flex-1 shadow-md"
+                    >
+                      Book Now
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
