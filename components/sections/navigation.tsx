@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Phone, MapPin, User } from "lucide-react"
-import Image from "next/image"
+import { Menu, X, Palmtree, Phone, MapPin, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navigation() {
@@ -97,15 +96,12 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Go to homepage">
             <div className="relative">
-              <div className="relative w-14 h-14 bg-white/90 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300 overflow-hidden border border-gray-100">
-                <Image 
-                  src="/images/PielLogo.jpg" 
-                  alt="Piel Lighthouse Logo" 
-                  width={48} 
-                  height={48} 
-                  className="object-contain p-1"
-                />
+              <div className="relative w-11 h-11 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
+                <Palmtree className="w-6 h-6 text-white relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
+              {/* Decorative element */}
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100" />
             </div>
             <div className="hidden sm:block">
               <span className="font-bold text-foreground text-xl group-hover:text-primary transition-all duration-300 tracking-tight">
