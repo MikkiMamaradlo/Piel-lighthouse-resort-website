@@ -138,67 +138,72 @@ export default function GuestRoomsPage() {
       )}
 
       {/* Sidebar */}
-      <aside className={`
-        fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 lg:transform-none
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-      `}>
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 lg:transform-none border-r border-slate-200 ${
+        sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      }`}>
         {/* Logo */}
-        <div className="p-6 border-b border-slate-100">
+        <div className="p-6 border-b border-slate-100/50 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 overflow-hidden">
+            <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg ring-1 ring-white/30 overflow-hidden">
               <Image 
                 src="/images/PielLogo.jpg" 
                 alt="Piel Lighthouse Logo" 
-                width={40} 
-                height={40}
+                width={44} 
+                height={44}
                 className="object-cover"
               />
             </div>
             <div>
-              <p className="font-bold text-slate-800">Piel Lighthouse</p>
-              <p className="text-xs text-slate-500">Guest Portal</p>
+              <p className="font-bold text-lg text-white">Piel Lighthouse</p>
+              <p className="text-xs text-white/80">Guest Portal</p>
             </div>
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav className="p-4">
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/guest/dashboard"
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-slate-600 hover:bg-slate-100"
-              >
-                <Calendar className="w-5 h-5" />
-                <span className="font-medium">Book Your Stay</span>
-              </Link>
-            </li>
-            <li>
-              <button
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/30"
-              >
-                <Users className="w-5 h-5" />
-                <span className="font-medium">Available Rooms</span>
-              </button>
-            </li>
-          </ul>
+        <nav className="p-4 space-y-2">
+          <Link
+            href="/guest/dashboard"
+            className="group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 text-slate-600 hover:bg-slate-50"
+          >
+            <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-all duration-300">
+              <Calendar className="w-5 h-5 text-slate-500 group-hover:text-amber-500 transition-colors" />
+            </div>
+            <span className="font-medium">Book Your Stay</span>
+          </Link>
+          <Link
+            href="/guest/rooms"
+            className="group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/30"
+          >
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full shadow-lg" />
+            <div className="p-2 rounded-xl bg-white/20">
+              <Users className="w-5 h-5" />
+            </div>
+            <span className="font-medium">Available Rooms</span>
+            <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse" />
+          </Link>
         </nav>
 
-        {/* User Info */}
-        <div className="absolute bottom-20 left-0 right-0 px-4">
-          <div className="bg-slate-50 rounded-xl p-4">
-            <p className="text-sm text-slate-500">Logged in as</p>
-            <p className="font-semibold text-slate-800">{guest?.username || "Guest"}</p>
-          </div>
-        </div>
-
-        {/* Logout */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
+        {/* User Info & Logout */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 bg-slate-50/80 backdrop-blur-sm">
+          {guest && (
+            <div className="flex items-center gap-3 px-4 py-3 mb-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                {guest.username?.charAt(0).toUpperCase() || "G"}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-slate-900 truncate">{guest.username || "Guest"}</p>
+                <p className="text-xs text-slate-500 truncate">{guest.email || ""}</p>
+              </div>
+            </div>
+          )}
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-all"
+            className="group relative flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl text-red-600 hover:bg-red-50 transition-all duration-300"
           >
-            <LogOut className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-red-100 group-hover:bg-red-200 transition-all duration-300">
+              <LogOut className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            </div>
             <span className="font-medium">Logout</span>
           </button>
         </div>
