@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { createHmac } from "crypto"
+import { ObjectId } from "mongodb"
 import connectToDatabase from "@/lib/mongodb"
 import { DEPARTMENT_ROLES, type Department, type RoleByDepartment } from "@/backend/lib/schemas/staff"
 
@@ -128,6 +129,50 @@ export async function POST(request: NextRequest) {
     console.error("Error creating staff:", error)
     return NextResponse.json(
       { success: false, error: "Failed to create staff" },
+      { status: 500 }
+    )
+  }
+}
+
+// PATCH - Update staff member (isActive status)
+export async function PATCH(request: NextRequest) {
+  try {
+    const { db } = await connectToDatabase()
+    const body = await request.json()
+    const { staffId, isActive } = body
+    
+    if (!staffId) {
+      return NextResponse.json(
+        { success: false, error: "Staff ID is required" },
+        { status: 400 }
+      )
+    }
+    
+    const result = await db.collection("staff").updateOne(
+      { _id: new ObjectId(staffId) },
+      { 
+        $set: { 
+          isActive, 
+          updatedAt: new Date() 
+        } 
+      }
+    )
+    
+    if (result.modifiedCount === 0) {
+      return NextResponse.json(
+        { success: false, error: "Staff not found" },
+        { status: 404 }
+      )
+    }
+    
+    return NextResponse.json({
+      success: true,
+      message: isActive ? "Staff activated successfully" : "Staff deactivated successfully"
+    })
+  } catch (error) {
+    console.error("Error updating staff:", error)
+    return NextResponse.json(
+      { success: false, error: "Failed to update staff" },
       { status: 500 }
     )
   }

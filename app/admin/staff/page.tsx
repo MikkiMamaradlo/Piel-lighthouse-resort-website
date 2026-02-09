@@ -71,12 +71,14 @@ export default function AdminStaffPage() {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [filter, setFilter] = useState("all")
+  const [editingStaff, setEditingStaff] = useState<StaffMember | null>(null)
   const [showModal, setShowModal] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [copied, setCopied] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState("")
   const [formSuccess, setFormSuccess] = useState("")
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
   
   const [formData, setFormData] = useState({
     username: "",
@@ -220,6 +222,40 @@ export default function AdminStaffPage() {
     navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleEditStaff = (member: StaffMember) => {
+    setEditingStaff(member)
+    setFormData({
+      username: member.username,
+      email: member.email,
+      fullName: member.fullName,
+      department: member.department || "General",
+      role: member.role,
+      phone: member.phone || "",
+      password: "",
+      confirmPassword: "",
+    })
+    setShowModal(true)
+  }
+
+  const handleToggleActive = async (member: StaffMember) => {
+    try {
+      const response = await fetch(`/api/admin/staff`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ staffId: member._id, isActive: !member.isActive }),
+      })
+      
+      const data = await response.json()
+      if (data.success) {
+        fetchStaff()
+      } else {
+        console.error("Failed to update staff status")
+      }
+    } catch (error) {
+      console.error("Error updating staff status:", error)
+    }
   }
 
   return (
@@ -396,12 +432,14 @@ export default function AdminStaffPage() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-1">
                         <button 
+                          onClick={() => handleEditStaff(member)}
                           className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View staff details"
+                          title="Edit staff details"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
                         <button 
+                          onClick={() => handleToggleActive(member)}
                           className={`p-2 rounded-lg transition-colors ${
                             member.isActive 
                               ? "text-slate-400 hover:text-amber-600 hover:bg-amber-50"
