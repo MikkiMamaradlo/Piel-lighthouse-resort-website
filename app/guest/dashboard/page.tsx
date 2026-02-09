@@ -275,12 +275,25 @@ export default function GuestDashboard() {
   ]
 
   const today = new Date()
+  const todayStr = today.toISOString().split('T')[0]
+  
   const isToday = (day: number) => {
     return (
       day === today.getDate() &&
       currentMonth.getMonth() === today.getMonth() &&
       currentMonth.getFullYear() === today.getFullYear()
     )
+  }
+
+  const isPastDate = (day: number) => {
+    const year = currentMonth.getFullYear()
+    const month = currentMonth.getMonth()
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+    const date = new Date(dateStr)
+    const todayDate = new Date()
+    todayDate.setHours(0, 0, 0, 0)
+    date.setHours(0, 0, 0, 0)
+    return date < todayDate
   }
 
   const getDateStatus = (day: number) => {
@@ -512,16 +525,17 @@ export default function GuestDashboard() {
                     const dateStatus = dayStatus
                     const booked = dateStatus === "booked" || dateStatus === "reserved" || dateStatus === "mixed"
                     const selected = selectedDate === `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+                    const isPast = isPastDate(day)
 
                     return (
                       <button
                         key={day}
                         onClick={() => handleDateClick(day)}
-                        disabled={booked}
+                        disabled={booked || isPast}
                         className={`
                           aspect-square flex items-center justify-center rounded-lg text-sm font-medium transition-all relative
                           ${isToday(day) ? "ring-2 ring-amber-500" : ""}
-                          ${selected
+                          ${isPast ? "bg-slate-50 text-slate-300 cursor-not-allowed" : selected
                             ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30"
                             : dateStatus === "booked"
                               ? "bg-red-100 text-red-400 cursor-not-allowed"
@@ -656,6 +670,7 @@ export default function GuestDashboard() {
                         name="checkIn"
                         value={formData.checkIn}
                         onChange={handleFormChange}
+                        min={todayStr}
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
                         required
                       />
@@ -671,6 +686,7 @@ export default function GuestDashboard() {
                         name="checkOut"
                         value={formData.checkOut}
                         onChange={handleFormChange}
+                        min={formData.checkIn || todayStr}
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
                         required
                       />

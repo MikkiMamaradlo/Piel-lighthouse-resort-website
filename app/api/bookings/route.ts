@@ -22,6 +22,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
+    // Validate dates are not in the past
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const checkInDate = new Date(data.checkIn)
+    const checkOutDate = new Date(data.checkOut)
+
+    if (checkInDate < today) {
+      return NextResponse.json({ error: "Check-in date cannot be in the past" }, { status: 400 })
+    }
+
+    if (checkOutDate < today) {
+      return NextResponse.json({ error: "Check-out date cannot be in the past" }, { status: 400 })
+    }
+
+    if (checkOutDate <= checkInDate) {
+      return NextResponse.json({ error: "Check-out date must be after check-in date" }, { status: 400 })
+    }
+
     // Prepare booking data
     const booking = {
       name: data.name.trim(),
