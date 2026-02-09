@@ -421,10 +421,10 @@ export default function GuestDashboard() {
           </Link>
         </nav>
 
-        {/* User Info & Logout */}
+        {/* User Info (simple) */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 bg-slate-50/80 backdrop-blur-sm">
           {guest && (
-            <div className="flex items-center gap-3 px-4 py-3 mb-2">
+            <div className="flex items-center gap-3 px-4 py-3">
               <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
                 {guest.username?.charAt(0).toUpperCase() || "G"}
               </div>
@@ -434,15 +434,6 @@ export default function GuestDashboard() {
               </div>
             </div>
           )}
-          <button
-            onClick={handleLogout}
-            className="group relative flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl text-red-600 hover:bg-red-50 transition-all duration-300"
-          >
-            <div className="p-2 rounded-xl bg-red-100 group-hover:bg-red-200 transition-all duration-300">
-              <LogOut className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            </div>
-            <span className="font-medium">Logout</span>
-          </button>
         </div>
       </aside>
 
@@ -458,7 +449,7 @@ export default function GuestDashboard() {
               <Calendar className="w-6 h-6" />
             </button>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 ml-auto">
               <div className="hidden sm:flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
                   <User className="w-5 h-5 text-white" />
@@ -468,6 +459,15 @@ export default function GuestDashboard() {
                   <p className="text-xs text-slate-500">Guest</p>
                 </div>
               </div>
+              <button
+                onClick={handleLogout}
+                className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-red-600 hover:bg-red-50 transition-all duration-300"
+              >
+                <div className="p-2 rounded-xl bg-red-100 group-hover:bg-red-200 transition-all duration-300">
+                  <LogOut className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+                </div>
+                <span className="hidden sm:inline font-medium">Logout</span>
+              </button>
             </div>
           </div>
         </header>
