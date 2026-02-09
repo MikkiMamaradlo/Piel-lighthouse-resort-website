@@ -10,9 +10,7 @@ import {
   Calendar,
   Search,
   Filter,
-  RefreshCw,
-  TrendingUp,
-  TrendingDown
+  RefreshCw
 } from "lucide-react"
 
 interface AttendanceRecord {
@@ -32,7 +30,6 @@ interface AttendanceStats {
   late: number
   absent: number
   onLeave: number
-  attendanceRate: number
 }
 
 export default function AdminAttendancePage() {
@@ -42,8 +39,7 @@ export default function AdminAttendancePage() {
     present: 0,
     late: 0,
     absent: 0,
-    onLeave: 0,
-    attendanceRate: 0
+    onLeave: 0
   })
   const [loading, setLoading] = useState(true)
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0])
@@ -146,7 +142,7 @@ export default function AdminAttendancePage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
@@ -179,27 +175,6 @@ export default function AdminAttendancePage() {
             <div>
               <p className="text-sm text-slate-500">Absent</p>
               <p className="text-2xl font-bold text-slate-900">{stats.absent}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-              stats.attendanceRate >= 90 ? "bg-green-100" : 
-              stats.attendanceRate >= 70 ? "bg-amber-100" : "bg-red-100"
-            }`}>
-              {stats.attendanceRate >= 90 ? (
-                <TrendingUp className="w-5 h-5 text-green-600" />
-              ) : (
-                <TrendingDown className={`w-5 h-5 ${
-                  stats.attendanceRate >= 70 ? "text-amber-600" : "text-red-600"
-                }`} />
-              )}
-            </div>
-            <div>
-              <p className="text-sm text-slate-500">Attendance Rate</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.attendanceRate}%</p>
             </div>
           </div>
         </div>
