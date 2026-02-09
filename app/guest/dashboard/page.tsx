@@ -640,7 +640,7 @@ export default function GuestDashboard() {
                         value={formData.guests}
                         onChange={handleFormChange}
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
-                        placeholder="2"
+                        placeholder="1"
                         min="1"
                         required
                       />
