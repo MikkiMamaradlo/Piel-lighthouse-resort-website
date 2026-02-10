@@ -213,25 +213,6 @@ export default function AdminLayout({
                 )
               })}
             </nav>
-
-            {/* Bottom section */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/80 backdrop-blur-sm">
-              <button
-                onClick={handleLogout}
-                className="group relative flex items-center gap-3 w-full px-4 py-3.5 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-2xl transition-all duration-300"
-              >
-                <div className="p-2 rounded-xl bg-slate-100 dark:bg-slate-700 group-hover:bg-red-100 dark:group-hover:bg-red-900/30 transition-all duration-300">
-                  <LogOut className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-                </div>
-                {sidebarOpen && <span className="font-medium">Logout</span>}
-                {!sidebarOpen && (
-                  <div className="absolute left-full ml-3 px-3 py-2 bg-slate-900 dark:bg-slate-700 text-white dark:text-slate-200 text-sm font-medium rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50">
-                    Logout
-                    <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-slate-900 dark:bg-slate-700 rounded-sm rotate-45" />
-                  </div>
-                )}
-              </button>
-            </div>
           </aside>
 
           {/* Main content */}
@@ -275,7 +256,7 @@ export default function AdminLayout({
                     className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-xl transition-all duration-300 hover:shadow-md"
                   >
                     <Sparkles className="w-4 h-4" />
-                    View Website
+                    <span className="hidden sm:inline">Website</span>
                   </a>
                   <ThemeToggle />
                   <div className="relative group">
@@ -284,6 +265,13 @@ export default function AdminLayout({
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white dark:border-slate-700 rounded-full" />
                   </div>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-300 hover:shadow-md"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span className="hidden sm:inline">Logout</span>
+                  </button>
                 </div>
               </div>
             </header>
