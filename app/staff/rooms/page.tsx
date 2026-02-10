@@ -98,7 +98,7 @@ export default function StaffRoomsPage() {
   const getStatusBadge = (status: string | undefined) => {
     if (!status || status === "available") {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700">
           <CheckIcon className="w-3.5 h-3.5" />
           Available
         </span>
@@ -106,7 +106,7 @@ export default function StaffRoomsPage() {
     }
     if (status === "booked") {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-700">
           <CheckIcon className="w-3.5 h-3.5" />
           Booked
         </span>
@@ -128,21 +128,21 @@ export default function StaffRoomsPage() {
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse">
-        <div className="h-8 bg-slate-200 rounded w-40"></div>
+        <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded w-40"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm">
-              <div className="h-48 bg-slate-200"></div>
+              <div className="h-48 bg-slate-200 dark:bg-slate-700"></div>
               <div className="p-6 space-y-4">
-                <div className="h-6 bg-slate-200 rounded w-3/4"></div>
-                <div className="h-4 bg-slate-200 rounded w-1/2"></div>
-                <div className="h-4 bg-slate-200 rounded w-full"></div>
+                <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
+                <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+                <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-full"></div>
                 <div className="flex gap-2">
                   {[1, 2, 3].map((j) => (
-                    <div key={j} className="h-6 bg-slate-200 rounded w-16"></div>
+                    <div key={j} className="h-6 bg-slate-200 dark:bg-slate-700 rounded w-16"></div>
                   ))}
                 </div>
-                <div className="h-6 bg-slate-200 rounded w-24"></div>
+                <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded w-24"></div>
               </div>
             </div>
           ))}
@@ -157,7 +157,7 @@ export default function StaffRoomsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Rooms</h1>
-          <p className="text-slate-500 mt-1">View all available rooms and their details</p>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">View all available rooms and their details</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <RoomIcon className="w-4 h-4" />
@@ -218,7 +218,7 @@ export default function StaffRoomsPage() {
             {/* Content */}
             <div className="p-6">
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-bold text-slate-800 group-hover:text-amber-600 transition-colors">
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-amber-600 transition-colors">
                   {room.name}
                 </h3>
                 {getStatusBadge(room.status)}
@@ -226,12 +226,12 @@ export default function StaffRoomsPage() {
 
               {/* Booking Info (if booked) */}
               {room.status === "booked" && (
-                <div className="mb-4 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800">
                   <div className="flex items-center gap-2 mb-2">
                     <UserIcon className="w-4 h-4 text-amber-600" />
-                    <span className="text-sm font-semibold text-amber-800">{room.currentGuestName || "Guest"}</span>
+                    <span className="text-sm font-semibold text-amber-800 dark:text-amber-400">{room.currentGuestName || "Guest"}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-amber-700">
+                  <div className="flex items-center gap-2 text-xs text-amber-700 dark:text-amber-400">
                     <CalendarIcon className="w-3.5 h-3.5" />
                     <span>{room.currentCheckIn || ""} → {room.currentCheckOut || ""}</span>
                   </div>

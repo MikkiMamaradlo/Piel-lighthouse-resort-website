@@ -216,7 +216,7 @@ export default function StaffLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <div className="w-16 h-16 border-4 border-amber-200 rounded-full animate-spin border-t-amber-600"></div>
@@ -224,7 +224,7 @@ export default function StaffLayout({
               <LogoIcon className="w-6 h-6 text-amber-600" />
             </div>
           </div>
-          <div className="text-slate-600 font-medium">Loading Staff Portal...</div>
+          <div className="text-slate-600 dark:text-slate-400 font-medium">Loading Staff Portal...</div>
         </div>
       </div>
     )
@@ -313,7 +313,7 @@ export default function StaffLayout({
         <div className="flex pt-16">
           {/* Sidebar */}
           <aside
-            className={`fixed left-0 top-16 bottom-0 bg-white/95 backdrop-blur-xl shadow-2xl transition-all duration-300 z-40 border-r border-slate-200 ${
+            className={`fixed left-0 top-16 bottom-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl shadow-2xl transition-all duration-300 z-40 border-r border-slate-200 dark:border-slate-700 ${
               isSidebarCollapsed ? "w-20" : "w-64"
             } ${isSidebarCollapsed ? "lg:w-20" : "lg:w-64"}`}
           >

@@ -168,13 +168,13 @@ export default function StaffAttendancePage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "present":
-        return "bg-green-100 text-green-700 border-green-200"
+        return "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-700"
       case "late":
-        return "bg-amber-100 text-amber-700 border-amber-200"
+        return "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-700"
       case "absent":
-        return "bg-red-100 text-red-700 border-red-200"
+        return "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-700"
       case "on-leave":
-        return "bg-blue-100 text-blue-700 border-blue-200"
+        return "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-700"
       default:
         return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600"
     }
@@ -201,15 +201,15 @@ export default function StaffAttendancePage() {
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse">
-        <div className="h-8 bg-slate-200 rounded w-40"></div>
+        <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded w-40"></div>
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm">
           <div className="h-32 bg-slate-100 dark:bg-slate-700 rounded-xl"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm">
-              <div className="h-4 bg-slate-200 rounded w-20 mb-4"></div>
-              <div className="h-8 bg-slate-200 rounded w-16"></div>
+              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-20 mb-4"></div>
+              <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded w-16"></div>
             </div>
           ))}
         </div>
@@ -229,7 +229,7 @@ export default function StaffAttendancePage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Attendance</h1>
-          <p className="text-slate-500 mt-1">Track your work hours and attendance</p>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Track your work hours and attendance</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <CalendarIcon className="w-4 h-4" />
@@ -241,8 +241,8 @@ export default function StaffAttendancePage() {
       {message && (
         <div className={`p-4 rounded-xl border animate-fade-in-up ${
           message.type === "success" 
-            ? "bg-green-50 border-green-200 text-green-700" 
-            : "bg-red-50 border-red-200 text-red-700"
+            ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-700 dark:text-green-400" 
+            : "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-700 dark:text-red-400"
         }`}>
           <div className="flex items-center gap-2">
             {message.type === "success" ? (
@@ -258,18 +258,18 @@ export default function StaffAttendancePage() {
       )}
 
       {/* Clock In/Out Card */}
-      <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700">
+      <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className={`p-4 rounded-2xl ${
-              currentRecord?.clockIn ? "bg-green-100" : "bg-slate-100 dark:bg-slate-700"
+              currentRecord?.clockIn ? "bg-green-100 dark:bg-green-900/30" : "bg-slate-100 dark:bg-slate-700"
             }`}>
               <ClockIcon className={`w-8 h-8 ${
                 currentRecord?.clockIn ? "text-green-600" : "text-slate-400 dark:text-slate-400"
               }`} />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-slate-800 mb-2">Today's Status</h2>
+              <h2 className="text-xl font-semibold text-slate-800 dark:text-white mb-2">Today's Status</h2>
               <div className="space-y-1">
                 {currentRecord?.clockIn ? (
                   <>
@@ -288,7 +288,7 @@ export default function StaffAttendancePage() {
                   <p className="text-slate-500 dark:text-slate-400">Not clocked in yet</p>
                 )}
                 {!currentRecord && (
-                  <p className="text-slate-400 text-sm">No record for today</p>
+                  <p className="text-slate-400 dark:text-slate-500 text-sm">No record for today</p>
                 )}
               </div>
             </div>
@@ -301,7 +301,7 @@ export default function StaffAttendancePage() {
               className={`group relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 canClockIn
                   ? "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg shadow-green-500/30 hover:shadow-green-500/50 hover:-translate-y-1"
-                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                  : "bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed"
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -322,7 +322,7 @@ export default function StaffAttendancePage() {
               className={`group relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 canClockOut
                   ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg shadow-red-500/30 hover:shadow-red-500/50 hover:-translate-y-1"
-                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                  : "bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed"
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -375,7 +375,7 @@ export default function StaffAttendancePage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-50 dark:bg-slate-700/50/80">
+            <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clock In</th>
@@ -384,11 +384,11 @@ export default function StaffAttendancePage() {
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
               {history.slice(0, 10).map((record, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-slate-50 dark:bg-slate-700/50/50 transition-colors animate-fade-in"
+                  className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors animate-fade-in"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <td className="px-6 py-4 text-sm font-medium text-slate-800 dark:text-white">{formatDate(record.date)}</td>

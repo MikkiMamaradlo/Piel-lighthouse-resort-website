@@ -111,13 +111,13 @@ export default function StaffLoginPage() {
           <div className="p-8">
             {/* Welcome message */}
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-slate-800 mb-1">Staff Login</h2>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">Staff Login</h2>
               <p className="text-slate-500 dark:text-slate-400 text-sm">Access your staff dashboard</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {error && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center gap-3 animate-shake">
+                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm flex items-center gap-3 animate-shake">
                   <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

@@ -106,13 +106,13 @@ export default function StaffDashboardPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-amber-100 text-amber-700 border-amber-200"
+        return "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-700"
       case "confirmed":
-        return "bg-green-100 text-green-700 border-green-200"
+        return "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-700"
       case "completed":
         return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600"
       case "cancelled":
-        return "bg-red-100 text-red-700 border-red-200"
+        return "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-700"
       default:
         return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600"
     }
@@ -134,17 +134,17 @@ export default function StaffDashboardPage() {
   if (loading) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-8 bg-slate-200 rounded w-48"></div>
+        <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded w-48"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm">
-              <div className="h-4 bg-slate-200 rounded w-24 mb-4"></div>
-              <div className="h-8 bg-slate-200 rounded w-16"></div>
+              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-24 mb-4"></div>
+              <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded w-16"></div>
             </div>
           ))}
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm">
-          <div className="h-6 bg-slate-200 rounded w-40 mb-6"></div>
+          <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded w-40 mb-6"></div>
           <div className="space-y-4">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-16 bg-slate-100 dark:bg-slate-700 rounded"></div>
@@ -196,7 +196,7 @@ export default function StaffDashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Staff Dashboard</h1>
-          <p className="text-slate-500 mt-1">Welcome back! Here's your overview for today.</p>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Welcome back! Here's your overview for today.</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -248,7 +248,7 @@ export default function StaffDashboardPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-50 dark:bg-slate-700/50/80">
+            <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Guest</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Room</th>
@@ -257,11 +257,11 @@ export default function StaffDashboardPage() {
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
               {bookings.slice(0, 5).map((booking, index) => (
                 <tr
                   key={booking._id}
-                  className="hover:bg-slate-50 dark:bg-slate-700/50/50 transition-colors animate-fade-in"
+                  className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors animate-fade-in"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <td className="px-6 py-4">
@@ -322,9 +322,9 @@ export default function StaffDashboardPage() {
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${action.color}`}>
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <ArrowRightIcon className="w-5 h-5 text-slate-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
+                <ArrowRightIcon className="w-5 h-5 text-slate-300 dark:text-slate-600 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-amber-600 transition-colors">{action.title}</h3>
+              <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2 group-hover:text-amber-600 transition-colors">{action.title}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400">{action.description}</p>
             </a>
           )
