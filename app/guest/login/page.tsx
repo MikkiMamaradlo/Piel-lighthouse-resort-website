@@ -4,10 +4,12 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Waves, Sun } from "lucide-react"
+import { Waves, Sun, Moon } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export default function GuestLoginPage() {
   const router = useRouter()
+  const { theme, setTheme } = useTheme()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -71,15 +73,27 @@ export default function GuestLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-900 via-ocean-800 to-ocean-900">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-50 via-sky-50 to-ocean-100 dark:from-ocean-950 dark:via-ocean-900 dark:to-ocean-950 transition-colors duration-300">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-20 right-1/3 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-400/20 dark:bg-amber-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 right-1/3 w-64 h-64 bg-cyan-400/20 dark:bg-cyan-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-orange-500/20 dark:bg-orange-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
       </div>
 
       <div className="relative w-full max-w-md p-6">
+        {/* Theme Toggle */}
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="absolute top-0 right-0 p-3 rounded-xl bg-slate-100 dark:bg-ocean-800 hover:bg-slate-200 dark:hover:bg-ocean-700 transition-colors shadow-lg"
+        >
+          {theme === "dark" ? (
+            <Sun className="w-5 h-5 text-amber-400" />
+          ) : (
+            <Moon className="w-5 h-5 text-slate-600" />
+          )}
+        </button>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="relative inline-block mb-6">
@@ -97,8 +111,8 @@ export default function GuestLoginPage() {
               <Waves className="w-4 h-4 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Piel Lighthouse</h1>
-          <div className="flex items-center justify-center gap-2 text-ocean-200">
+          <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2 drop-shadow-lg">Piel Lighthouse</h1>
+          <div className="flex items-center justify-center gap-2 text-slate-500 dark:text-ocean-300">
             <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="text-sm font-medium tracking-wide">Guest Portal</span>
             <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
@@ -106,12 +120,12 @@ export default function GuestLoginPage() {
         </div>
 
         {/* Login Form */}
-        <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative bg-white/95 dark:bg-ocean-900/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
           {/* Progress bar */}
           <div className="h-2 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500"></div>
 
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">Welcome Back</h2>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Welcome Back</h2>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Email Field */}
@@ -121,7 +135,7 @@ export default function GuestLoginPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-ocean-800 border-2 border-slate-200 dark:border-ocean-700 rounded-xl text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors"
                   placeholder="Email"
                   required
                 />
@@ -134,7 +148,7 @@ export default function GuestLoginPage() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border-2 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors pr-12"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-ocean-800 border-2 border-slate-200 dark:border-ocean-700 rounded-xl text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-colors pr-12"
                   placeholder="Password"
                   required
                 />
@@ -159,7 +173,7 @@ export default function GuestLoginPage() {
 
               {/* Error Message */}
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center gap-2">
+                <div className="p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="12" x2="12" y1="8" y2="12" />
@@ -190,8 +204,8 @@ export default function GuestLoginPage() {
             </form>
 
             {/* Register Link */}
-            <div className="mt-6 pt-6 border-t border-slate-100 text-center">
-              <p className="text-slate-500">
+            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-ocean-700 text-center">
+              <p className="text-slate-500 dark:text-slate-400">
                 New to Piel Lighthouse?{" "}
                 <Link href="/guest/register" className="text-amber-500 hover:text-amber-600 font-medium transition-colors">
                   Create account
@@ -201,7 +215,7 @@ export default function GuestLoginPage() {
 
             {/* Back to Home */}
             <div className="mt-4 text-center">
-              <Link href="/" className="text-sm text-slate-400 hover:text-white transition-colors inline-flex items-center gap-1">
+              <Link href="/" className="text-sm text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors inline-flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m15 18-6-6 6-6" />
                 </svg>
@@ -213,7 +227,7 @@ export default function GuestLoginPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-ocean-300 text-sm">© 2024 Piel Lighthouse Resort. All rights reserved.</p>
+          <p className="text-slate-500 dark:text-ocean-300 text-sm">© 2024 Piel Lighthouse Resort. All rights reserved.</p>
         </div>
       </div>
     </div>

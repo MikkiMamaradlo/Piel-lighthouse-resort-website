@@ -39,12 +39,26 @@ export default function RootLayout({
               (function() {
                 try {
                   var localTheme = localStorage.getItem('theme');
-                  var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (localTheme === 'dark' || (!localTheme && supportDarkMode)) {
+                  var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+                  var shouldBeDark = localTheme === 'dark' || (!localTheme && supportDarkMode);
+                  
+                  if (shouldBeDark) {
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');
                   }
+                  
+                  // Listen for theme changes
+                  window.addEventListener('storage', function(e) {
+                    if (e.key === 'theme') {
+                      var newTheme = localStorage.getItem('theme');
+                      if (newTheme === 'dark') {
+                        document.documentElement.classList.add('dark');
+                      } else {
+                        document.documentElement.classList.remove('dark');
+                      }
+                    }
+                  });
                 } catch (e) {}
               })();
             `,
@@ -56,7 +70,6 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           {children}
         </ThemeProvider>

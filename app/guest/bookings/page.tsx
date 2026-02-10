@@ -68,43 +68,45 @@ export default function GuestBookingsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "confirmed":
-        return "bg-green-100 text-green-700"
+        return "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
       case "pending":
-        return "bg-amber-100 text-amber-700"
+        return "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
       case "completed":
-        return "bg-blue-100 text-blue-700"
+        return "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
       case "cancelled":
-        return "bg-red-100 text-red-700"
+        return "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
       default:
-        return "bg-slate-100 text-slate-700"
+        return "bg-slate-100 dark:bg-ocean-700 text-slate-700 dark:text-slate-300"
     }
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-ocean-950 flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full"></div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-ocean-950">
       {/* Navigation */}
-      <nav className="bg-white border-b border-slate-200">
+      <nav className="bg-white dark:bg-ocean-900 border-b border-slate-200 dark:border-ocean-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => router.push("/guest/dashboard")}
-                className="flex items-center gap-2 text-slate-600 hover:text-amber-600 transition-colors"
+                className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="hidden sm:inline">Back</span>
               </button>
-              <h1 className="text-xl font-bold text-slate-800">My Bookings</h1>
+              <h1 className="text-xl font-bold text-slate-800 dark:text-white">My Bookings</h1>
             </div>
-            <GuestProfileDropdown guest={guest} />
+            <div className="flex items-center gap-3">
+              <GuestProfileDropdown guest={guest} />
+            </div>
           </div>
         </div>
       </nav>
@@ -112,12 +114,12 @@ export default function GuestBookingsPage() {
       {/* Bookings Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
         {bookings.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-12 text-center">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Calendar className="w-8 h-8 text-slate-400" />
+          <div className="bg-white dark:bg-ocean-900 rounded-2xl shadow-lg border border-slate-200 dark:border-ocean-700 p-12 text-center">
+            <div className="w-16 h-16 bg-slate-100 dark:bg-ocean-800 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Calendar className="w-8 h-8 text-slate-400 dark:text-slate-500" />
             </div>
-            <h2 className="text-xl font-bold text-slate-800 mb-2">No Bookings Yet</h2>
-            <p className="text-slate-500 mb-6">You haven't made any reservations yet.</p>
+            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-2">No Bookings Yet</h2>
+            <p className="text-slate-500 dark:text-slate-400 mb-6">You haven't made any reservations yet.</p>
             <button
               onClick={() => router.push("/guest/rooms")}
               className="px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-200"
@@ -130,7 +132,7 @@ export default function GuestBookingsPage() {
             {bookings.map((booking) => (
               <div
                 key={booking._id}
-                className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-white dark:bg-ocean-900 rounded-2xl shadow-lg border border-slate-200 dark:border-ocean-700 overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="flex flex-col sm:flex-row">
                   {/* Room Image */}
@@ -142,15 +144,15 @@ export default function GuestBookingsPage() {
                   <div className="flex-1 p-5">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="text-lg font-bold text-slate-800">{booking.roomName}</h3>
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-white">{booking.roomName}</h3>
                         <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
                           {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                         </span>
                       </div>
-                      <p className="text-lg font-bold text-amber-600">₱{booking.totalPrice.toLocaleString()}</p>
+                      <p className="text-lg font-bold text-amber-600 dark:text-amber-400">₱{booking.totalPrice.toLocaleString()}</p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+                    <div className="flex flex-wrap gap-4 text-sm text-slate-500 dark:text-slate-400">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         <span>{new Date(booking.checkIn).toLocaleDateString()} - {new Date(booking.checkOut).toLocaleDateString()}</span>

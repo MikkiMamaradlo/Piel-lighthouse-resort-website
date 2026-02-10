@@ -364,9 +364,9 @@ export default function GuestDashboard() {
   }
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-ocean-50 to-ocean-100 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center">
+    <div className="min-h-screen flex bg-gradient-to-br from-ocean-50 to-ocean-100 dark:from-ocean-950 dark:to-ocean-900 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center">
       {/* Gradient Overlay for readability */}
-      <div className="fixed inset-0 bg-ocean-50/80 backdrop-blur-sm"></div>
+      <div className="fixed inset-0 bg-ocean-50/80 dark:bg-ocean-950/80 backdrop-blur-sm"></div>
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div 
@@ -376,7 +376,7 @@ export default function GuestDashboard() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 lg:transform-none border-r border-slate-200 ${
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white/95 dark:bg-ocean-900/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 lg:transform-none border-r border-slate-200 dark:border-ocean-700 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}>
         {/* Logo */}
@@ -413,10 +413,10 @@ export default function GuestDashboard() {
           </Link>
           <Link
             href="/guest/rooms"
-            className="group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 text-slate-600 hover:bg-slate-50"
+            className="group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-ocean-800"
           >
-            <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-all duration-300">
-              <Users className="w-5 h-5 text-slate-500 group-hover:text-amber-500 transition-colors" />
+            <div className="p-2 rounded-xl bg-slate-100 dark:bg-ocean-800 group-hover:bg-slate-200 dark:group-hover:bg-ocean-700 transition-all duration-300">
+              <Users className="w-5 h-5 text-slate-500 dark:text-slate-400 group-hover:text-amber-500 transition-colors" />
             </div>
             <span className="font-medium">Available Rooms</span>
           </Link>
@@ -428,11 +428,11 @@ export default function GuestDashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-xl border-b border-slate-200/50 sticky top-0 z-30">
+        <header className="bg-white/80 dark:bg-ocean-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-ocean-700/50 sticky top-0 z-30">
           <div className="flex items-center justify-between px-6 py-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-xl"
+              className="lg:hidden p-2 -ml-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-ocean-800 rounded-xl"
             >
               <Calendar className="w-6 h-6" />
             </button>
@@ -448,7 +448,7 @@ export default function GuestDashboard() {
           <div className="max-w-4xl mx-auto space-y-8">
             
             {/* Welcome Banner */}
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 text-slate-800 shadow-lg border border-white/50 relative overflow-hidden">
+            <div className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-xl rounded-2xl p-6 text-slate-800 dark:text-white shadow-lg border border-white/50 dark:border-ocean-700/50 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
                 <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
                   <path fill="currentColor" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,186.7C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -456,29 +456,29 @@ export default function GuestDashboard() {
               </div>
               <div className="relative">
                 <h2 className="text-2xl font-bold mb-2">Welcome back, {guest?.username}! 🌴</h2>
-                <p className="text-slate-600">Select an available date and book your perfect beach getaway.</p>
+                <p className="text-slate-600 dark:text-slate-400">Select an available date and book your perfect beach getaway.</p>
               </div>
             </div>
 
             {/* Calendar Section */}
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
-              <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                <h3 className="text-base font-bold text-slate-800">Availability Calendar</h3>
+            <div className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 dark:border-ocean-700/50 overflow-hidden">
+              <div className="p-4 border-b border-slate-100 dark:border-ocean-700 flex items-center justify-between">
+                <h3 className="text-base font-bold text-slate-800 dark:text-white">Availability Calendar</h3>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={prevMonth}
-                    className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+                    className="p-1.5 hover:bg-slate-100 dark:hover:bg-ocean-800 rounded-lg transition-colors"
                   >
-                    <ChevronLeft className="w-4 h-4 text-slate-600" />
+                    <ChevronLeft className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                   </button>
-                  <span className="font-semibold text-slate-800 min-w-[120px] text-center text-sm">
+                  <span className="font-semibold text-slate-800 dark:text-white min-w-[120px] text-center text-sm">
                     {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
                   </span>
                   <button
                     onClick={nextMonth}
-                    className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+                    className="p-1.5 hover:bg-slate-100 dark:hover:bg-ocean-800 rounded-lg transition-colors"
                   >
-                    <ChevronRight className="w-4 h-4 text-slate-600" />
+                    <ChevronRight className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                   </button>
                 </div>
               </div>
@@ -487,7 +487,7 @@ export default function GuestDashboard() {
                 {/* Day headers */}
                 <div className="grid grid-cols-7 gap-1 mb-2">
                   {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                    <div key={day} className="text-center text-xs font-semibold text-slate-500 py-1">
+                    <div key={day} className="text-center text-xs font-semibold text-slate-500 dark:text-slate-400 py-1">
                       {day}
                     </div>
                   ))}
@@ -518,13 +518,13 @@ export default function GuestDashboard() {
                         className={`
                           aspect-square flex items-center justify-center rounded-lg text-sm font-medium transition-all relative
                           ${isToday(day) ? "ring-2 ring-amber-500" : ""}
-                          ${isPast ? "bg-slate-50 text-slate-300 cursor-not-allowed" : selected
+                          ${isPast ? "bg-slate-50 dark:bg-ocean-800 text-slate-300 dark:text-ocean-500 cursor-not-allowed" : selected
                             ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30"
                             : dateStatus === "booked"
-                              ? "bg-red-100 text-red-400 cursor-not-allowed"
+                              ? "bg-red-100 dark:bg-red-900/30 text-red-400 dark:text-red-400 cursor-not-allowed"
                               : dateStatus === "reserved"
-                                ? "bg-amber-100 text-amber-600 cursor-not-allowed"
-                                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                                ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 cursor-not-allowed"
+                                : "bg-slate-100 dark:bg-ocean-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-ocean-700"
                           }
                         `}
                       >
@@ -552,43 +552,43 @@ export default function GuestDashboard() {
               </div>
 
               {/* Legend */}
-              <div className="px-4 pb-4 border-t border-slate-100">
+              <div className="px-4 pb-4 border-t border-slate-100 dark:border-ocean-700">
                 <div className="flex items-center justify-center gap-4 text-xs">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                    <span className="text-slate-600">Available</span>
+                    <span className="text-slate-600 dark:text-slate-400">Available</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-amber-400"></div>
-                    <span className="text-slate-600">Reserved</span>
+                    <span className="text-slate-600 dark:text-slate-400">Reserved</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                    <span className="text-slate-600">Booked</span>
+                    <span className="text-slate-600 dark:text-slate-400">Booked</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Quick Booking Form */}
-            <div id="quick-booking" className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
-              <div className="p-6 border-b border-slate-100">
-                <h3 className="text-lg font-bold text-slate-800">Quick Booking</h3>
-                <p className="text-sm text-slate-500">Fill in your details to request a booking</p>
+            <div id="quick-booking" className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 dark:border-ocean-700/50 overflow-hidden">
+              <div className="p-6 border-b border-slate-100 dark:border-ocean-700">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-white">Quick Booking</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Fill in your details to request a booking</p>
               </div>
               
               <form onSubmit={handleFormSubmit} className="p-6 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Full Name</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleFormChange}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-slate-800 dark:text-white"
                         placeholder="John Doe"
                         required
                       />
@@ -596,15 +596,15 @@ export default function GuestDashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Email</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleFormChange}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-slate-800 dark:text-white"
                         placeholder="john@example.com"
                         required
                       />
@@ -612,15 +612,15 @@ export default function GuestDashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Phone Number</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleFormChange}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-slate-800 dark:text-white"
                         placeholder="+63 9xx xxx xxxx"
                         required
                       />
@@ -628,15 +628,15 @@ export default function GuestDashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Number of Guests</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Number of Guests</label>
                     <div className="relative">
-                      <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="number"
                         name="guests"
                         value={formData.guests}
                         onChange={handleFormChange}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-slate-800 dark:text-white"
                         placeholder="1"
                         min="1"
                         required
@@ -645,25 +645,25 @@ export default function GuestDashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Check-in Date</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Check-in Date</label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="date"
                         name="checkIn"
                         value={formData.checkIn}
                         onChange={handleFormChange}
                         min={todayStr}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-slate-800 dark:text-white"
                         required
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Check-out Date</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Check-out Date</label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
                       <input
                         type="date"
                         name="checkOut"
@@ -696,13 +696,13 @@ export default function GuestDashboard() {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700">Special Requests</label>
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Special Requests</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleFormChange}
                     rows={4}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all resize-none"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-ocean-800 border border-slate-200 dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all resize-none text-slate-800 dark:text-white"
                     placeholder="Any special requests or questions?"
                   />
                 </div>
@@ -725,7 +725,7 @@ export default function GuestDashboard() {
                   )}
                 </Button>
                 
-                <p className="text-xs text-slate-500 text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
                   We'll contact you within 24 hours to confirm your booking
                 </p>
               </form>
@@ -733,37 +733,37 @@ export default function GuestDashboard() {
 
             {/* Your Bookings */}
             {bookings.length > 0 && (
-              <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
-                <div className="p-6 border-b border-slate-100">
-                  <h3 className="text-lg font-bold text-slate-800">Your Bookings</h3>
+              <div className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 dark:border-ocean-700/50 overflow-hidden">
+                <div className="p-6 border-b border-slate-100 dark:border-ocean-700">
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">Your Bookings</h3>
                 </div>
                 
                 <div className="p-6 space-y-4">
                   {bookings.map((booking) => (
                     <div
                       key={booking._id}
-                      className="bg-slate-50 rounded-xl p-4 border border-slate-200"
+                      className="bg-slate-50 dark:bg-ocean-800 rounded-xl p-4 border border-slate-200 dark:border-ocean-700"
                     >
                       <div className="flex items-start justify-between">
                         <div>
-                          <p className="font-semibold text-slate-800">{booking.roomType}</p>
-                          <p className="text-sm text-slate-600">
+                          <p className="font-semibold text-slate-800 dark:text-white">{booking.roomType}</p>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
                             {new Date(booking.checkIn).toLocaleDateString()} - {new Date(booking.checkOut).toLocaleDateString()}
                           </p>
-                          <p className="text-sm text-slate-500">{booking.guests} guests</p>
+                          <p className="text-sm text-slate-500 dark:text-slate-400">{booking.guests} guests</p>
                         </div>
                         <div className="text-right">
                           <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${
                             booking.status === "confirmed"
-                              ? "bg-green-100 text-green-700"
+                              ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
                               : booking.status === "pending"
-                                ? "bg-amber-100 text-amber-700"
-                                : "bg-slate-100 text-slate-700"
+                                ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                                : "bg-slate-100 dark:bg-ocean-700 text-slate-700 dark:text-slate-300"
                           }`}>
                             {booking.status === "confirmed" && <CheckCircle className="w-3 h-3" />}
                             {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                           </span>
-                          <p className="text-lg font-bold text-slate-800 mt-1">₱{booking.totalPrice.toLocaleString()}</p>
+                          <p className="text-lg font-bold text-slate-800 dark:text-white mt-1">₱{booking.totalPrice.toLocaleString()}</p>
                         </div>
                       </div>
                     </div>

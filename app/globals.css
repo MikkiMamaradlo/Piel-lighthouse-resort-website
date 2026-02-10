@@ -39,6 +39,18 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Ocean colors for light mode */
+  --color-ocean-50: oklch(0.97 0.01 240);
+  --color-ocean-100: oklch(0.93 0.01 240);
+  --color-ocean-200: oklch(0.87 0.02 240);
+  --color-ocean-300: oklch(0.78 0.03 240);
+  --color-ocean-400: oklch(0.68 0.04 240);
+  --color-ocean-500: oklch(0.58 0.05 240);
+  --color-ocean-600: oklch(0.5 0.05 240);
+  --color-ocean-700: oklch(0.42 0.04 240);
+  --color-ocean-800: oklch(0.35 0.03 240);
+  --color-ocean-900: oklch(0.28 0.03 240);
+  --color-ocean-950: oklch(0.18 0.02 240);
 }
 
 .dark {
@@ -74,6 +86,18 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  /* Ocean colors for dark mode */
+  --color-ocean-50: oklch(0.97 0.01 240);
+  --color-ocean-100: oklch(0.93 0.01 240);
+  --color-ocean-200: oklch(0.87 0.02 240);
+  --color-ocean-300: oklch(0.78 0.03 240);
+  --color-ocean-400: oklch(0.68 0.04 240);
+  --color-ocean-500: oklch(0.58 0.05 240);
+  --color-ocean-600: oklch(0.5 0.05 240);
+  --color-ocean-700: oklch(0.42 0.04 240);
+  --color-ocean-800: oklch(0.35 0.03 240);
+  --color-ocean-900: oklch(0.28 0.03 240);
+  --color-ocean-950: oklch(0.18 0.02 240);
 }
 
 @theme inline {
@@ -115,6 +139,33 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Ocean color palette */
+  --color-ocean-50: oklch(0.97 0.01 240);
+  --color-ocean-100: oklch(0.93 0.01 240);
+  --color-ocean-200: oklch(0.87 0.02 240);
+  --color-ocean-300: oklch(0.78 0.03 240);
+  --color-ocean-400: oklch(0.68 0.04 240);
+  --color-ocean-500: oklch(0.58 0.05 240);
+  --color-ocean-600: oklch(0.5 0.05 240);
+  --color-ocean-700: oklch(0.42 0.04 240);
+  --color-ocean-800: oklch(0.35 0.03 240);
+  --color-ocean-900: oklch(0.28 0.03 240);
+  --color-ocean-950: oklch(0.18 0.02 240);
+}
+
+/* Dark mode ocean color overrides */
+.dark .dark\:ocean-bg {
+  --color-ocean-50: oklch(0.97 0.01 240);
+  --color-ocean-100: oklch(0.93 0.01 240);
+  --color-ocean-200: oklch(0.87 0.02 240);
+  --color-ocean-300: oklch(0.78 0.03 240);
+  --color-ocean-400: oklch(0.68 0.04 240);
+  --color-ocean-500: oklch(0.58 0.05 240);
+  --color-ocean-600: oklch(0.5 0.05 240);
+  --color-ocean-700: oklch(0.42 0.04 240);
+  --color-ocean-800: oklch(0.35 0.03 240);
+  --color-ocean-900: oklch(0.28 0.03 240);
+  --color-ocean-950: oklch(0.18 0.02 240);
 }
 
 @layer base {
