@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ThemeToggle } from "@/components/theme-toggle"
 import {
   LayoutDashboard,
   CalendarCheck,
@@ -258,7 +257,6 @@ export default function AdminLayout({
                     <Sparkles className="w-4 h-4" />
                     <span className="hidden sm:inline">Website</span>
                   </a>
-                  <ThemeToggle />
                   <div className="relative group">
                     <div className="w-11 h-11 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white font-semibold shadow-lg shadow-blue-500/30 ring-2 ring-white dark:ring-slate-700 transition-transform duration-300 group-hover:scale-105">
                       A

@@ -129,7 +129,7 @@ export default function ActivitiesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Activities</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Activities</h1>
           <p className="text-slate-500 mt-1">Manage resort activities and experiences</p>
         </div>
         <button
@@ -143,19 +143,19 @@ export default function ActivitiesPage() {
 
       {/* Activities Grid */}
       {loading ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="relative w-16 h-16 mx-auto mb-4">
             <div className="absolute inset-0 border-4 border-emerald-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500">Loading activities...</p>
+          <p className="text-slate-500 dark:text-slate-400">Loading activities...</p>
         </div>
       ) : activities.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MapPin className="w-10 h-10 text-slate-400" />
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
+          <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MapPin className="w-10 h-10 text-slate-400 dark:text-slate-400" />
           </div>
-          <p className="text-slate-500 text-lg font-medium">No activities added yet</p>
+          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No activities added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium"
@@ -168,9 +168,9 @@ export default function ActivitiesPage() {
           {activities.map((activity) => (
             <div
               key={activity._id}
-              className="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300"
+              className="group bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300"
             >
-              <div className="relative h-52 bg-slate-100 overflow-hidden">
+              <div className="relative h-52 bg-slate-100 dark:bg-slate-700 overflow-hidden">
                 <img
                   src={activity.image || "/placeholder.jpg"}
                   alt={activity.name}
@@ -180,24 +180,24 @@ export default function ActivitiesPage() {
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{activity.name}</h3>
-                <p className="text-sm text-slate-600 mb-4 line-clamp-2">{activity.description}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{activity.description}</p>
                 
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-1.5 text-sm">
                     <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
                       <DollarSign className="w-4 h-4 text-emerald-600" />
                     </div>
-                    <span className="font-semibold text-slate-900">{activity.price}</span>
+                    <span className="font-semibold text-slate-900 dark:text-white">{activity.price}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-sm">
                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                       <Clock className="w-4 h-4 text-blue-600" />
                     </div>
-                    <span className="text-slate-600">{activity.duration}</span>
+                    <span className="text-slate-600 dark:text-slate-400">{activity.duration}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
+                <div className="flex items-center gap-2 pt-4 border-t border-slate-100 dark:border-slate-700">
                   <button
                     onClick={() => openEditModal(activity)}
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-blue-600 rounded-xl font-medium hover:bg-blue-100 transition-colors"
@@ -222,15 +222,15 @@ export default function ActivitiesPage() {
       {/* Add/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {editingActivity ? "Edit Activity" : "Add New Activity"}
                 </h2>
                 <button
                   onClick={closeModal}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:bg-gray-700 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -238,7 +238,7 @@ export default function ActivitiesPage() {
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Activity Name
                 </label>
                 <input
@@ -252,7 +252,7 @@ export default function ActivitiesPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Description
                 </label>
                 <textarea
@@ -266,7 +266,7 @@ export default function ActivitiesPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Image URL
                 </label>
                 <input
@@ -281,7 +281,7 @@ export default function ActivitiesPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Price
                   </label>
                   <input
@@ -294,7 +294,7 @@ export default function ActivitiesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Duration
                   </label>
                   <select
@@ -315,7 +315,7 @@ export default function ActivitiesPage() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                  className="flex-1 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   Cancel
                 </button>

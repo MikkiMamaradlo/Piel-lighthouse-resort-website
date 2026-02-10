@@ -176,7 +176,7 @@ export default function StaffAttendancePage() {
       case "on-leave":
         return "bg-blue-100 text-blue-700 border-blue-200"
       default:
-        return "bg-slate-100 text-slate-700 border-slate-200"
+        return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600"
     }
   }
 
@@ -202,12 +202,12 @@ export default function StaffAttendancePage() {
     return (
       <div className="space-y-6 animate-pulse">
         <div className="h-8 bg-slate-200 rounded w-40"></div>
-        <div className="bg-white rounded-2xl p-8 shadow-sm">
-          <div className="h-32 bg-slate-100 rounded-xl"></div>
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm">
+          <div className="h-32 bg-slate-100 dark:bg-slate-700 rounded-xl"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="bg-white rounded-xl p-6 shadow-sm">
+            <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm">
               <div className="h-4 bg-slate-200 rounded w-20 mb-4"></div>
               <div className="h-8 bg-slate-200 rounded w-16"></div>
             </div>
@@ -228,10 +228,10 @@ export default function StaffAttendancePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">Attendance</h1>
+          <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Attendance</h1>
           <p className="text-slate-500 mt-1">Track your work hours and attendance</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-500">
+        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <CalendarIcon className="w-4 h-4" />
           <span>{new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</span>
         </div>
@@ -258,14 +258,14 @@ export default function StaffAttendancePage() {
       )}
 
       {/* Clock In/Out Card */}
-      <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-lg p-8 border border-slate-100">
+      <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className={`p-4 rounded-2xl ${
-              currentRecord?.clockIn ? "bg-green-100" : "bg-slate-100"
+              currentRecord?.clockIn ? "bg-green-100" : "bg-slate-100 dark:bg-slate-700"
             }`}>
               <ClockIcon className={`w-8 h-8 ${
-                currentRecord?.clockIn ? "text-green-600" : "text-slate-400"
+                currentRecord?.clockIn ? "text-green-600" : "text-slate-400 dark:text-slate-400"
               }`} />
             </div>
             <div>
@@ -278,14 +278,14 @@ export default function StaffAttendancePage() {
                       Clocked in at {formatTime(currentRecord.clockIn)}
                     </p>
                     {currentRecord?.clockOut && (
-                      <p className="text-slate-500 flex items-center gap-2">
+                      <p className="text-slate-500 dark:text-slate-400 flex items-center gap-2">
                         <LogoutIcon className="w-4 h-4" />
                         Clocked out at {formatTime(currentRecord.clockOut)}
                       </p>
                     )}
                   </>
                 ) : (
-                  <p className="text-slate-500">Not clocked in yet</p>
+                  <p className="text-slate-500 dark:text-slate-400">Not clocked in yet</p>
                 )}
                 {!currentRecord && (
                   <p className="text-slate-400 text-sm">No record for today</p>
@@ -346,55 +346,55 @@ export default function StaffAttendancePage() {
           { label: "This Week", value: thisWeekPresent, color: "from-blue-500 to-blue-600", bgColor: "bg-blue-50", textColor: "text-blue-600" },
           { label: "Present", value: totalPresent, color: "from-green-500 to-green-600", bgColor: "bg-green-50", textColor: "text-green-600" },
           { label: "Late", value: totalLate, color: "from-amber-500 to-amber-600", bgColor: "bg-amber-50", textColor: "text-amber-600" },
-          { label: "Total Hours", value: `${totalHours.toFixed(1)}h`, color: "from-slate-500 to-slate-600", bgColor: "bg-slate-50", textColor: "text-slate-600" },
+          { label: "Total Hours", value: `${totalHours.toFixed(1)}h`, color: "from-slate-500 to-slate-600", bgColor: "bg-slate-50 dark:bg-slate-700/50", textColor: "text-slate-600 dark:text-slate-400" },
         ].map((stat, index) => (
           <div
             key={stat.label}
-            className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-slate-100"
+            className="group bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-slate-100 dark:border-slate-700"
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className={`inline-flex p-3 rounded-xl ${stat.bgColor} mb-4`}>
               <div className={`w-6 h-6 bg-gradient-to-br ${stat.color} rounded-lg`}></div>
             </div>
             <div className={`text-sm ${stat.textColor} font-medium mb-1`}>{stat.label}</div>
-            <div className="text-3xl font-bold text-slate-800">{stat.value}</div>
+            <div className="text-3xl font-bold text-slate-800 dark:text-white">{stat.value}</div>
           </div>
         ))}
       </div>
 
       {/* History */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="p-6 border-b border-slate-100 flex items-center gap-3">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+        <div className="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center">
             <CalendarIcon className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-slate-800">Attendance History</h2>
-            <p className="text-sm text-slate-500">Your recent attendance records</p>
+            <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Attendance History</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Your recent attendance records</p>
           </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-50/80">
+            <thead className="bg-slate-50 dark:bg-slate-700/50/80">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Clock In</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Clock Out</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Hours</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clock In</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clock Out</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hours</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {history.slice(0, 10).map((record, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-slate-50/50 transition-colors animate-fade-in"
+                  className="hover:bg-slate-50 dark:bg-slate-700/50/50 transition-colors animate-fade-in"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <td className="px-6 py-4 text-sm font-medium text-slate-800">{formatDate(record.date)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600">{formatTime(record.clockIn)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600">{formatTime(record.clockOut)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 font-medium">
+                  <td className="px-6 py-4 text-sm font-medium text-slate-800 dark:text-white">{formatDate(record.date)}</td>
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">{formatTime(record.clockIn)}</td>
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">{formatTime(record.clockOut)}</td>
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-medium">
                     {record.hoursWorked ? `${record.hoursWorked}h` : "--"}
                   </td>
                   <td className="px-6 py-4">
@@ -411,10 +411,10 @@ export default function StaffAttendancePage() {
 
         {history.length === 0 && (
           <div className="p-12 text-center">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CalendarIcon className="w-8 h-8 text-slate-400" />
+            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CalendarIcon className="w-8 h-8 text-slate-400 dark:text-slate-400" />
             </div>
-            <div className="text-slate-500">No attendance records found</div>
+            <div className="text-slate-500 dark:text-slate-400">No attendance records found</div>
           </div>
         )}
       </div>

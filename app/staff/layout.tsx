@@ -296,7 +296,7 @@ export default function StaffLayout({
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-sm font-medium text-white">{user.fullName || user.username}</div>
-                  <div className="text-xs text-slate-400">{roleDisplayName} - {user.department}</div>
+                  <div className="text-xs text-slate-400 dark:text-slate-400">{roleDisplayName} - {user.department}</div>
                 </div>
                 <button
                   onClick={handleLogout}
@@ -330,7 +330,7 @@ export default function StaffLayout({
                       className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 ${
                         isActive
                           ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-800 dark:text-white"
                       }`}
                       title={isSidebarCollapsed ? item.label : undefined}
                     >
@@ -341,9 +341,9 @@ export default function StaffLayout({
                       <div className={`relative p-2 rounded-xl transition-all duration-300 ${
                         isActive 
                           ? "bg-white/20" 
-                          : "bg-slate-100 group-hover:bg-slate-200"
+                          : "bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-slate-500 group-hover:text-amber-500"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-slate-500 dark:text-slate-400 group-hover:text-amber-500"}`} />
                       </div>
                       <span className={`font-medium transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
@@ -367,9 +367,9 @@ export default function StaffLayout({
               <div className="px-3 mt-auto">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl transition-all duration-300 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-300 group"
                 >
-                  <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-all duration-300">
+                  <div className="p-2 rounded-xl bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-all duration-300">
                     <svg
                       className={`w-5 h-5 transition-transform duration-300 ${isSidebarCollapsed ? "rotate-180" : ""}`}
                       fill="none"

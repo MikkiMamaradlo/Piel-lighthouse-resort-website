@@ -155,11 +155,11 @@ export default function AdminDashboard() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-slate-500 mt-1">Welcome back! Here's what's happening at your resort.</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Welcome back! Here's what's happening at your resort.</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium flex items-center gap-1">
+          <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-medium flex items-center gap-1">
             <CheckCircle className="w-4 h-4" />
             All systems operational
           </span>
@@ -176,7 +176,7 @@ export default function AdminDashboard() {
         {statCards.map((stat, index) => (
           <div
             key={index}
-            className="group bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
+            className="group bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-700 transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-4">
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${stat.color}`}>
@@ -196,11 +196,11 @@ export default function AdminDashboard() {
               </div>
             </div>
             <div>
-              <p className="text-sm text-slate-500 font-medium">{stat.title}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{stat.title}</p>
               {loading ? (
-                <div className="h-8 w-16 bg-slate-100 animate-pulse rounded mt-1" />
+                <div className="h-8 w-16 bg-slate-100 dark:bg-slate-700 animate-pulse rounded mt-1" />
               ) : (
-                <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
               )}
             </div>
           </div>
@@ -210,11 +210,11 @@ export default function AdminDashboard() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Booking Trends Chart */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-900">Booking Trends</h3>
-              <p className="text-sm text-slate-500">Weekly booking overview</p>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Booking Trends</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Weekly booking overview</p>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
               <TrendingUp className="w-4 h-4" />
@@ -253,11 +253,11 @@ export default function AdminDashboard() {
         </div>
 
         {/* Booking Status Chart */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-900">Booking Status</h3>
-              <p className="text-sm text-slate-500">Current distribution</p>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Booking Status</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Current distribution</p>
             </div>
           </div>
           <div className="flex items-center">
@@ -293,8 +293,8 @@ export default function AdminDashboard() {
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: item.color }}
                   />
-                  <span className="text-sm text-slate-600">{item.name}</span>
-                  <span className="text-sm font-bold text-slate-900">{item.value}</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">{item.name}</span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -303,11 +303,11 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-lg font-bold text-slate-900">Recent Activity</h3>
-            <p className="text-sm text-slate-500">Latest actions on your resort</p>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Latest actions on your resort</p>
           </div>
           <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
             View All →
@@ -317,9 +317,9 @@ export default function AdminDashboard() {
           {recentActivity.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
+              className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
             >
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+              <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm">
                 {activity.type === "booking" && <CalendarCheck className="w-6 h-6 text-blue-600" />}
                 {activity.type === "confirm" && <CheckCircle className="w-6 h-6 text-green-600" />}
                 {activity.type === "testimonial" && <MessageSquareQuote className="w-6 h-6 text-amber-500" />}
@@ -327,10 +327,10 @@ export default function AdminDashboard() {
                 {activity.type === "room" && <BedDouble className="w-6 h-6 text-purple-500" />}
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-slate-900">{activity.action}</p>
-                <p className="text-sm text-slate-500">{activity.guest}</p>
+                <p className="font-semibold text-slate-900 dark:text-white">{activity.action}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{activity.guest}</p>
               </div>
-              <div className="flex items-center gap-2 text-slate-400">
+              <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm">{activity.time}</span>
               </div>

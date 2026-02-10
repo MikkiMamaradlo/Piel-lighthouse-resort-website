@@ -105,24 +105,24 @@ export default function DashboardCalendar() {
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 max-w-2xl mx-auto">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-bold text-slate-900">Booking Calendar</h3>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white">Booking Calendar</h3>
         <div className="flex items-center gap-2">
           <button
             onClick={prevMonth}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-slate-600" />
+            <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-400" />
           </button>
-          <span className="text-sm font-semibold text-slate-900 min-w-[140px] text-center">
+          <span className="text-sm font-semibold text-slate-900 dark:text-white min-w-[140px] text-center">
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
           </span>
           <button
             onClick={nextMonth}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <ChevronRight className="w-5 h-5 text-slate-600" />
+            <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400" />
           </button>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function DashboardCalendar() {
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
-            className="text-center text-sm font-medium text-slate-500 py-2"
+            className="text-center text-sm font-medium text-slate-500 dark:text-slate-400 py-2"
           >
             {day}
           </div>
@@ -150,7 +150,7 @@ export default function DashboardCalendar() {
             <div
               key={day}
               className={`aspect-square flex items-center justify-center text-sm relative ${
-                isToday(day) ? "bg-blue-500 text-white rounded-lg font-semibold" : "text-slate-700 hover:bg-slate-50 rounded-lg"
+                isToday(day) ? "bg-blue-500 text-white rounded-lg font-semibold" : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg"
               } transition-colors cursor-pointer`}
             >
               {day}
@@ -182,25 +182,25 @@ export default function DashboardCalendar() {
       )}
 
       {/* Legend */}
-      <div className="mt-4 pt-4 border-t border-slate-100">
+      <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
         <div className="flex items-center justify-center gap-6 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <span className="text-slate-600">Available</span>
+            <span className="text-slate-600 dark:text-slate-400">Available</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-            <span className="text-slate-600">Reserved</span>
+            <span className="text-slate-600 dark:text-slate-400">Reserved</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <span className="text-slate-600">Booked</span>
+            <span className="text-slate-600 dark:text-slate-400">Booked</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-        <span className="text-sm text-slate-500">{bookings.length} total bookings</span>
+      <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+        <span className="text-sm text-slate-500 dark:text-slate-400">{bookings.length} total bookings</span>
         <a
           href="/admin/bookings"
           className="text-sm text-blue-600 hover:text-blue-700 font-medium"

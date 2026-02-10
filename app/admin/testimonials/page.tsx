@@ -117,7 +117,7 @@ export default function TestimonialsPage() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`w-4 h-4 ${i < rating ? "text-amber-400 fill-amber-400" : "text-gray-300"}`}
+        className={`w-4 h-4 ${i < rating ? "text-amber-400 fill-amber-400" : "text-gray-300 dark:text-gray-600"}`}
       />
     ))
   }
@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Reviews</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Reviews</h1>
           <p className="text-slate-500 mt-1">Manage guest reviews and testimonials</p>
         </div>
         <button
@@ -141,19 +141,19 @@ export default function TestimonialsPage() {
 
       {/* Testimonials Grid */}
       {loading ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="relative w-16 h-16 mx-auto mb-4">
             <div className="absolute inset-0 border-4 border-amber-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-amber-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500">Loading testimonials...</p>
+          <p className="text-slate-500 dark:text-slate-400">Loading testimonials...</p>
         </div>
       ) : testimonials.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MessageSquareQuote className="w-10 h-10 text-slate-400" />
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
+          <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MessageSquareQuote className="w-10 h-10 text-slate-400 dark:text-slate-400" />
           </div>
-          <p className="text-slate-500 text-lg font-medium">No testimonials added yet</p>
+          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No testimonials added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-amber-600 hover:text-amber-700 font-medium"
@@ -166,27 +166,27 @@ export default function TestimonialsPage() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial._id}
-              className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-lg hover:border-amber-200 transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 hover:shadow-lg hover:border-amber-200 transition-all duration-300"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-amber-500/25">
                   {testimonial.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900">{testimonial.name}</h3>
-                  <p className="text-sm text-slate-500">{testimonial.role}</p>
+                  <h3 className="font-semibold text-slate-900 dark:text-white">{testimonial.name}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{testimonial.role}</p>
                   <div className="flex items-center gap-1 mt-1">
                     {renderStars(testimonial.rating)}
                   </div>
                 </div>
               </div>
               
-              <blockquote className="text-slate-600 text-sm mb-4 line-clamp-4">
+              <blockquote className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-4">
                 "{testimonial.text}"
               </blockquote>
               
-              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                <span className="text-xs text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full">{testimonial.stayDate}</span>
+              <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+                <span className="text-xs text-slate-400 bg-slate-50 dark:bg-slate-700/50 px-2.5 py-1 rounded-full">{testimonial.stayDate}</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => openEditModal(testimonial)}
@@ -210,15 +210,15 @@ export default function TestimonialsPage() {
       {/* Add/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {editingTestimonial ? "Edit Testimonial" : "Add New Testimonial"}
                 </h2>
                 <button
                   onClick={closeModal}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:bg-gray-700 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -227,7 +227,7 @@ export default function TestimonialsPage() {
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Guest Name
                   </label>
                   <input
@@ -240,7 +240,7 @@ export default function TestimonialsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Role/Title
                   </label>
                   <input
@@ -256,7 +256,7 @@ export default function TestimonialsPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Stay Date
                   </label>
                   <input
@@ -268,7 +268,7 @@ export default function TestimonialsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Rating
                   </label>
                   <select
@@ -284,7 +284,7 @@ export default function TestimonialsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Testimonial Text
                 </label>
                 <textarea
@@ -298,7 +298,7 @@ export default function TestimonialsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Avatar URL (optional)
                 </label>
                 <input
@@ -314,7 +314,7 @@ export default function TestimonialsPage() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                  className="flex-1 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   Cancel
                 </button>

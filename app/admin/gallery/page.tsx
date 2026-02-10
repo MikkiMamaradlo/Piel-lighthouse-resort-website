@@ -113,15 +113,15 @@ export default function GalleryPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Gallery</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Gallery</h1>
           <p className="text-slate-500 mt-1">Manage your photo gallery</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-slate-100 rounded-xl p-1">
+          <div className="flex items-center bg-slate-100 dark:bg-slate-700 rounded-xl p-1">
             <button
               onClick={() => setViewMode("grid")}
               className={`p-2.5 rounded-lg transition-all ${
-                viewMode === "grid" ? "bg-white shadow-sm" : "text-slate-500"
+                viewMode === "grid" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-400"
               }`}
             >
               <Grid className="w-5 h-5" />
@@ -129,7 +129,7 @@ export default function GalleryPage() {
             <button
               onClick={() => setViewMode("list")}
               className={`p-2.5 rounded-lg transition-all ${
-                viewMode === "list" ? "bg-white shadow-sm" : "text-slate-500"
+                viewMode === "list" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-400"
               }`}
             >
               <Columns className="w-5 h-5" />
@@ -147,19 +147,19 @@ export default function GalleryPage() {
 
       {/* Gallery Grid */}
       {loading ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="relative w-16 h-16 mx-auto mb-4">
             <div className="absolute inset-0 border-4 border-pink-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-pink-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500">Loading gallery...</p>
+          <p className="text-slate-500 dark:text-slate-400">Loading gallery...</p>
         </div>
       ) : gallery.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-12 text-center">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Image className="w-10 h-10 text-slate-400" />
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
+          <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Image className="w-10 h-10 text-slate-400 dark:text-slate-400" />
           </div>
-          <p className="text-slate-500 text-lg font-medium">No images added yet</p>
+          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No images added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-pink-600 hover:text-pink-700 font-medium"
@@ -172,7 +172,7 @@ export default function GalleryPage() {
           {gallery.map((image) => (
             <div
               key={image._id}
-              className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
+              className="group relative bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden"
             >
               <div className={`relative aspect-square`}>
                 <img
@@ -183,13 +183,13 @@ export default function GalleryPage() {
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                   <button
                     onClick={() => openEditModal(image)}
-                    className="p-2.5 bg-white/90 backdrop-blur rounded-xl hover:bg-white transition-colors"
+                    className="p-2.5 bg-white dark:bg-slate-800/90 backdrop-blur rounded-xl hover:bg-white dark:bg-slate-800 transition-colors"
                   >
-                    <Edit className="w-5 h-5 text-slate-700" />
+                    <Edit className="w-5 h-5 text-slate-700 dark:text-slate-300" />
                   </button>
                   <button
                     onClick={() => handleDelete(image._id)}
-                    className="p-2.5 bg-white/90 backdrop-blur rounded-xl hover:bg-red-50 transition-colors"
+                    className="p-2.5 bg-white dark:bg-slate-800/90 backdrop-blur rounded-xl hover:bg-red-50 transition-colors"
                   >
                     <Trash2 className="w-5 h-5 text-red-600" />
                   </button>
@@ -198,30 +198,30 @@ export default function GalleryPage() {
               <div className="p-4">
                 <h3 className="font-semibold text-slate-900 truncate">{image.title}</h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
                     {image.category}
                   </span>
-                  <span className="text-xs text-slate-400">Order: {image.order}</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-400">Order: {image.order}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-slate-50 border-b border-slate-100">
+            <thead className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
               <tr>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Image</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Title</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Layout</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Image</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Title</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Category</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Layout</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {gallery.map((image) => (
-                <tr key={image._id} className="hover:bg-slate-50">
+                <tr key={image._id} className="hover:bg-slate-50 dark:bg-slate-700/50">
                   <td className="px-6 py-4">
                     <img
                       src={image.url || "/placeholder.jpg"}
@@ -229,17 +229,17 @@ export default function GalleryPage() {
                       className="w-14 h-14 object-cover rounded-xl"
                     />
                   </td>
-                  <td className="px-6 py-4 font-semibold text-slate-900">{image.title}</td>
+                  <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white">{image.title}</td>
                   <td className="px-6 py-4">
-                    <span className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
                       {image.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-600">
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">
                     {image.colSpan === "col-span-2" ? (
                       <span className="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Wide</span>
                     ) : (
-                      <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">Normal</span>
+                      <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-xs font-medium">Normal</span>
                     )}
                   </td>
                   <td className="px-6 py-4">
@@ -268,15 +268,15 @@ export default function GalleryPage() {
       {/* Add/Edit Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {editingImage ? "Edit Image" : "Add New Image"}
                 </h2>
                 <button
                   onClick={closeModal}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:bg-gray-700 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -284,7 +284,7 @@ export default function GalleryPage() {
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Image URL
                 </label>
                 <input
@@ -297,7 +297,7 @@ export default function GalleryPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Title
                 </label>
                 <input
@@ -310,7 +310,7 @@ export default function GalleryPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Category
                 </label>
                 <select
@@ -324,7 +324,7 @@ export default function GalleryPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Layout
                 </label>
                 <div className="flex gap-4">
@@ -356,7 +356,7 @@ export default function GalleryPage() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                  className="flex-1 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   Cancel
                 </button>

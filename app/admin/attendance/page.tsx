@@ -106,7 +106,7 @@ export default function AdminAttendancePage() {
         )
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+          <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 rounded-full text-sm">
             {status}
           </span>
         )
@@ -129,7 +129,7 @@ export default function AdminAttendancePage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Staff Attendance Monitor</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Staff Attendance Monitor</h1>
           <p className="text-slate-500 mt-1">Track and monitor staff attendance</p>
         </div>
         <button
@@ -143,73 +143,73 @@ export default function AdminAttendancePage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-green-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500">Present</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.present}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Present</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.present}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
               <AlertCircle className="w-5 h-5 text-amber-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500">Late</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.late}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Late</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.late}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
               <XCircle className="w-5 h-5 text-red-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500">Absent</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.absent}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Absent</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.absent}</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
             <input
               type="text"
               placeholder="Search by name or staff ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
+              className="pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white dark:bg-slate-800"
             >
               <option value="all">All Status</option>
               <option value="present">Present</option>
@@ -222,34 +222,34 @@ export default function AdminAttendancePage() {
       </div>
 
       {/* Attendance Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
         {loading ? (
           <div className="p-8 text-center">
             <div className="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-            <p className="mt-4 text-slate-500">Loading attendance data...</p>
+            <p className="mt-4 text-slate-500 dark:text-slate-400">Loading attendance data...</p>
           </div>
         ) : filteredAttendance.length === 0 ? (
           <div className="p-8 text-center">
             <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-            <p className="text-slate-500">No attendance records found</p>
+            <p className="text-slate-500 dark:text-slate-400">No attendance records found</p>
             <p className="text-sm text-slate-400 mt-1">Try adjusting your filters or date</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-100">
+              <thead className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
                 <tr>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Staff Member</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Date</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Clock In</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Clock Out</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Hours Worked</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600">Status</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Staff Member</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Date</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Clock In</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Clock Out</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Hours Worked</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredAttendance.map((record) => (
-                  <tr key={record._id} className="border-b border-slate-50 hover:bg-slate-50">
+                  <tr key={record._id} className="border-b border-slate-50 hover:bg-slate-50 dark:bg-slate-700/50">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -266,12 +266,12 @@ export default function AdminAttendancePage() {
                           </span>
                         </div>
                         <div>
-                          <span className="font-medium text-slate-900">{record.staffName}</span>
-                          <p className="text-sm text-slate-500">{record.staffId}</p>
+                          <span className="font-medium text-slate-900 dark:text-white">{record.staffName}</span>
+                          <p className="text-sm text-slate-500 dark:text-slate-400">{record.staffId}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
                       {new Date(record.date).toLocaleDateString('en-US', {
                         weekday: 'short',
                         month: 'short',
@@ -280,9 +280,9 @@ export default function AdminAttendancePage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-slate-400" />
+                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-400" />
                         <span className={`${
-                          record.clockIn && isLate(record.clockIn) ? "text-amber-600 font-medium" : "text-slate-900"
+                          record.clockIn && isLate(record.clockIn) ? "text-amber-600 font-medium" : "text-slate-900 dark:text-white"
                         }`}>
                           {formatTime(record.clockIn)}
                         </span>
@@ -295,8 +295,8 @@ export default function AdminAttendancePage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-slate-400" />
-                        <span className="text-slate-900">
+                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                        <span className="text-slate-900 dark:text-white">
                           {formatTime(record.clockOut)}
                         </span>
                       </div>
@@ -304,7 +304,7 @@ export default function AdminAttendancePage() {
                     <td className="px-6 py-4">
                       <span className={`font-medium ${
                         record.hoursWorked && record.hoursWorked >= 8 ? "text-green-600" :
-                        record.hoursWorked && record.hoursWorked < 4 ? "text-red-600" : "text-slate-900"
+                        record.hoursWorked && record.hoursWorked < 4 ? "text-red-600" : "text-slate-900 dark:text-white"
                       }`}>
                         {record.hoursWorked ? `${record.hoursWorked}h` : "-"}
                       </span>

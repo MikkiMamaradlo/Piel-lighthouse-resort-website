@@ -54,7 +54,7 @@ export default function AdminLogin() {
           {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+              className="absolute w-1 h-1 bg-white dark:bg-slate-800/20 rounded-full animate-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -89,7 +89,7 @@ export default function AdminLogin() {
               Piel Lighthouse
             </h1>
           </Link>
-          <div className="flex items-center justify-center gap-2 text-slate-400">
+          <div className="flex items-center justify-center gap-2 text-slate-400 dark:text-slate-400">
             <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
             <span className="text-sm font-medium tracking-wide">Admin Portal</span>
             <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
@@ -97,7 +97,7 @@ export default function AdminLogin() {
         </div>
 
         {/* Login Form Card */}
-        <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative bg-white dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
           {/* Decorative top bar */}
           <div className="h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
           
@@ -105,7 +105,7 @@ export default function AdminLogin() {
             {/* Welcome message */}
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-slate-800 mb-1">Administrator</h2>
-              <p className="text-slate-500 text-sm">Secure access to management dashboard</p>
+              <p className="text-slate-500 dark:text-slate-400 text-sm">Secure access to management dashboard</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -122,14 +122,14 @@ export default function AdminLogin() {
 
               {/* Username Field */}
               <div className="space-y-2">
-                <label htmlFor="username" className="block text-sm font-semibold text-slate-700 ml-1">
+                <label htmlFor="username" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">
                   Username
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "username" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "username" ? "text-blue-500" : "text-slate-400"
+                    focusedField === "username" ? "text-blue-500" : "text-slate-400 dark:text-slate-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -142,7 +142,7 @@ export default function AdminLogin() {
                     onChange={(e) => setUsername(e.target.value)}
                     onFocus={() => setFocusedField("username")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:ring-0 focus:border-blue-500 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 placeholder-slate-400"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-700/50 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-0 focus:border-blue-500 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
                     placeholder="Enter your username"
                     required
                   />
@@ -151,14 +151,14 @@ export default function AdminLogin() {
 
               {/* Password Field */}
               <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-semibold text-slate-700 ml-1">
+                <label htmlFor="password" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">
                   Password
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "password" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "password" ? "text-blue-500" : "text-slate-400"
+                    focusedField === "password" ? "text-blue-500" : "text-slate-400 dark:text-slate-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -171,14 +171,14 @@ export default function AdminLogin() {
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setFocusedField("password")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-14 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:ring-0 focus:border-blue-500 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 placeholder-slate-400"
+                    className="w-full pl-12 pr-14 py-4 bg-slate-50 dark:bg-slate-700/50 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-0 focus:border-blue-500 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
                     placeholder="••••••••"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                   >
                     {showPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,9 +215,9 @@ export default function AdminLogin() {
             </form>
 
             {/* Security badge */}
-            <div className="mt-6 p-4 bg-slate-50 rounded-xl flex items-center justify-center gap-3">
+            <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl flex items-center justify-center gap-3">
               <Shield className="w-5 h-5 text-green-500" />
-              <span className="text-sm text-slate-600 font-medium">Secured Admin Access</span>
+              <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">Secured Admin Access</span>
             </div>
           </div>
         </div>
@@ -234,7 +234,7 @@ export default function AdminLogin() {
 
         {/* Footer */}
         <div className="mt-6 text-center">
-          <p className="text-xs text-slate-500/60">© 2024 Piel Lighthouse Resort • Admin Portal v2.0</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400/60">© 2024 Piel Lighthouse Resort • Admin Portal v2.0</p>
         </div>
       </div>
     </div>
