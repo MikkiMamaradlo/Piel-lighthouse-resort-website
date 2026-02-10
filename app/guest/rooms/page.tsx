@@ -184,19 +184,8 @@ export default function GuestRoomsPage() {
           </Link>
         </nav>
 
-        {/* User Info & Logout */}
+        {/* Logout */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 bg-slate-50/80 backdrop-blur-sm">
-          {guest && (
-            <div className="flex items-center gap-3 px-4 py-3 mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                {guest.username?.charAt(0).toUpperCase() || "G"}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-900 truncate">{guest.username || "Guest"}</p>
-                <p className="text-xs text-slate-500 truncate">{guest.email || ""}</p>
-              </div>
-            </div>
-          )}
           <button
             onClick={handleLogout}
             className="group relative flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl text-red-600 hover:bg-red-50 transition-all duration-300"
