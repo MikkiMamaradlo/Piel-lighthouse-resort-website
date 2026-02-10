@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, Phone, MapPin, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -86,8 +87,8 @@ export default function Navigation() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         scrolled
-          ? "bg-white/98 backdrop-blur-lg shadow-lg border-b border-gray-100"
-          : "bg-white/95 backdrop-blur-md"
+          ? "bg-white/98 dark:bg-slate-900/98 backdrop-blur-lg shadow-lg border-b border-gray-100 dark:border-gray-800"
+          : "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* Top bar */}
@@ -150,6 +151,7 @@ export default function Navigation() {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             {isGuestLoggedIn ? (
               <>
                 <Link 
@@ -161,14 +163,14 @@ export default function Navigation() {
                 </Link>
                 <button 
                   onClick={handleLogout}
-                  className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-red-600 transition-colors rounded-lg hover:bg-muted/50"
+                  className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-red-600 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-muted/50"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50">
+                <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50 dark:text-gray-300 dark:hover:text-white">
                   <User className="w-4 h-4" />
                   <span>Login</span>
                 </Link>
@@ -195,8 +197,12 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-100 animate-in slide-in-from-top-2 duration-300">
+          <div className="lg:hidden py-4 border-t border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-300">
             <div className="flex flex-col gap-1">
+              <div className="px-4 py-2 flex items-center justify-between">
+                <span className="text-sm font-medium text-muted-foreground">Theme</span>
+                <ThemeToggle />
+              </div>
               {navLinks.map((link) => (
                 <button
                   key={link.id}

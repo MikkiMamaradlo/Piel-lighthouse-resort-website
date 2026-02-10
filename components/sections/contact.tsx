@@ -144,10 +144,10 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white relative" aria-labelledby="contact-heading">
+    <section id="contact" className="py-24 bg-linear-to-b from-white via-blue-50/30 to-white dark:bg-linear-to-b dark:from-slate-900 dark:via-slate-800/50 dark:to-slate-900 relative" aria-labelledby="contact-heading">
       {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-0 w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 dark:bg-amber-500/10 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
@@ -187,7 +187,7 @@ export default function Contact() {
         {/* Booking Form */}
         {!isGuestLoggedIn ? (
           /* Guest Login Prompt */
-          <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 md:p-12 text-center">
+          <div className="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 rounded-3xl p-8 md:p-12 text-center">
             <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <User className="w-10 h-10 text-primary" />
             </div>
@@ -216,7 +216,7 @@ export default function Contact() {
           </div>
         ) : (
           /* Booking Form for Logged In Users */
-          <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/5 rounded-full translate-y-1/2 -translate-x-1/2" />

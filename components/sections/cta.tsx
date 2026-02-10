@@ -37,16 +37,16 @@ export default function CTASection() {
   }
 
   return (
-    <section className="py-24 bg-linear-to-br from-primary via-primary to-blue-800 relative overflow-hidden">
+    <section className="py-24 bg-linear-to-br from-primary via-primary to-blue-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
       {/* Animated background patterns */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-size-[40px_40px]" />
       </div>
       
       {/* Decorative circles */}
-      <div className="absolute top-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 -right-20 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 -left-20 w-64 h-64 bg-white/10 dark:bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -right-20 w-96 h-96 bg-amber-500/20 dark:bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-white/5 dark:bg-white/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main CTA */}

@@ -36,11 +36,11 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-linear-to-b from-slate-900 to-slate-800 text-white relative overflow-hidden">
+    <footer className="bg-linear-to-b from-slate-900 to-slate-800 dark:bg-linear-to-b from-slate-950 to-slate-900 text-white relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500" />
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500/10 dark:bg-amber-500/5 rounded-full blur-3xl" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid lg:grid-cols-4 gap-12 mb-12">
@@ -167,11 +167,11 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500 w-full md:w-64"
+                className="px-4 py-2 rounded-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500 w-full md:w-64"
               />
               <button 
                 type="submit" 
-                className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors whitespace-nowrap flex items-center gap-2"
+                className="px-6 py-2 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white rounded-lg font-medium transition-colors whitespace-nowrap flex items-center gap-2"
               >
                 {subscribed ? (
                   <>

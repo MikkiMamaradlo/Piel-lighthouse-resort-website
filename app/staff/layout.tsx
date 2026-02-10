@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
+import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface User {
   id: string
@@ -248,8 +250,14 @@ export default function StaffLayout({
   const roleDisplayName = roleDisplayNames[user.role] || user.role
 
   return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
     <div className="min-h-screen bg-[url('/images/piel2.jpg')] bg-cover bg-center bg-fixed">
-      <div className="min-h-screen bg-white/90 backdrop-blur-sm">
+      <div className="min-h-screen bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm">
         {/* Top Navigation */}
         <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg z-50">
           <div className="flex items-center justify-between h-full px-6">
@@ -275,11 +283,12 @@ export default function StaffLayout({
             
             <div className="flex items-center gap-6">
               <div className="hidden md:block text-right">
-                <div className="text-sm text-slate-300">{formatDate(currentTime)}</div>
+                <div className="text-sm text-slate-300 dark:text-slate-400">{formatDate(currentTime)}</div>
                 <div className="text-lg font-semibold text-white">{formatTime(currentTime)}</div>
               </div>
               
-              <div className="flex items-center gap-3 pl-6 border-l border-slate-700">
+              <div className="flex items-center gap-3 pl-6 border-l border-slate-700 dark:border-slate-600">
+                <ThemeToggle />
                 <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-sm">
                     {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
@@ -393,5 +402,6 @@ export default function StaffLayout({
         </div>
       </div>
     </div>
+    </ThemeProvider>
   )
 }

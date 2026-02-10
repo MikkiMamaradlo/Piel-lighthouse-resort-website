@@ -10,6 +10,7 @@ import BackToTop from "@/components/sections/back-to-top"
 import Testimonials from "@/components/sections/testimonials"
 import CTASection from "@/components/sections/cta"
 import RoomDetailsModal from "@/components/room-details-modal"
+import { FloatingThemeToggle } from "@/components/floating-theme-toggle"
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <Footer />
       <BackToTop />
       <RoomDetailsModal />
+      <FloatingThemeToggle />
     </main>
   )
 }
