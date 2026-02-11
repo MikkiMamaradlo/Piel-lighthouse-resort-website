@@ -260,7 +260,7 @@ export default function GuestRoomsPage() {
                 {rooms.map((room) => (
                   <div
                     key={room._id}
-                    className="group bg-white dark:bg-ocean-900 rounded-2xl shadow-lg border border-slate-200 dark:border-ocean-700 overflow-hidden hover:shadow-2xl hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 backdrop-blur-0"
+                    className="group bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-2xl hover:border-blue-200 dark:hover:border-blue-700 transition-all duration-300"
                   >
                     {/* Image */}
                     <div className="relative h-56 bg-slate-100 dark:bg-ocean-800 overflow-hidden">
@@ -276,18 +276,18 @@ export default function GuestRoomsPage() {
                         </div>
                       )}
                       {/* Type Badge */}
-                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-white/95 dark:bg-ocean-900/95 backdrop-blur-sm text-xs font-semibold rounded-full shadow-lg text-slate-700 dark:text-white">
+                      <div className="absolute top-4 right-4 px-3 py-1.5 bg-white dark:bg-slate-700 backdrop-blur-sm text-xs font-semibold rounded-full shadow-lg text-slate-700 dark:text-white">
                         {room.type === "cottage" ? "🏠 Cottage" : "🛏️ Room"}
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
+                    <div className="p-6 bg-white dark:bg-white/10 backdrop-blur-sm">
                       <div className="flex items-start justify-between mb-3">
                         <div>
                           <h3 className="text-xl font-bold text-slate-900 dark:text-white">{room.name}</h3>
-                          <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-1">
+                          <p className="text-sm text-slate-600 dark:text-white flex items-center gap-1 mt-1">
                             <Users className="w-4 h-4" />
                             {room.capacity}
                           </p>
@@ -296,11 +296,11 @@ export default function GuestRoomsPage() {
                           <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                             {room.price}
                           </p>
-                          <p className="text-xs text-slate-400 dark:text-slate-500">{room.period}</p>
+                          <p className="text-xs text-slate-500 dark:text-white">{room.period}</p>
                         </div>
                       </div>
 
-                      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
+                      <p className="text-sm text-slate-600 dark:text-white mb-4 line-clamp-2">
                         {room.description}
                       </p>
 
@@ -309,13 +309,13 @@ export default function GuestRoomsPage() {
                         {room.features.slice(0, 3).map((feature, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-1 bg-slate-100 dark:bg-ocean-800 rounded-lg text-xs text-slate-600 dark:text-slate-400"
+                            className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-white"
                           >
                             {feature}
                           </span>
                         ))}
                         {room.features.length > 3 && (
-                          <span className="px-2 py-1 bg-slate-100 dark:bg-ocean-800 rounded-lg text-xs text-slate-600 dark:text-slate-400">
+                          <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-white">
                             +{room.features.length - 3} more
                           </span>
                         )}
@@ -336,7 +336,7 @@ export default function GuestRoomsPage() {
                           )
                         })}
                         {room.inclusions.length > 3 && (
-                          <span className="px-2 py-1 bg-slate-100 dark:bg-ocean-800 rounded-lg text-xs text-slate-600 dark:text-slate-400">
+                          <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-white">
                             +{room.inclusions.length - 3} more
                           </span>
                         )}
@@ -360,7 +360,7 @@ export default function GuestRoomsPage() {
             <div className="text-center pt-8">
               <Link
                 href="/guest/dashboard"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-ocean-900 rounded-xl font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-ocean-800 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm border border-slate-200 dark:border-ocean-700"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/60 dark:bg-white/60 backdrop-blur-sm rounded-xl font-medium text-slate-600 dark:text-slate-900 hover:bg-white/80 dark:hover:bg-white/80 hover:text-slate-900 dark:hover:text-slate-900 transition-all shadow-sm border border-slate-200 dark:border-slate-300"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to Booking

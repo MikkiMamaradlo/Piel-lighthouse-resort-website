@@ -6,7 +6,8 @@
 $ErrorActionPreference = "Stop"
 
 Write-Host "`n🏝️  Piel Lighthouse Resort - Setup`n" -ForegroundColor Cyan
-Write-Host "================================`n" -ForegroundColor Cyan
+Write-Host "================================" -ForegroundColor Cyan
+Write-Host "" 
 
 # Step 1: Check for pnpm
 Write-Host "[1/5] Checking for pnpm..." -ForegroundColor Yellow
@@ -66,4 +67,5 @@ Write-Host "      - GMAIL_APP_PASSWORD (see GMAIL_SETUP.md)`n" -ForegroundColor 
 Write-Host "   2. Start the development server:" -ForegroundColor White
 Write-Host "      pnpm run dev`n" -ForegroundColor White
 Write-Host "   3. Open http://localhost:3000 in your browser`n" -ForegroundColor White
-Write-Host "================================`n" -ForegroundColor Cyan
+Write-Host "================================" -ForegroundColor Cyan
+Write-Host ""
