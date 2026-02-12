@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { createHmac } from "crypto"
 import { ObjectId } from "mongodb"
 import connectToDatabase from "@/lib/mongodb"
-import { DEPARTMENT_ROLES, type Department, type RoleByDepartment } from "@/backend/lib/schemas/staff"
+import { DEPARTMENT_ROLES, type Department, type RoleByDepartment } from "@/lib/schemas/staff"
 
 // Password hashing using HMAC
 function hashPassword(password: string): string {

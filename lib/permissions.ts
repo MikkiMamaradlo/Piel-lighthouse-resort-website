@@ -1,4 +1,4 @@
-import { ROLE_PERMISSIONS, type RoleByDepartment, type LegacyRole } from "@/backend/lib/schemas/staff"
+import { ROLE_PERMISSIONS, type RoleByDepartment, type LegacyRole } from "@/lib/schemas/staff"
 
 export interface UserPermissions {
   canManageStaff: boolean
