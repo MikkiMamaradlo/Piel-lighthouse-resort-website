@@ -292,7 +292,9 @@ Expected output for a fresh installation:
 
 ---
 
-## Step 5: Configure Gmail SMTP
+### 6.2 Configure Gmail SMTP
+
+Detailed Gmail configuration instructions are available in [`docs/GMAIL_SETUP.md`](docs/GMAIL_SETUP.md).
 
 ### 5.1 Enable 2-Step Verification
 
@@ -570,7 +572,7 @@ curl -X POST http://localhost:3000/api/admin/register \
 
 If you encounter issues not covered here:
 
-1. Check the [README.md](README.md) for additional information
+1. Check the [README.md](../README.md) for additional information
 2. Review the [GMAIL_SETUP.md](GMAIL_SETUP.md) for email-related issues
 3. Check the application logs in the terminal
 4. Ensure all environment variables are correctly set
@@ -581,7 +583,7 @@ If you encounter issues not covered here:
 
 | Resource | Description |
 |----------|-------------|
-| [README.md](README.md) | Project overview and features |
+| [README.md](../README.md) | Project overview and features |
 | [GMAIL_SETUP.md](GMAIL_SETUP.md) | Detailed Gmail SMTP configuration |
 | [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) | Detailed project structure |
 | [PORTABILITY_GUIDE.md](PORTABILITY_GUIDE.md) | Moving the project to a new machine |

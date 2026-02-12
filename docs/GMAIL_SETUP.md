@@ -124,7 +124,7 @@ SMTP_PASS=your_sendgrid_api_key
 
 ## Files Involved
 
-- [`lib/email.ts`](lib/email.ts) - Email sending configuration
-- [`app/api/bookings/route.ts`](app/api/bookings/route.ts) - Booking API that sends emails
-- [`.env.local`](.env.local) - Environment variables
-- [`.env.local.example`](.env.local.example) - Environment template
+- [`lib/email.ts`](../lib/email.ts) - Email sending configuration
+- [`app/api/bookings/route.ts`](../app/api/bookings/route.ts) - Booking API that sends emails
+- [`.env.local`](../.env.local) - Environment variables
+- [`.env.local.example`](../.env.local.example) - Environment template
