@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Waves, Sun, Moon } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Waves, Sun } from "lucide-react"
+
 
 export default function GuestLoginPage() {
   const router = useRouter()
-  const { theme, setTheme } = useTheme()
+  
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -82,18 +82,6 @@ export default function GuestLoginPage() {
       </div>
 
       <div className="relative w-full max-w-md p-6">
-        {/* Theme Toggle */}
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="absolute top-0 right-0 p-3 rounded-xl bg-slate-100 dark:bg-ocean-800 hover:bg-slate-200 dark:hover:bg-ocean-700 transition-colors shadow-lg"
-        >
-          {theme === "dark" ? (
-            <Sun className="w-5 h-5 text-amber-400" />
-          ) : (
-            <Moon className="w-5 h-5 text-slate-600" />
-          )}
-        </button>
-
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="relative inline-block mb-6">
