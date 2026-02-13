@@ -82,10 +82,3 @@ export default function Activities() {
     </section>
   )
 }
-
-
-
-
-
-
-

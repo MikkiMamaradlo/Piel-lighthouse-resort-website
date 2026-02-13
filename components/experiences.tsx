@@ -148,10 +148,3 @@ export default function Experiences() {
     </section>
   )
 }
-
-
-
-
-
-
-

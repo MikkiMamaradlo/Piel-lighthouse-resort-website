@@ -6,7 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Calendar, User, Mail, Phone, LogOut, ChevronLeft, ChevronRight, Send, CheckCircle, Users, Waves, Sun, Umbrella } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/lib/hooks/use-toast"
 import { GuestProfileDropdown } from "@/components/guest-profile-dropdown"
 
 interface GuestBooking {

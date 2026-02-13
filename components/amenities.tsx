@@ -103,10 +103,3 @@ export default function Amenities() {
     </section>
   )
 }
-
-
-
-
-
-
-

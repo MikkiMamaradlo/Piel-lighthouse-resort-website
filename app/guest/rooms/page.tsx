@@ -6,7 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Calendar, Star, Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, ArrowLeft, Check, Waves, Sun, Umbrella, Anchor } from "lucide-react"
 import { GuestProfileDropdown } from "@/components/guest-profile-dropdown"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/lib/hooks/use-toast"
 
 interface Room {
   _id: string

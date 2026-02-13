@@ -22,7 +22,7 @@ const rooms = [
     ],
     popular: true,
     features: ["Table Cottage", "Extra mattress"],
-    description: "Wake up to the sound of waves in our Beachfront Room. This cozy accommodation offers direct beach access and stunning ocean views."
+    description: "Wake up to the sound of waves in our Beachfront Room. This cozy accommodation offers direct beach access and stunning ocean views.",
   },
   {
     name: "Barkada Room",
@@ -40,7 +40,7 @@ const rooms = [
     ],
     popular: false,
     features: ["Table Cottage", "Extra mattresses"],
-    description: "Our spacious Barkada Room is designed for groups and families with ample space for up to 10 guests."
+    description: "Our spacious Barkada Room is designed for groups and families with ample space for up to 10 guests.",
   },
   {
     name: "Family Room",
@@ -58,7 +58,7 @@ const rooms = [
     ],
     popular: false,
     features: ["Private toilet", "Table Cottage"],
-    description: "The ultimate family accommodation! This expansive room comfortably hosts up to 15 guests."
+    description: "The ultimate family accommodation! This expansive room comfortably hosts up to 15 guests.",
   },
 ]
 
@@ -196,10 +196,3 @@ export default function Accommodations() {
     </section>
   )
 }
-
-
-
-
-
-
-

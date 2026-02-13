@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Send, Clock, Calendar, MessageSquare, CheckCircle, User, LogIn } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/lib/hooks/use-toast"
 
 export default function Contact() {
   const router = useRouter()
@@ -399,10 +399,3 @@ export default function Contact() {
     </section>
   )
 }
-
-
-
-
-
-
-
