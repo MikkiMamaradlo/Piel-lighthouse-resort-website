@@ -44,7 +44,7 @@ export default function Gallery() {
   }, [activeCategory])
 
   return (
-    <section id="gallery" className="py-24 bg-linear-to-b from-white to-blue-50/30 relative" aria-labelledby="gallery-heading">
+    <section id="gallery" className="py-24 bg-linear-to-b dark:from-slate-900 dark:to-slate-800 relative" aria-labelledby="gallery-heading">
       {/* Background decorations */}
       <div className="absolute top-20 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
@@ -162,3 +162,10 @@ export default function Gallery() {
     </section>
   )
 }
+
+
+
+
+
+
+

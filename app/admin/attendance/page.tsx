@@ -149,7 +149,7 @@ export default function AdminAttendancePage() {
               <CheckCircle className="w-5 h-5 text-green-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Present</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Present</p>
               <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.present}</p>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function AdminAttendancePage() {
               <AlertCircle className="w-5 h-5 text-amber-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Late</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Late</p>
               <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.late}</p>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function AdminAttendancePage() {
               <XCircle className="w-5 h-5 text-red-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Absent</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Absent</p>
               <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.absent}</p>
             </div>
           </div>
@@ -184,7 +184,7 @@ export default function AdminAttendancePage() {
       <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300" />
             <input
               type="text"
               placeholder="Search by name or staff ID..."
@@ -195,7 +195,7 @@ export default function AdminAttendancePage() {
           </div>
 
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300" />
             <input
               type="date"
               value={selectedDate}
@@ -205,7 +205,7 @@ export default function AdminAttendancePage() {
           </div>
 
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -226,12 +226,12 @@ export default function AdminAttendancePage() {
         {loading ? (
           <div className="p-8 text-center">
             <div className="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-            <p className="mt-4 text-slate-500 dark:text-slate-400">Loading attendance data...</p>
+            <p className="mt-4 text-slate-500 dark:text-slate-300">Loading attendance data...</p>
           </div>
         ) : filteredAttendance.length === 0 ? (
           <div className="p-8 text-center">
             <Clock className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-            <p className="text-slate-500 dark:text-slate-400">No attendance records found</p>
+            <p className="text-slate-500 dark:text-slate-300">No attendance records found</p>
             <p className="text-sm text-slate-400 mt-1">Try adjusting your filters or date</p>
           </div>
         ) : (
@@ -239,12 +239,12 @@ export default function AdminAttendancePage() {
             <table className="w-full">
               <thead className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
                 <tr>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Staff Member</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Date</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Clock In</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Clock Out</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Hours Worked</th>
-                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Staff Member</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Date</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Clock In</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Clock Out</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Hours Worked</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -267,11 +267,11 @@ export default function AdminAttendancePage() {
                         </div>
                         <div>
                           <span className="font-medium text-slate-900 dark:text-white">{record.staffName}</span>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">{record.staffId}</p>
+                          <p className="text-sm text-slate-500 dark:text-slate-300">{record.staffId}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
                       {new Date(record.date).toLocaleDateString('en-US', {
                         weekday: 'short',
                         month: 'short',
@@ -280,7 +280,7 @@ export default function AdminAttendancePage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                         <span className={`${
                           record.clockIn && isLate(record.clockIn) ? "text-amber-600 font-medium" : "text-slate-900 dark:text-white"
                         }`}>
@@ -295,7 +295,7 @@ export default function AdminAttendancePage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                        <Clock className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                         <span className="text-slate-900 dark:text-white">
                           {formatTime(record.clockOut)}
                         </span>
@@ -333,3 +333,10 @@ export default function AdminAttendancePage() {
     </div>
   )
 }
+
+
+
+
+
+
+

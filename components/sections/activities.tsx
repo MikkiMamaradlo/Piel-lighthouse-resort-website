@@ -26,7 +26,7 @@ const activities = [
 
 export default function Activities() {
   return (
-    <section id="activities" className="py-24 bg-linear-to-b from-blue-50/50 via-white to-blue-50/30 relative" aria-labelledby="activities-heading">
+    <section id="activities" className="py-24 bg-linear-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative" aria-labelledby="activities-heading">
       {/* Background decorations */}
       <div className="absolute top-1/4 right-0 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
@@ -82,3 +82,10 @@ export default function Activities() {
     </section>
   )
 }
+
+
+
+
+
+
+

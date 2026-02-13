@@ -113,7 +113,7 @@ export default function DashboardCalendar() {
             onClick={prevMonth}
             className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+            <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
           </button>
           <span className="text-sm font-semibold text-slate-900 dark:text-white min-w-[140px] text-center">
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
@@ -122,7 +122,7 @@ export default function DashboardCalendar() {
             onClick={nextMonth}
             className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+            <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-300" />
           </button>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function DashboardCalendar() {
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
-            className="text-center text-sm font-medium text-slate-500 dark:text-slate-400 py-2"
+            className="text-center text-sm font-medium text-slate-500 dark:text-slate-300 py-2"
           >
             {day}
           </div>
@@ -186,21 +186,21 @@ export default function DashboardCalendar() {
         <div className="flex items-center justify-center gap-6 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <span className="text-slate-600 dark:text-slate-400">Available</span>
+            <span className="text-slate-600 dark:text-slate-300">Available</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-            <span className="text-slate-600 dark:text-slate-400">Reserved</span>
+            <span className="text-slate-600 dark:text-slate-300">Reserved</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <span className="text-slate-600 dark:text-slate-400">Booked</span>
+            <span className="text-slate-600 dark:text-slate-300">Booked</span>
           </div>
         </div>
       </div>
 
       <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
-        <span className="text-sm text-slate-500 dark:text-slate-400">{bookings.length} total bookings</span>
+        <span className="text-sm text-slate-500 dark:text-slate-300">{bookings.length} total bookings</span>
         <a
           href="/admin/bookings"
           className="text-sm text-blue-600 hover:text-blue-700 font-medium"
@@ -211,3 +211,10 @@ export default function DashboardCalendar() {
     </div>
   )
 }
+
+
+
+
+
+
+

@@ -138,7 +138,7 @@ export default function GuestRegisterPage() {
             {/* Welcome message */}
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">Create Your Account</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-sm">Start your beach paradise journey today</p>
+              <p className="text-slate-500 dark:text-slate-300 text-sm">Start your beach paradise journey today</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -162,7 +162,7 @@ export default function GuestRegisterPage() {
                   focusedField === "fullName" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "fullName" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "fullName" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -192,7 +192,7 @@ export default function GuestRegisterPage() {
                   focusedField === "email" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "email" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "email" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
@@ -222,7 +222,7 @@ export default function GuestRegisterPage() {
                   focusedField === "phone" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "phone" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "phone" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -252,7 +252,7 @@ export default function GuestRegisterPage() {
                   focusedField === "password" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "password" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "password" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -298,7 +298,7 @@ export default function GuestRegisterPage() {
                   focusedField === "confirmPassword" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "confirmPassword" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "confirmPassword" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -328,7 +328,7 @@ export default function GuestRegisterPage() {
                   focusedField === "address" ? "transform scale-[1.01]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "address" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "address" ? "text-amber-500" : "text-slate-400 dark:text-slate-300"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -377,7 +377,7 @@ export default function GuestRegisterPage() {
                 <div className="w-full border-t border-slate-200 dark:border-slate-600"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400">or</span>
+                <span className="px-4 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300">or</span>
               </div>
             </div>
 
@@ -412,3 +412,10 @@ export default function GuestRegisterPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

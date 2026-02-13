@@ -87,8 +87,8 @@ export default function Navigation() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         scrolled
-          ? "bg-white/98 dark:bg-slate-900/98 backdrop-blur-lg shadow-lg border-b border-gray-100 dark:border-gray-800"
-          : "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md"
+          ? "bg-background/98 backdrop-blur-lg shadow-lg border-b border-border"
+          : "bg-background/95 dark:bg-ocean-950/95 backdrop-blur-md"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* Top bar */}
@@ -161,10 +161,10 @@ export default function Navigation() {
                   </svg>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-slate-800 dark:text-white text-sm">Guest</p>
-                  <p className="text-xs text-slate-500 dark:text-gray-400">Guest</p>
+                  <p className="font-semibold text-card-foreground text-sm">Guest</p>
+                  <p className="text-xs text-muted-foreground">Guest</p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-slate-400 transition-transform duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-muted-foreground transition-transform duration-200">
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
               </button>
@@ -252,3 +252,10 @@ export default function Navigation() {
     </header>
   )
 }
+
+
+
+
+
+
+

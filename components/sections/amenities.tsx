@@ -41,7 +41,7 @@ export default function Amenities() {
   }
 
   return (
-    <section id="amenities" className="py-24 bg-linear-to-b from-white to-blue-50/30 relative" aria-labelledby="amenities-heading">
+    <section id="amenities" className="py-24 bg-linear-to-b dark:from-slate-900 dark:to-slate-800 relative" aria-labelledby="amenities-heading">
       {/* Background decorations */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-linear-to-b from-primary/5 to-transparent rounded-full blur-3xl" />
 
@@ -56,7 +56,7 @@ export default function Amenities() {
               World-Class Amenities
             </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
             Enjoy a wide range of facilities and activities for the perfect beach getaway. 
             Everything you need for relaxation and fun.
           </p>
@@ -66,7 +66,7 @@ export default function Amenities() {
           {amenities.map((item, index) => (
             <Card 
               key={item.name} 
-              className="p-6 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer border border-muted"
+              className="p-6 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer border border-muted dark:border-slate-700"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-start gap-4">
@@ -77,7 +77,7 @@ export default function Amenities() {
                   <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors truncate">
                     {item.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground dark:text-slate-400 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export default function Amenities() {
           <Button 
             variant="ghost" 
             onClick={() => scrollToSection("amenities")}
-            className="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center justify-center gap-2 mx-auto"
+            className="text-primary dark:text-amber-400 font-semibold hover:text-primary/80 dark:hover:text-amber-300 transition-colors flex items-center justify-center gap-2 mx-auto"
           >
             View All Amenities
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,3 +103,10 @@ export default function Amenities() {
     </section>
   )
 }
+
+
+
+
+
+
+

@@ -283,7 +283,7 @@ export default function AdminStaffPage() {
               <Users className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Total Staff</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Total Staff</p>
               <p className="text-2xl font-bold text-slate-800 dark:text-white">{staff.length}</p>
             </div>
           </div>
@@ -294,7 +294,7 @@ export default function AdminStaffPage() {
               <Shield className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Active</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Active</p>
               <p className="text-2xl font-bold text-slate-800 dark:text-white">{activeCount}</p>
             </div>
           </div>
@@ -302,10 +302,10 @@ export default function AdminStaffPage() {
         <div className="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
-              <Users className="w-6 h-6 text-slate-600 dark:text-slate-400" />
+              <Users className="w-6 h-6 text-slate-600 dark:text-slate-300" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Inactive</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Inactive</p>
               <p className="text-2xl font-bold text-slate-800 dark:text-white">{inactiveCount}</p>
             </div>
           </div>
@@ -315,7 +315,7 @@ export default function AdminStaffPage() {
       {/* Search and Filter */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300" />
           <input
             type="text"
             placeholder="Search by name, email, username, or department..."
@@ -340,14 +340,14 @@ export default function AdminStaffPage() {
         {loading ? (
           <div className="p-12 text-center">
             <div className="inline-block w-10 h-10 border-4 border-amber-200 border-t-amber-600 rounded-full animate-spin" />
-            <p className="mt-4 text-slate-500 dark:text-slate-400">Loading staff...</p>
+            <p className="mt-4 text-slate-500 dark:text-slate-300">Loading staff...</p>
           </div>
         ) : filteredStaff.length === 0 ? (
           <div className="p-12 text-center">
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-slate-400 dark:text-slate-400" />
+              <Users className="w-8 h-8 text-slate-400 dark:text-slate-300" />
             </div>
-            <p className="text-slate-500 dark:text-slate-400">No staff members found</p>
+            <p className="text-slate-500 dark:text-slate-300">No staff members found</p>
             {(searchTerm || filter !== "all") && (
               <button
                 onClick={() => { setSearchTerm(""); setFilter("all") }}
@@ -362,13 +362,13 @@ export default function AdminStaffPage() {
             <table className="w-full">
               <thead className="bg-slate-50 dark:bg-slate-700/50/80">
                 <tr>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Staff Member</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Contact</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Department</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Role</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Joined</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Staff Member</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Contact</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Department</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Role</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Status</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Joined</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -383,25 +383,25 @@ export default function AdminStaffPage() {
                         </div>
                         <div>
                           <span className="font-medium text-slate-800 block">{member.fullName || member.username}</span>
-                          <span className="text-xs text-slate-400 dark:text-slate-400">@{member.username}</span>
+                          <span className="text-xs text-slate-400 dark:text-slate-300">@{member.username}</span>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                        <Mail className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                        <Mail className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                         {member.email}
                       </div>
                       {member.phone && (
                         <div className="flex items-center gap-2 text-sm text-slate-500 mt-1">
-                          <Phone className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                          <Phone className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                           {member.phone}
                         </div>
                       )}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
-                        <Building className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                        <Building className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                         {member.department || "General"}
                       </div>
                     </td>
@@ -415,7 +415,7 @@ export default function AdminStaffPage() {
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full ${
                         member.isActive 
                           ? "bg-green-100 text-green-700 border border-green-200"
-                          : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600"
+                          : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600"
                       }`}>
                         <span className={`w-2 h-2 rounded-full ${
                           member.isActive ? "bg-green-500" : "bg-slate-400"
@@ -423,9 +423,9 @@ export default function AdminStaffPage() {
                         {member.isActive ? "Active" : "Inactive"}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-300">
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                        <Calendar className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                         {formatDate(member.createdAt)}
                       </div>
                     </td>
@@ -595,7 +595,7 @@ export default function AdminStaffPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:text-slate-400"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:text-slate-300"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -648,3 +648,10 @@ export default function AdminStaffPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

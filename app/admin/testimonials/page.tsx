@@ -146,14 +146,14 @@ export default function TestimonialsPage() {
             <div className="absolute inset-0 border-4 border-amber-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-amber-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400">Loading testimonials...</p>
+          <p className="text-slate-500 dark:text-slate-300">Loading testimonials...</p>
         </div>
       ) : testimonials.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MessageSquareQuote className="w-10 h-10 text-slate-400 dark:text-slate-400" />
+            <MessageSquareQuote className="w-10 h-10 text-slate-400 dark:text-slate-300" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No testimonials added yet</p>
+          <p className="text-slate-500 dark:text-slate-300 text-lg font-medium">No testimonials added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-amber-600 hover:text-amber-700 font-medium"
@@ -174,14 +174,14 @@ export default function TestimonialsPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-slate-900 dark:text-white">{testimonial.name}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{testimonial.role}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-300">{testimonial.role}</p>
                   <div className="flex items-center gap-1 mt-1">
                     {renderStars(testimonial.rating)}
                   </div>
                 </div>
               </div>
               
-              <blockquote className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-4">
+              <blockquote className="text-slate-600 dark:text-slate-300 text-sm mb-4 line-clamp-4">
                 "{testimonial.text}"
               </blockquote>
               
@@ -332,3 +332,10 @@ export default function TestimonialsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

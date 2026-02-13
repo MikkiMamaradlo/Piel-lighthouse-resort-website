@@ -138,7 +138,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Dark Mode</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Toggle between light and dark theme</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Toggle between light and dark theme</p>
             </div>
           </div>
           <ThemeToggle />
@@ -155,7 +155,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">General Settings</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Basic website information</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Basic website information</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -192,7 +192,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Hero Section</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Main banner content</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Main banner content</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -229,7 +229,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Contact Information</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">How guests can reach you</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">How guests can reach you</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -277,7 +277,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Operating Hours</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Resort operating schedule</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Resort operating schedule</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -325,7 +325,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Social Media</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Your social media links</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Your social media links</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -362,11 +362,11 @@ export default function SettingsPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Security</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Admin access settings</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">Admin access settings</p>
             </div>
           </div>
           <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
-            <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">
               To change admin credentials, modify the following environment variables:
             </p>
             <div className="space-y-2 text-sm">
@@ -386,3 +386,10 @@ export default function SettingsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

@@ -230,20 +230,20 @@ export default function AdminLayout({
                     className="hidden lg:flex p-2.5 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 group"
                   >
                     <ChevronLeft
-                      className={`w-5 h-5 text-ocean-600 dark:text-ocean-300 transition-all duration-300 ${!sidebarOpen ? "rotate-180" : ""} group-hover:text-ocean-500 group-hover:scale-110`}
+                      className={`w-5 h-5 text-muted-foreground transition-all duration-300 ${!sidebarOpen ? "rotate-180" : ""} group-hover:text-ocean-500 group-hover:scale-110`}
                     />
                   </button>
                   <button
                     onClick={() => setMobileMenuOpen(true)}
                     className="lg:hidden p-2.5 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300"
                   >
-                    <Menu className="w-5 h-5 text-ocean-600 dark:text-ocean-300" />
+                    <Menu className="w-5 h-5 text-muted-foreground" />
                   </button>
                   <div className="relative">
-                    <h2 className="text-xl font-bold text-ocean-900 dark:text-white">
+                    <h2 className="text-xl font-bold text-card-foreground">
                       {navItems.find((item) => item.href === pathname)?.label || "Admin"}
                     </h2>
-                    <p className="text-sm text-ocean-500 dark:text-ocean-400 flex items-center gap-2">
+                    <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse" />
                       {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                     </p>
@@ -253,7 +253,7 @@ export default function AdminLayout({
                   <a
                     href="/"
                     target="_blank"
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-ocean-600 dark:text-ocean-400 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 hover:shadow-md"
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 hover:shadow-md"
                   >
                     <Sparkles className="w-4 h-4" />
                     <span className="hidden sm:inline">Website</span>
@@ -266,7 +266,7 @@ export default function AdminLayout({
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-ocean-600 dark:text-ocean-300 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 hover:shadow-md"
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 hover:shadow-md"
                   >
                     <LogOut className="w-4 h-4" />
                     <span className="hidden sm:inline">Logout</span>
@@ -283,3 +283,10 @@ export default function AdminLayout({
     </ThemeProvider>
   )
 }
+
+
+
+
+
+
+

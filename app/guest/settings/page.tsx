@@ -167,7 +167,7 @@ export default function GuestSettingsPage() {
             <div className="flex items-center gap-4">
               <Link
                 href="/guest/dashboard"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300 group"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 text-muted-foreground hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300 group"
               >
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 <span className="hidden sm:inline font-medium">Back</span>
@@ -177,8 +177,8 @@ export default function GuestSettingsPage() {
                   <Sun className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-slate-800 dark:text-white">Settings</h1>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <h1 className="text-xl font-bold text-card-foreground">Settings</h1>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1">
                     <Umbrella className="w-3 h-3" /> Your preferences
                   </p>
                 </div>
@@ -198,10 +198,10 @@ export default function GuestSettingsPage() {
                 <Waves className="w-8 h-8 text-sunset-500 mx-auto mb-2" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold text-card-foreground mb-2 bg-gradient-to-r from-foreground to-muted-foreground dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
               Settings
             </h1>
-            <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+            <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Umbrella className="w-4 h-4 text-teal-500" />
               Customize your experience
             </p>
@@ -218,7 +218,7 @@ export default function GuestSettingsPage() {
                     <div className={`p-2.5 bg-gradient-to-br ${section.gradient} rounded-xl shadow-lg`}>
                       <section.icon className="w-5 h-5 text-white" />
                     </div>
-                    <h2 className="text-lg font-bold text-slate-800 dark:text-white">{section.title}</h2>
+                    <h2 className="text-lg font-bold text-card-foreground">{section.title}</h2>
                   </div>
                 </div>
                 
@@ -233,8 +233,8 @@ export default function GuestSettingsPage() {
                           <item.icon className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="font-semibold text-slate-800 dark:text-white group-hover:text-sunset-600 dark:group-hover:text-sunset-400 transition-colors">{item.label}</p>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">{item.description}</p>
+                          <p className="font-semibold text-card-foreground group-hover:text-sunset-600 dark:group-hover:text-sunset-400 transition-colors">{item.label}</p>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
                         </div>
                       </div>
                       
@@ -261,7 +261,7 @@ export default function GuestSettingsPage() {
                           </span>
                         </button>
                       ) : (
-                        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sand-100 dark:bg-ocean-800 text-slate-500 dark:text-slate-400 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300">
+                        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sand-100 dark:bg-ocean-800 text-slate-500 dark:text-slate-300 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300">
                           <span className="text-sm font-medium">{item.description}</span>
                           <ChevronRight className="w-4 h-4" />
                         </button>
@@ -277,7 +277,7 @@ export default function GuestSettingsPage() {
             <Umbrella className="w-5 h-5 text-sunset-500" />
             <div className="text-center">
               <p className="text-sm font-bold text-slate-700 dark:text-slate-300">Piel Lighthouse Resort</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
+              <p className="text-xs text-slate-500 dark:text-slate-300 flex items-center justify-center gap-1">
                 Version 1.0.0 • Made with <Sun className="w-3 h-3 text-amber-400 mx-1" /> for guests
               </p>
             </div>
@@ -288,7 +288,7 @@ export default function GuestSettingsPage() {
       
       <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6 relative z-10 mt-auto">
         <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-300">
           <div className="flex items-center gap-2">
             <Waves className="w-4 h-4 text-teal-500" />
             <span>© 2024 Piel Lighthouse Resort. Your beach paradise awaits.</span>
@@ -305,3 +305,10 @@ export default function GuestSettingsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

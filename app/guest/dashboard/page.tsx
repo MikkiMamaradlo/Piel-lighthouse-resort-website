@@ -421,8 +421,8 @@ export default function GuestDashboard() {
               </div>
             </div>
             <div className="space-y-1">
-              <p className="font-bold text-xl text-slate-800 dark:text-white tracking-tight">Piel Lighthouse</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1">
+              <p className="font-bold text-xl text-card-foreground tracking-tight">Piel Lighthouse</p>
+              <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
                 <Umbrella className="w-3 h-3" />
                 Guest Portal
               </p>
@@ -446,10 +446,10 @@ export default function GuestDashboard() {
           
           <Link
             href="/guest/rooms"
-            className="group relative flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-sand-100 hover:to-ocean-50 dark:hover:from-ocean-800 dark:hover:to-ocean-700 hover:shadow-lg hover:shadow-sand-200/50 dark:hover:shadow-ocean-900/50"
+            className="group relative flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 text-muted-foreground hover:bg-gradient-to-r hover:from-sand-100 hover:to-ocean-50 dark:hover:from-ocean-800 dark:hover:to-ocean-700 hover:shadow-lg hover:shadow-sand-200/50 dark:hover:shadow-ocean-900/50"
           >
             <div className="p-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 group-hover:bg-white dark:group-hover:bg-ocean-700 transition-all duration-300 shadow-sm group-hover:shadow-md">
-              <Users className="w-5 h-5 text-slate-500 dark:text-slate-400 group-hover:text-sunset-500 transition-colors" />
+              <Users className="w-5 h-5 text-muted-foreground group-hover:text-sunset-500 transition-colors" />
             </div>
             <span className="font-medium text-base">Available Rooms</span>
             <div className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-8px] group-hover:translate-x-0">
@@ -473,7 +473,7 @@ export default function GuestDashboard() {
           <div className="flex items-center justify-between px-6 py-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-3 -ml-2 text-slate-600 dark:text-slate-300 hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105"
+              className="lg:hidden p-3 -ml-2 text-muted-foreground hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105"
             >
               <Calendar className="w-6 h-6" />
             </button>
@@ -481,7 +481,7 @@ export default function GuestDashboard() {
             {/* Welcome badge */}
             <div className="hidden sm:flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-sand-100 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 rounded-full">
               <Sun className="w-4 h-4 text-sunset-500 animate-pulse-glow" />
-              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+              <span className="text-sm font-medium text-muted-foreground">
                 {new Date().getHours() < 12 ? "Good morning" : new Date().getHours() < 18 ? "Good afternoon" : "Good evening"}, {guest?.username}!
               </span>
             </div>
@@ -543,8 +543,8 @@ export default function GuestDashboard() {
                     <Calendar className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white">Availability Calendar</h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Click on available dates to select check-in</p>
+                    <h3 className="text-lg font-bold text-card-foreground">Availability Calendar</h3>
+                    <p className="text-xs text-muted-foreground">Click on available dates to select check-in</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -552,16 +552,16 @@ export default function GuestDashboard() {
                     onClick={prevMonth}
                     className="p-2.5 hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95"
                   >
-                    <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                    <ChevronLeft className="w-5 h-5 text-muted-foreground" />
                   </button>
-                  <span className="font-bold text-slate-800 dark:text-white min-w-[160px] text-center text-base px-4 py-2 bg-sand-100 dark:bg-ocean-800 rounded-xl">
+                  <span className="font-bold text-card-foreground min-w-[160px] text-center text-base px-4 py-2 bg-sand-100 dark:bg-ocean-800 rounded-xl">
                     {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
                   </span>
                   <button
                     onClick={nextMonth}
                     className="p-2.5 hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95"
                   >
-                    <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                    <ChevronRight className="w-5 h-5 text-muted-foreground" />
                   </button>
                 </div>
               </div>
@@ -570,7 +570,7 @@ export default function GuestDashboard() {
                 {/* Day headers */}
                 <div className="grid grid-cols-7 gap-2 mb-3">
                   {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                    <div key={day} className="text-center text-xs font-bold text-slate-500 dark:text-slate-400 py-2 uppercase tracking-wider">
+                    <div key={day} className="text-center text-xs font-bold text-muted-foreground py-2 uppercase tracking-wider">
                       {day}
                     </div>
                   ))}
@@ -610,7 +610,7 @@ export default function GuestDashboard() {
                                 ? "bg-gradient-to-br from-rose-100 to-red-100 dark:from-rose-900/30 dark:to-red-900/30 text-rose-400 dark:text-rose-400 cursor-not-allowed hover:scale-105"
                                 : dateStatus === "reserved"
                                   ? "bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 text-amber-600 dark:text-amber-400 cursor-not-allowed hover:scale-105"
-                                  : "bg-gradient-to-br from-sand-50 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 text-slate-700 dark:text-slate-300 hover:from-sand-100 hover:to-ocean-100 dark:hover:from-ocean-700 dark:hover:to-ocean-600 shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
+                                  : "bg-gradient-to-br from-sand-50 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 text-card-foreground hover:from-sand-100 hover:to-ocean-100 dark:hover:from-ocean-700 dark:hover:to-ocean-600 shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
                           }
                         `}
                       >
@@ -646,15 +646,15 @@ export default function GuestDashboard() {
                 <div className="flex items-center justify-center gap-6 flex-wrap">
                   <div className="flex items-center gap-2.5">
                     <div className="w-3 h-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50"></div>
-                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Available</span>
+                    <span className="text-sm font-medium text-muted-foreground">Available</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="w-3 h-3 rounded-full bg-amber-400 shadow-lg shadow-amber-400/50"></div>
-                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Reserved</span>
+                    <span className="text-sm font-medium text-muted-foreground">Reserved</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="w-3 h-3 rounded-full bg-rose-400 shadow-lg shadow-rose-400/50"></div>
-                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Booked</span>
+                    <span className="text-sm font-medium text-muted-foreground">Booked</span>
                   </div>
                 </div>
               </div>
@@ -669,8 +669,8 @@ export default function GuestDashboard() {
                     <Send className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white">Quick Booking</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Fill in your details to request a reservation</p>
+                    <h3 className="text-lg font-bold text-card-foreground">Quick Booking</h3>
+                    <p className="text-sm text-muted-foreground">Fill in your details to request a reservation</p>
                   </div>
                 </div>
               </div>
@@ -686,7 +686,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-sunset-100 dark:group-focus-within/input:bg-sunset-900/30 group-focus-within/input:text-sunset-500 transition-all duration-300">
-                          <User className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-sunset-500 transition-colors" />
+                          <User className="w-5 h-5 text-muted-foreground group-focus-within/input:text-sunset-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -694,7 +694,7 @@ export default function GuestDashboard() {
                         name="name"
                         value={formData.name}
                         onChange={handleFormChange}
-                        className="w-full pl-14 pr-4 py-3.5 bg-sand-50 dark:bg-ocean-800 border-2 border-transparent dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-0 focus:border-sunset-500 transition-all duration-300 text-slate-800 dark:text-white placeholder:text-slate-400"
+                        className="w-full pl-14 pr-4 py-3.5 bg-sand-50 dark:bg-ocean-800 border-2 border-transparent dark:border-ocean-700 rounded-xl focus:outline-none focus:ring-0 focus:border-sunset-500 transition-all duration-300 text-card-foreground placeholder:text-muted-foreground"
                         placeholder="John Doe"
                         required
                       />
@@ -710,7 +710,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-teal-100 dark:group-focus-within/input:bg-teal-900/30 group-focus-within/input:text-teal-500 transition-all duration-300">
-                          <Mail className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-teal-500 transition-colors" />
+                          <Mail className="w-5 h-5 text-slate-400 dark:text-slate-300 group-focus-within/input:text-teal-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -734,7 +734,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-ocean-100 dark:group-focus-within/input:bg-ocean-900/30 group-focus-within/input:text-ocean-500 transition-all duration-300">
-                          <Phone className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-ocean-500 transition-colors" />
+                          <Phone className="w-5 h-5 text-slate-400 dark:text-slate-300 group-focus-within/input:text-ocean-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -758,7 +758,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-emerald-100 dark:group-focus-within/input:bg-emerald-900/30 group-focus-within/input:text-emerald-500 transition-all duration-300">
-                          <Users className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-emerald-500 transition-colors" />
+                          <Users className="w-5 h-5 text-slate-400 dark:text-slate-300 group-focus-within/input:text-emerald-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -783,7 +783,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-sunset-100 dark:group-focus-within/input:bg-sunset-900/30 group-focus-within/input:text-sunset-500 transition-all duration-300">
-                          <Calendar className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-sunset-500 transition-colors" />
+                          <Calendar className="w-5 h-5 text-slate-400 dark:text-slate-300 group-focus-within/input:text-sunset-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -807,7 +807,7 @@ export default function GuestDashboard() {
                     <div className="relative group/input">
                       <div className="absolute inset-y-0 left-0 w-12 flex items-center justify-center">
                         <div className="w-10 h-10 rounded-xl bg-sand-100 dark:bg-ocean-800 flex items-center justify-center group-focus-within/input:bg-amber-100 dark:group-focus-within/input:bg-amber-900/30 group-focus-within/input:text-amber-500 transition-all duration-300">
-                          <Calendar className="w-5 h-5 text-slate-400 dark:text-slate-400 group-focus-within/input:text-amber-500 transition-colors" />
+                          <Calendar className="w-5 h-5 text-slate-400 dark:text-slate-300 group-focus-within/input:text-amber-500 transition-colors" />
                         </div>
                       </div>
                       <input
@@ -848,13 +848,13 @@ export default function GuestDashboard() {
                             <div className="absolute inset-0 m-0.5 bg-white rounded-full animate-pulse"></div>
                           )}
                         </div>
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${formData.roomType === room.value ? "bg-gradient-to-br from-sunset-500 to-amber-500 text-white" : "bg-sand-200 dark:bg-ocean-700 text-slate-500 dark:text-slate-400"}`}>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${formData.roomType === room.value ? "bg-gradient-to-br from-sunset-500 to-amber-500 text-white" : "bg-sand-200 dark:bg-ocean-700 text-slate-500 dark:text-slate-300"}`}>
                           <room.icon className="w-5 h-5" />
                         </div>
                         <p className={`font-semibold text-sm ${formData.roomType === room.value ? "text-slate-800 dark:text-white" : "text-slate-600 dark:text-slate-300"}`}>
                           {room.label.split(" (")[0]}
                         </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        <p className="text-xs text-slate-500 dark:text-slate-300 mt-1">
                           {room.label.match(/\(.*\)/)?.[0]}
                         </p>
                       </button>
@@ -907,7 +907,7 @@ export default function GuestDashboard() {
                 </Button>
                 
                 {/* Info note */}
-                <div className="flex items-center justify-center gap-2 text-sm text-slate-500 dark:text-slate-400 bg-sand-50 dark:bg-ocean-800/50 py-3 px-4 rounded-xl">
+                <div className="flex items-center justify-center gap-2 text-sm text-slate-500 dark:text-slate-300 bg-sand-50 dark:bg-ocean-800/50 py-3 px-4 rounded-xl">
                   <div className="p-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
                     <CheckCircle className="w-4 h-4 text-emerald-500" />
                   </div>
@@ -927,7 +927,7 @@ export default function GuestDashboard() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-slate-800 dark:text-white">Your Bookings</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">{bookings.length} reservation{bookings.length > 1 ? 's' : ''} found</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-300">{bookings.length} reservation{bookings.length > 1 ? 's' : ''} found</p>
                     </div>
                   </div>
                 </div>
@@ -951,13 +951,13 @@ export default function GuestDashboard() {
                             <p className="font-bold text-lg text-slate-800 dark:text-white">{booking.roomType}</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-3 text-sm">
-                            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+                            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
                               <Calendar className="w-4 h-4" />
                               <span>{new Date(booking.checkIn).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                               <span className="text-slate-400">→</span>
                               <span>{new Date(booking.checkOut).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+                            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
                               <Users className="w-4 h-4" />
                               <span>{booking.guests} guest{booking.guests > 1 ? 's' : ''}</span>
                             </div>
@@ -989,7 +989,7 @@ export default function GuestDashboard() {
         
         {/* Footer */}
         <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-300">
             <div className="flex items-center gap-2">
               <Waves className="w-4 h-4 text-teal-500" />
               <span>© 2024 Piel Lighthouse Resort. Your beach paradise awaits.</span>
@@ -1006,3 +1006,10 @@ export default function GuestDashboard() {
     </div>
   )
 }
+
+
+
+
+
+
+

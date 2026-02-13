@@ -183,11 +183,11 @@ export default function StaffGuestsPage() {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Guest Information</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">View and manage guest profiles and booking history</p>
+          <p className="text-slate-500 dark:text-slate-300 mt-1">View and manage guest profiles and booking history</p>
         </div>
         {/* Search */}
         <div className="relative">
-          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-400" />
+          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300" />
           <input
             type="text"
             placeholder="Search by name or email..."
@@ -206,7 +206,7 @@ export default function StaffGuestsPage() {
               <GuestsIcon className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Total Guests</div>
+              <div className="text-sm text-slate-500 dark:text-slate-300">Total Guests</div>
               <div className="text-2xl font-bold text-slate-800 dark:text-white">{guests.length}</div>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function StaffGuestsPage() {
               <VisitIcon className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">With Bookings</div>
+              <div className="text-sm text-slate-500 dark:text-slate-300">With Bookings</div>
               <div className="text-2xl font-bold text-slate-800 dark:text-white">
                 {guests.filter(g => g.totalBookings > 0).length}
               </div>
@@ -230,7 +230,7 @@ export default function StaffGuestsPage() {
               <CalendarIcon className="w-6 h-6 text-amber-600" />
             </div>
             <div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Upcoming Stays</div>
+              <div className="text-sm text-slate-500 dark:text-slate-300">Upcoming Stays</div>
               <div className="text-2xl font-bold text-slate-800 dark:text-white">
                 {guests.filter(g => g.upcoming).length}
               </div>
@@ -247,19 +247,19 @@ export default function StaffGuestsPage() {
           </div>
           <div>
             <h2 className="text-lg font-semibold text-slate-800 dark:text-white">All Guests</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">{filteredGuests.length} guests found</p>
+            <p className="text-sm text-slate-500 dark:text-slate-300">{filteredGuests.length} guests found</p>
           </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Guest</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Contact</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Visits</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Visit</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Guest</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Contact</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Total Visits</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Last Visit</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
@@ -280,24 +280,24 @@ export default function StaffGuestsPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                      <MailIcon className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                      <MailIcon className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                       {guest.email}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mt-1">
-                      <PhoneIcon className="w-4 h-4 text-slate-400 dark:text-slate-400" />
+                    <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 mt-1">
+                      <PhoneIcon className="w-4 h-4 text-slate-400 dark:text-slate-300" />
                       {guest.phone}
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center">
-                        <span className="text-sm font-bold text-slate-600 dark:text-slate-400">{guest.totalBookings}</span>
+                        <span className="text-sm font-bold text-slate-600 dark:text-slate-300">{guest.totalBookings}</span>
                       </div>
-                      <span className="text-sm text-slate-600 dark:text-slate-400">visits</span>
+                      <span className="text-sm text-slate-600 dark:text-slate-300">visits</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
                     {formatDate(guest.lastVisit)}
                   </td>
                   <td className="px-6 py-4">
@@ -353,13 +353,13 @@ export default function StaffGuestsPage() {
                             >
                               <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center border border-slate-200 dark:border-slate-600">
-                                  <CalendarIcon className="w-5 h-5 text-slate-400 dark:text-slate-400" />
+                                  <CalendarIcon className="w-5 h-5 text-slate-400 dark:text-slate-300" />
                                 </div>
                                 <div>
                                   <div className="text-sm font-medium text-slate-800 dark:text-white">
                                     {formatDate(booking.checkIn)} - {formatDate(booking.checkOut)}
                                   </div>
-                                  <div className="text-xs text-slate-500 dark:text-slate-400">{booking.roomType}</div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-300">{booking.roomType}</div>
                                 </div>
                               </div>
                               <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full border ${getStatusColor(booking.status)}`}>
@@ -379,9 +379,9 @@ export default function StaffGuestsPage() {
         {filteredGuests.length === 0 && (
           <div className="p-12 text-center">
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-              <GuestsIcon className="w-8 h-8 text-slate-400 dark:text-slate-400" />
+              <GuestsIcon className="w-8 h-8 text-slate-400 dark:text-slate-300" />
             </div>
-            <div className="text-slate-500 dark:text-slate-400">No guests found</div>
+            <div className="text-slate-500 dark:text-slate-300">No guests found</div>
             {search && (
               <button
                 onClick={() => setSearch("")}
@@ -396,3 +396,10 @@ export default function StaffGuestsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

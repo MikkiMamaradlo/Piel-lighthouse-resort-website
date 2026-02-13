@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, Star } from "lucide-react"
 import { openImageModal } from "@/components/room-details-modal"
@@ -74,7 +73,7 @@ export default function Accommodations() {
   }
 
   return (
-    <section id="accommodations" className="py-24 bg-linear-to-b from-slate-50 to-white relative" aria-labelledby="accommodations-heading">
+    <section id="accommodations" className="py-24 bg-linear-to-b dark:from-slate-900 dark:to-slate-800 relative" aria-labelledby="accommodations-heading">
       {/* Background decorations */}
       <div className="absolute top-20 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
@@ -99,9 +98,9 @@ export default function Accommodations() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {rooms.map((room, index) => (
-            <Card
+            <div
               key={room.name}
-              className={`relative overflow-hidden bg-white rounded-2xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group cursor-pointer border-0 hover:-translate-y-3 ${room.popular ? "ring-2 ring-amber-500" : ""}`}
+              className={`relative overflow-hidden rounded-2xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group cursor-pointer border-0 hover:-translate-y-3 ${room.popular ? "ring-2 ring-amber-500 bg-white dark:bg-slate-800" : "bg-white dark:bg-slate-800/90"}`}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -130,13 +129,13 @@ export default function Accommodations() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                 
                 {/* Capacity badge */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground shadow-lg flex items-center gap-2">
+                <div className="absolute top-4 right-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground shadow-lg flex items-center gap-2">
                   <Users className="w-4 h-4 text-primary" />
                   <span>{room.capacity}</span>
                 </div>
 
                 {/* Price tag */}
-                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-5 py-2.5 shadow-xl">
+                <div className="absolute bottom-4 right-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-xl px-5 py-2.5 shadow-xl">
                   <span className="text-2xl font-bold text-foreground">{room.price}</span>
                   <span className="text-sm text-muted-foreground ml-1">{room.period}</span>
                 </div>
@@ -178,7 +177,7 @@ export default function Accommodations() {
 
               {/* Bottom accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/0 group-hover:bg-primary/100 transition-all duration-500 rounded-b-2xl" />
-            </Card>
+            </div>
           ))}
         </div>
 
@@ -197,3 +196,10 @@ export default function Accommodations() {
     </section>
   )
 }
+
+
+
+
+
+
+

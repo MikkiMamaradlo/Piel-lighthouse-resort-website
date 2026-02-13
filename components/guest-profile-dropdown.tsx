@@ -65,17 +65,17 @@ export function GuestProfileDropdown({ guest }: GuestProfileDropdownProps) {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition-all duration-200 group"
+        className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-muted dark:hover:bg-ocean-800 transition-all duration-200 group"
       >
         <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
           <User className="w-5 h-5 text-white" />
         </div>
         <div className="text-right">
-          <p className="font-semibold text-slate-800 text-sm">{guest?.username || "Guest"}</p>
-          <p className="text-xs text-slate-500">Guest</p>
+          <p className="font-semibold text-card-foreground text-sm">{guest?.username || "Guest"}</p>
+          <p className="text-xs text-muted-foreground">Guest</p>
         </div>
         <ChevronDown
-          className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -91,16 +91,16 @@ export function GuestProfileDropdown({ guest }: GuestProfileDropdownProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-72 bg-popover dark:bg-ocean-900 rounded-2xl shadow-2xl border border-border overflow-hidden z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-slate-100">
+          <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-ocean-800 dark:to-ocean-800 border-b border-border">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
                 <User className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-slate-800">{guest?.username || "Guest"}</p>
-                <p className="text-xs text-slate-500">{guest?.email || "guest@email.com"}</p>
+                <p className="font-semibold text-card-foreground">{guest?.username || "Guest"}</p>
+                <p className="text-xs text-muted-foreground">{guest?.email || "guest@email.com"}</p>
               </div>
             </div>
           </div>
@@ -114,34 +114,34 @@ export function GuestProfileDropdown({ guest }: GuestProfileDropdownProps) {
                   router.push(item.href)
                   setIsOpen(false)
                 }}
-                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-slate-600 hover:bg-slate-50 hover:text-amber-600 transition-all duration-200 group"
+                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-muted-foreground hover:bg-muted hover:text-foreground dark:hover:bg-ocean-800 transition-all duration-200 group"
               >
-                <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-amber-100 transition-colors">
+                <div className="p-2 rounded-lg bg-muted dark:bg-ocean-800 group-hover:bg-amber-100 dark:group-hover:bg-ocean-700 transition-colors">
                   <item.icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-medium text-sm">{item.label}</p>
-                  <p className="text-xs text-slate-400">{item.description}</p>
+                  <p className="font-medium text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground">{item.description}</p>
                 </div>
               </button>
             ))}
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-slate-100" />
+          <div className="h-px bg-border" />
 
           {/* Logout Button */}
           <div className="p-2">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-red-600 hover:bg-red-50 transition-all duration-200 group"
+              className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-destructive hover:bg-destructive/10 transition-all duration-200 group"
             >
-              <div className="p-2 rounded-lg bg-red-100 group-hover:bg-red-200 transition-colors">
+              <div className="p-2 rounded-lg bg-muted dark:bg-ocean-800 group-hover:bg-destructive/20 transition-colors">
                 <LogOut className="w-4 h-4" />
               </div>
               <div className="flex-1">
                 <p className="font-medium text-sm">Logout</p>
-                <p className="text-xs text-red-400">Sign out of your account</p>
+                <p className="text-xs text-muted-foreground">Sign out of your account</p>
               </div>
             </button>
           </div>
@@ -152,3 +152,10 @@ export function GuestProfileDropdown({ guest }: GuestProfileDropdownProps) {
 }
 
 export default GuestProfileDropdown
+
+
+
+
+
+
+

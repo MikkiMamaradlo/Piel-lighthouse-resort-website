@@ -100,9 +100,9 @@ export default function GuestBookingsPage() {
         }
       default:
         return { 
-          bg: "bg-slate-100 dark:bg-slate-800", 
-          text: "text-slate-700 dark:text-slate-300",
-          border: "border-slate-300 dark:border-slate-600",
+          bg: "bg-muted dark:bg-ocean-800", 
+          text: "text-muted-foreground",
+          border: "border-border dark:border-ocean-600",
           icon: Clock
         }
     }
@@ -170,7 +170,7 @@ export default function GuestBookingsPage() {
             <div className="flex items-center gap-4">
               <Link
                 href="/guest/dashboard"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300 group"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 text-muted-foreground hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/30 dark:hover:to-orange-900/30 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300 group"
               >
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 <span className="hidden sm:inline font-medium">Back</span>
@@ -180,8 +180,8 @@ export default function GuestBookingsPage() {
                   <Calendar className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-slate-800 dark:text-white">My Bookings</h1>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <h1 className="text-xl font-bold text-card-foreground">My Bookings</h1>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1">
                     <Umbrella className="w-3 h-3" /> Your reservations at Piel Lighthouse
                   </p>
                 </div>
@@ -205,10 +205,10 @@ export default function GuestBookingsPage() {
                 <Sun className="w-8 h-8 text-sunset-500 mx-auto mb-2" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold text-card-foreground mb-2 bg-gradient-to-r from-foreground to-muted-foreground dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
               Your Reservations
             </h1>
-            <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+            <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Waves className="w-4 h-4 text-teal-500" />
               View and manage your beach getaway bookings
             </p>
@@ -222,8 +222,8 @@ export default function GuestBookingsPage() {
                   <Calendar className="w-12 h-12 text-sunset-500" />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-3">No Bookings Yet 🌴</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">You haven't made any reservations yet. Start planning your perfect beach getaway and create unforgettable memories!</p>
+              <h2 className="text-2xl font-bold text-card-foreground mb-3">No Bookings Yet 🌴</h2>
+              <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">You haven't made any reservations yet. Start planning your perfect beach getaway and create unforgettable memories!</p>
               <Link
                 href="/guest/rooms"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-sunset-500 via-amber-500 to-orange-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-sunset-500/30 hover:scale-105 transition-all duration-300"
@@ -280,7 +280,7 @@ export default function GuestBookingsPage() {
                               </div>
                               <div>
                                 <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-sunset-600 dark:group-hover:text-sunset-400 transition-colors">{booking.roomName}</h3>
-                                <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                                <p className="text-sm text-slate-500 dark:text-slate-300 flex items-center gap-1">
                                   <MapPin className="w-3 h-3" /> Piel Lighthouse Resort
                                 </p>
                               </div>
@@ -311,7 +311,7 @@ export default function GuestBookingsPage() {
                             </span>
                             <div className="text-right">
                               <p className="text-2xl font-bold bg-gradient-to-r from-sunset-500 to-amber-500 bg-clip-text text-transparent">₱{booking.totalPrice.toLocaleString()}</p>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1">
+                              <p className="text-xs text-slate-500 dark:text-slate-300 flex items-center justify-end gap-1">
                                 <Umbrella className="w-3 h-3" /> Total
                               </p>
                             </div>
@@ -330,7 +330,7 @@ export default function GuestBookingsPage() {
       {/* Footer */}
       <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6 relative z-10 mt-auto">
         <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-300">
           <div className="flex items-center gap-2">
             <Waves className="w-4 h-4 text-teal-500" />
             <span>© 2024 Piel Lighthouse Resort. Your beach paradise awaits.</span>
@@ -347,3 +347,10 @@ export default function GuestBookingsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

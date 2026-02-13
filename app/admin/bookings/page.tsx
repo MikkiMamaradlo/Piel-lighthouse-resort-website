@@ -122,7 +122,7 @@ export default function BookingsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Bookings</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">Manage reservation requests from guests</p>
+          <p className="text-slate-500 dark:text-slate-300 mt-1">Manage reservation requests from guests</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-medium">
@@ -169,14 +169,14 @@ export default function BookingsPage() {
             <div className="absolute inset-0 border-4 border-blue-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400">Loading bookings...</p>
+          <p className="text-slate-500 dark:text-slate-300">Loading bookings...</p>
         </div>
       ) : filteredBookings.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
             <CalendarCheck className="w-10 h-10 text-slate-400" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No bookings found</p>
+          <p className="text-slate-500 dark:text-slate-300 text-lg font-medium">No bookings found</p>
           <p className="text-slate-400 dark:text-slate-500 text-sm mt-1">Try adjusting your search filters</p>
         </div>
       ) : (
@@ -185,11 +185,11 @@ export default function BookingsPage() {
             <table className="w-full">
               <thead className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
                 <tr>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Guest</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Dates</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Room</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Guest</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Dates</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Room</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Status</th>
+                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
@@ -202,7 +202,7 @@ export default function BookingsPage() {
                         </div>
                         <div>
                           <p className="font-semibold text-slate-900 dark:text-white">{booking.name}</p>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">{booking.email}</p>
+                          <p className="text-sm text-slate-500 dark:text-slate-300">{booking.email}</p>
                         </div>
                       </div>
                     </td>
@@ -211,7 +211,7 @@ export default function BookingsPage() {
                         <MapPin className="w-4 h-4 text-slate-400" />
                         <div>
                           <p className="text-slate-900 dark:text-white font-medium">{booking.checkIn} → {booking.checkOut}</p>
-                          <p className="text-slate-500 dark:text-slate-400">{booking.guests} guests</p>
+                          <p className="text-slate-500 dark:text-slate-300">{booking.guests} guests</p>
                         </div>
                       </div>
                     </td>
@@ -261,7 +261,7 @@ export default function BookingsPage() {
                         </button>
                         <button
                           onClick={() => deleteBooking(booking._id)}
-                          className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-colors"
+                          className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-colors"
                           title="Delete"
                         >
                           <Trash2 className="w-5 h-5" />
@@ -304,14 +304,14 @@ export default function BookingsPage() {
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
-                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
+                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-300 mb-1">
                     <CalendarCheck className="w-4 h-4" />
                     <span className="text-xs font-medium uppercase tracking-wider">Check-in</span>
                   </div>
                   <p className="font-semibold text-slate-900 dark:text-white">{selectedBooking.checkIn}</p>
                 </div>
                 <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
-                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
+                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-300 mb-1">
                     <CalendarCheck className="w-4 h-4" />
                     <span className="text-xs font-medium uppercase tracking-wider">Check-out</span>
                   </div>
@@ -320,7 +320,7 @@ export default function BookingsPage() {
               </div>
 
               <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
-                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-300 mb-1">
                   <Users className="w-4 h-4" />
                   <span className="text-xs font-medium uppercase tracking-wider">Guests</span>
                 </div>
@@ -349,7 +349,7 @@ export default function BookingsPage() {
                 </div>
               )}
 
-              <div className="text-sm text-slate-500 dark:text-slate-400">
+              <div className="text-sm text-slate-500 dark:text-slate-300">
                 Booked on {new Date(selectedBooking.createdAt).toLocaleDateString()}
               </div>
             </div>
@@ -400,3 +400,10 @@ export default function BookingsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

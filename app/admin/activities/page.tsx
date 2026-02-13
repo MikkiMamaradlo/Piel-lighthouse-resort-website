@@ -148,14 +148,14 @@ export default function ActivitiesPage() {
             <div className="absolute inset-0 border-4 border-emerald-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400">Loading activities...</p>
+          <p className="text-slate-500 dark:text-slate-300">Loading activities...</p>
         </div>
       ) : activities.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MapPin className="w-10 h-10 text-slate-400 dark:text-slate-400" />
+            <MapPin className="w-10 h-10 text-slate-400 dark:text-slate-300" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No activities added yet</p>
+          <p className="text-slate-500 dark:text-slate-300 text-lg font-medium">No activities added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium"
@@ -180,7 +180,7 @@ export default function ActivitiesPage() {
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{activity.name}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{activity.description}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">{activity.description}</p>
                 
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-1.5 text-sm">
@@ -193,7 +193,7 @@ export default function ActivitiesPage() {
                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                       <Clock className="w-4 h-4 text-blue-600" />
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400">{activity.duration}</span>
+                    <span className="text-slate-600 dark:text-slate-300">{activity.duration}</span>
                   </div>
                 </div>
 
@@ -333,3 +333,10 @@ export default function ActivitiesPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

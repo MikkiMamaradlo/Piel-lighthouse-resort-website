@@ -121,7 +121,7 @@ export default function GalleryPage() {
             <button
               onClick={() => setViewMode("grid")}
               className={`p-2.5 rounded-lg transition-all ${
-                viewMode === "grid" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-400"
+                viewMode === "grid" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-300"
               }`}
             >
               <Grid className="w-5 h-5" />
@@ -129,7 +129,7 @@ export default function GalleryPage() {
             <button
               onClick={() => setViewMode("list")}
               className={`p-2.5 rounded-lg transition-all ${
-                viewMode === "list" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-400"
+                viewMode === "list" ? "bg-white dark:bg-slate-800 shadow-sm" : "text-slate-500 dark:text-slate-300"
               }`}
             >
               <Columns className="w-5 h-5" />
@@ -152,14 +152,14 @@ export default function GalleryPage() {
             <div className="absolute inset-0 border-4 border-pink-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-pink-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400">Loading gallery...</p>
+          <p className="text-slate-500 dark:text-slate-300">Loading gallery...</p>
         </div>
       ) : gallery.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Image className="w-10 h-10 text-slate-400 dark:text-slate-400" />
+            <Image className="w-10 h-10 text-slate-400 dark:text-slate-300" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No images added yet</p>
+          <p className="text-slate-500 dark:text-slate-300 text-lg font-medium">No images added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-pink-600 hover:text-pink-700 font-medium"
@@ -198,10 +198,10 @@ export default function GalleryPage() {
               <div className="p-4">
                 <h3 className="font-semibold text-slate-900 truncate">{image.title}</h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
+                  <span className="text-xs text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
                     {image.category}
                   </span>
-                  <span className="text-xs text-slate-400 dark:text-slate-400">Order: {image.order}</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-300">Order: {image.order}</span>
                 </div>
               </div>
             </div>
@@ -212,11 +212,11 @@ export default function GalleryPage() {
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700">
               <tr>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Image</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Title</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Category</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Layout</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Image</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Title</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Category</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Layout</th>
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -231,15 +231,15 @@ export default function GalleryPage() {
                   </td>
                   <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white">{image.title}</td>
                   <td className="px-6 py-4">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
+                    <span className="text-xs text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full">
                       {image.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
                     {image.colSpan === "col-span-2" ? (
                       <span className="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Wide</span>
                     ) : (
-                      <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-xs font-medium">Normal</span>
+                      <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-xs font-medium">Normal</span>
                     )}
                   </td>
                   <td className="px-6 py-4">
@@ -374,3 +374,10 @@ export default function GalleryPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

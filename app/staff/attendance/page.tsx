@@ -229,9 +229,9 @@ export default function StaffAttendancePage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Attendance</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">Track your work hours and attendance</p>
+          <p className="text-slate-500 dark:text-slate-300 mt-1">Track your work hours and attendance</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300">
           <CalendarIcon className="w-4 h-4" />
           <span>{new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</span>
         </div>
@@ -265,7 +265,7 @@ export default function StaffAttendancePage() {
               currentRecord?.clockIn ? "bg-green-100 dark:bg-green-900/30" : "bg-slate-100 dark:bg-slate-700"
             }`}>
               <ClockIcon className={`w-8 h-8 ${
-                currentRecord?.clockIn ? "text-green-600" : "text-slate-400 dark:text-slate-400"
+                currentRecord?.clockIn ? "text-green-600" : "text-slate-400 dark:text-slate-300"
               }`} />
             </div>
             <div>
@@ -278,14 +278,14 @@ export default function StaffAttendancePage() {
                       Clocked in at {formatTime(currentRecord.clockIn)}
                     </p>
                     {currentRecord?.clockOut && (
-                      <p className="text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                      <p className="text-slate-500 dark:text-slate-300 flex items-center gap-2">
                         <LogoutIcon className="w-4 h-4" />
                         Clocked out at {formatTime(currentRecord.clockOut)}
                       </p>
                     )}
                   </>
                 ) : (
-                  <p className="text-slate-500 dark:text-slate-400">Not clocked in yet</p>
+                  <p className="text-slate-500 dark:text-slate-300">Not clocked in yet</p>
                 )}
                 {!currentRecord && (
                   <p className="text-slate-400 dark:text-slate-500 text-sm">No record for today</p>
@@ -346,7 +346,7 @@ export default function StaffAttendancePage() {
           { label: "This Week", value: thisWeekPresent, color: "from-blue-500 to-blue-600", bgColor: "bg-blue-50", textColor: "text-blue-600" },
           { label: "Present", value: totalPresent, color: "from-green-500 to-green-600", bgColor: "bg-green-50", textColor: "text-green-600" },
           { label: "Late", value: totalLate, color: "from-amber-500 to-amber-600", bgColor: "bg-amber-50", textColor: "text-amber-600" },
-          { label: "Total Hours", value: `${totalHours.toFixed(1)}h`, color: "from-slate-500 to-slate-600", bgColor: "bg-slate-50 dark:bg-slate-700/50", textColor: "text-slate-600 dark:text-slate-400" },
+          { label: "Total Hours", value: `${totalHours.toFixed(1)}h`, color: "from-slate-500 to-slate-600", bgColor: "bg-slate-50 dark:bg-slate-700/50", textColor: "text-slate-600 dark:text-slate-300" },
         ].map((stat, index) => (
           <div
             key={stat.label}
@@ -370,18 +370,18 @@ export default function StaffAttendancePage() {
           </div>
           <div>
             <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Attendance History</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Your recent attendance records</p>
+            <p className="text-sm text-slate-500 dark:text-slate-300">Your recent attendance records</p>
           </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clock In</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Clock Out</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hours</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Clock In</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Clock Out</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Hours</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
@@ -392,9 +392,9 @@ export default function StaffAttendancePage() {
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <td className="px-6 py-4 text-sm font-medium text-slate-800 dark:text-white">{formatDate(record.date)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">{formatTime(record.clockIn)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">{formatTime(record.clockOut)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-medium">
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">{formatTime(record.clockIn)}</td>
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">{formatTime(record.clockOut)}</td>
+                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300 font-medium">
                     {record.hoursWorked ? `${record.hoursWorked}h` : "--"}
                   </td>
                   <td className="px-6 py-4">
@@ -412,12 +412,19 @@ export default function StaffAttendancePage() {
         {history.length === 0 && (
           <div className="p-12 text-center">
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CalendarIcon className="w-8 h-8 text-slate-400 dark:text-slate-400" />
+              <CalendarIcon className="w-8 h-8 text-slate-400 dark:text-slate-300" />
             </div>
-            <div className="text-slate-500 dark:text-slate-400">No attendance records found</div>
+            <div className="text-slate-500 dark:text-slate-300">No attendance records found</div>
           </div>
         )}
       </div>
     </div>
   )
 }
+
+
+
+
+
+
+

@@ -340,7 +340,7 @@ export default function StaffLayout({
                           ? "bg-white/20" 
                           : "bg-ocean-100 dark:bg-ocean-800 group-hover:bg-ocean-200 dark:group-hover:bg-ocean-700"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-ocean-600 dark:text-ocean-400 group-hover:text-sunset-500"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-muted-foreground group-hover:text-sunset-500"}`} />
                       </div>
                       <span className={`font-semibold transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
@@ -364,7 +364,7 @@ export default function StaffLayout({
               <div className="px-3 mt-auto">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-ocean-600 dark:text-ocean-300 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-muted-foreground hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 group"
                 >
                   <div className="p-2.5 rounded-xl bg-ocean-100 dark:bg-ocean-800 group-hover:bg-ocean-200 dark:group-hover:bg-ocean-700 transition-all duration-300">
                     {isSidebarCollapsed ? (
@@ -399,3 +399,10 @@ export default function StaffLayout({
     </ThemeProvider>
   )
 }
+
+
+
+
+
+
+

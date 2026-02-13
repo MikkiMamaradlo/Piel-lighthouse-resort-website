@@ -157,9 +157,9 @@ export default function StaffRoomsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Rooms</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">View all available rooms and their details</p>
+          <p className="text-slate-500 dark:text-slate-300 mt-1">View all available rooms and their details</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300">
           <RoomIcon className="w-4 h-4" />
           <span>{filteredRooms.length} rooms</span>
           <span className="text-green-600">{availableCount} available</span>
@@ -196,7 +196,7 @@ export default function StaffRoomsPage() {
                 />
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                  <RoomIcon className="w-12 h-12 text-slate-400 dark:text-slate-400" />
+                  <RoomIcon className="w-12 h-12 text-slate-400 dark:text-slate-300" />
                 </div>
               )}
               
@@ -211,7 +211,7 @@ export default function StaffRoomsPage() {
               {/* Price Badge */}
               <div className="absolute top-4 right-4 px-3 py-1.5 bg-white dark:bg-slate-800/90 backdrop-blur-sm rounded-full shadow-lg">
                 <span className="text-sm font-bold text-slate-800 dark:text-white">{room.price}</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400 ml-1">{room.period}</span>
+                <span className="text-xs text-slate-500 dark:text-slate-300 ml-1">{room.period}</span>
               </div>
             </div>
 
@@ -239,13 +239,13 @@ export default function StaffRoomsPage() {
               )}
 
               {/* Capacity */}
-              <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-3">
+              <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 mb-3">
                 <CapacityIcon className="w-4 h-4" />
                 {room.capacity}
               </div>
 
               {/* Description */}
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
+              <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
                 {room.description}
               </p>
 
@@ -254,14 +254,14 @@ export default function StaffRoomsPage() {
                 {room.features?.slice(0, 4).map((feature, i) => (
                   <span
                     key={i}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-lg"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg"
                   >
                     <FeatureIcon className="w-3 h-3 text-amber-500" />
                     {feature}
                   </span>
                 ))}
                 {room.features?.length > 4 && (
-                  <span className="px-2.5 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-lg">
+                  <span className="px-2.5 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 rounded-lg">
                     +{room.features.length - 4} more
                   </span>
                 )}
@@ -274,11 +274,11 @@ export default function StaffRoomsPage() {
                     <PriceIcon className="w-4 h-4 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Price</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-300">Price</div>
                     <div className="text-sm font-bold text-slate-800 dark:text-white">{room.price}</div>
                   </div>
                 </div>
-                <div className="text-xs text-slate-400 dark:text-slate-400">
+                <div className="text-xs text-slate-400 dark:text-slate-300">
                   {room.period}
                 </div>
               </div>
@@ -290,11 +290,18 @@ export default function StaffRoomsPage() {
       {rooms.length === 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-12 text-center">
           <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <RoomIcon className="w-8 h-8 text-slate-400 dark:text-slate-400" />
+            <RoomIcon className="w-8 h-8 text-slate-400 dark:text-slate-300" />
           </div>
-          <div className="text-slate-500 dark:text-slate-400">No rooms found</div>
+          <div className="text-slate-500 dark:text-slate-300">No rooms found</div>
         </div>
       )}
     </div>
   )
 }
+
+
+
+
+
+
+

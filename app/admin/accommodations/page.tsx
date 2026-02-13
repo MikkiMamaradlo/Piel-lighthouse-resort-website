@@ -206,14 +206,14 @@ export default function AccommodationsPage() {
             <div className="absolute inset-0 border-4 border-blue-200 rounded-full" />
             <div className="absolute inset-0 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400">Loading rooms...</p>
+          <p className="text-slate-500 dark:text-slate-300">Loading rooms...</p>
         </div>
       ) : rooms.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-12 text-center">
           <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <BedDouble className="w-10 h-10 text-slate-400 dark:text-slate-400" />
+            <BedDouble className="w-10 h-10 text-slate-400 dark:text-slate-300" />
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">No rooms added yet</p>
+          <p className="text-slate-500 dark:text-slate-300 text-lg font-medium">No rooms added yet</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
@@ -262,14 +262,14 @@ export default function AccommodationsPage() {
                   </div>
                   <div className="text-right">
                     <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{room.price}</p>
-                    <p className="text-xs text-slate-400 dark:text-slate-400">{room.period}</p>
+                    <p className="text-xs text-slate-400 dark:text-slate-300">{room.period}</p>
                   </div>
                 </div>
                 <div className="mb-3">
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">{room.name}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{room.capacity}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-300">{room.capacity}</p>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{room.description}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">{room.description}</p>
                 
                 {/* Amenities */}
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -278,7 +278,7 @@ export default function AccommodationsPage() {
                     return (
                       <div
                         key={idx}
-                        className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-slate-400"
+                        className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-slate-300"
                       >
                         <Icon className="w-3.5 h-3.5 text-blue-600" />
                         <span>{inclusion.text}</span>
@@ -286,7 +286,7 @@ export default function AccommodationsPage() {
                     )
                   })}
                   {room.inclusions.length > 4 && (
-                    <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-slate-400">
+                    <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs text-slate-600 dark:text-slate-300">
                       +{room.inclusions.length - 4} more
                     </span>
                   )}
@@ -464,9 +464,9 @@ export default function AccommodationsPage() {
                     return (
                       <div key={inclusion.icon} className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                          <Icon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                          <Icon className="w-4 h-4 text-gray-500 dark:text-gray-300" />
                         </div>
-                        <span className="w-32 text-sm text-gray-600 dark:text-gray-400">{inclusion.icon}</span>
+                        <span className="w-32 text-sm text-gray-600 dark:text-gray-300">{inclusion.icon}</span>
                         <input
                           type="text"
                           value={inclusion.text}
@@ -523,3 +523,10 @@ export default function AccommodationsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+

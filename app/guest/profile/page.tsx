@@ -105,8 +105,8 @@ export default function GuestProfilePage() {
                   <User className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-slate-800 dark:text-white">My Profile</h1>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <h1 className="text-xl font-bold text-card-foreground">My Profile</h1>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1">
                     <Umbrella className="w-3 h-3" /> Guest Information
                   </p>
                 </div>
@@ -130,10 +130,10 @@ export default function GuestProfilePage() {
                 <Sun className="w-8 h-8 text-sunset-500 mx-auto mb-2" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold text-card-foreground mb-2 bg-gradient-to-r from-foreground to-muted-foreground dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
               Your Profile
             </h1>
-            <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+            <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Waves className="w-4 h-4 text-teal-500" />
               Manage your guest information
             </p>
@@ -181,9 +181,9 @@ export default function GuestProfilePage() {
                     <div className="p-2 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl shadow-lg shadow-amber-500/30">
                       <User className="w-4 h-4 text-white" />
                     </div>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Username</p>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Username</p>
                   </div>
-                  <p className="text-lg font-bold text-slate-800 dark:text-white pl-11">{guest?.username || "N/A"}</p>
+                  <p className="text-lg font-bold text-card-foreground pl-11">{guest?.username || "N/A"}</p>
                 </div>
                 
                 <div className="group p-5 bg-gradient-to-br from-sand-50 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 rounded-2xl border border-sand-200 dark:border-ocean-600 hover:border-teal-300 dark:hover:border-teal-500/50 transition-all duration-300 hover:shadow-lg">
@@ -191,9 +191,9 @@ export default function GuestProfilePage() {
                     <div className="p-2 bg-gradient-to-br from-teal-500 to-ocean-500 rounded-xl shadow-lg shadow-teal-500/30">
                       <Mail className="w-4 h-4 text-white" />
                     </div>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Email Address</p>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Email Address</p>
                   </div>
-                  <p className="text-lg font-bold text-slate-800 dark:text-white pl-11 truncate">{guest?.email || "N/A"}</p>
+                  <p className="text-lg font-bold text-card-foreground pl-11 truncate">{guest?.email || "N/A"}</p>
                 </div>
                 
                 <div className="group p-5 bg-gradient-to-br from-sand-50 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 rounded-2xl border border-sand-200 dark:border-ocean-600 hover:border-blue-300 dark:hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg">
@@ -201,9 +201,9 @@ export default function GuestProfilePage() {
                     <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl shadow-lg shadow-blue-500/30">
                       <Phone className="w-4 h-4 text-white" />
                     </div>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Phone Number</p>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Phone Number</p>
                   </div>
-                  <p className="text-lg font-bold text-slate-800 dark:text-white pl-11">{guest?.phone || "Not provided"}</p>
+                  <p className="text-lg font-bold text-card-foreground pl-11">{guest?.phone || "Not provided"}</p>
                 </div>
                 
                 <div className="group p-5 bg-gradient-to-br from-sand-50 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 rounded-2xl border border-sand-200 dark:border-ocean-600 hover:border-emerald-300 dark:hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg">
@@ -211,9 +211,9 @@ export default function GuestProfilePage() {
                     <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg shadow-emerald-500/30">
                       <Calendar className="w-4 h-4 text-white" />
                     </div>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Member Since</p>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Member Since</p>
                   </div>
-                  <p className="text-lg font-bold text-slate-800 dark:text-white pl-11 flex items-center gap-2">
+                  <p className="text-lg font-bold text-card-foreground pl-11 flex items-center gap-2">
                     <Star className="w-4 h-4 text-amber-400" />
                     2024
                   </p>
@@ -223,7 +223,7 @@ export default function GuestProfilePage() {
               {/* Resort badge */}
               <div className="flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-sand-100 to-ocean-100 dark:from-ocean-800 dark:to-ocean-700 rounded-2xl border border-sand-200 dark:border-ocean-600">
                 <Umbrella className="w-5 h-5 text-sunset-500" />
-                <span className="text-sm font-medium text-slate-600 dark:text-slate-300">Piel Lighthouse Resort Guest</span>
+                <span className="text-sm font-medium text-muted-foreground">Piel Lighthouse Resort Guest</span>
                 <Waves className="w-5 h-5 text-teal-500" />
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function GuestProfilePage() {
       {/* Footer */}
       <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6 relative z-10 mt-auto">
         <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <Waves className="w-4 h-4 text-teal-500" />
             <span>© 2024 Piel Lighthouse Resort. Your beach paradise awaits.</span>
@@ -251,3 +251,10 @@ export default function GuestProfilePage() {
     </div>
   )
 }
+
+
+
+
+
+
+

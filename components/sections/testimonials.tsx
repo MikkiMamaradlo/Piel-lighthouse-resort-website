@@ -69,7 +69,7 @@ export default function Testimonials() {
   const current = testimonials[currentIndex]
 
   return (
-    <section className="py-24 bg-linear-to-b from-white to-blue-50/30 relative" aria-labelledby="testimonials-heading">
+    <section className="py-24 bg-linear-to-b dark:from-slate-900 dark:to-slate-800 relative" aria-labelledby="testimonials-heading">
       {/* Background decorations */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute top-1/2 right-0 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" />
@@ -187,3 +187,10 @@ export default function Testimonials() {
     </section>
   )
 }
+
+
+
+
+
+
+

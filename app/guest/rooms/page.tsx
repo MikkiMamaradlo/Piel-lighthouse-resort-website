@@ -176,8 +176,8 @@ export default function GuestRoomsPage() {
               </div>
             </div>
             <div className="space-y-1">
-              <p className="font-bold text-xl text-slate-800 dark:text-white tracking-tight">Piel Lighthouse</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1">
+              <p className="font-bold text-xl text-card-foreground tracking-tight">Piel Lighthouse</p>
+              <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
                 <Umbrella className="w-3 h-3" />
                 Guest Portal
               </p>
@@ -189,10 +189,10 @@ export default function GuestRoomsPage() {
         <nav className="px-4 pb-6 space-y-2">
           <Link
             href="/guest/dashboard"
-            className="group relative flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-sand-100 hover:to-ocean-50 dark:hover:from-ocean-800 dark:hover:to-ocean-700 hover:shadow-lg hover:shadow-sand-200/50"
+            className="group relative flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 text-muted-foreground hover:bg-gradient-to-r hover:from-sand-100 hover:to-ocean-50 dark:hover:from-ocean-800 dark:hover:to-ocean-700 hover:shadow-lg hover:shadow-sand-200/50"
           >
             <div className="p-2.5 rounded-xl bg-sand-100 dark:bg-ocean-800 group-hover:bg-white dark:group-hover:bg-ocean-700 transition-all duration-300 shadow-sm group-hover:shadow-md">
-              <Calendar className="w-5 h-5 text-slate-500 dark:text-slate-400 group-hover:text-sunset-500 transition-colors" />
+              <Calendar className="w-5 h-5 text-muted-foreground group-hover:text-sunset-500 transition-colors" />
             </div>
             <span className="font-medium text-base">Book Your Stay</span>
             <div className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-8px] group-hover:translate-x-0">
@@ -228,7 +228,7 @@ export default function GuestRoomsPage() {
           <div className="flex items-center justify-between px-6 py-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-3 -ml-2 text-slate-600 dark:text-slate-300 hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105"
+              className="lg:hidden p-3 -ml-2 text-muted-foreground hover:bg-sand-100 dark:hover:bg-ocean-800 rounded-xl transition-all duration-200 hover:scale-105"
             >
               <Users className="w-6 h-6" />
             </button>
@@ -236,7 +236,7 @@ export default function GuestRoomsPage() {
             {/* Welcome badge */}
             <div className="hidden sm:flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-sand-100 to-ocean-50 dark:from-ocean-800 dark:to-ocean-700 rounded-full">
               <Sun className="w-4 h-4 text-sunset-500 animate-pulse-glow" />
-              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+              <span className="text-sm font-medium text-muted-foreground">
                 {guest?.username}'s Paradise
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function GuestRoomsPage() {
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                 Available Rooms & Cottages
               </h1>
-              <p className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+              <p className="text-slate-600 dark:text-slate-300 flex items-center justify-center gap-2">
                 <Waves className="w-5 h-5 text-teal-500" />
                 Choose from our selection of comfortable accommodations for your beach paradise getaway
               </p>
@@ -276,7 +276,7 @@ export default function GuestRoomsPage() {
                     <div className="w-10 h-10 border-4 border-sunset-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 </div>
-                <p className="text-slate-500 dark:text-slate-400">Loading rooms...</p>
+                <p className="text-slate-500 dark:text-slate-300">Loading rooms...</p>
               </div>
             ) : rooms.length === 0 ? (
               <div className="bg-white/80 dark:bg-ocean-900/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 dark:border-ocean-700/50 p-12 text-center">
@@ -287,7 +287,7 @@ export default function GuestRoomsPage() {
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">No rooms available at the moment</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Please check back later for availability</p>
+                <p className="text-slate-500 dark:text-slate-300 text-sm mt-2">Please check back later for availability</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -337,7 +337,7 @@ export default function GuestRoomsPage() {
                       <div className="flex items-start justify-between mb-3">
                         <div>
                           <h3 className="text-xl font-bold text-slate-900 dark:text-white">{room.name}</h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 flex items-center gap-1 mt-1">
+                          <p className="text-sm text-slate-600 dark:text-slate-300 flex items-center gap-1 mt-1">
                             <Users className="w-4 h-4 text-sunset-500" />
                             {room.capacity}
                           </p>
@@ -346,7 +346,7 @@ export default function GuestRoomsPage() {
                           <p className="text-2xl font-bold bg-gradient-to-r from-sunset-500 to-amber-500 bg-clip-text text-transparent">
                             {room.price}
                           </p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 bg-sand-100 dark:bg-ocean-800 px-2 py-1 rounded-lg mt-1">
+                          <p className="text-xs text-slate-500 dark:text-slate-300 bg-sand-100 dark:bg-ocean-800 px-2 py-1 rounded-lg mt-1">
                             {room.period}
                           </p>
                         </div>
@@ -388,7 +388,7 @@ export default function GuestRoomsPage() {
                           )
                         })}
                         {room.inclusions.length > 3 && (
-                          <span className="px-3 py-1.5 bg-sand-100 dark:bg-ocean-800 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400">
+                          <span className="px-3 py-1.5 bg-sand-100 dark:bg-ocean-800 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300">
                             +{room.inclusions.length - 3} more
                           </span>
                         )}
@@ -427,3 +427,10 @@ export default function GuestRoomsPage() {
     </div>
   )
 }
+
+
+
+
+
+
+
