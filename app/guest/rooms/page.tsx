@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, User, LogOut, Star, Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, ArrowLeft, Check, Waves, Sun, Umbrella, Anchor } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Calendar, Star, Users, Wifi, Wind, Tv, Refrigerator, ShowerHead, ArrowLeft, Check, Waves, Sun, Umbrella, Anchor } from "lucide-react"
+import { GuestProfileDropdown } from "@/components/guest-profile-dropdown"
 import { useToast } from "@/hooks/use-toast"
 
 interface Room {
@@ -80,15 +80,6 @@ export default function GuestRoomsPage() {
       })
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/guest/auth", { method: "DELETE" })
-      router.push("/guest/login")
-    } catch {
-      console.error("Logout failed")
     }
   }
 
@@ -222,19 +213,6 @@ export default function GuestRoomsPage() {
           </Link>
         </nav>
 
-        {/* Logout */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-sand-200/50 dark:border-ocean-700/50 bg-sand-50/80 dark:bg-ocean-900/80 backdrop-blur-sm">
-          <button
-            onClick={handleLogout}
-            className="group relative flex items-center gap-4 w-full px-5 py-4 rounded-2xl text-red-600 hover:bg-gradient-to-r hover:from-red-50 hover:to-rose-50 dark:hover:from-red-900/20 dark:hover:to-rose-900/20 transition-all duration-300"
-          >
-            <div className="p-2.5 rounded-xl bg-red-100 dark:bg-red-900/30 group-hover:bg-red-200 dark:group-hover:bg-red-900/50 transition-all duration-300">
-              <LogOut className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-            </div>
-            <span className="font-medium text-base">Logout</span>
-          </button>
-        </div>
-
         {/* Decorative wave */}
         <div className="px-4 pb-4 pt-2">
           <div className="relative h-8 bg-gradient-to-r from-ocean-100 to-teal-100 dark:from-ocean-800 dark:to-ocean-700 rounded-xl overflow-hidden">
@@ -264,15 +242,7 @@ export default function GuestRoomsPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
-                  <User className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-right hidden lg:block">
-                  <p className="font-semibold text-slate-800 dark:text-white">{guest?.username}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Guest</p>
-                </div>
-              </div>
+              <GuestProfileDropdown guest={guest} />
             </div>
           </div>
         </header>
