@@ -968,7 +968,7 @@ export default function GuestDashboard() {
                             {booking.status === "confirmed" && <CheckCircle className="w-4 h-4" />}
                             {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                           </span>
-                          <p className="text-xl font-bold bg-gradient-to-r from-sunset-500 to-amber-500 bg-clip-text text-transparent">
+                          <p className="text-xl font-bold text-amber-600">
                             ₱{booking.totalPrice.toLocaleString()}
                           </p>
                         </div>

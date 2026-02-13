@@ -310,7 +310,7 @@ export default function GuestBookingsPage() {
                               {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                             </span>
                             <div className="text-right">
-                              <p className="text-2xl font-bold bg-gradient-to-r from-sunset-500 to-amber-500 bg-clip-text text-transparent">₱{booking.totalPrice.toLocaleString()}</p>
+                              <p className="text-2xl font-bold text-amber-600">₱{booking.totalPrice.toLocaleString()}</p>
                               <p className="text-xs text-slate-500 dark:text-slate-300 flex items-center justify-end gap-1">
                                 <Umbrella className="w-3 h-3" /> Total
                               </p>

@@ -343,7 +343,7 @@ export default function GuestRoomsPage() {
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold bg-gradient-to-r from-sunset-500 to-amber-500 bg-clip-text text-transparent">
+                          <p className="text-2xl font-bold text-amber-600">
                             {room.price}
                           </p>
                           <p className="text-xs text-slate-500 dark:text-slate-300 bg-sand-100 dark:bg-ocean-800 px-2 py-1 rounded-lg mt-1">
