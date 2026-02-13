@@ -110,11 +110,11 @@ export default function StaffDashboardPage() {
       case "confirmed":
         return "bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 border-teal-200 dark:border-teal-700"
       case "completed":
-        return "bg-ocean-100 dark:bg-ocean-700 text-ocean-700 dark:text-ocean-300 border-ocean-200 dark:border-ocean-600"
+        return "bg-jade-100 dark:bg-jade-700 text-jade-700 dark:text-jade-300 border-jade-200 dark:border-jade-600"
       case "cancelled":
         return "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-700"
       default:
-        return "bg-ocean-100 dark:bg-ocean-700 text-ocean-700 dark:text-ocean-300 border-ocean-200 dark:border-ocean-600"
+        return "bg-jade-100 dark:bg-jade-700 text-jade-700 dark:text-jade-300 border-jade-200 dark:border-jade-600"
     }
   }
 
@@ -134,20 +134,20 @@ export default function StaffDashboardPage() {
   if (loading) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-8 bg-ocean-200 dark:bg-ocean-700 rounded w-48"></div>
+        <div className="h-8 bg-jade-200 dark:bg-jade-700 rounded w-48"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="bg-white dark:bg-ocean-800 rounded-2xl p-6 shadow-sm">
-              <div className="h-4 bg-ocean-200 dark:bg-ocean-700 rounded w-24 mb-4"></div>
-              <div className="h-8 bg-ocean-200 dark:bg-ocean-700 rounded w-16"></div>
+            <div key={i} className="bg-white dark:bg-jade-800 rounded-2xl p-6 shadow-sm">
+              <div className="h-4 bg-jade-200 dark:bg-jade-700 rounded w-24 mb-4"></div>
+              <div className="h-8 bg-jade-200 dark:bg-jade-700 rounded w-16"></div>
             </div>
           ))}
         </div>
-        <div className="bg-white dark:bg-ocean-800 rounded-2xl p-6 shadow-sm">
-          <div className="h-6 bg-ocean-200 dark:bg-ocean-700 rounded w-40 mb-6"></div>
+        <div className="bg-white dark:bg-jade-800 rounded-2xl p-6 shadow-sm">
+          <div className="h-6 bg-jade-200 dark:bg-jade-700 rounded w-40 mb-6"></div>
           <div className="space-y-4">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-16 bg-ocean-100 dark:bg-ocean-700 rounded"></div>
+              <div key={i} className="h-16 bg-jade-100 dark:bg-jade-700 rounded"></div>
             ))}
           </div>
         </div>
@@ -160,17 +160,17 @@ export default function StaffDashboardPage() {
       label: "Total Bookings",
       value: stats.totalBookings,
       icon: BookingIcon,
-      color: "from-ocean-500 to-ocean-600",
-      bgColor: "bg-ocean-50 dark:bg-ocean-900/30",
-      textColor: "text-ocean-600 dark:text-ocean-400",
+      color: "from-jade-500 to-jade-600",
+      bgColor: "bg-jade-50 dark:bg-jade-900/30",
+      textColor: "text-jade-600 dark:text-jade-400",
     },
     {
       label: "Pending",
       value: stats.pendingBookings,
       icon: PendingIcon,
-      color: "from-sunset-400 to-sunset-500",
-      bgColor: "bg-sunset-50",
-      textColor: "text-sunset-600",
+      color: "from-jade-400 to-emerald-500",
+      bgColor: "bg-jade-50",
+      textColor: "text-jade-600",
     },
     {
       label: "Checked In",
@@ -184,9 +184,9 @@ export default function StaffDashboardPage() {
       label: "Completed",
       value: stats.checkedOut,
       icon: CompletedIcon,
-      color: "from-ocean-500 to-cyan-500",
-      bgColor: "bg-ocean-50 dark:bg-ocean-700/50",
-      textColor: "text-ocean-600 dark:text-ocean-400",
+      color: "from-jade-500 to-cyan-500",
+      bgColor: "bg-jade-50 dark:bg-jade-700/50",
+      textColor: "text-jade-600 dark:text-jade-400",
     },
   ]
 
@@ -195,10 +195,10 @@ export default function StaffDashboardPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-ocean-900 dark:text-white">Staff Dashboard</h1>
-          <p className="text-ocean-600 dark:text-ocean-400 mt-1">Welcome back! Here's your overview for today.</p>
+          <h1 className="text-3xl font-bold text-jade-900 dark:text-white">Staff Dashboard</h1>
+          <p className="text-jade-600 dark:text-jade-400 mt-1">Welcome back! Here's your overview for today.</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-ocean-500 dark:text-ocean-400">
+        <div className="flex items-center gap-2 text-sm text-jade-500 dark:text-jade-400">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
@@ -223,22 +223,22 @@ export default function StaffDashboardPage() {
                 <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
               </div>
               <div className={`text-sm ${stat.textColor} font-medium mb-1`}>{stat.label}</div>
-              <div className="text-4xl font-bold text-ocean-900 dark:text-white">{stat.value}</div>
+              <div className="text-4xl font-bold text-jade-900 dark:text-white">{stat.value}</div>
             </div>
           )
         })}
       </div>
 
       {/* Recent Bookings */}
-      <div className="bg-white dark:bg-ocean-800 rounded-2xl shadow-sm border border-ocean-100 dark:border-ocean-700 overflow-hidden">
-        <div className="p-6 border-b border-ocean-100 dark:border-ocean-700 flex items-center justify-between">
+      <div className="bg-white dark:bg-jade-800 rounded-2xl shadow-sm border border-jade-100 dark:border-jade-700 overflow-hidden">
+        <div className="p-6 border-b border-jade-100 dark:border-jade-700 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-sunset-400 to-sunset-500 rounded-xl flex items-center justify-center">
               <BookingIcon className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-ocean-900 dark:text-white">Recent Bookings</h2>
-              <p className="text-sm text-ocean-500 dark:text-ocean-400">Latest guest reservations</p>
+              <h2 className="text-lg font-semibold text-jade-900 dark:text-white">Recent Bookings</h2>
+              <p className="text-sm text-jade-500 dark:text-jade-400">Latest guest reservations</p>
             </div>
           </div>
           <a href="/staff/bookings" className="group flex items-center gap-2 text-sunset-500 hover:text-sunset-600 font-medium text-sm transition-colors">
