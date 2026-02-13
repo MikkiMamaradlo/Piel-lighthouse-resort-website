@@ -18,11 +18,13 @@ import {
   Moon,
   Sun
 } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function SettingsPage() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const { theme, setTheme } = useTheme()
+  
+  const isDarkMode = theme === "dark"
   
   const [siteSettings, setSiteSettings] = useState({
     siteName: "Piel Lighthouse Beach Resort",
@@ -141,7 +143,27 @@ export default function SettingsPage() {
               <p className="text-sm text-slate-500 dark:text-slate-300">Toggle between light and dark theme</p>
             </div>
           </div>
-          <ThemeToggle />
+          <button
+            onClick={() => setTheme(isDarkMode ? "light" : "dark")}
+            className={`relative w-14 h-7.5 rounded-full transition-all duration-500 ${
+              isDarkMode 
+                ? "bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg shadow-slate-500/30" 
+                : "bg-slate-200"
+            }`}
+          >
+            <span
+              className={`absolute top-1 w-5.5 h-5.5 bg-white rounded-full shadow-lg transition-all duration-500 ${
+                isDarkMode ? "left-7" : "left-1"
+              }`}
+            >
+              {isDarkMode && (
+                <Moon className="w-3 h-3 text-slate-600 absolute top-1 left-1" />
+              )}
+              {!isDarkMode && (
+                <Sun className="w-3 h-3 text-slate-600 absolute top-1 left-1" />
+              )}
+            </span>
+          </button>
         </div>
       </div>
 
