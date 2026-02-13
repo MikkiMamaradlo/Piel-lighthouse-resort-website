@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Waves, Sun } from "lucide-react"
+import { Waves, Sun, Sparkles, ArrowRight } from "lucide-react"
 
 export default function StaffLoginPage() {
   const router = useRouter()
@@ -42,12 +42,12 @@ export default function StaffLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-900 via-ocean-800 to-ocean-900">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-950 via-ocean-900 to-ocean-950">
       {/* Animated Ocean Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Sun rays */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-20 right-1/3 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-sunset-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 right-1/3 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
         
         {/* Ocean waves pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -56,15 +56,16 @@ export default function StaffLoginPage() {
               fill="currentColor" 
               fillOpacity="0.4"
               d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,186.7C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+              className="text-ocean-400"
             ></path>
           </svg>
         </div>
         
         {/* Floating bubbles */}
-        <div className="absolute bottom-20 left-10 w-4 h-4 bg-white dark:bg-slate-800/20 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-white dark:bg-slate-800/10 rounded-full animate-bounce" style={{ animationDelay: "0.3s" }}></div>
-        <div className="absolute bottom-32 right-1/3 w-3 h-3 bg-white dark:bg-slate-800/15 rounded-full animate-bounce" style={{ animationDelay: "0.6s" }}></div>
-        <div className="absolute bottom-16 right-20 w-5 h-5 bg-white dark:bg-slate-800/10 rounded-full animate-bounce" style={{ animationDelay: "0.9s" }}></div>
+        <div className="absolute bottom-20 left-10 w-4 h-4 bg-white/10 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: "0.3s" }}></div>
+        <div className="absolute bottom-32 right-1/3 w-3 h-3 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: "0.6s" }}></div>
+        <div className="absolute bottom-16 right-20 w-5 h-5 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: "0.9s" }}></div>
       </div>
 
       {/* Grid Pattern */}
@@ -75,8 +76,8 @@ export default function StaffLoginPage() {
         <div className="text-center mb-8">
           {/* Logo with wave animation */}
           <div className="relative inline-block mb-6">
-            <div className="absolute inset-0 bg-amber-400/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl shadow-amber-500/40 transform hover:scale-110 transition-transform duration-300 overflow-hidden">
+            <div className="absolute inset-0 bg-sunset-400/30 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-sunset-400 via-sunset-500 to-orange-500 rounded-2xl shadow-2xl shadow-sunset-500/40 transform hover:scale-110 transition-transform duration-300 overflow-hidden ring-4 ring-white/20">
               <Image 
                 src="/images/PielLogo.jpg" 
                 alt="Piel Lighthouse Logo" 
@@ -86,39 +87,39 @@ export default function StaffLoginPage() {
               />
             </div>
             {/* Decorative wave icon */}
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center shadow-lg">
-              <Waves className="w-4 h-4 text-white" />
+            <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-cyan-400 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white">
+              <Waves className="w-5 h-5 text-white" />
             </div>
           </div>
           
           <Link href="/" className="inline-block group">
-            <h1 className="text-3xl font-bold text-white mb-2 group-hover:text-amber-400 transition-all duration-300 drop-shadow-lg">
+            <h1 className="text-3xl font-bold text-white mb-2 group-hover:text-sunset-300 transition-all duration-300 drop-shadow-lg">
               Piel Lighthouse
             </h1>
           </Link>
           <div className="flex items-center justify-center gap-2 text-ocean-200">
-            <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
-            <span className="text-sm font-medium tracking-wide">Staff Portal</span>
-            <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
+            <Sun className="w-5 h-5 text-sunset-400 animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide">Staff Portal</span>
+            <Sun className="w-5 h-5 text-sunset-400 animate-pulse" />
           </div>
         </div>
 
         {/* Login Form Card */}
-        <div className="relative bg-white dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative bg-white/95 dark:bg-ocean-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/20 dark:ring-ocean-700/50">
           {/* Decorative top bar */}
-          <div className="h-2 bg-gradient-to-r from-amber-400 via-cyan-400 to-blue-500"></div>
+          <div className="h-2 bg-gradient-to-r from-sunset-400 via-cyan-400 to-ocean-500"></div>
           
           <div className="p-8">
             {/* Welcome message */}
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">Staff Login</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-sm">Access your staff dashboard</p>
+              <h2 className="text-2xl font-bold text-ocean-900 dark:text-white mb-1">Staff Login</h2>
+              <p className="text-ocean-600 dark:text-ocean-400 text-sm">Access your staff dashboard</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {error && (
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm flex items-center gap-3 animate-shake">
-                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -129,14 +130,14 @@ export default function StaffLoginPage() {
 
               {/* Username Field */}
               <div className="space-y-2">
-                <label htmlFor="username" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">
+                <label htmlFor="username" className="block text-sm font-semibold text-ocean-700 dark:text-ocean-300 ml-1">
                   Username
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "username" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "username" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "username" ? "text-sunset-500" : "text-ocean-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -149,7 +150,7 @@ export default function StaffLoginPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     onFocus={() => setFocusedField("username")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-700/50 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-0 focus:border-amber-400 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                    className="w-full pl-12 pr-4 py-3.5 bg-ocean-50 dark:bg-ocean-800/50 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl focus:ring-0 focus:border-sunset-400 outline-none transition-all duration-300 hover:border-ocean-300 text-ocean-900 dark:text-white placeholder-ocean-400"
                     placeholder="Enter your username"
                     required
                   />
@@ -158,14 +159,14 @@ export default function StaffLoginPage() {
 
               {/* Password Field */}
               <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">
+                <label htmlFor="password" className="block text-sm font-semibold text-ocean-700 dark:text-ocean-300 ml-1">
                   Password
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "password" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "password" ? "text-amber-500" : "text-slate-400 dark:text-slate-400"
+                    focusedField === "password" ? "text-sunset-500" : "text-ocean-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -178,14 +179,14 @@ export default function StaffLoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setFocusedField("password")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-14 py-4 bg-slate-50 dark:bg-slate-700/50 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-0 focus:border-amber-400 outline-none transition-all duration-300 hover:border-slate-300 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                    className="w-full pl-12 pr-14 py-3.5 bg-ocean-50 dark:bg-ocean-800/50 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl focus:ring-0 focus:border-sunset-400 outline-none transition-all duration-300 hover:border-ocean-300 text-ocean-900 dark:text-white placeholder-ocean-400"
                     placeholder="••••••••"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-ocean-400 hover:text-sunset-500 transition-colors"
                   >
                     {showPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,7 +206,7 @@ export default function StaffLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-amber-500 via-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 group"
+                className="w-full py-3.5 px-4 bg-gradient-to-r from-sunset-500 to-orange-500 hover:from-sunset-600 hover:to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-sunset-500/30 hover:shadow-sunset-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 group"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-2">
@@ -215,15 +216,18 @@ export default function StaffLoginPage() {
                 ) : (
                   <div className="flex items-center justify-center gap-2">
                     <span>Sign In</span>
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 )}
               </button>
             </form>
 
-
+            {/* Quick link */}
+            <div className="mt-6 text-center">
+              <Link href="/staff/register" className="text-sm text-ocean-600 dark:text-ocean-400 hover:text-sunset-500 transition-colors">
+                New staff member? <span className="font-semibold">Register here</span>
+              </Link>
+            </div>
           </div>
         </div>
 

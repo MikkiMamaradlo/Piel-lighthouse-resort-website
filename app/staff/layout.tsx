@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Ship, Sun, Waves, LogOut, ChevronLeft, ChevronRight } from "lucide-react"
 
 interface User {
   id: string
@@ -113,31 +114,24 @@ const departmentNavItems: Record<string, NavItem[]> = {
 
 // Role display names
 const roleDisplayNames: Record<string, string> = {
-  // Front Desk
   "front_desk_agent": "Front Desk Agent",
   "front_desk_supervisor": "Front Desk Supervisor",
   "front_desk_manager": "Front Desk Manager",
-  // Housekeeping
   "housekeeper": "Housekeeper",
   "housekeeping_supervisor": "Housekeeping Supervisor",
   "housekeeping_manager": "Housekeeping Manager",
-  // Food & Beverage
   "server": "Server",
   "bartender": "Bartender",
   "fnb_supervisor": "F&B Supervisor",
   "fnb_manager": "F&B Manager",
-  // Maintenance
   "maintenance_technician": "Maintenance Technician",
   "maintenance_supervisor": "Maintenance Supervisor",
   "maintenance_manager": "Maintenance Manager",
-  // Activities
   "activity_guide": "Activity Guide",
   "activities_supervisor": "Activities Supervisor",
   "activities_manager": "Activities Manager",
-  // Management
   "general_manager": "General Manager",
   "assistant_manager": "Assistant Manager",
-  // Legacy
   "staff": "Staff",
   "manager": "Manager",
   "admin": "Admin",
@@ -216,15 +210,15 @@ export default function StaffLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sunset-50 via-amber-50 to-sunset-100 dark:from-ocean-950 dark:via-ocean-900 dark:to-ocean-950">
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
-            <div className="w-16 h-16 border-4 border-amber-200 rounded-full animate-spin border-t-amber-600"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <LogoIcon className="w-6 h-6 text-amber-600" />
+            <div className="absolute inset-0 bg-sunset-400/30 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sunset-400 to-sunset-500 rounded-2xl shadow-lg shadow-sunset-500/30">
+              <Ship className="w-8 h-8 text-white" />
             </div>
           </div>
-          <div className="text-slate-600 dark:text-slate-400 font-medium">Loading Staff Portal...</div>
+          <div className="text-sunset-700 dark:text-sunset-300 font-medium animate-fade-in">Loading Staff Portal...</div>
         </div>
       </div>
     )
@@ -256,54 +250,57 @@ export default function StaffLayout({
       enableSystem
       disableTransitionOnChange
     >
-    <div className="min-h-screen bg-[url('/images/piel2.jpg')] bg-cover bg-center bg-fixed">
-      <div className="min-h-screen bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm">
+    <div className="min-h-screen bg-gradient-to-br from-sunset-50 via-amber-50 to-sunset-100 dark:from-ocean-950 dark:via-ocean-900 dark:to-ocean-950 bg-[url('/images/piel2.jpg')] bg-cover bg-center bg-fixed bg-no-repeat">
+      <div className="min-h-screen bg-white/90 dark:bg-ocean-950/90 backdrop-blur-xl">
         {/* Top Navigation */}
-        <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg z-50">
+        <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-ocean-700 via-ocean-600 to-teal-600 text-white shadow-lg z-50">
           <div className="flex items-center justify-between h-full px-6">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                className="lg:hidden p-2 hover:bg-slate-700 rounded-lg transition-colors"
+                className="lg:hidden p-2 hover:bg-white/10 rounded-xl transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <LogoIcon className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg">
+                  <Ship className="w-6 h-6 text-white" />
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-lg font-bold text-white">Piel Lighthouse Resort</div>
-                  <div className="text-xs text-amber-400 font-medium">Staff Portal</div>
+                  <div className="text-xs text-sunset-200 font-medium flex items-center gap-1">
+                    <Sun className="w-3 h-3 animate-pulse" />
+                    Staff Portal
+                  </div>
                 </div>
               </div>
             </div>
             
             <div className="flex items-center gap-6">
               <div className="hidden md:block text-right">
-                <div className="text-sm text-slate-300 dark:text-slate-400">{formatDate(currentTime)}</div>
+                <div className="text-sm text-white/70 dark:text-white/70">{formatDate(currentTime)}</div>
                 <div className="text-lg font-semibold text-white">{formatTime(currentTime)}</div>
               </div>
               
-              <div className="flex items-center gap-3 pl-6 border-l border-slate-700 dark:border-slate-600">
+              <div className="flex items-center gap-3 pl-6 border-l border-white/20">
                 <ThemeToggle />
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 bg-gradient-to-br from-sunset-400 to-sunset-500 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
                   <span className="text-white font-bold text-sm">
                     {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-sm font-medium text-white">{user.fullName || user.username}</div>
-                  <div className="text-xs text-slate-400 dark:text-slate-400">{roleDisplayName} - {user.department}</div>
+                  <div className="text-xs text-white/70">{roleDisplayName}</div>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="p-2 hover:bg-slate-700 rounded-lg transition-colors group"
+                  className="p-2.5 hover:bg-white/10 rounded-xl transition-colors group"
                   title="Logout"
                 >
-                  <LogoutIcon className="w-5 h-5 text-slate-400 group-hover:text-amber-400 transition-colors" />
+                  <LogOut className="w-5 h-5 text-white/80 group-hover:text-sunset-300 transition-colors" />
                 </button>
               </div>
             </div>
@@ -313,12 +310,12 @@ export default function StaffLayout({
         <div className="flex pt-16">
           {/* Sidebar */}
           <aside
-            className={`fixed left-0 top-16 bottom-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl shadow-2xl transition-all duration-300 z-40 border-r border-slate-200 dark:border-slate-700 ${
+            className={`fixed left-0 top-16 bottom-0 bg-white/95 dark:bg-ocean-900/95 backdrop-blur-2xl shadow-2xl transition-all duration-300 z-40 border-r border-ocean-100 dark:border-ocean-800 ${
               isSidebarCollapsed ? "w-20" : "w-64"
             } ${isSidebarCollapsed ? "lg:w-20" : "lg:w-64"}`}
           >
             <div className="flex flex-col h-full py-6">
-              <nav className="flex-1 px-3 space-y-1">
+              <nav className="flex-1 px-3 space-y-1.5">
                 {navItems.map((item) => {
                   const isActive = pathname === item.href
                   const Icon = item.icon
@@ -327,25 +324,25 @@ export default function StaffLayout({
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 ${
+                      className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 ${
                         isActive
-                          ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-800 dark:text-white"
+                          ? "bg-gradient-to-r from-sunset-500 to-sunset-600 text-white shadow-lg shadow-sunset-500/30"
+                          : "text-ocean-700 dark:text-ocean-200 hover:bg-ocean-50 dark:hover:bg-ocean-800 hover:text-ocean-900 dark:hover:text-white"
                       }`}
                       title={isSidebarCollapsed ? item.label : undefined}
                     >
                       {/* Active indicator bar */}
                       {isActive && (
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full shadow-lg" />
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-white rounded-r-full shadow-lg animate-slide-up" />
                       )}
-                      <div className={`relative p-2 rounded-xl transition-all duration-300 ${
+                      <div className={`relative p-2.5 rounded-xl transition-all duration-300 ${
                         isActive 
                           ? "bg-white/20" 
-                          : "bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
+                          : "bg-ocean-100 dark:bg-ocean-800 group-hover:bg-ocean-200 dark:group-hover:bg-ocean-700"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-slate-500 dark:text-slate-400 group-hover:text-amber-500"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-ocean-600 dark:text-ocean-400 group-hover:text-sunset-500"}`} />
                       </div>
-                      <span className={`font-medium transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
+                      <span className={`font-semibold transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
                       </span>
                       {isActive && !isSidebarCollapsed && (
@@ -353,9 +350,9 @@ export default function StaffLayout({
                       )}
                       {/* Hover tooltip for collapsed state */}
                       {isSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 px-3 py-2 bg-slate-900 text-white text-sm font-medium rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50">
+                        <div className="absolute left-full ml-3 px-3 py-2 bg-ocean-900 dark:bg-ocean-700 text-white dark:text-ocean-200 text-sm font-semibold rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50 animate-fade-in-left">
                           {item.label}
-                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-slate-900 rounded-sm rotate-45" />
+                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-ocean-900 dark:bg-ocean-700 rounded-sm rotate-45" />
                         </div>
                       )}
                     </Link>
@@ -367,19 +364,16 @@ export default function StaffLayout({
               <div className="px-3 mt-auto">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-300 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-ocean-600 dark:text-ocean-300 hover:bg-ocean-50 dark:hover:bg-ocean-800 rounded-xl transition-all duration-300 group"
                 >
-                  <div className="p-2 rounded-xl bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-all duration-300">
-                    <svg
-                      className={`w-5 h-5 transition-transform duration-300 ${isSidebarCollapsed ? "rotate-180" : ""}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-                    </svg>
+                  <div className="p-2.5 rounded-xl bg-ocean-100 dark:bg-ocean-800 group-hover:bg-ocean-200 dark:group-hover:bg-ocean-700 transition-all duration-300">
+                    {isSidebarCollapsed ? (
+                      <ChevronRight className="w-5 h-5 transition-transform duration-300" />
+                    ) : (
+                      <ChevronLeft className="w-5 h-5 transition-transform duration-300" />
+                    )}
                   </div>
-                  <span className={`text-sm font-medium transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
+                  <span className={`text-sm font-semibold transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                     Collapse
                   </span>
                 </button>

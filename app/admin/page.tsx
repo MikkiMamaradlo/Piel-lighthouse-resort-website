@@ -13,7 +13,10 @@ import {
   Users,
   DollarSign,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  Sun,
+  Waves,
+  Anchor
 } from "lucide-react"
 import {
   AreaChart,
@@ -110,43 +113,49 @@ export default function AdminDashboard() {
       title: "Total Bookings",
       value: stats.totalBookings,
       icon: CalendarCheck,
-      color: "bg-blue-500",
+      color: "bg-gradient-to-br from-ocean-500 to-ocean-600",
+      shadowColor: "shadow-ocean-500/30",
       change: "+12%",
     },
     {
       title: "Pending",
       value: stats.pendingBookings,
       icon: Clock,
-      color: "bg-amber-500",
+      color: "bg-gradient-to-br from-sunset-400 to-sunset-500",
+      shadowColor: "shadow-sunset-500/30",
       change: "Needs attention",
     },
     {
       title: "Confirmed",
       value: stats.confirmedBookings,
       icon: CheckCircle,
-      color: "bg-green-500",
+      color: "bg-gradient-to-br from-teal-500 to-teal-600",
+      shadowColor: "shadow-teal-500/30",
       change: "This month",
     },
     {
       title: "Rooms",
       value: stats.totalRooms,
       icon: BedDouble,
-      color: "bg-purple-500",
+      color: "bg-gradient-to-br from-cyan-500 to-cyan-600",
+      shadowColor: "shadow-cyan-500/30",
       change: "Active listings",
     },
     {
-      title: "Gallery Images",
+      title: "Gallery",
       value: stats.totalGallery,
       icon: Image,
-      color: "bg-pink-500",
+      color: "bg-gradient-to-br from-pink-500 to-pink-600",
+      shadowColor: "shadow-pink-500/30",
       change: "Photos",
     },
     {
-      title: "Testimonials",
+      title: "Reviews",
       value: stats.totalTestimonials,
       icon: MessageSquareQuote,
-      color: "bg-cyan-500",
-      change: "Reviews",
+      color: "bg-gradient-to-br from-amber-400 to-amber-500",
+      shadowColor: "shadow-amber-500/30",
+      change: "Testimonials",
     },
   ]
 
@@ -155,11 +164,11 @@ export default function AdminDashboard() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">Welcome back! Here's what's happening at your resort.</p>
+          <h1 className="text-2xl font-bold text-ocean-900 dark:text-white">Dashboard</h1>
+          <p className="text-ocean-600 dark:text-ocean-400 mt-1">Welcome back! Here's what's happening at your resort.</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-medium flex items-center gap-1">
+          <span className="px-3 py-1.5 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 rounded-full text-sm font-medium flex items-center gap-1">
             <CheckCircle className="w-4 h-4" />
             All systems operational
           </span>
@@ -176,16 +185,17 @@ export default function AdminDashboard() {
         {statCards.map((stat, index) => (
           <div
             key={index}
-            className="group bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-700 transition-all duration-300"
+            className="group bg-white dark:bg-ocean-800 rounded-2xl p-5 shadow-sm border border-ocean-100 dark:border-ocean-700 hover:shadow-xl hover:border-ocean-200 dark:hover:border-ocean-600 transition-all duration-300 hover:-translate-y-1"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className="flex items-center justify-between mb-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${stat.color}`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${stat.color}`}>
                 <stat.icon className="w-6 h-6 text-white" />
               </div>
-              <div className={`flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${
-                stat.change.startsWith('+') ? 'bg-green-100 text-green-700' : 
+              <div className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full ${
+                stat.change.startsWith('+') ? 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400' : 
                 stat.change.startsWith('-') ? 'bg-red-100 text-red-700' :
-                'bg-blue-100 text-blue-700'
+                'bg-ocean-100 text-ocean-700 dark:bg-ocean-700 dark:text-ocean-300'
               }`}>
                 {stat.change.startsWith('+') ? (
                   <ArrowUpRight className="w-3 h-3" />
@@ -196,11 +206,11 @@ export default function AdminDashboard() {
               </div>
             </div>
             <div>
-              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{stat.title}</p>
+              <p className="text-sm text-ocean-600 dark:text-ocean-400 font-medium">{stat.title}</p>
               {loading ? (
-                <div className="h-8 w-16 bg-slate-100 dark:bg-slate-700 animate-pulse rounded mt-1" />
+                <div className="h-8 w-16 bg-ocean-100 dark:bg-ocean-700 animate-pulse rounded mt-1" />
               ) : (
-                <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
+                <p className="text-2xl font-bold text-ocean-900 dark:text-white mt-1">{stat.value}</p>
               )}
             </div>
           </div>
@@ -210,13 +220,13 @@ export default function AdminDashboard() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Booking Trends Chart */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-ocean-800 rounded-2xl p-6 shadow-sm border border-ocean-100 dark:border-ocean-700">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Booking Trends</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Weekly booking overview</p>
+              <h3 className="text-lg font-bold text-ocean-900 dark:text-white">Booking Trends</h3>
+              <p className="text-sm text-ocean-500 dark:text-ocean-400">Weekly booking overview</p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400 rounded-full text-sm font-medium">
               <TrendingUp className="w-4 h-4" />
               +12%
             </div>
@@ -225,8 +235,8 @@ export default function AdminDashboard() {
             <AreaChart data={bookingStats}>
               <defs>
                 <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.15} />
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
@@ -243,7 +253,7 @@ export default function AdminDashboard() {
               <Area
                 type="monotone"
                 dataKey="bookings"
-                stroke="#3b82f6"
+                stroke="#0ea5e9"
                 strokeWidth={3}
                 fillOpacity={1}
                 fill="url(#colorBookings)"
@@ -253,11 +263,11 @@ export default function AdminDashboard() {
         </div>
 
         {/* Booking Status Chart */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-ocean-800 rounded-2xl p-6 shadow-sm border border-ocean-100 dark:border-ocean-700">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Booking Status</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Current distribution</p>
+              <h3 className="text-lg font-bold text-ocean-900 dark:text-white">Booking Status</h3>
+              <p className="text-sm text-ocean-500 dark:text-ocean-400">Current distribution</p>
             </div>
           </div>
           <div className="flex items-center">
@@ -293,8 +303,8 @@ export default function AdminDashboard() {
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: item.color }}
                   />
-                  <span className="text-sm text-slate-600 dark:text-slate-400">{item.name}</span>
-                  <span className="text-sm font-bold text-slate-900 dark:text-white">{item.value}</span>
+                  <span className="text-sm text-ocean-600 dark:text-ocean-400">{item.name}</span>
+                  <span className="text-sm font-bold text-ocean-900 dark:text-white">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -303,13 +313,13 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+      <div className="bg-white dark:bg-ocean-800 rounded-2xl p-6 shadow-sm border border-ocean-100 dark:border-ocean-700">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Latest actions on your resort</p>
+            <h3 className="text-lg font-bold text-ocean-900 dark:text-white">Recent Activity</h3>
+            <p className="text-sm text-ocean-500 dark:text-ocean-400">Latest actions on your resort</p>
           </div>
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+          <button className="text-sm text-ocean-600 hover:text-ocean-700 dark:text-ocean-400 dark:hover:text-ocean-300 font-medium transition-colors">
             View All →
           </button>
         </div>
@@ -317,20 +327,20 @@ export default function AdminDashboard() {
           {recentActivity.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              className="flex items-center gap-4 p-4 bg-ocean-50 dark:bg-ocean-700/50 rounded-xl hover:bg-ocean-100 dark:hover:bg-ocean-700 transition-colors"
             >
-              <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm">
-                {activity.type === "booking" && <CalendarCheck className="w-6 h-6 text-blue-600" />}
-                {activity.type === "confirm" && <CheckCircle className="w-6 h-6 text-green-600" />}
-                {activity.type === "testimonial" && <MessageSquareQuote className="w-6 h-6 text-amber-500" />}
+              <div className="w-12 h-12 bg-white dark:bg-ocean-800 rounded-xl flex items-center justify-center shadow-sm">
+                {activity.type === "booking" && <CalendarCheck className="w-6 h-6 text-ocean-600" />}
+                {activity.type === "confirm" && <CheckCircle className="w-6 h-6 text-teal-600" />}
+                {activity.type === "testimonial" && <MessageSquareQuote className="w-6 h-6 text-sunset-500" />}
                 {activity.type === "gallery" && <Image className="w-6 h-6 text-pink-500" />}
-                {activity.type === "room" && <BedDouble className="w-6 h-6 text-purple-500" />}
+                {activity.type === "room" && <BedDouble className="w-6 h-6 text-cyan-500" />}
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-slate-900 dark:text-white">{activity.action}</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">{activity.guest}</p>
+                <p className="font-semibold text-ocean-900 dark:text-white">{activity.action}</p>
+                <p className="text-sm text-ocean-500 dark:text-ocean-400">{activity.guest}</p>
               </div>
-              <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+              <div className="flex items-center gap-2 text-ocean-400 dark:text-ocean-500">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm">{activity.time}</span>
               </div>
@@ -343,31 +353,31 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <a
           href="/admin/bookings"
-          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg shadow-blue-500/25"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-ocean-500 to-ocean-600 rounded-2xl text-white hover:from-ocean-600 hover:to-ocean-700 transition-all shadow-lg shadow-ocean-500/25 hover:shadow-ocean-500/40"
         >
           <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
             <CalendarCheck className="w-6 h-6" />
           </div>
           <div>
             <span className="font-semibold">Manage Bookings</span>
-            <p className="text-sm text-blue-100">View & confirm</p>
+            <p className="text-sm text-ocean-100">View & confirm</p>
           </div>
         </a>
         <a
           href="/admin/accommodations"
-          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl text-white hover:from-purple-600 hover:to-purple-700 transition-all shadow-lg shadow-purple-500/25"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl text-white hover:from-cyan-600 hover:to-cyan-700 transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
         >
           <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
             <BedDouble className="w-6 h-6" />
           </div>
           <div>
             <span className="font-semibold">Edit Rooms</span>
-            <p className="text-sm text-purple-100">Update listings</p>
+            <p className="text-sm text-cyan-100">Update listings</p>
           </div>
         </a>
         <a
           href="/admin/gallery"
-          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl text-white hover:from-pink-600 hover:to-pink-700 transition-all shadow-lg shadow-pink-500/25"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl text-white hover:from-pink-600 hover:to-pink-700 transition-all shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40"
         >
           <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
             <Image className="w-6 h-6" />
@@ -379,14 +389,14 @@ export default function AdminDashboard() {
         </a>
         <a
           href="/admin/settings"
-          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-slate-600 to-slate-700 rounded-2xl text-white hover:from-slate-700 hover:to-slate-800 transition-all shadow-lg shadow-slate-500/25"
+          className="group flex items-center gap-4 p-4 bg-gradient-to-br from-sunset-500 to-sunset-600 rounded-2xl text-white hover:from-sunset-600 hover:to-sunset-700 transition-all shadow-lg shadow-sunset-500/25 hover:shadow-sunset-500/40"
         >
           <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
             <TrendingUp className="w-6 h-6" />
           </div>
           <div>
             <span className="font-semibold">Site Settings</span>
-            <p className="text-sm text-slate-200">Configure</p>
+            <p className="text-sm text-sunset-100">Configure</p>
           </div>
         </a>
       </div>
