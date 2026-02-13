@@ -5,6 +5,9 @@ REM ============================================
 
 setlocal enabledelayedexpansion
 
+REM Change to the script's directory
+cd /d "%~dp0"
+
 echo.
 echo 🏝️  Piel Lighthouse Resort - Setup
 echo ===================================
@@ -21,6 +24,7 @@ if %errorlevel% equ 0 (
     echo    ✗ pnpm not found. Please install pnpm first:
     echo      npm install -g pnpm
     echo.
+    pause
     exit /b 1
 )
 
@@ -33,6 +37,7 @@ if %errorlevel% equ 0 (
 ) else (
     echo    ✗ Failed to install dependencies
     echo.
+    pause
     exit /b 1
 )
 
@@ -109,6 +114,7 @@ if exist ".env.local" (
     ) else (
         echo    ✗ .env.local.example not found
         echo.
+        pause
         exit /b 1
     )
 )
@@ -133,6 +139,7 @@ if %errorlevel% equ 0 (
 ) else (
     echo    ✗ Build failed
     echo.
+    pause
     exit /b 1
 )
 

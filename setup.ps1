@@ -5,6 +5,10 @@
 
 $ErrorActionPreference = "Stop"
 
+# Change to the script's directory
+$scriptPath = Split-Path -Parent -Path $MyInvocation.MyCommand.Path
+Set-Location -Path $scriptPath
+
 Write-Host "`n🏝️  Piel Lighthouse Resort - Setup`n" -ForegroundColor Cyan
 Write-Host "================================" -ForegroundColor Cyan
 Write-Host "" 
@@ -17,6 +21,7 @@ try {
 } catch {
     Write-Host "    ✗ pnpm not found. Please install pnpm first:" -ForegroundColor Red
     Write-Host "      npm install -g pnpm`n" -ForegroundColor White
+    Read-Host "Press Enter to exit"
     exit 1
 }
 
@@ -27,6 +32,7 @@ try {
     Write-Host "    ✓ Dependencies installed successfully`n" -ForegroundColor Green
 } catch {
     Write-Host "    ✗ Failed to install dependencies`n" -ForegroundColor Red
+    Read-Host "Press Enter to exit"
     exit 1
 }
 
@@ -44,6 +50,7 @@ if (Test-Path $envFile) {
         Write-Host "    ⚠ Please edit .env.local and add your MongoDB URI and Gmail App Password`n" -ForegroundColor Yellow
     } else {
         Write-Host "    ✗ .env.local.example not found`n" -ForegroundColor Red
+        Read-Host "Press Enter to exit"
         exit 1
     }
 }
