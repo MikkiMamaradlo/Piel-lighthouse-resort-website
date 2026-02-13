@@ -144,15 +144,18 @@ export default function GuestRoomsPage() {
     <div className="min-h-screen flex relative overflow-hidden bg-gradient-to-br from-sand-50 via-ocean-50 to-teal-50 dark:from-ocean-950 dark:via-ocean-900 dark:to-teal-950">
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-40 left-10 w-40 h-40 bg-amber-300/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-40 right-10 w-60 h-60 bg-teal-300/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-sunset-300/10 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-300/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-1/3 right-20 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-sunset-300/20 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute top-40 right-1/3 w-64 h-64 bg-ocean-300/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute bottom-40 right-10 w-72 h-72 bg-amber-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute top-1/2 left-10 w-48 h-48 bg-teal-400/15 rounded-full blur-2xl animate-float" style={{ animationDelay: "1.5s" }}></div>
       </div>
 
       {/* Blurred Background Image Layer */}
-      <div className="fixed inset-0 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center opacity-20 pointer-events-none"></div>
+      <div className="fixed inset-0 bg-[url('/images/piel10.jpg')] bg-cover bg-fixed bg-center opacity-30 pointer-events-none"></div>
       {/* Gradient Overlay */}
-      <div className="fixed inset-0 bg-gradient-to-br from-white/90 via-white/70 to-white/90 dark:from-ocean-950/90 dark:via-ocean-900/80 dark:to-ocean-950/90 backdrop-blur-2xl pointer-events-none"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/80 dark:from-ocean-950/80 dark:via-ocean-900/70 dark:to-ocean-950/80 backdrop-blur-md pointer-events-none"></div>
 
       {sidebarOpen && (
         <div 
@@ -297,7 +300,7 @@ export default function GuestRoomsPage() {
 
             {/* Rooms Grid */}
             {loading ? (
-              <div className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-2xl rounded-3xl shadow-xl border border-white/50 dark:border-ocean-700/50 p-12 text-center">
+              <div className="bg-white/80 dark:bg-ocean-900/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 dark:border-ocean-700/50 p-12 text-center">
                 <div className="relative inline-block mb-4">
                   <div className="w-16 h-16 border-4 border-sand-200 dark:border-ocean-700 rounded-full flex items-center justify-center mx-auto">
                     <div className="w-10 h-10 border-4 border-sunset-500 border-t-transparent rounded-full animate-spin"></div>
@@ -306,7 +309,7 @@ export default function GuestRoomsPage() {
                 <p className="text-slate-500 dark:text-slate-400">Loading rooms...</p>
               </div>
             ) : rooms.length === 0 ? (
-              <div className="bg-white/90 dark:bg-ocean-900/90 backdrop-blur-2xl rounded-3xl shadow-xl border border-white/50 dark:border-ocean-700/50 p-12 text-center">
+              <div className="bg-white/80 dark:bg-ocean-900/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 dark:border-ocean-700/50 p-12 text-center">
                 <div className="relative inline-block mb-4">
                   <div className="absolute inset-0 bg-sunset-400/20 rounded-full blur-2xl animate-pulse"></div>
                   <div className="relative w-20 h-20 bg-gradient-to-br from-sunset-100 to-amber-100 dark:from-sunset-900/30 dark:to-amber-900/30 rounded-full flex items-center justify-center mx-auto shadow-xl">
@@ -321,7 +324,7 @@ export default function GuestRoomsPage() {
                 {rooms.map((room, index) => (
                   <div
                     key={room._id}
-                    className="group bg-white/90 dark:bg-ocean-900/90 backdrop-blur-2xl rounded-3xl shadow-lg border border-white/50 dark:border-ocean-700/50 overflow-hidden hover:shadow-2xl hover:shadow-sunset-500/20 dark:hover:border-sunset-700/50 transition-all duration-500 hover:scale-[1.02]"
+                    className="group bg-white/80 dark:bg-ocean-900/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/50 dark:border-ocean-700/50 overflow-hidden hover:shadow-2xl hover:shadow-sunset-500/20 dark:hover:border-sunset-700/50 transition-all duration-500 hover:scale-[1.02]"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Image */}
