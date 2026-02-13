@@ -153,21 +153,45 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center gap-3">
             <div className="flex items-center gap-3 ml-auto">
               <ThemeToggle />
-              <button className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user w-5 h-5 text-white">
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
+              {isGuestLoggedIn ? (
+                <Link 
+                  href="/guest/dashboard" 
+                  className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user w-5 h-5 text-white">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold text-card-foreground text-sm">Guest</p>
+                    <p className="text-xs text-muted-foreground">Dashboard</p>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-muted-foreground transition-transform duration-200">
+                    <path d="m6 9 6 6 6-6"></path>
                   </svg>
-                </div>
-                <div className="text-right">
-                  <p className="font-semibold text-card-foreground text-sm">Guest</p>
-                  <p className="text-xs text-muted-foreground">Guest</p>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-muted-foreground transition-transform duration-200">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
+                </Link>
+              ) : (
+                <Link 
+                  href="/guest/login" 
+                  className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user w-5 h-5 text-white">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold text-card-foreground text-sm">Guest</p>
+                    <p className="text-xs text-muted-foreground">Login</p>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-muted-foreground transition-transform duration-200">
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                </Link>
+              )}
               <Button 
                 onClick={() => scrollToSection("contact")}
                 size="sm"
