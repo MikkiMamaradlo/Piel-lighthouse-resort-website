@@ -151,38 +151,31 @@ export default function Navigation() {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
-            {isGuestLoggedIn ? (
-              <>
-                <Link 
-                  href="/guest/dashboard" 
-                  className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-primary transition-colors rounded-lg hover:bg-primary/5"
-                >
-                  <User className="w-4 h-4" />
-                  <span>Dashboard</span>
-                </Link>
-                <button 
-                  onClick={handleLogout}
-                  className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-red-600 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-muted/50"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/guest/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-muted/50 dark:text-gray-300 dark:hover:text-white">
-                  <User className="w-4 h-4" />
-                  <span>Login</span>
-                </Link>
-                <Button 
-                  onClick={() => scrollToSection("contact")}
-                  size="sm"
-                  className="shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  Book Now
-                </Button>
-              </>
-            )}
+            <div className="flex items-center gap-3 ml-auto">
+              <ThemeToggle />
+              <button className="hidden sm:flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 group">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-user w-5 h-5 text-white">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold text-slate-800 dark:text-white text-sm">Guest</p>
+                  <p className="text-xs text-slate-500 dark:text-gray-400">Guest</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-slate-400 transition-transform duration-200">
+                  <path d="m6 9 6 6 6-6"></path>
+                </svg>
+              </button>
+              <Button 
+                onClick={() => scrollToSection("contact")}
+                size="sm"
+                className="shadow-md hover:shadow-lg transition-all duration-300"
+              >
+                Book Now
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

@@ -150,7 +150,7 @@ export default function GuestBookingsPage() {
   }
 
   return (
-    <div className="min-h-screen flex relative overflow-hidden bg-gradient-to-br from-sand-50 via-ocean-50 to-teal-50 dark:from-ocean-950 dark:via-ocean-900 dark:to-teal-950">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-sand-50 via-ocean-50 to-teal-50 dark:from-ocean-950 dark:via-ocean-900 dark:to-teal-950">
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-40 left-10 w-40 h-40 bg-amber-300/10 rounded-full blur-3xl animate-float"></div>
@@ -164,8 +164,8 @@ export default function GuestBookingsPage() {
       <div className="fixed inset-0 bg-gradient-to-br from-white/90 via-white/70 to-white/90 dark:from-ocean-950/90 dark:via-ocean-900/80 dark:to-ocean-950/90 backdrop-blur-2xl pointer-events-none"></div>
 
       {/* Navigation */}
-      <nav className="relative z-10 bg-white/80 dark:bg-ocean-900/80 backdrop-blur-2xl border-b border-sand-200/50 dark:border-ocean-700/50 sticky top-0">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <nav className="relative z-20 bg-white/80 dark:bg-ocean-900/80 backdrop-blur-2xl border-b border-sand-200/50 dark:border-ocean-700/50 sticky top-0">
+        <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <Link
@@ -195,8 +195,8 @@ export default function GuestBookingsPage() {
       </nav>
 
       {/* Bookings Content */}
-      <main className="relative z-10 flex-1 p-6 overflow-auto">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <main className="relative z-10 flex-1 w-full max-w-5xl mx-auto px-6 py-8">
+        <div className="space-y-8">
           {/* Page Header */}
           <div className="text-center">
             <div className="relative inline-block mb-4">
@@ -328,7 +328,8 @@ export default function GuestBookingsPage() {
       </main>
       
       {/* Footer */}
-      <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6 relative z-10">
+      <footer className="bg-white/60 dark:bg-ocean-900/60 backdrop-blur-xl border-t border-sand-200/50 dark:border-ocean-700/50 py-4 px-6 relative z-10 mt-auto">
+        <div className="max-w-5xl mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-2">
             <Waves className="w-4 h-4 text-teal-500" />
@@ -340,6 +341,7 @@ export default function GuestBookingsPage() {
               Made with care
             </span>
           </div>
+        </div>
         </div>
       </footer>
     </div>

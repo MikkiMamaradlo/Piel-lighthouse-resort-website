@@ -91,7 +91,7 @@ export function GuestProfileDropdown({ guest }: GuestProfileDropdownProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
           {/* Header */}
           <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-slate-100">
             <div className="flex items-center gap-3">

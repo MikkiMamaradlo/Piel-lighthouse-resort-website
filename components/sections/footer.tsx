@@ -188,15 +188,23 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-gray-300 mb-2">
-            © {currentYear} Piel Lighthouse Beach Resort. All rights reserved.
-          </p>
-          <div className="flex justify-center gap-6 text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-500">
+            <div className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-waves w-4 h-4 text-teal-500"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
+              <span>© 2024 Piel Lighthouse Resort. Your beach paradise awaits.</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-sun w-3.5 h-3.5 text-sunset-500"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                Made with care
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-center gap-6 text-sm text-gray-500 mt-4">
             <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-gray-300 transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-gray-300 transition-colors">Cancellation Policy</a>
           </div>
-          <p className="text-sm text-gray-600 mt-4">Made with ❤️ for beach lovers</p>
         </div>
       </div>
     </footer>
