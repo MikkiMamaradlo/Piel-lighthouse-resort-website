@@ -52,7 +52,7 @@ export default function Activities() {
           {activities.map((activity, index) => (
             <Card 
               key={activity.title} 
-              className="p-6 text-center bg-white hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 group overflow-hidden relative border-0"
+              className="p-6 text-center bg-white dark:bg-slate-800 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2 group overflow-hidden relative border-0"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               {/* Background gradient decoration */}

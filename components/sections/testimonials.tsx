@@ -77,7 +77,7 @@ export default function Testimonials() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-5 py-2 bg-amber-100 text-amber-700 text-sm font-medium rounded-full mb-6">
+          <span className="inline-flex items-center gap-2 px-5 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-medium rounded-full mb-6">
             💬 Testimonials
           </span>
           <h2 id="testimonials-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-5">
@@ -93,7 +93,7 @@ export default function Testimonials() {
 
         {/* Featured testimonial card */}
         <div className="relative">
-          <Card className="bg-white rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 p-8 md:p-12 border-0 relative overflow-hidden hover:-translate-y-1">
+          <Card className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 p-8 md:p-12 border-0 relative overflow-hidden hover:-translate-y-1">
             {/* Decorative quotes */}
             <Quote className="absolute top-6 left-8 w-16 h-16 text-primary/10" />
             <Quote className="absolute bottom-6 right-8 w-16 h-16 text-primary/10 transform rotate-180" />
@@ -112,7 +112,7 @@ export default function Testimonials() {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${i < current.rating ? "text-amber-500 fill-amber-500" : "text-gray-300"}`}
+                      className={`w-5 h-5 ${i < current.rating ? "text-amber-500 fill-amber-500" : "text-gray-300 dark:text-gray-600"}`}
                     />
                   ))}
                 </div>
@@ -157,7 +157,7 @@ export default function Testimonials() {
             </div>
             <button
               onClick={nextTestimonial}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="w-12 h-12 bg-white dark:bg-slate-800 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:shadow-xl hover:scale-110 transition-all duration-300"
               aria-label="Next testimonial"
             >
               <ChevronRight size={24} />
@@ -175,7 +175,7 @@ export default function Testimonials() {
           ].map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300"
+              className="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">{stat.value}</div>

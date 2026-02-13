@@ -75,7 +75,7 @@ export default function Gallery() {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-primary text-white shadow-lg shadow-primary/30"
-                  : "bg-white text-muted-foreground hover:bg-muted hover:shadow-md"
+                  : "bg-white dark:bg-slate-800 text-muted-foreground dark:text-slate-300 hover:bg-muted dark:hover:bg-slate-700 hover:shadow-md"
               }`}
             >
               {category}
@@ -102,7 +102,7 @@ export default function Gallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                 
                 {/* Category badge - always visible */}
-                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-4 py-2 rounded-full shadow-md flex items-center gap-1.5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <span className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-foreground text-xs font-semibold px-4 py-2 rounded-full shadow-md flex items-center gap-1.5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full group-hover:bg-white transition-colors duration-300"></span>
                   {image.category}
                 </span>
