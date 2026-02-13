@@ -221,13 +221,6 @@ export default function StaffLoginPage() {
                 )}
               </button>
             </form>
-
-            {/* Quick link */}
-            <div className="mt-6 text-center">
-              <Link href="/staff/register" className="text-sm text-ocean-600 dark:text-ocean-400 hover:text-sunset-500 transition-colors">
-                New staff member? <span className="font-semibold">Register here</span>
-              </Link>
-            </div>
           </div>
         </div>
 
