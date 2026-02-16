@@ -93,27 +93,27 @@ export default function StaffLoginPage() {
           </div>
           
           <Link href="/" className="inline-block group">
-            <h1 className="text-3xl font-bold text-white mb-2 group-hover:text-jade-300 transition-all duration-300 drop-shadow-lg">
+            <h1 className="text-3xl font-bold text-white mb-2 group-hover:text-[var(--secondary)] transition-all duration-300 drop-shadow-lg">
               Piel Lighthouse
             </h1>
           </Link>
-          <div className="flex items-center justify-center gap-2 text-jade-200">
-            <Sun className="w-5 h-5 text-jade-400 animate-pulse" />
+          <div className="flex items-center justify-center gap-2 text-[var(--secondary)]/80">
+            <Sun className="w-5 h-5 text-[var(--accent)] animate-pulse" />
             <span className="text-sm font-semibold tracking-wide">Staff Portal</span>
-            <Sun className="w-5 h-5 text-jade-400 animate-pulse" />
+            <Sun className="w-5 h-5 text-[var(--accent)] animate-pulse" />
           </div>
         </div>
 
         {/* Login Form Card */}
-        <div className="relative bg-white/95 dark:bg-jade-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/20 dark:ring-jade-700/50">
+        <div className="relative bg-white/95 dark:bg-[var(--background)]/95 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/20 dark:ring-[var(--border)]/50">
           {/* Decorative top bar */}
-          <div className="h-2 bg-gradient-to-r from-jade-400 via-teal-400 to-emerald-500"></div>
+          <div className="h-2 bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)]"></div>
           
           <div className="p-8">
             {/* Welcome message */}
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-jade-900 dark:text-white mb-1">Staff Login</h2>
-              <p className="text-jade-600 dark:text-jade-400 text-sm">Access your staff dashboard</p>
+              <h2 className="text-2xl font-bold text-[var(--foreground)] dark:text-white mb-1">Staff Login</h2>
+              <p className="text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-sm">Access your staff dashboard</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
