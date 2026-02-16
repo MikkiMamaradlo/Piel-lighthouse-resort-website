@@ -126,59 +126,58 @@
 }
 
 .dark {
-  --background: oklch(0.12 0.01 199);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.18 0.01 199);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.18 0.01 199);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.6 0.15 265);
-  --primary-foreground: oklch(0.15 0 0);
-  --secondary: oklch(0.6 0.12 199);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.28 0.01 199);
-  --muted-foreground: oklch(0.7 0.05 199);
-  --accent: oklch(0.7 0.12 55);
-  --accent-foreground: oklch(0.15 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.28 0.01 199);
-  --input: oklch(0.25 0.01 199);
-  --ring: oklch(0.6 0.15 265);
-  --chart-1: oklch(0.6 0.15 265);
-  --chart-2: oklch(0.6 0.12 199);
-  --chart-3: oklch(0.7 0.12 55);
-  --chart-4: oklch(0.65 0.1 165);
-  --chart-5: oklch(0.6 0.1 220);
-  --sidebar: oklch(0.18 0.01 199);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.55 0.18 265);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.25 0.015 199);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.28 0.01 199);
-  --sidebar-ring: oklch(0.55 0.15 265);
+  --background: oklch(0.15 0.02 240);
+  --foreground: oklch(0.98 0.01 240);
+  --card: oklch(0.2 0.02 240);
+  --card-foreground: oklch(0.98 0.01 240);
+  --popover: oklch(0.2 0.02 240);
+  --popover-foreground: oklch(0.98 0.01 240);
+  --primary: oklch(0.7 0.22 265);
+  --primary-foreground: oklch(0.98 0.01 240);
+  --secondary: oklch(0.25 0.03 240);
+  --secondary-foreground: oklch(0.98 0.01 240);
+  --muted: oklch(0.25 0.03 240);
+  --muted-foreground: oklch(0.78 0.03 240);
+  --accent: oklch(0.3 0.05 55);
+  --accent-foreground: oklch(0.98 0.01 240);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --border: oklch(0.3 0.02 240);
+  --input: oklch(0.3 0.02 240);
+  --ring: oklch(0.7 0.22 265);
+  --chart-1: oklch(0.7 0.22 265);
+  --chart-2: oklch(0.65 0.15 199);
+  --chart-3: oklch(0.65 0.18 55);
+  --chart-4: oklch(0.7 0.12 165);
+  --sidebar: oklch(0.15 0.02 240);
+  --sidebar-foreground: oklch(0.98 0.01 240);
+  --sidebar-primary: oklch(0.7 0.22 265);
+  --sidebar-primary-foreground: oklch(0.98 0.01 240);
+  --sidebar-accent: oklch(0.25 0.03 240);
+  --sidebar-accent-foreground: oklch(0.98 0.01 240);
+  --sidebar-border: oklch(0.3 0.02 240);
+  --sidebar-ring: oklch(0.7 0.22 265);
   
-  /* Text visibility tokens for WCAG compliance */
-  --text-primary: oklch(0.98 0 0);
-  --text-secondary: oklch(0.75 0.04 199);
-  --text-tertiary: oklch(0.6 0.03 199);
-  --text-muted: oklch(0.5 0.03 199);
-  --text-inverse: oklch(0.12 0.01 199);
-  --text-success: oklch(0.85 0.1 145);
-  --text-warning: oklch(0.85 0.12 70);
-  --text-error: oklch(0.85 0.12 25);
-  --text-info: oklch(0.85 0.08 220);
+  /* Text visibility tokens for dark mode - WCAG compliant */
+  --text-primary: oklch(0.98 0.01 240);
+  --text-secondary: oklch(0.82 0.03 240);
+  --text-tertiary: oklch(0.68 0.03 240);
+  --text-muted: oklch(0.55 0.025 240);
+  --text-inverse: oklch(0.15 0.02 240);
+  --text-success: oklch(0.78 0.12 145);
+  --text-warning: oklch(0.85 0.1 70);
+  --text-error: oklch(0.85 0.1 25);
+  --text-info: oklch(0.8 0.08 220);
   
-  /* Background tokens */
-  --bg-primary: oklch(0.18 0.01 199);
-  --bg-secondary: oklch(0.22 0.015 199);
-  --bg-tertiary: oklch(0.28 0.02 199);
-  --bg-elevated: oklch(0.22 0.015 199);
+  /* Background tokens for dark mode */
+  --bg-primary: oklch(0.2 0.02 240);
+  --bg-secondary: oklch(0.15 0.015 240);
+  --bg-tertiary: oklch(0.25 0.025 240);
+  --bg-elevated: oklch(0.25 0.025 240);
   
-  /* Border tokens */
-  --border-default: oklch(0.35 0.02 199);
-  --border-muted: oklch(0.28 0.015 199);
+  /* Border tokens for dark mode */
+  --border-default: oklch(0.3 0.02 240);
+  --border-muted: oklch(0.35 0.02 240);
 }
 
 /* Dark mode Jade color overrides */
@@ -309,58 +308,6 @@
   --color-jade-950: var(--color-jade-950);
 }
 
-/* Dark mode overrides for theme variables */
-.dark {
-  --background: oklch(0.15 0.02 240);
-  --foreground: oklch(0.98 0.01 240);
-  --card: oklch(0.2 0.02 240);
-  --card-foreground: oklch(0.98 0.01 240);
-  --popover: oklch(0.2 0.02 240);
-  --popover-foreground: oklch(0.98 0.01 240);
-  --primary: oklch(0.7 0.22 265);
-  --primary-foreground: oklch(0.98 0.01 240);
-  --secondary: oklch(0.25 0.03 240);
-  --secondary-foreground: oklch(0.98 0.01 240);
-  --muted: oklch(0.25 0.03 240);
-  --muted-foreground: oklch(0.7 0.03 240);
-  --accent: oklch(0.3 0.05 55);
-  --accent-foreground: oklch(0.98 0.01 240);
-  --destructive: oklch(0.55 0.22 27);
-  --destructive-foreground: oklch(0.98 0.01 240);
-  --border: oklch(0.3 0.02 240);
-  --input: oklch(0.3 0.02 240);
-  --ring: oklch(0.7 0.22 265);
-  --chart-1: oklch(0.7 0.22 265);
-  --chart-2: oklch(0.65 0.15 199);
-  --chart-3: oklch(0.65 0.18 55);
-  --chart-4: oklch(0.7 0.12 165);
-  --sidebar: oklch(0.15 0.02 240);
-  --sidebar-foreground: oklch(0.98 0.01 240);
-  --sidebar-primary: oklch(0.7 0.22 265);
-  --sidebar-primary-foreground: oklch(0.98 0.01 240);
-  --sidebar-accent: oklch(0.25 0.03 240);
-  --sidebar-accent-foreground: oklch(0.98 0.01 240);
-  --sidebar-border: oklch(0.3 0.02 240);
-  --sidebar-ring: oklch(0.7 0.22 265);
-  
-  /* Text visibility tokens for dark mode */
-  --text-primary: oklch(0.98 0.01 240);
-  --text-secondary: oklch(0.7 0.04 240);
-  --text-tertiary: oklch(0.6 0.03 240);
-  --text-muted: oklch(0.5 0.02 240);
-  --text-inverse: oklch(0.15 0.02 240);
-  
-  /* Background tokens for dark mode */
-  --bg-primary: oklch(0.2 0.02 240);
-  --bg-secondary: oklch(0.15 0.015 240);
-  --bg-tertiary: oklch(0.25 0.025 240);
-  --bg-elevated: oklch(0.25 0.025 240);
-  
-  /* Border tokens for dark mode */
-  --border-default: oklch(0.3 0.02 240);
-  --border-muted: oklch(0.35 0.02 240);
-}
-
 /* ============================================
    PORTAL-SPECIFIC COLOR THEMES
    Each portal has distinct colors while maintaining
@@ -396,30 +343,36 @@
 }
 
 /* Dark mode for Guest Portal */
-[data-portal="guest"] .dark {
+[data-portal="guest"].dark {
   --primary: #42A5F5;
-  --primary-foreground: #0D47A1;
+  --primary-foreground: #FFFFFF;
   --secondary: #1E88E5;
   --secondary-foreground: #FFFFFF;
   --accent: #FFD54F;
-  --accent-foreground: #3E2723;
+  --accent-foreground: #1A237E;
   --background: #0D47A1;
   --foreground: #E3F2FD;
   --card: #1565C0;
-  --card-foreground: #E3F2FD;
+  --card-foreground: #FFFFFF;
   --muted: #1976D2;
-  --muted-foreground: #BBDEFB;
+  --muted-foreground: #E3F2FD;
   --border: #42A5F5;
   --input: #1976D2;
   --ring: #42A5F5;
   --sidebar: #0D47A1;
-  --sidebar-foreground: #E3F2FD;
+  --sidebar-foreground: #FFFFFF;
   --sidebar-primary: #42A5F5;
   --sidebar-primary-foreground: #0D47A1;
   --sidebar-accent: #1E88E5;
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: #42A5F5;
   --sidebar-ring: #42A5F5;
+  
+  /* Text visibility tokens for dark mode */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E3F2FD;
+  --text-tertiary: #BBDEFB;
+  --text-muted: #90CAF9;
 }
 
 /* ADMIN PORTAL - Professional & Controlled Theme */
@@ -451,19 +404,19 @@
 }
 
 /* Dark mode for Admin Portal */
-[data-portal="admin"] .dark {
+[data-portal="admin"].dark {
   --primary: #1565C0;
   --primary-foreground: #FFFFFF;
   --secondary: #37474F;
   --secondary-foreground: #FFFFFF;
   --accent: #00838F;
   --accent-foreground: #FFFFFF;
-  --background: #121212;
+  --background: #0D0D0D;
   --foreground: #FAFAFA;
-  --card: #1E1E1E;
-  --card-foreground: #FAFAFA;
+  --card: #1A1A1A;
+  --card-foreground: #FFFFFF;
   --muted: #263238;
-  --muted-foreground: #B0BEC5;
+  --muted-foreground: #CFD8DC;
   --border: #37474F;
   --input: #263238;
   --ring: #1565C0;
@@ -475,6 +428,12 @@
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: #1565C0;
   --sidebar-ring: #42A5F5;
+  
+  /* Text visibility tokens for dark mode */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-tertiary: #BDBDBD;
+  --text-muted: #9E9E9E;
 }
 
 /* STAFF PORTAL - Active & Operational Theme */
@@ -506,19 +465,19 @@
 }
 
 /* Dark mode for Staff Portal */
-[data-portal="staff"] .dark {
+[data-portal="staff"].dark {
   --primary: #42A5F5;
   --primary-foreground: #0D47A1;
   --secondary: #00ACC1;
   --secondary-foreground: #FFFFFF;
   --accent: #FFB74D;
-  --accent-foreground: #3E2723;
-  --background: #121212;
+  --accent-foreground: #1A1A1A;
+  --background: #0D0D0D;
   --foreground: #FAFAFA;
-  --card: #1E1E1E;
-  --card-foreground: #FAFAFA;
+  --card: #1A1A1A;
+  --card-foreground: #FFFFFF;
   --muted: #006064;
-  --muted-foreground: #B2EBF2;
+  --muted-foreground: #E0F7FA;
   --border: #00838F;
   --input: #006064;
   --ring: #42A5F5;
@@ -530,6 +489,25 @@
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: #00838F;
   --sidebar-ring: #4DD0E1;
+  
+  /* Text visibility tokens for dark mode - WCAG compliant */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-tertiary: #B2EBF2;
+  --text-muted: #80DEEA;
+  
+  /* Jade colors adjusted for dark mode */
+  --color-jade-50: oklch(0.97 0.01 160);
+  --color-jade-100: oklch(0.93 0.02 160);
+  --color-jade-200: oklch(0.87 0.03 160);
+  --color-jade-300: oklch(0.78 0.04 160);
+  --color-jade-400: oklch(0.68 0.06 160);
+  --color-jade-500: oklch(0.58 0.08 160);
+  --color-jade-600: oklch(0.48 0.07 160);
+  --color-jade-700: oklch(0.38 0.06 160);
+  --color-jade-800: oklch(0.28 0.05 160);
+  --color-jade-900: oklch(0.2 0.04 160);
+  --color-jade-950: oklch(0.12 0.02 160);
 }
 
 /* ============================================
@@ -581,6 +559,25 @@
   background-color: rgba(251, 140, 0, 0.1);
 }
 
+/* Dark mode portal-specific alert/notification styles */
+[data-portal="guest"].dark .alert-portal {
+  border-color: #FFD54F;
+  background-color: rgba(255, 213, 79, 0.15);
+  color: #FFFFFF;
+}
+
+[data-portal="admin"].dark .alert-portal {
+  border-color: #4DD0E1;
+  background-color: rgba(77, 208, 225, 0.15);
+  color: #FFFFFF;
+}
+
+[data-portal="staff"].dark .alert-portal {
+  border-color: #FFB74D;
+  background-color: rgba(255, 183, 77, 0.15);
+  color: #FFFFFF;
+}
+
 /* Portal-specific badge styles */
 [data-portal="guest"] .badge-portal {
   background-color: #1E88E5;
@@ -595,6 +592,22 @@
 [data-portal="staff"] .badge-portal {
   background-color: #1565C0;
   color: white;
+}
+
+/* Dark mode portal-specific badge styles */
+[data-portal="guest"].dark .badge-portal {
+  background-color: #42A5F5;
+  color: #0D47A1;
+}
+
+[data-portal="admin"].dark .badge-portal {
+  background-color: #1565C0;
+  color: white;
+}
+
+[data-portal="staff"].dark .badge-portal {
+  background-color: #4DD0E1;
+  color: #0D47A1;
 }
 
 /* Portal-specific gradient utilities */
@@ -677,6 +690,63 @@
     --tw-prose-pre-bg: var(--bg-secondary);
     --tw-prose-th-borders: var(--border-muted);
     --tw-prose-td-borders: var(--border-muted);
+  }
+  
+  /* Dark mode input placeholder visibility */
+  .dark input::placeholder,
+  .dark textarea::placeholder,
+  .dark [contenteditable]::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.8;
+  }
+  
+  /* Dark mode link visibility */
+  .dark a {
+    color: var(--text-primary);
+    text-decoration-color: var(--text-muted);
+  }
+  
+  .dark a:hover {
+    color: var(--primary);
+  }
+  
+  /* Dark mode disabled state - better visibility */
+  .dark :disabled,
+  .dark [disabled],
+  .dark .disabled {
+    opacity: 0.5;
+    color: var(--text-muted) !important;
+  }
+  
+  /* Dark mode selection */
+  .dark ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  
+  /* Dark mode table improvements */
+  .dark table {
+    border-color: var(--border);
+  }
+  
+  .dark th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  
+  .dark td {
+    color: var(--text-secondary);
+  }
+  
+  /* Dark mode code/pre improvements */
+  .dark code {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+  }
+  
+  .dark pre {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
   }
 }
 
@@ -1119,18 +1189,56 @@ body {
   background: color-mix(in oklch, var(--primary), transparent 20%);
 }
 
-/* Dark mode scrollbar */
+/* Dark mode scrollbar - better visibility */
 .dark ::-webkit-scrollbar-track {
-  background: oklch(0.25 0.01 199);
+  background: oklch(0.2 0.02 240);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: oklch(0.5 0.15 265);
   border-radius: 5px;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklch, var(--accent), transparent 20%);
+  background: oklch(0.6 0.18 265);
+}
+
+/* Dark mode focus ring - more visible */
+.dark *:focus-visible {
+  outline-color: oklch(0.6 0.18 265);
+  outline-offset: 2px;
+}
+
+/* Dark mode - better link colors */
+.dark a,
+.dark .link {
+  color: oklch(0.85 0.15 265);
+}
+
+.dark a:hover,
+.dark .link:hover {
+  color: oklch(0.95 0.1 265);
+}
+
+/* Dark mode - improve form element visibility */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: var(--input);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px oklch(0.3 0.1 265 / 0.2);
+}
+
+/* Dark mode - improve label visibility */
+.dark label {
+  color: var(--text-secondary);
 }
 
 /* Shake animation for error messages */

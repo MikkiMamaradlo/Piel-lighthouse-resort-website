@@ -169,8 +169,8 @@ export default function StaffDashboardPage() {
       value: stats.pendingBookings,
       icon: PendingIcon,
       color: "from-jade-400 to-emerald-500",
-      bgColor: "bg-jade-50",
-      textColor: "text-jade-600",
+      bgColor: "bg-jade-50 dark:bg-jade-900/30",
+      textColor: "text-jade-600 dark:text-jade-400",
     },
     {
       label: "Checked In",
@@ -178,7 +178,7 @@ export default function StaffDashboardPage() {
       icon: CheckInIcon,
       color: "from-teal-500 to-teal-600",
       bgColor: "bg-teal-50 dark:bg-teal-900/30",
-      textColor: "text-teal-600",
+      textColor: "text-teal-600 dark:text-teal-400",
     },
     {
       label: "Completed",

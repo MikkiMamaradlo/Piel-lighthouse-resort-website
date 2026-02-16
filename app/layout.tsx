@@ -27,13 +27,25 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-portal="guest">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
+                  // Get current path to determine portal
+                  var path = window.location.pathname;
+                  var portal = 'guest';
+                  
+                  if (path.startsWith('/staff')) {
+                    portal = 'staff';
+                  } else if (path.startsWith('/admin')) {
+                    portal = 'admin';
+                  }
+                  
+                  document.documentElement.setAttribute('data-portal', portal);
+                  
                   var localTheme = localStorage.getItem('theme');
                   var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
                   var shouldBeDark = localTheme === 'dark' || (!localTheme && supportDarkMode);

@@ -162,8 +162,8 @@ export default function StaffRoomsPage() {
         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300">
           <RoomIcon className="w-4 h-4" />
           <span>{filteredRooms.length} rooms</span>
-          <span className="text-green-600">{availableCount} available</span>
-          <span className="text-amber-600">{bookedCount} booked</span>
+          <span className="text-green-600 dark:text-green-400">{availableCount} available</span>
+          <span className="text-amber-600 dark:text-amber-400">{bookedCount} booked</span>
         </div>
         <div className="flex items-center gap-2">
           <select

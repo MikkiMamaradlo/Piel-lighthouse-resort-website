@@ -202,8 +202,8 @@ export default function StaffGuestsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-blue-50 rounded-xl">
-              <GuestsIcon className="w-6 h-6 text-blue-600" />
+            <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+              <GuestsIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
               <div className="text-sm text-slate-500 dark:text-slate-300">Total Guests</div>
@@ -213,8 +213,8 @@ export default function StaffGuestsPage() {
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-green-50 rounded-xl">
-              <VisitIcon className="w-6 h-6 text-green-600" />
+            <div className="p-3 bg-green-50 dark:bg-green-900/30 rounded-xl">
+              <VisitIcon className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
             <div>
               <div className="text-sm text-slate-500 dark:text-slate-300">With Bookings</div>
@@ -226,8 +226,8 @@ export default function StaffGuestsPage() {
         </div>
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-amber-50 rounded-xl">
-              <CalendarIcon className="w-6 h-6 text-amber-600" />
+            <div className="p-3 bg-amber-50 dark:bg-amber-900/30 rounded-xl">
+              <CalendarIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
               <div className="text-sm text-slate-500 dark:text-slate-300">Upcoming Stays</div>

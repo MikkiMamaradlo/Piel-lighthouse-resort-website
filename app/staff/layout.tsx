@@ -276,7 +276,7 @@ export default function StaffLayout({
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-lg font-bold text-white">Piel Lighthouse Resort</div>
-                  <div className="text-xs text-[var(--secondary)]/80 font-medium flex items-center gap-1">
+                  <div className="text-xs text-white/80 dark:text-white/80 font-medium flex items-center gap-1">
                     <Sun className="w-3 h-3 animate-pulse" />
                     Staff Portal
                   </div>
@@ -333,7 +333,7 @@ export default function StaffLayout({
                       className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 ${
                         isActive
                           ? "bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white shadow-lg shadow-[var(--primary)]/30"
-                          : "text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)]"
+                          : "text-[var(--foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
                       }`}
                       title={isSidebarCollapsed ? item.label : undefined}
                     >
@@ -346,9 +346,9 @@ export default function StaffLayout({
                           ? "bg-white/20" 
                           : "bg-[var(--muted)] dark:bg-[var(--muted)] group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--secondary)]/20"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"}`} />
                       </div>
-                      <span className={`font-semibold transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
+                      <span className={`font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
                       </span>
                       {isActive && !isSidebarCollapsed && (
@@ -370,16 +370,16 @@ export default function StaffLayout({
               <div className="px-3 mt-auto">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-muted-foreground hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] rounded-xl transition-all duration-300 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-[var(--muted-foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] rounded-xl transition-all duration-300 group"
                 >
                   <div className="p-2.5 rounded-xl bg-[var(--muted)] dark:bg-[var(--muted)] group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--secondary)]/20 transition-all duration-300">
                     {isSidebarCollapsed ? (
-                      <ChevronRight className="w-5 h-5 transition-transform duration-300" />
+                      <ChevronRight className="w-5 h-5 text-[var(--muted-foreground)] transition-transform duration-300" />
                     ) : (
-                      <ChevronLeft className="w-5 h-5 transition-transform duration-300" />
+                      <ChevronLeft className="w-5 h-5 text-[var(--muted-foreground)] transition-transform duration-300" />
                     )}
                   </div>
-                  <span className={`text-sm font-semibold transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
+                  <span className={`text-sm font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                     Collapse
                   </span>
                 </button>

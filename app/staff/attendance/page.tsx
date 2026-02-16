@@ -273,7 +273,7 @@ export default function StaffAttendancePage() {
               <div className="space-y-1">
                 {currentRecord?.clockIn ? (
                   <>
-                    <p className="text-green-600 font-medium flex items-center gap-2">
+                    <p className="text-green-600 dark:text-green-400 font-medium flex items-center gap-2">
                       <CheckIcon className="w-4 h-4" />
                       Clocked in at {formatTime(currentRecord.clockIn)}
                     </p>
@@ -343,9 +343,9 @@ export default function StaffAttendancePage() {
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: "This Week", value: thisWeekPresent, color: "from-blue-500 to-blue-600", bgColor: "bg-blue-50", textColor: "text-blue-600" },
-          { label: "Present", value: totalPresent, color: "from-green-500 to-green-600", bgColor: "bg-green-50", textColor: "text-green-600" },
-          { label: "Late", value: totalLate, color: "from-amber-500 to-amber-600", bgColor: "bg-amber-50", textColor: "text-amber-600" },
+          { label: "This Week", value: thisWeekPresent, color: "from-blue-500 to-blue-600", bgColor: "bg-blue-50 dark:bg-blue-900/30", textColor: "text-blue-600 dark:text-blue-400" },
+          { label: "Present", value: totalPresent, color: "from-green-500 to-green-600", bgColor: "bg-green-50 dark:bg-green-900/30", textColor: "text-green-600 dark:text-green-400" },
+          { label: "Late", value: totalLate, color: "from-amber-500 to-amber-600", bgColor: "bg-amber-50 dark:bg-amber-900/30", textColor: "text-amber-600 dark:text-amber-400" },
           { label: "Total Hours", value: `${totalHours.toFixed(1)}h`, color: "from-slate-500 to-slate-600", bgColor: "bg-slate-50 dark:bg-slate-700/50", textColor: "text-slate-600 dark:text-slate-300" },
         ].map((stat, index) => (
           <div
