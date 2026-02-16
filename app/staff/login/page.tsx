@@ -42,12 +42,12 @@ export default function StaffLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-jade-950 via-jade-900 to-jade-950">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[var(--primary)] to-[var(--primary)]">
       {/* Animated Ocean Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Sun rays */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-jade-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-20 right-1/3 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--secondary)]/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 right-1/3 w-72 h-72 bg-[var(--accent)]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
         
         {/* Ocean waves pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -56,7 +56,7 @@ export default function StaffLoginPage() {
               fill="currentColor" 
               fillOpacity="0.4"
               d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,186.7C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              className="text-jade-400"
+              className="text-[var(--secondary)]"
             ></path>
           </svg>
         </div>
@@ -76,8 +76,8 @@ export default function StaffLoginPage() {
         <div className="text-center mb-8">
           {/* Logo with wave animation */}
           <div className="relative inline-block mb-6">
-            <div className="absolute inset-0 bg-jade-400/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-jade-400 via-jade-500 to-emerald-500 rounded-2xl shadow-2xl shadow-jade-500/40 transform hover:scale-110 transition-transform duration-300 overflow-hidden ring-4 ring-white/20">
+            <div className="absolute inset-0 bg-[var(--accent)]/30 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)] rounded-2xl shadow-2xl shadow-[var(--primary)]/40 transform hover:scale-110 transition-transform duration-300 overflow-hidden ring-4 ring-white/20">
               <Image 
                 src="/images/PielLogo.jpg" 
                 alt="Piel Lighthouse Logo" 

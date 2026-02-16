@@ -41,13 +41,13 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-950 via-ocean-900 to-ocean-950">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[var(--primary)] to-[var(--primary)]">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Glowing orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-ocean-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sunset-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-teal-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--secondary)]/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[var(--accent)]/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
         
         {/* Floating particles */}
         <div className="absolute inset-0">
@@ -74,8 +74,8 @@ export default function AdminLogin() {
         <div className="text-center mb-8">
           {/* Logo */}
           <div className="relative inline-block mb-6">
-            <div className="absolute inset-0 bg-ocean-500/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-ocean-600 via-ocean-700 to-teal-700 rounded-2xl shadow-2xl shadow-ocean-500/40 transform hover:scale-110 transition-transform duration-300 ring-4 ring-white/10">
+            <div className="absolute inset-0 bg-[var(--secondary)]/30 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--primary)] via-[var(--primary)] to-[var(--accent)] rounded-2xl shadow-2xl shadow-[var(--primary)]/40 transform hover:scale-110 transition-transform duration-300 ring-4 ring-white/10">
               <Shield className="w-10 h-10 text-white drop-shadow-lg" />
             </div>
             {/* Decorative lock icon */}

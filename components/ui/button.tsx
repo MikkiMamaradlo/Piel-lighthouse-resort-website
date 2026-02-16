@@ -22,6 +22,10 @@ const buttonVariants = cva(
         ocean: 'bg-ocean-600 text-white hover:bg-ocean-500 shadow-ocean-500/30',
         sunset: 'bg-gradient-to-r from-sunset-500 to-sunset-600 text-white hover:from-sunset-600 hover:to-sunset-500 shadow-sunset-500/30',
         teal: 'bg-teal-600 text-white hover:bg-teal-500 shadow-teal-500/30',
+        // Portal-specific accent button variants
+        guest: 'bg-[var(--accent)] text-[var(--accent-foreground)] hover:opacity-90 shadow-[var(--accent)]/25',
+        admin: 'bg-[var(--accent)] text-[var(--accent-foreground)] hover:opacity-90 shadow-[var(--accent)]/25',
+        staff: 'bg-[var(--accent)] text-[var(--accent-foreground)] hover:opacity-90 shadow-[var(--accent)]/25',
       },
       size: {
         default: 'h-10 px-5 py-2.5 has-[>svg]:px-4',

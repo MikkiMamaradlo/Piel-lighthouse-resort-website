@@ -361,6 +361,281 @@
   --border-muted: oklch(0.35 0.02 240);
 }
 
+/* ============================================
+   PORTAL-SPECIFIC COLOR THEMES
+   Each portal has distinct colors while maintaining
+   beach resort brand identity
+   ============================================ */
+
+/* GUEST PORTAL - Relaxing & Welcoming Theme */
+/* Ocean Blue (#1E88E5), Sky Blue (#64B5F6), Gold (#FFC107), Light Blue (#E3F2FD) */
+[data-portal="guest"] {
+  --primary: #1E88E5;
+  --primary-foreground: #FFFFFF;
+  --secondary: #64B5F6;
+  --secondary-foreground: #0D47A1;
+  --accent: #FFC107;
+  --accent-foreground: #0D47A1;
+  --background: #E3F2FD;
+  --foreground: #1A237E;
+  --card: #FFFFFF;
+  --card-foreground: #1A237E;
+  --muted: #BBDEFB;
+  --muted-foreground: #546E7A;
+  --border: #90CAF9;
+  --input: #BBDEFB;
+  --ring: #1E88E5;
+  --sidebar: #E3F2FD;
+  --sidebar-foreground: #1A237E;
+  --sidebar-primary: #1E88E5;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #64B5F6;
+  --sidebar-accent-foreground: #0D47A1;
+  --sidebar-border: #90CAF9;
+  --sidebar-ring: #1E88E5;
+}
+
+/* Dark mode for Guest Portal */
+[data-portal="guest"] .dark {
+  --primary: #42A5F5;
+  --primary-foreground: #0D47A1;
+  --secondary: #1E88E5;
+  --secondary-foreground: #FFFFFF;
+  --accent: #FFD54F;
+  --accent-foreground: #3E2723;
+  --background: #0D47A1;
+  --foreground: #E3F2FD;
+  --card: #1565C0;
+  --card-foreground: #E3F2FD;
+  --muted: #1976D2;
+  --muted-foreground: #BBDEFB;
+  --border: #42A5F5;
+  --input: #1976D2;
+  --ring: #42A5F5;
+  --sidebar: #0D47A1;
+  --sidebar-foreground: #E3F2FD;
+  --sidebar-primary: #42A5F5;
+  --sidebar-primary-foreground: #0D47A1;
+  --sidebar-accent: #1E88E5;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #42A5F5;
+  --sidebar-ring: #42A5F5;
+}
+
+/* ADMIN PORTAL - Professional & Controlled Theme */
+/* Deep Navy Blue (#0D47A1), Slate Gray (#546E7A), Muted Teal (#00838F), Light Gray (#F5F5F5) */
+[data-portal="admin"] {
+  --primary: #0D47A1;
+  --primary-foreground: #FFFFFF;
+  --secondary: #546E7A;
+  --secondary-foreground: #FFFFFF;
+  --accent: #00838F;
+  --accent-foreground: #FFFFFF;
+  --background: #F5F5F5;
+  --foreground: #212121;
+  --card: #FFFFFF;
+  --card-foreground: #212121;
+  --muted: #ECEFF1;
+  --muted-foreground: #546E7A;
+  --border: #CFD8DC;
+  --input: #ECEFF1;
+  --ring: #0D47A1;
+  --sidebar: #0D47A1;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #1565C0;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #00838F;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #1976D2;
+  --sidebar-ring: #1565C0;
+}
+
+/* Dark mode for Admin Portal */
+[data-portal="admin"] .dark {
+  --primary: #1565C0;
+  --primary-foreground: #FFFFFF;
+  --secondary: #37474F;
+  --secondary-foreground: #FFFFFF;
+  --accent: #00838F;
+  --accent-foreground: #FFFFFF;
+  --background: #121212;
+  --foreground: #FAFAFA;
+  --card: #1E1E1E;
+  --card-foreground: #FAFAFA;
+  --muted: #263238;
+  --muted-foreground: #B0BEC5;
+  --border: #37474F;
+  --input: #263238;
+  --ring: #1565C0;
+  --sidebar: #0D47A1;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #42A5F5;
+  --sidebar-primary-foreground: #0D47A1;
+  --sidebar-accent: #00838F;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #1565C0;
+  --sidebar-ring: #42A5F5;
+}
+
+/* STAFF PORTAL - Active & Operational Theme */
+/* Medium Blue (#1565C0), Aqua (#4DD0E1), Orange (#FB8C00), Light Gray (#FAFAFA) */
+[data-portal="staff"] {
+  --primary: #1565C0;
+  --primary-foreground: #FFFFFF;
+  --secondary: #4DD0E1;
+  --secondary-foreground: #0D47A1;
+  --accent: #FB8C00;
+  --accent-foreground: #FFFFFF;
+  --background: #FAFAFA;
+  --foreground: #212121;
+  --card: #FFFFFF;
+  --card-foreground: #212121;
+  --muted: #E0F7FA;
+  --muted-foreground: #546E7A;
+  --border: #B2EBF2;
+  --input: #E0F7FA;
+  --ring: #1565C0;
+  --sidebar: #1565C0;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #42A5F5;
+  --sidebar-primary-foreground: #0D47A1;
+  --sidebar-accent: #FB8C00;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #42A5F5;
+  --sidebar-ring: #42A5F5;
+}
+
+/* Dark mode for Staff Portal */
+[data-portal="staff"] .dark {
+  --primary: #42A5F5;
+  --primary-foreground: #0D47A1;
+  --secondary: #00ACC1;
+  --secondary-foreground: #FFFFFF;
+  --accent: #FFB74D;
+  --accent-foreground: #3E2723;
+  --background: #121212;
+  --foreground: #FAFAFA;
+  --card: #1E1E1E;
+  --card-foreground: #FAFAFA;
+  --muted: #006064;
+  --muted-foreground: #B2EBF2;
+  --border: #00838F;
+  --input: #006064;
+  --ring: #42A5F5;
+  --sidebar: #0D47A1;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #4DD0E1;
+  --sidebar-primary-foreground: #0D47A1;
+  --sidebar-accent: #FB8C00;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #00838F;
+  --sidebar-ring: #4DD0E1;
+}
+
+/* ============================================
+   PORTAL-SPECIFIC COMPONENT STYLES
+   ============================================ */
+
+/* Portal-specific button styles */
+[data-portal="guest"] .btn-portal-accent {
+  background-color: #FFC107;
+  color: #0D47A1;
+}
+
+[data-portal="admin"] .btn-portal-accent {
+  background-color: #00838F;
+  color: #FFFFFF;
+}
+
+[data-portal="staff"] .btn-portal-accent {
+  background-color: #FB8C00;
+  color: #FFFFFF;
+}
+
+/* Portal-specific navigation styles */
+[data-portal="guest"] .nav-portal {
+  background-color: rgba(30, 136, 229, 0.95);
+}
+
+[data-portal="admin"] .nav-portal {
+  background-color: rgba(13, 71, 161, 0.95);
+}
+
+[data-portal="staff"] .nav-portal {
+  background-color: rgba(21, 101, 192, 0.95);
+}
+
+/* Portal-specific alert/notification styles */
+[data-portal="guest"] .alert-portal {
+  border-color: #FFC107;
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+[data-portal="admin"] .alert-portal {
+  border-color: #00838F;
+  background-color: rgba(0, 131, 143, 0.1);
+}
+
+[data-portal="staff"] .alert-portal {
+  border-color: #FB8C00;
+  background-color: rgba(251, 140, 0, 0.1);
+}
+
+/* Portal-specific badge styles */
+[data-portal="guest"] .badge-portal {
+  background-color: #1E88E5;
+  color: white;
+}
+
+[data-portal="admin"] .badge-portal {
+  background-color: #0D47A1;
+  color: white;
+}
+
+[data-portal="staff"] .badge-portal {
+  background-color: #1565C0;
+  color: white;
+}
+
+/* Portal-specific gradient utilities */
+[data-portal="guest"] .gradient-portal {
+  background: linear-gradient(135deg, #1E88E5 0%, #64B5F6 50%, #FFC107 100%);
+}
+
+[data-portal="admin"] .gradient-portal {
+  background: linear-gradient(135deg, #0D47A1 0%, #546E7A 50%, #00838F 100%);
+}
+
+[data-portal="staff"] .gradient-portal {
+  background: linear-gradient(135deg, #1565C0 0%, #4DD0E1 50%, #FB8C00 100%);
+}
+
+/* Portal-specific text utilities */
+[data-portal="guest"] .text-portal-primary {
+  color: #1E88E5;
+}
+
+[data-portal="admin"] .text-portal-primary {
+  color: #0D47A1;
+}
+
+[data-portal="staff"] .text-portal-primary {
+  color: #1565C0;
+}
+
+/* Portal-specific border utilities */
+[data-portal="guest"] .border-portal {
+  border-color: #1E88E5;
+}
+
+[data-portal="admin"] .border-portal {
+  border-color: #0D47A1;
+}
+
+[data-portal="staff"] .border-portal {
+  border-color: #1565C0;
+}
+
 /* Dark mode ocean color overrides */
 .dark .dark\:ocean-bg {
   --color-ocean-50: oklch(0.97 0.01 240);

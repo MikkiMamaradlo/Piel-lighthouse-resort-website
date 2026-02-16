@@ -159,6 +159,12 @@ export default function StaffLayout({
     return departmentNavItems[user.department] || departmentNavItems["General"]
   }
 
+  // Set portal theme on mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-portal', 'staff')
+    return () => document.documentElement.removeAttribute('data-portal')
+  }, [])
+
   useEffect(() => {
     if (isPublicPage) {
       setLoading(false)

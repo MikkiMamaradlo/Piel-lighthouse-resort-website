@@ -81,6 +81,12 @@ export default function AdminLayout({
     }
   }, [pathname])
 
+  // Set portal theme on mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-portal', 'admin')
+    return () => document.documentElement.removeAttribute('data-portal')
+  }, [])
+
   const handleLogout = async () => {
     await fetch("/api/admin/auth", { method: "DELETE" })
     router.push("/admin/login")
