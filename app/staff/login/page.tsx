@@ -130,14 +130,14 @@ export default function StaffLoginPage() {
 
               {/* Username Field */}
               <div className="space-y-2">
-                <label htmlFor="username" className="block text-sm font-semibold text-jade-700 dark:text-jade-300 ml-1">
+                <label htmlFor="username" className="block text-sm font-semibold text-ocean-700 dark:text-ocean-300 ml-1">
                   Username
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "username" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "username" ? "text-jade-500" : "text-jade-400"
+                    focusedField === "username" ? "text-ocean-500" : "text-ocean-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -150,7 +150,7 @@ export default function StaffLoginPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     onFocus={() => setFocusedField("username")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-4 py-3.5 bg-jade-50 dark:bg-jade-800/50 border-2 border-jade-200 dark:border-jade-700 rounded-xl focus:ring-0 focus:border-jade-400 outline-none transition-all duration-300 hover:border-jade-300 text-jade-900 dark:text-white placeholder-jade-400"
+                    className="w-full pl-12 pr-4 py-3.5 bg-ocean-50 dark:bg-ocean-800/50 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl focus:ring-0 focus:border-ocean-400 outline-none transition-all duration-300 hover:border-ocean-300 text-ocean-900 dark:text-white placeholder-ocean-400"
                     placeholder="Enter your username"
                     required
                   />
@@ -159,14 +159,14 @@ export default function StaffLoginPage() {
 
               {/* Password Field */}
               <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-semibold text-jade-700 dark:text-jade-300 ml-1">
+                <label htmlFor="password" className="block text-sm font-semibold text-ocean-700 dark:text-ocean-300 ml-1">
                   Password
                 </label>
                 <div className={`relative transition-all duration-300 ${
                   focusedField === "password" ? "transform scale-[1.02]" : ""
                 }`}>
                   <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                    focusedField === "password" ? "text-jade-500" : "text-jade-400"
+                    focusedField === "password" ? "text-ocean-500" : "text-ocean-400"
                   }`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -179,14 +179,14 @@ export default function StaffLoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setFocusedField("password")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full pl-12 pr-14 py-3.5 bg-jade-50 dark:bg-jade-800/50 border-2 border-jade-200 dark:border-jade-700 rounded-xl focus:ring-0 focus:border-jade-400 outline-none transition-all duration-300 hover:border-jade-300 text-jade-900 dark:text-white placeholder-jade-400"
+                    className="w-full pl-12 pr-14 py-3.5 bg-ocean-50 dark:bg-ocean-800/50 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl focus:ring-0 focus:border-ocean-400 outline-none transition-all duration-300 hover:border-ocean-300 text-ocean-900 dark:text-white placeholder-ocean-400"
                     placeholder="••••••••"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-jade-400 hover:text-jade-500 transition-colors"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-ocean-400 hover:text-ocean-500 transition-colors"
                   >
                     {showPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,7 +206,7 @@ export default function StaffLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 px-4 bg-gradient-to-r from-jade-500 to-emerald-500 hover:from-jade-600 hover:to-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-jade-500/30 hover:shadow-jade-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 group"
+                className="w-full py-3.5 px-4 bg-gradient-to-r from-ocean-500 to-blue-500 hover:from-ocean-600 hover:to-blue-600 text-white font-bold rounded-xl shadow-lg shadow-ocean-500/30 hover:shadow-ocean-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 group"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-2">
@@ -226,7 +226,7 @@ export default function StaffLoginPage() {
 
         {/* Back to Home */}
         <div className="mt-6 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-jade-200 hover:text-white transition-colors group">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-ocean-200 hover:text-white transition-colors group">
             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -236,7 +236,7 @@ export default function StaffLoginPage() {
 
         {/* Footer */}
         <div className="mt-6 text-center">
-          <p className="text-xs text-jade-300/60">© 2024 Piel Lighthouse Resort • Staff Portal</p>
+          <p className="text-xs text-ocean-300/60">© 2024 Piel Lighthouse Resort • Staff Portal</p>
         </div>
       </div>
     </div>

@@ -292,7 +292,7 @@ export default function StaffLayout({
               
               <div className="flex items-center gap-3 pl-6 border-l border-white/20">
                 <ThemeToggle />
-                <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] dark:from-[#42A5F5] dark:to-[#00ACC1] rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] dark:from-[#42A5F5] dark:to-[#4DD0E1] rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20 dark:ring-[#0D47A1]/50">
                   <span className="text-white font-bold text-sm">
                     {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
                   </span>
@@ -332,8 +332,8 @@ export default function StaffLayout({
                       href={item.href}
                       className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 ${
                         isActive
-                          ? "bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] dark:from-[var(--sidebar-primary)] dark:to-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/30 dark:shadow-[var(--sidebar-primary)]/30"
-                          : "text-[var(--foreground)] dark:text-[var(--sidebar-foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--sidebar-accent)]/20 hover:text-[var(--foreground)] dark:hover:text-[var(--sidebar-foreground)]"
+                          ? "bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] dark:from-[#0D47A1] dark:to-[#1565C0] text-white shadow-lg shadow-[var(--primary)]/30 dark:shadow-[#0D47A1]/50"
+                          : "text-[var(--foreground)] dark:text-gray-200 hover:bg-[var(--muted)] dark:hover:bg-[#0D47A1]/30 hover:text-[var(--foreground)] dark:hover:text-white"
                       }`}
                       title={isSidebarCollapsed ? item.label : undefined}
                     >
@@ -343,10 +343,10 @@ export default function StaffLayout({
                       )}
                       <div className={`relative p-2.5 rounded-xl transition-all duration-300 ${
                         isActive 
-                          ? "bg-white/20" 
-                          : "bg-[var(--muted)] dark:bg-[var(--sidebar-accent)]/20 group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--sidebar-accent)]/30"
+                          ? "bg-white/20 dark:bg-white/10" 
+                          : "bg-[var(--muted)] dark:bg-[#0D47A1]/30 group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[#1565C0]/40"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] group-hover:text-[var(--primary)] dark:group-hover:text-[var(--secondary)]"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] dark:text-gray-300 group-hover:text-[var(--primary)] dark:group-hover:text-[#4DD0E1]"}`} />
                       </div>
                       <span className={`font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
@@ -356,9 +356,9 @@ export default function StaffLayout({
                       )}
                       {/* Hover tooltip for collapsed state */}
                       {isSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 px-3 py-2 bg-[var(--primary)] dark:bg-[var(--sidebar-primary)] text-[var(--sidebar-primary-foreground)] text-sm font-semibold rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50 animate-fade-in-left">
+                        <div className="absolute left-full ml-3 px-3 py-2 bg-[var(--primary)] dark:bg-[#0D47A1] text-white dark:text-white text-sm font-semibold rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50 animate-fade-in-left">
                           {item.label}
-                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-[var(--primary)] dark:bg-[var(--sidebar-primary)] rounded-sm rotate-45" />
+                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-[var(--primary)] dark:bg-[#0D47A1] rounded-sm rotate-45" />
                         </div>
                       )}
                     </Link>

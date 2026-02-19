@@ -488,7 +488,7 @@
 [data-portal="staff"].dark {
   --primary: #42A5F5;
   --primary-foreground: #0D47A1;
-  --secondary: #00ACC1;
+  --secondary: #1565C0;
   --secondary-foreground: #FFFFFF;
   --accent: #FFB74D;
   --accent-foreground: #1A1A1A;
@@ -496,19 +496,19 @@
   --foreground: #FAFAFA;
   --card: #1A1A1A;
   --card-foreground: #FFFFFF;
-  --muted: #006064;
-  --muted-foreground: #E0F7FA;
-  --border: #00838F;
-  --input: #006064;
+  --muted: #1E3A5F;
+  --muted-foreground: #B2EBF2;
+  --border: #1565C0;
+  --input: #1E3A5F;
   --ring: #42A5F5;
-  --sidebar: #0D47A1;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #4DD0E1;
-  --sidebar-primary-foreground: #0D47A1;
-  --sidebar-accent: #FB8C00;
+  --sidebar: #0D1B2A;
+  --sidebar-foreground: #E0E0E0;
+  --sidebar-primary: #1565C0;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #42A5F5;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #00838F;
-  --sidebar-ring: #4DD0E1;
+  --sidebar-border: #1E3A5F;
+  --sidebar-ring: #1565C0;
   
   /* Text visibility tokens for dark mode - WCAG compliant */
   --text-primary: #FFFFFF;
