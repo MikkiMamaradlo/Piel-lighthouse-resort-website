@@ -73,7 +73,7 @@ export default function GuestLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-50 via-sky-50 to-sunset-100 dark:from-ocean-950 dark:via-ocean-900 dark:to-ocean-950 transition-colors duration-500">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-sunset-50 via-sky-50 to-sunset-100 dark:from-sunset-950 dark:via-sunset-900 dark:to-sunset-950 transition-colors duration-500">
       {/* Animated beach background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Sun rays */}
@@ -107,8 +107,8 @@ export default function GuestLoginPage() {
               <Waves className="w-5 h-5 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-ocean-900 dark:text-white mb-2 drop-shadow-lg">Piel Lighthouse</h1>
-          <div className="flex items-center justify-center gap-2 text-ocean-600 dark:text-ocean-300">
+          <h1 className="text-3xl font-bold text-sunset-900 dark:text-white mb-2 drop-shadow-lg">Piel Lighthouse</h1>
+          <div className="flex items-center justify-center gap-2 text-sunset-600 dark:text-sunset-300">
             <Sun className="w-5 h-5 text-sunset-500 animate-pulse" />
             <span className="text-sm font-semibold tracking-wide">Guest Portal</span>
             <Sun className="w-5 h-5 text-sunset-500 animate-pulse" />
@@ -116,13 +116,13 @@ export default function GuestLoginPage() {
         </div>
 
         {/* Login Form */}
-        <div className="relative bg-white/95 dark:bg-ocean-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/50 dark:ring-ocean-700/50">
+        <div className="relative bg-white/95 dark:bg-sunset-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/50 dark:ring-sunset-700/50">
           {/* Decorative top bar with wave pattern */}
-          <div className="h-2 bg-gradient-to-r from-ocean-500 via-cyan-400 to-sunset-400"></div>
+          <div className="h-2 bg-gradient-to-r from-sunset-500 via-cyan-400 to-sunset-400"></div>
 
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-ocean-900 dark:text-white mb-2 text-center">Welcome Back</h2>
-            <p className="text-ocean-500 dark:text-ocean-400 text-center mb-6">Sign in to access your paradise</p>
+            <h2 className="text-2xl font-bold text-sunset-900 dark:text-white mb-2 text-center">Welcome Back</h2>
+            <p className="text-sunset-500 dark:text-sunset-400 text-center mb-6">Sign in to access your paradise</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Email Field */}
@@ -132,7 +132,7 @@ export default function GuestLoginPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3.5 bg-ocean-50 dark:bg-ocean-800 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl text-ocean-900 dark:text-white placeholder-ocean-400 focus:outline-none focus:border-sunset-400 focus:ring-4 focus:ring-sunset-400/10 transition-all duration-300"
+                  className="w-full px-4 py-3.5 bg-sunset-50 dark:bg-sunset-800 border-2 border-sunset-200 dark:border-sunset-700 rounded-xl text-sunset-900 dark:text-white placeholder-sunset-400 focus:outline-none focus:border-sunset-400 focus:ring-4 focus:ring-sunset-400/10 transition-all duration-300"
                   placeholder="Email address"
                   required
                 />
@@ -145,14 +145,14 @@ export default function GuestLoginPage() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3.5 bg-ocean-50 dark:bg-ocean-800 border-2 border-ocean-200 dark:border-ocean-700 rounded-xl text-ocean-900 dark:text-white placeholder-ocean-400 focus:outline-none focus:border-sunset-400 focus:ring-4 focus:ring-sunset-400/10 transition-all duration-300 pr-12"
+                  className="w-full px-4 py-3.5 bg-sunset-50 dark:bg-sunset-800 border-2 border-sunset-200 dark:border-sunset-700 rounded-xl text-sunset-900 dark:text-white placeholder-sunset-400 focus:outline-none focus:border-sunset-400 focus:ring-4 focus:ring-sunset-400/10 transition-all duration-300 pr-12"
                   placeholder="Password"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-ocean-400 hover:text-sunset-500 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-sunset-400 hover:text-sunset-500 transition-colors"
                 >
                   {showPassword ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -69,7 +69,7 @@ export default function GuestRegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-ocean-900 via-ocean-800 to-ocean-900 py-12">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-sunset-900 via-sunset-800 to-sunset-900 py-12">
       {/* Animated Ocean Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Sun rays */}
@@ -396,7 +396,7 @@ export default function GuestRegisterPage() {
 
         {/* Back to Home */}
         <div className="mt-6 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-ocean-200 hover:text-white transition-colors group">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-sunset-200 hover:text-white transition-colors group">
             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -406,7 +406,7 @@ export default function GuestRegisterPage() {
 
         {/* Footer */}
         <div className="mt-6 text-center">
-          <p className="text-xs text-ocean-300/60">© 2024 Piel Lighthouse Resort • Your Beach Paradise Awaits</p>
+          <p className="text-xs text-sunset-300/60">© 2024 Piel Lighthouse Resort • Your Beach Paradise Awaits</p>
         </div>
       </div>
     </div>

@@ -314,65 +314,85 @@
    beach resort brand identity
    ============================================ */
 
-/* GUEST PORTAL - Relaxing & Welcoming Theme */
-/* Ocean Blue (#1E88E5), Sky Blue (#64B5F6), Gold (#FFC107), Light Blue (#E3F2FD) */
+/* GUEST PORTAL - Sunset-Inspired Warm Theme */
+/* Coral (#FF6B6B), Peach (#FFB4A2), Orange (#FF8C42), Soft Pink (#FFB5C5), Warm Purple (#9B7EDE) */
 [data-portal="guest"] {
-  --primary: #1E88E5;
+  --primary: #FF6B6B;
   --primary-foreground: #FFFFFF;
-  --secondary: #64B5F6;
-  --secondary-foreground: #0D47A1;
-  --accent: #FFC107;
-  --accent-foreground: #0D47A1;
-  --background: #E3F2FD;
-  --foreground: #1A237E;
+  --secondary: #FFB4A2;
+  --secondary-foreground: #5D3A1A;
+  --accent: #FF8C42;
+  --accent-foreground: #FFFFFF;
+  --background: #FFF5F0;
+  --foreground: #4A2C2A;
   --card: #FFFFFF;
-  --card-foreground: #1A237E;
-  --muted: #BBDEFB;
-  --muted-foreground: #546E7A;
-  --border: #90CAF9;
-  --input: #BBDEFB;
-  --ring: #1E88E5;
-  --sidebar: #E3F2FD;
-  --sidebar-foreground: #1A237E;
-  --sidebar-primary: #1E88E5;
+  --card-foreground: #4A2C2A;
+  --muted: #FFE8E0;
+  --muted-foreground: #8B6B61;
+  --border: #FFD4C4;
+  --input: #FFE8E0;
+  --ring: #FF6B6B;
+  --sidebar: #FFF5F0;
+  --sidebar-foreground: #4A2C2A;
+  --sidebar-primary: #FF6B6B;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #64B5F6;
-  --sidebar-accent-foreground: #0D47A1;
-  --sidebar-border: #90CAF9;
-  --sidebar-ring: #1E88E5;
+  --sidebar-accent: #FFB4A2;
+  --sidebar-accent-foreground: #5D3A1A;
+  --sidebar-border: #FFD4C4;
+  --sidebar-ring: #FF6B6B;
+  
+  /* Sunset color palette for Guest Portal */
+  --color-sunset-coral: #FF6B6B;
+  --color-sunset-peach: #FFB4A2;
+  --color-sunset-orange: #FF8C42;
+  --color-sunset-pink: #FFB5C5;
+  --color-sunset-purple: #9B7EDE;
+  --color-sunset-gold: #FFB347;
+  --color-sunset-rose: #FF8A80;
+  --color-sunset-lavender: #D4A5FF;
 }
 
-/* Dark mode for Guest Portal */
+/* Dark mode for Guest Portal - Sunset Night Sky */
 [data-portal="guest"].dark {
-  --primary: #42A5F5;
-  --primary-foreground: #FFFFFF;
-  --secondary: #1E88E5;
-  --secondary-foreground: #FFFFFF;
-  --accent: #FFD54F;
-  --accent-foreground: #1A237E;
-  --background: #0D47A1;
-  --foreground: #E3F2FD;
-  --card: #1565C0;
+  --primary: #FF8A80;
+  --primary-foreground: #4A2C2A;
+  --secondary: #FFB4A2;
+  --secondary-foreground: #4A2C2A;
+  --accent: #FFB347;
+  --accent-foreground: #4A2C2A;
+  --background: #2D1F3D;
+  --foreground: #FFF5F0;
+  --card: #3D2A4D;
   --card-foreground: #FFFFFF;
-  --muted: #1976D2;
-  --muted-foreground: #E3F2FD;
-  --border: #42A5F5;
-  --input: #1976D2;
-  --ring: #42A5F5;
-  --sidebar: #0D47A1;
+  --muted: #4A3060;
+  --muted-foreground: #FFD4C4;
+  --border: #5A4070;
+  --input: #4A3060;
+  --ring: #FF8A80;
+  --sidebar: #2D1F3D;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #42A5F5;
-  --sidebar-primary-foreground: #0D47A1;
-  --sidebar-accent: #1E88E5;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #42A5F5;
-  --sidebar-ring: #42A5F5;
+  --sidebar-primary: #FF8A80;
+  --sidebar-primary-foreground: #4A2C2A;
+  --sidebar-accent: #FFB4A2;
+  --sidebar-accent-foreground: #4A2C2A;
+  --sidebar-border: #5A4070;
+  --sidebar-ring: #FF8A80;
   
   /* Text visibility tokens for dark mode */
   --text-primary: #FFFFFF;
-  --text-secondary: #E3F2FD;
-  --text-tertiary: #BBDEFB;
-  --text-muted: #90CAF9;
+  --text-secondary: #FFE8E0;
+  --text-tertiary: #FFD4C4;
+  --text-muted: #FFB4A2;
+  
+  /* Sunset dark mode palette */
+  --color-sunset-coral: #FF8A80;
+  --color-sunset-peach: #FFB4A2;
+  --color-sunset-orange: #FFB347;
+  --color-sunset-pink: #FFB5C5;
+  --color-sunset-purple: #B794F6;
+  --color-sunset-gold: #FFD700;
+  --color-sunset-rose: #FF6B6B;
+  --color-sunset-lavender: #D4A5FF;
 }
 
 /* ADMIN PORTAL - Professional & Controlled Theme */
@@ -514,10 +534,15 @@
    PORTAL-SPECIFIC COMPONENT STYLES
    ============================================ */
 
-/* Portal-specific button styles */
+/* Portal-specific button styles - Sunset Theme */
 [data-portal="guest"] .btn-portal-accent {
-  background-color: #FFC107;
-  color: #0D47A1;
+  background-color: #FF8C42;
+  color: #FFFFFF;
+}
+
+[data-portal="guest"].dark .btn-portal-accent {
+  background-color: #FFB347;
+  color: #4A2C2A;
 }
 
 [data-portal="admin"] .btn-portal-accent {
@@ -530,9 +555,13 @@
   color: #FFFFFF;
 }
 
-/* Portal-specific navigation styles */
+/* Portal-specific navigation styles - Sunset Theme */
 [data-portal="guest"] .nav-portal {
-  background-color: rgba(30, 136, 229, 0.95);
+  background-color: rgba(255, 107, 107, 0.95);
+}
+
+[data-portal="guest"].dark .nav-portal {
+  background-color: rgba(45, 31, 61, 0.95);
 }
 
 [data-portal="admin"] .nav-portal {
@@ -543,26 +572,15 @@
   background-color: rgba(21, 101, 192, 0.95);
 }
 
-/* Portal-specific alert/notification styles */
+/* Portal-specific alert/notification styles - Sunset Theme */
 [data-portal="guest"] .alert-portal {
-  border-color: #FFC107;
-  background-color: rgba(255, 193, 7, 0.1);
+  border-color: #FF8C42;
+  background-color: rgba(255, 140, 66, 0.1);
 }
 
-[data-portal="admin"] .alert-portal {
-  border-color: #00838F;
-  background-color: rgba(0, 131, 143, 0.1);
-}
-
-[data-portal="staff"] .alert-portal {
-  border-color: #FB8C00;
-  background-color: rgba(251, 140, 0, 0.1);
-}
-
-/* Dark mode portal-specific alert/notification styles */
 [data-portal="guest"].dark .alert-portal {
-  border-color: #FFD54F;
-  background-color: rgba(255, 213, 79, 0.15);
+  border-color: #FFB347;
+  background-color: rgba(255, 179, 71, 0.15);
   color: #FFFFFF;
 }
 
@@ -578,26 +596,15 @@
   color: #FFFFFF;
 }
 
-/* Portal-specific badge styles */
+/* Portal-specific badge styles - Sunset Theme */
 [data-portal="guest"] .badge-portal {
-  background-color: #1E88E5;
+  background-color: #FF6B6B;
   color: white;
 }
 
-[data-portal="admin"] .badge-portal {
-  background-color: #0D47A1;
-  color: white;
-}
-
-[data-portal="staff"] .badge-portal {
-  background-color: #1565C0;
-  color: white;
-}
-
-/* Dark mode portal-specific badge styles */
 [data-portal="guest"].dark .badge-portal {
-  background-color: #42A5F5;
-  color: #0D47A1;
+  background-color: #FF8A80;
+  color: #4A2C2A;
 }
 
 [data-portal="admin"].dark .badge-portal {
@@ -610,9 +617,13 @@
   color: #0D47A1;
 }
 
-/* Portal-specific gradient utilities */
+/* Portal-specific gradient utilities - Sunset Theme */
 [data-portal="guest"] .gradient-portal {
-  background: linear-gradient(135deg, #1E88E5 0%, #64B5F6 50%, #FFC107 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFB4A2 50%, #FF8C42 100%);
+}
+
+[data-portal="guest"].dark .gradient-portal {
+  background: linear-gradient(135deg, #9B7EDE 0%, #FF6B6B 50%, #FFB347 100%);
 }
 
 [data-portal="admin"] .gradient-portal {
@@ -623,9 +634,13 @@
   background: linear-gradient(135deg, #1565C0 0%, #4DD0E1 50%, #FB8C00 100%);
 }
 
-/* Portal-specific text utilities */
+/* Portal-specific text utilities - Sunset Theme */
 [data-portal="guest"] .text-portal-primary {
-  color: #1E88E5;
+  color: #FF6B6B;
+}
+
+[data-portal="guest"].dark .text-portal-primary {
+  color: #FF8A80;
 }
 
 [data-portal="admin"] .text-portal-primary {
@@ -636,9 +651,13 @@
   color: #1565C0;
 }
 
-/* Portal-specific border utilities */
+/* Portal-specific border utilities - Sunset Theme */
 [data-portal="guest"] .border-portal {
-  border-color: #1E88E5;
+  border-color: #FF6B6B;
+}
+
+[data-portal="guest"].dark .border-portal {
+  border-color: #FF8A80;
 }
 
 [data-portal="admin"] .border-portal {

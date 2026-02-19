@@ -88,7 +88,7 @@ export default function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         scrolled
           ? "bg-background/98 backdrop-blur-lg shadow-lg border-b border-border"
-          : "bg-background/95 dark:bg-ocean-950/95 backdrop-blur-md"
+          : "bg-background/95 backdrop-blur-md"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* Top bar */}
