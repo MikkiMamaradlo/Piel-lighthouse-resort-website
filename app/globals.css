@@ -516,6 +516,16 @@
   --text-tertiary: #B2EBF2;
   --text-muted: #80DEEA;
   
+  /* Better dark mode backgrounds */
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #0D0D0D;
+  --bg-tertiary: #006064;
+  --bg-elevated: #1F2937;
+  
+  /* Border adjustments for dark mode */
+  --border-default: #00838F;
+  --border-muted: #006064;
+  
   /* Jade colors adjusted for dark mode */
   --color-jade-50: oklch(0.97 0.01 160);
   --color-jade-100: oklch(0.93 0.02 160);

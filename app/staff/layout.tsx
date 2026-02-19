@@ -219,8 +219,8 @@ export default function StaffLayout({
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--secondary)]/20 via-[var(--background)] to-[var(--secondary)]/20 dark:from-[var(--primary)] dark:via-[var(--primary)] dark:to-[var(--primary)]">
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
-            <div className="absolute inset-0 bg-[var(--primary)]/30 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] rounded-2xl shadow-lg shadow-[var(--primary)]/30">
+            <div className="absolute inset-0 bg-[var(--primary)]/30 dark:bg-[var(--primary)]/50 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] dark:from-[#42A5F5] dark:to-[#00ACC1] rounded-2xl shadow-lg shadow-[var(--primary)]/30 dark:shadow-[#42A5F5]/50">
               <Ship className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -257,9 +257,9 @@ export default function StaffLayout({
       disableTransitionOnChange
     >
     <div className="min-h-screen bg-gradient-to-br from-[var(--secondary)]/20 via-[var(--background)] to-[var(--secondary)]/20 dark:from-[var(--primary)] dark:via-[var(--primary)] dark:to-[var(--primary)] bg-[url('/images/piel2.jpg')] bg-cover bg-center bg-fixed bg-no-repeat">
-      <div className="min-h-screen bg-white/90 dark:[var(--background)]/90 backdrop-blur-xl">
+      <div className="min-h-screen bg-white/90 dark:bg-[var(--background)]/90 backdrop-blur-xl">
         {/* Top Navigation */}
-        <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-[var(--primary)] via-[var(--primary)] to-[var(--secondary)] text-white shadow-lg z-50">
+        <nav className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-[var(--primary)] via-[var(--primary)] to-[var(--secondary)] dark:from-[#0D47A1] dark:via-[#1565C0] dark:to-[#0D47A1] text-white shadow-lg z-50">
           <div className="flex items-center justify-between h-full px-6">
             <div className="flex items-center gap-4">
               <button
@@ -276,7 +276,7 @@ export default function StaffLayout({
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-lg font-bold text-white">Piel Lighthouse Resort</div>
-                  <div className="text-xs text-white/80 dark:text-white/80 font-medium flex items-center gap-1">
+                  <div className="text-xs text-white/80 font-medium flex items-center gap-1">
                     <Sun className="w-3 h-3 animate-pulse" />
                     Staff Portal
                   </div>
@@ -286,20 +286,20 @@ export default function StaffLayout({
             
             <div className="flex items-center gap-6">
               <div className="hidden md:block text-right">
-                <div className="text-sm text-white/70 dark:text-white/70">{formatDate(currentTime)}</div>
+                <div className="text-sm text-white/70">{formatDate(currentTime)}</div>
                 <div className="text-lg font-semibold text-white">{formatTime(currentTime)}</div>
               </div>
               
               <div className="flex items-center gap-3 pl-6 border-l border-white/20">
                 <ThemeToggle />
-                <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] dark:from-[#42A5F5] dark:to-[#00ACC1] rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
                   <span className="text-white font-bold text-sm">
                     {user.fullName ? user.fullName.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-sm font-medium text-white">{user.fullName || user.username}</div>
-                  <div className="text-xs text-white/70">{roleDisplayName}</div>
+                  <div className="text-xs text-white/70 dark:text-white/70">{roleDisplayName}</div>
                 </div>
                 <button
                   onClick={handleLogout}
@@ -316,7 +316,7 @@ export default function StaffLayout({
         <div className="flex pt-16">
           {/* Sidebar */}
           <aside
-            className={`fixed left-0 top-16 bottom-0 bg-white/95 dark:bg-[var(--background)]/95 backdrop-blur-2xl shadow-2xl transition-all duration-300 z-40 border-r border-[var(--border)] dark:border-[var(--border)] ${
+            className={`fixed left-0 top-16 bottom-0 bg-white/95 dark:bg-[var(--sidebar)]/95 backdrop-blur-2xl shadow-2xl transition-all duration-300 z-40 border-r border-[var(--border)] dark:border-[var(--sidebar-border)] ${
               isSidebarCollapsed ? "w-20" : "w-64"
             } ${isSidebarCollapsed ? "lg:w-20" : "lg:w-64"}`}
           >
@@ -332,8 +332,8 @@ export default function StaffLayout({
                       href={item.href}
                       className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 ${
                         isActive
-                          ? "bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white shadow-lg shadow-[var(--primary)]/30"
-                          : "text-[var(--foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
+                          ? "bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] dark:from-[var(--sidebar-primary)] dark:to-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/30 dark:shadow-[var(--sidebar-primary)]/30"
+                          : "text-[var(--foreground)] dark:text-[var(--sidebar-foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--sidebar-accent)]/20 hover:text-[var(--foreground)] dark:hover:text-[var(--sidebar-foreground)]"
                       }`}
                       title={isSidebarCollapsed ? item.label : undefined}
                     >
@@ -344,9 +344,9 @@ export default function StaffLayout({
                       <div className={`relative p-2.5 rounded-xl transition-all duration-300 ${
                         isActive 
                           ? "bg-white/20" 
-                          : "bg-[var(--muted)] dark:bg-[var(--muted)] group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--secondary)]/20"
+                          : "bg-[var(--muted)] dark:bg-[var(--sidebar-accent)]/20 group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--sidebar-accent)]/30"
                       }`}>
-                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"}`} />
+                        <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${isActive ? "text-white" : "text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] group-hover:text-[var(--primary)] dark:group-hover:text-[var(--secondary)]"}`} />
                       </div>
                       <span className={`font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
                         {item.label}
@@ -356,9 +356,9 @@ export default function StaffLayout({
                       )}
                       {/* Hover tooltip for collapsed state */}
                       {isSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 px-3 py-2 bg-[var(--primary)] dark:bg-[var(--primary)] text-white text-sm font-semibold rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50 animate-fade-in-left">
+                        <div className="absolute left-full ml-3 px-3 py-2 bg-[var(--primary)] dark:bg-[var(--sidebar-primary)] text-[var(--sidebar-primary-foreground)] text-sm font-semibold rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl whitespace-nowrap z-50 animate-fade-in-left">
                           {item.label}
-                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-[var(--primary)] dark:bg-[var(--primary)] rounded-sm rotate-45" />
+                          <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-[var(--primary)] dark:bg-[var(--sidebar-primary)] rounded-sm rotate-45" />
                         </div>
                       )}
                     </Link>
@@ -370,13 +370,13 @@ export default function StaffLayout({
               <div className="px-3 mt-auto">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-[var(--muted-foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] rounded-xl transition-all duration-300 group"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] rounded-xl transition-all duration-300 group"
                 >
                   <div className="p-2.5 rounded-xl bg-[var(--muted)] dark:bg-[var(--muted)] group-hover:bg-[var(--secondary)]/20 dark:group-hover:bg-[var(--secondary)]/20 transition-all duration-300">
                     {isSidebarCollapsed ? (
-                      <ChevronRight className="w-5 h-5 text-[var(--muted-foreground)] transition-transform duration-300" />
+                      <ChevronRight className="w-5 h-5 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] transition-transform duration-300" />
                     ) : (
-                      <ChevronLeft className="w-5 h-5 text-[var(--muted-foreground)] transition-transform duration-300" />
+                      <ChevronLeft className="w-5 h-5 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] transition-transform duration-300" />
                     )}
                   </div>
                   <span className={`text-sm font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] transition-all duration-200 ${isSidebarCollapsed ? "lg:hidden opacity-0 w-0" : ""}`}>
